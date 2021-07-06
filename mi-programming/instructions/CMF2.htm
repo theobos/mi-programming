@@ -1,0 +1,727 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CMF2 Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body><a name="HDRCMF2"></a>
+<H1>Compute Math Function Using Two Input Values (CMF2)</H1>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 4
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand &#91;5-8&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>CMF2</B>
+100C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>CMF2B</B>
+1C0C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>CMF2I</B>
+180C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator targets
+</TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Character(2) scalar.
+<P>
+<I>Operand 3</I>:  Numeric scalar.
+<P>
+<I>Operand 4</I>:  Numeric scalar.
+<P>
+<I>Operand 5-8</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The mathematical function, indicated by the <I>controls</I> operand, is performed on
+the source operand values and the result is placed in the <I>receiver</I> operand.
+<P>
+The calculation is always done in floating-point.
+<P>
+The <I>controls</I> operand must be a character scalar
+that specifies which
+mathematical function is to be
+performed.  It must be at least 2 bytes in length and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<DL COMPACT>
+<DD>Hex 0001 = Power (x to the y)
+<DD>All other values are reserved
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The computation x power y, where x is the first source operand
+and y is the second source operand, is
+performed and the result is placed in the <I>receiver</I> operand.
+<P>
+The following chart shows some special cases for certain
+arguments of the power function (x**y).
+Within the chart, the capitalized letters X and Y refer to the
+absolute value of the arguments x and y; that is,
+X = |x| and Y = |y|.
+<BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">           y
+</TH><TH ALIGN="LEFT" VALIGN="TOP">-inf
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&lt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&lt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&lt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">-1
+</TH><TH ALIGN="LEFT" VALIGN="TOP">-1/2
+</TH><TH ALIGN="LEFT" VALIGN="TOP">+0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">+1/2
+</TH><TH ALIGN="LEFT" VALIGN="TOP">+1
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&gt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&gt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y&gt;0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">+inf
+</TH><TH ALIGN="LEFT" VALIGN="TOP">M-
+</TH><TH ALIGN="LEFT" VALIGN="TOP">UnM-
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">y=
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y=2n
+</TH><TH ALIGN="LEFT" VALIGN="TOP">real
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">or
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">y=
+</TH><TH ALIGN="LEFT" VALIGN="TOP">y=2n
+</TH><TH ALIGN="LEFT" VALIGN="TOP">real
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">NaN
+</TH><TH ALIGN="LEFT" VALIGN="TOP">NaN
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP">x
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">2n+1
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">-0
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">2n+1
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x&gt;1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+1
+----------
+SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">X=+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">0&lt;x&lt;1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+1
+----------
+SQRT(X)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x=+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x=-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(g)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">E(g)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">E(g)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">0&gt;x&gt;-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+------
+X
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-X**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">X**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x=-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x&lt;-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+------
+X**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-1
+------
+X
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-X**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">X**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">x=-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Masked Nan
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">d
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(e)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Unmasked Nan
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">A(e)
+</TD></TR><TR>
+<TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="16">Special cases of the power function (x**y)
+</TH></TR></TABLE>
+<P>
+Capital letters in the chart indicate the exceptions and small
+letters indicate the returned results as defined in the following
+list:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>A
+</TD><TD><P> <I>Floating-point invalid operand &nbsp; </I>(hex 0C09) exception
+</TD></TR><TR VALIGN="TOP"><TD><P>E
+</TD><TD><P> <I>Floating-point zero divide &nbsp; </I>(hex 0C0E) exception
+</TD></TR><TR VALIGN="TOP"><TD><P>a
+</TD><TD><P>Result is the system default masked NaN
+</TD></TR><TR VALIGN="TOP"><TD><P>b
+</TD><TD><P>Result is the same NaN
+</TD></TR><TR VALIGN="TOP"><TD><P>c
+</TD><TD><P>Result is the same NaN masked
+</TD></TR><TR VALIGN="TOP"><TD><P>d
+</TD><TD><P>Result is one of the input NaNs
+</TD></TR><TR VALIGN="TOP"><TD><P>e
+</TD><TD><P>Result is a masked NAN
+</TD></TR><TR VALIGN="TOP"><TD><P>f
+</TD><TD><P>Result is +infinity
+</TD></TR><TR VALIGN="TOP"><TD><P>g
+</TD><TD><P>Result is -infinity
+</TD></TR></TABLE>
+<P>
+The following chart provides accuracy data for the mathematical
+function that can be invoked by this instruction.
+<P>
+<P>
+<BR>
+<TABLE BORDER>
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x&gt;1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+<P>____
+<P>x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+<P>____
+<P>x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+<P>____
+<P>x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+<P>____
+<P>x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+<P>____
+<P>SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x=+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">A(c)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">0&lt;x&lt;1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1/x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1/x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1/x**Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1/x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1/SQRT(x)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x**y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">A(c)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">x=+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">E(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">b
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="6%">A(c)
+</TD></TR><TR>
+<TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="16">Special cases of the power function
+</TH></TR></TABLE>
+<P><B><A NAME="Figure_1">Figure 1. Accuracy data for CMF2 mathematical functions.</A></B><BR>
+<PRE>
+---------------------------------------------------------------------
+|         |                       |                                 |
+|         |  Sample Selection     |  Accuracy Data                  |
+|         |---------------------------------------------------------|
+| Function|    |                  |                |                |
+| Name    | x  |      y           | MAX(e)         | SD(e)          |
+|         |    |                  |                |                |
+|--------------------------------------------------------------------
+|   Power | 1/3|-345 &lt;= y &lt;= 330  | 4.99 * 10**-16 | 1.90 * 10**-16 |
+|         ----------------------------------------------------------
+|         | .75|-320 &lt;= y &lt;= 1320 | 2.96 * 10**-16 | 2.39 * 10**-16 |
+|         ----------------------------------------------------------
+|         | .9 |-3605 &lt;= y &lt;= 3605| 1.23 * 10**-16 | 1.02 * 10**-16 |
+|         ----------------------------------------------------------
+|         | 10 |-165 &lt;= y &lt;= 165  | 7.10 * 10**-16 | 3.18 * 10**-16 |
+|         ----------------------------------------------------------
+|         | 712|-57 &lt;= y &lt;= 57    | 1.75 * 10**-15 | 7.24 * 10**-16 |
+--------------------------------------------------------------------
+</PRE>
+The vertical columns in the accuracy data chart have
+the following meanings:
+<UL>
+<P><LI>
+<I>Function Name</I>:  This
+column identifies the mathematical function.
+<P><LI>
+<I>Sample Selection</I>:  This
+column identifies the selection of samples taken for
+the power function.  The algorithm used
+against the arguments, x and y, to gather the accuracy
+samples was a test for the anticipated
+relation where f(x) should equal g(x,y):
+<P>
+where:
+<PRE>
+f (x)= x
+<P>
+g(x,y)= (x**y)**(1/y)
+</PRE>
+<P>
+An accuracy sample
+then, is an evaluation of the degree to which this relation held true.
+<P>
+The range of
+argument values for x and y were selected such that x was held
+constant at a particular value and
+y was uniformly varied throughout a range of values which
+avoided overflowing or underflowing the
+result field.  The particular values selected are indicated
+in the subcolumns entitled x and y.
+<P><LI>
+<I>Accuracy Data</I>:  The maximum
+relative error and standard deviation (root mean square)
+of the relative error are generally
+useful and revealing statistics.  These statistics for the
+relative error, (e), are provided in the following subcolumns:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>MAX(e) =
+</I></TD><TD><P>MAX( ABS( ( f(x) - g(x) ) / f(x) ) )
+<P>
+where:  MAX selects
+the largest of its arguments and ABS takes the absolute value of its
+argument.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>SD(e) =
+</I></TD><TD><P>SQR( (1/N) SUMSQ((f(x) - g(x) ) / f(x)))
+<P>
+where:  SQR
+takes the square root of its argument and SUMSQ takes the
+summation of the squares of its arguments over all of the test cases.
+</TD></TR></TABLE>
+</UL>
+<P>
+<H5><A NAME="Header_3">Limitations (Subject to Change)</A></H5>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+<P>
+The source and <I>receiver</I> operands must both be specified as
+floating-point with the same length (4
+bytes for short format or 8 bytes for long format).
+<P>
+<H5><A NAME="Header_4">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Positive-The
+algebraic value of the receiver
+operand is positive.
+<P><LI>Negative-The
+algebraic value of the receiver
+operand is negative.
+<P><LI>Zero-The
+algebraic value of the receiver
+operand is zero.
+<P><LI>Unordered-The value
+assigned to the floating-point result is NaN.
+</UL>
+<P>
+<H4><A NAME="Header_5">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_7">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0C.htm">0C0C Invalid Floating-Point Conversion</A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+<DD><A HREF="../exceptions/EX0C0E.htm">0C0E Floating-Point Zero Divide</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX2E02.htm">2E02 Security Audit Journal Failure </A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

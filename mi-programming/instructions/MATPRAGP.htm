@@ -1,0 +1,184 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATPRAGP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Process Activation Groups (MATPRAGP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0331
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver<P>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATPRAGP is 123.
+MATPRAGP (
+          receiver   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+This instruction provides a list of the activation groups which exist in the
+current process.
+Operand 1 locates a template which receives information.
+<P>
+The materialization template identified by operand 1 must be 16-byte
+aligned in the space.  This materialization template has the following
+format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group count
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group list
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated <I>activation group count</I> times)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Activation group marks
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The Materialize Activation Group Attributes instruction can be used to examine
+the attributes of an individual activation group.
+<P>
+The first 4 bytes of the materialization template specify the <B><U>number of bytes provided</U></B> for use by the instruction.  In all
+cases if the number of bytes provided is less than 8 then a <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+will be signaled.
+<P>
+The second 4 bytes of the instruction indicate the actual <B><U>number of
+bytes available</U></B> to be returned.  In no case does the instruction
+return more bytes of information than those available.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>
+Activation group count
+</U></B></TD><TD><P>
+This is the number of activation groups within the process.  It is also the
+extent of the activation group list which follows.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>
+Activation group list
+</U></B></TD><TD><P>
+This is the list of activation groups which exist within the current process.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>
+Activation group marks
+</U></B></TD><TD><P>
+This is an array of activation group mark values.  Each entry denotes an activation group
+currently existent within the process.
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_4">Authorization</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

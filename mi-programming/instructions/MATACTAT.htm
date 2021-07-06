@@ -1,0 +1,550 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATACTAT Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Activation Attributes (MATACTAT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0213
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Activation mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Unsigned binary(4) scalar.
+<P>
+<I>Operand 3</I>:  Character(1) scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATACTAT is 121.
+MATACTAT (
+          receiver              : address
+          activation_mark       : address of unsigned binary(4)
+          attribute_selection   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>This instruction will materialize the information selected by
+operand 3 for the program activation specified by operand 2 and return
+the information in the template supplied by operand 1.
+<P>The operand 3 selection operand is provided to deal with the
+variable-length nature of some of the returned information.
+All "length-of-list" type information
+can be gathered by selecting the first option described below.
+<P>Operand 3 can have the following values:
+<UL>
+<P><LI>Hex 00 -- basic activation attributes
+<P><LI>Hex 01 -- static storage frame list
+<P><LI>Hex 02 -- dependent activation mark list
+</UL>
+<P>Any value for operand 3 other than those listed will cause a <I> scalar value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception.
+<P>Operand 2 supplies the activation mark of the activation for
+which information is to be returned.
+The activation mark uniquely identifies an activation within a process.
+A value of zero is interpreted to be a request for information about
+the activation of the invoking program.
+<P>The materialization
+template identified by operand 1 must be 16-byte
+aligned in the space.
+This materialization template has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Returned information
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>number of bytes provided</U></B>
+indicates the size of the materialization template.
+This includes the length of the template header (16 bytes)
+plus the number of
+bytes provided for <I>returned information</I>.
+If a value of 8 is specified, then no data will actually be
+materialized and the number of bytes required to materialize the
+requested data will be returned in <I>number of bytes available</I>.
+Note that a value greater than 8, but less than 16 will
+result in no data being materialized, since bytes 9-16 are reserved.
+If the number of bytes provided is less than 8, then a <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+is signaled.
+<P>The <B><U>number of bytes available</U></B>
+is set by the instruction to
+indicate the actual number of bytes available to be returned.
+The <I>number of bytes available</I> also includes the length of the
+template header (16 bytes).
+In no case does the instruction return more bytes of information
+than those available.
+<P>The format of <B><U>returned information</U></B> is
+described in the following paragraphs.
+<P>
+<H5><A NAME="Header_4">Basic Activation Attributes</A></H5>
+<P>The following information is returned
+when operand 3 is hex 00.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation count
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Static frame count
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex <TT>00   </TT> =
+</TD><TD>Non-bound program
+</TD></TR><TR VALIGN="TOP"><TD>Hex <TT>01   </TT> =
+</TD><TD>Bound program, bound service program, or Java program
+</TD></TR><TR VALIGN="TOP"><TD>Hex <TT>02-FF</TT> =
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">49
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">49
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Activation status
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Inactive
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Active
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">49
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Target activation group
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>Default activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>Caller's activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+2 =
+</TD><TD>Named activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+3 =
+</TD><TD>Unnamed activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+4 =
+</TD><TD>Named shared activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+5 =
+</TD><TD>Unnamed shared activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+6-255
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">51
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">33
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">52
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Dependent activation count
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">56
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">38
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>A description of the fields follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Program
+</U></B></TD><TD><P>This is a pointer to the program.
+The system pointer returned does not
+contain authority.
+Within a process,
+a program may have more than one activation.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Activation mark
+</U></B></TD><TD><P>The <I>activation mark</I> identifies the activation within
+the process.
+This field provides the actual activation mark when the special zero
+value was supplied for operand 2.  Otherwise, this field
+has the same value as operand 2.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Activation group mark
+</U></B></TD><TD><P>This identifies the activation group which contains the
+activation.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Invocation count
+</U></B></TD><TD><P>This is a count of the number of program invocations
+which currently exist for this activation of the program.
+The count includes all threads in the process
+which owns the identified activation.
+Recall that a program invocation results from
+a <I>program call</I> operation like Call
+Program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Static frame count
+</U></B></TD><TD><P>This is the number of static storage frames
+allocated for this activation.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program type
+</U></B></TD><TD><P>The type of the program.
+A program is either a <I>non-bound program</I>, <I>bound program, bound service program</I>
+or <I>Java program</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Activation status
+</U></B></TD><TD><P>The activation status identifies
+whether the program is active.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Target activation group
+</U></B></TD><TD><P>This is the <I>target activation group</I> attribute of the
+program object associated with this activation.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Dependent activation count
+</U></B></TD><TD><P>This is the number of dependent
+program activations directly bound to the program
+identified by the activation mark in operand 2.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_5">Static Storage Frame List</A></H5>
+<P>The following information is returned
+when operand 3 is hex 01.
+This is a list of static storage frame
+descriptors.  The <I>static frame count</I>
+(available in the basic activation attributes template) indicates
+how many entries must be accommodated by the template.
+The static storage frame list can be materialized only if
+the source activation group is permitted access to
+the target activation group as determined
+by the activation group access protection mechanism.
+If access is
+not permitted, then an <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+is signaled.
+<P>The format of the list is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Static storage frame list entry
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated <I>static frame count</I> times)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Static frame base
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+This is a pointer to the first byte
+of the static frame.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Static frame size
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+This is the size, in machine dependent
+units (currently bytes),
+of the static frame.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_6">Dependent Activation Mark List</A></H5>
+<P>The following information is returned when operand 3 is hex 02.
+This is a list of activation marks of all the dependent programs
+directly bound to the program specified in operand 2.
+The <I>dependent activation count</I>
+(available in the basic activation attributes template) indicates
+how many entries must be accommodated by the template.
+<P>The format of the list is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated <I>dependent activation count</I> times)
+<P>This is the activation mark of a dependent program activation.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_7">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_8">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_9">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C09.htm">1C09 Auxiliary Storage Pool Number Invalid</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C11.htm">2C11 Process Object Access Invalid </A>
+<DD><A HREF="../exceptions/EX2C12.htm">2C12 Activation Group Access Violation</A>
+<DD><A HREF="../exceptions/EX2C16.htm">2C16 Program Activation Not Found </A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

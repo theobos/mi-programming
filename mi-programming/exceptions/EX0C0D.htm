@@ -1,0 +1,96 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0C0D Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0C0D
+</B></TD><TD><P><I>Floating-Point Inexact Result
+</I>
+<P>This exception is signaled when the rounded result of an operation is
+not exact because of one of the following conditions:
+<UL>
+<P><LI>The rounded result of an operation is not exact because a value is
+modified
+(rounded) to fit in a receiver operand and nonzero fraction
+digits are lost.
+<P><LI>The occurrence of a floating-point overflow condition when that
+condition is masked and the result is no longer exact because it is set
+to infinity.
+</UL>
+<P><B>Note: </B>If this exception is not masked (has been unmasked using the <A HREF="../instructions/SSCA.htm">SSCA</A>
+instruction) and
+occurs in a non-bound program, the rounded or overflowed result is
+not stored in the receiver of the instruction which caused the
+exception.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Arc Cosine (<A HREF="../instructions/ACOS.htm">ACOS</A>)
+<LI>Add Numeric (<A HREF="../instructions/ADDN.htm">ADDN</A>)
+<LI>Arc Sine (<A HREF="../instructions/ASIN.htm">ASIN</A>)
+<LI>Arc Tangent (<A HREF="../instructions/ATAN.htm">ATAN</A>)
+<LI>Arc Tangent Hyperbolic (<A HREF="../instructions/ATANH.htm">ATANH</A>)
+<LI>Compute Math Function Using One Input Value (<A HREF="../instructions/CMF1.htm">CMF1</A>)
+<LI>Compute Math Function Using Two Input Values (<A HREF="../instructions/CMF2.htm">CMF2</A>)
+<LI>Compare Numeric Value (<A HREF="../instructions/CMPNV.htm">CMPNV</A>)
+<LI>Cosine (<A HREF="../instructions/COS.htm">COS</A>)
+<LI>Cosine Hyperbolic (<A HREF="../instructions/COSH.htm">COSH</A>)
+<LI>Cotangent (<A HREF="../instructions/COT.htm">COT</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm">CPYNV</A>)
+<LI>Convert Character to Numeric (<A HREF="../instructions/CVTCN.htm">CVTCN</A>)
+<LI>Convert Decimal Form to Floating-Point (<A HREF="../instructions/CVTDFFP.htm">CVTDFFP</A>)
+<LI>Convert Floating-Point to Decimal Form (<A HREF="../instructions/CVTFPDF.htm">CVTFPDF</A>)
+<LI>Convert Numeric to Character (<A HREF="../instructions/CVTNC.htm">CVTNC</A>)
+<LI>Divide (<A HREF="../instructions/DIV.htm">DIV</A>)
+<LI>Exponential Function of E (<A HREF="../instructions/EEXP.htm">EEXP</A>)
+<LI>Extract Magnitude (<A HREF="../instructions/EXTRMAG.htm">EXTRMAG</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm#lbcpynv">LBCPYNV</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm#lbcpynvr">LBCPYNVR</A>)
+<LI>Logarithm Base E (<A HREF="../instructions/LN.htm">LN</A>)
+<LI>Multiply (<A HREF="../instructions/MULT.htm">MULT</A>)
+<LI>Negate (<A HREF="../instructions/NEG.htm">NEG</A>)
+<LI>X to the Y Power (<A HREF="../instructions/POWER.htm">POWER</A>)
+<LI>Scale (<A HREF="../instructions/SCALE.htm">SCALE</A>)
+<LI>Sine (<A HREF="../instructions/SIN.htm">SIN</A>)
+<LI>Sine Hyperbolic (<A HREF="../instructions/SINH.htm">SINH</A>)
+<LI>Subtract Numeric (<A HREF="../instructions/SUBN.htm">SUBN</A>)
+<LI>Tangent (<A HREF="../instructions/TAN.htm">TAN</A>)
+<LI>Tangent Hyperbolic (<A HREF="../instructions/TANH.htm">TANH</A>)
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

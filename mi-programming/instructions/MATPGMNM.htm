@@ -1,0 +1,267 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATPGMNM Instruction </title>
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+</head>
+
+<body>
+<H1>Materialize Program Name (MATPGMNM)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATPGMNM is 473.
+MATPGMNM (
+          receiver_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction will return the program and context names in operand
+1 of the
+bound program, bound service program, or Java
+program associated with the currently executing procedure. Operand 1
+must be aligned on a 16-byte boundary; otherwise a <I>boundary alignment&nbsp; </I>(hex <A HREF="../exceptions/EX0602.htm">0602</A>) exception
+is signaled. The format of the receiver template is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Materialization size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided by the user
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Format
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<DL>
+<DD><P>0 = Program in context format
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Formatted data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>formatted data</U></B> field is structured based on the value specified
+in the <I>format</I> field.
+For <I>format</I> = 0, the <I>formatted data</I> field
+has the following structure.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program context object type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program context object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Context name
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program object type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">49
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program name
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The first 4 bytes that are materialized identify the total <B><U>number of
+bytes provided</U></B> for use by the instruction.  This value is
+supplied as input
+to the instruction and is not modified by the instruction.  A
+value of less than 16 causes a <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+to be signaled.
+<P>
+The second 4 bytes that are materialized identify the total <B><U>number
+of bytes available</U></B> to be materialized.  The instruction
+materializes as many bytes
+as can be contained in the area specified as the receiver.  If
+the byte area
+identified by the receiver is greater than that required to contain the
+information
+requested, then the excess bytes are unchanged.  No exceptions
+(other than the materialization length and boundary alignment
+exceptions described
+previously) are signaled
+in the event that the receiver contains insufficient area for the
+materialization.
+For <I>format</I> 0,
+if any field cannot be completely materialized,
+blanks will be returned in the partial field.
+<P>
+If the program is logically destroyed before this
+instruction is executed, the <I>context name</I> will be returned
+as all blank characters, and the <I>context object type</I>
+and <I>context object subtype</I>
+fields will
+be returned as zeroes.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,4 @@
+while read a b
+do 
+print $a "---" $b
+done

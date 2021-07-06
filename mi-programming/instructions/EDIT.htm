@@ -1,0 +1,882 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> EDIT Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Edit (EDIT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">10E3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Edit mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Character variable scalar or data-pointer-defined
+character scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar or data-pointer-defined numeric
+scalar.
+<P>
+<I>Operand 3</I>:  Character variable scalar or data-pointer-defined
+character scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P><A NAME="lbedit"></A>Built-in number for LBEDIT is 137.
+LBEDIT (
+        receiver            : address
+        receiver_length     : address of unsigned binary(4)
+        source              : address of signed binary(4) OR
+                              address of unsigned binary(4) OR
+                              address of packed decimal OR
+                              address of zoned decimal
+        source_attributes   : address
+        mask                : address
+        mask_length         : address of unsigned binary(4)
+)
+</PRE>
+<P>The <VAR>receiver</VAR>, <VAR>source</VAR> and <VAR>mask</VAR>
+parameters correspond to operands 1, 2 and 3 on the
+EDIT operation.
+<P>The <VAR>source_attributes</VAR> is a
+structure which describes
+the data attributes of the source value.  The format of
+this structure matches that of the third operand on the
+<A HREF="CVTCN.htm">CVTCN</A> and <A HREF="CVTNC.htm">CVTNC</A> operations.
+<P>The <VAR>receiver_length</VAR> and <VAR>mask_length</VAR>
+parameters contain the length, in bytes, of the receiver
+and mask.
+They are expected to contain a value between 1
+and 256.
+<PRE>
+ 
+  <B>-- OR -- </B>
+ 
+<A NAME="editpd">EDITPD (</A>
+        receiver          : address
+        receiver_length   : unsigned binary(4)
+        source            : address of packed decimal
+        source_length     : unsigned binary(4)
+        mask              : address
+        mask_length       : unsigned binary(4)
+)
+</PRE>
+<P>This built-in function supports the EDIT operation
+when the source contains a packed decimal value.
+The <VAR>receiver</VAR>, <VAR>source</VAR> and <VAR>mask</VAR>
+parameters correspond to operands 1, 2 and 3 on the
+EDIT operation.
+<P>The <VAR>source_length</VAR> parameter contains the length, in
+digits, of the source.  It is expected to contain a value between
+1 and 31.
+<P>The <VAR>receiver_length</VAR> and <VAR>mask_length</VAR>
+parameters contain the length, in bytes, of the receiver
+and mask.
+They are expected to contain a value between 1
+and 256.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The value of a numeric scalar is transformed from its
+internal form to character form suitable for display
+at a source/sink device.  The following general editing
+functions can be performed during transforming
+of the <I>source</I> operand to the <I>receiver</I> operand:
+<UL>
+<P><LI>
+Unconditional insertion
+of a source value digit with a zone as a function of the source value's
+algebraic sign
+<P><LI>
+Unconditional insertion
+of a mask operand character string
+<P><LI>
+Conditional insertion of
+one of two possible <I>edit</I> mask operand character
+strings as a function of the source value's algebraic sign
+<P><LI>
+Conditional insertion of
+a source value digit or an <I>edit mask</I> operand
+replacement character
+as a function of source value leading zero suppression
+<P><LI>
+Conditional insertion of
+either an <I>edit mask</I> operand character string or a
+series of replacement characters as a function of source value leading
+zero suppression
+<P><LI>
+Conditional floating
+insertion of one of two possible <I>edit mask</I>
+operand character strings as a function of both the
+algebraic sign of the source value and leading zero suppression
+</UL>
+The operation is performed by transforming
+the <I>source</I> (operand 2)
+under control of the <I>edit
+mask</I> (operand 3) and placing
+the result in the <I>receiver</I> (operand 1).
+<P>
+The <I>edit mask</I> operand (operand 3) is
+limited to no more than 256 bytes.
+<P>
+<H5><A NAME="editmasksyntax">Mask Syntax</A></H5>
+<P>
+The source field is converted to packed
+decimal format.  The <I>edit mask</I> contains
+both control character and data character strings.  Both the <I>edit mask</I> and the source fields are
+processed left to right, and the edited result is placed in
+the result field from left to right.  If the
+number of digits in the source field is even, the four
+high-order bits of the source field are
+ignored and not checked for validity.  All other source
+digits as well as the sign are checked for
+validity, and a <I> decimal data&nbsp; </I> (hex <A HREF="../exceptions/EX0C02.htm">0C02</A>) exception
+is signaled when one is invalid.
+Overlapping of any of these fields gives unpredictable results.
+<P>
+Nine fixed value control characters can be in the <I>edit mask</I>,
+hex AA through hex AD and hex AF through hex B3.  Four of these
+control characters specify strings of characters to be
+inserted into the result field under certain
+conditions; and the other five indicate that a
+digit from the source field should be checked and the appropriate
+action taken.
+<P>
+One variable value control character can be in the <I>edit mask</I>.
+This control character indicates the end of a string of characters.  The
+value of the end-of-string character can vary with each execution of the
+instruction and is determined by the value of the first character in the
+edit mask.  If the first character of the <I>edit mask</I>
+is a value less than
+hex 40, then that value is used as the end-of-string character.  If the
+first character of the <I>edit mask</I> is a value
+equal to or greater than hex
+40, then hex AE is used as the end-of-string character.
+<P>
+A significance indicator is set to the off state at the start of
+the execution of this
+instruction.  It remains in this state until a nonzero source digit is
+encountered in the source
+field or until one of the four unconditional digits (hex AA
+through hex AD) or an unconditional
+string (hex B3) is encountered in the <I>edit mask</I>.
+<P>
+When significance is detected, the selected floating string
+is overlaid into the result field
+immediately before (to the left of) the first significant
+result character.
+<P>
+When the significance indicator is set to the on state, the
+first significant result character has
+been reached.  The state of the significance indicator
+determines whether the fill character or a
+digit from the source field is to be inserted into the result field for
+conditional digits and
+characters in conditional strings specified in the <I>edit
+mask</I> field.  The fill character is a hex 40
+until it is replaced by the first character following the
+floating string specification control character (hex  B1).
+<P>
+When the significance indicator is in the off state:
+<UL>
+<P><LI>
+A conditional digit
+control character in the <I>edit mask</I> causes the fill
+character to be moved to the result field.
+<P><LI>
+A character in
+a conditional string in the <I>edit mask</I> causes the fill character
+to be moved to the result field.
+</UL>
+When the significance indicator is in the on state:
+<UL>
+<P><LI>
+A conditional digit
+control character in the <I>edit mask</I> causes a source digit to be
+moved to the result field.
+<P><LI>
+A character in
+a conditional string in the <I>edit mask</I>
+is moved to the result field.
+</UL>
+The following control characters are found
+in the <I>edit mask</I> field.
+<P>
+<H5><A NAME="Header_4">End-of-String Character</A></H5>
+<P>
+One of these control characters (a value less than hex 40 or hex AE)
+indicates the end of a character string and must be present
+even if the string is null.
+<P>
+<H5><A NAME="Header_5">Static Field Character</A></H5>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex AF
+</TD><TD><P>
+This control character indicates the start of a static
+field.  A static field is used to indicate that one of two mask
+character strings immediately following this character is to
+be inserted into the result field,
+depending upon the algebraic sign of the source field.  If
+the sign is positive, the first string
+is to be inserted into the result field; if the sign is
+negative, the second string is to be inserted.
+<P>
+Static field format:
+<P>
+&lt;Hex AF&gt; &lt;positive string&gt;. . .&lt;less than hex 40&gt; &lt;negative
+string&gt;. . .&lt;hex AE&gt;
+<P>OR
+<P>
+&lt;Hex AF&gt; &lt;positive string&gt;. . .&lt;hex AE&gt; &lt;negative
+string&gt;. . .&lt;hex AE&gt;
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_6">Floating String Specification Field Character</A></H5>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex B1
+</TD><TD><P>
+This control character
+indicates the start of a floating string specification
+field.  The first character of the field is
+used as the fill character; following the fill character are
+two strings delimited by the
+end-of-string control character.  If the algebraic sign of
+the source field is positive, the first
+string is to be overlaid into the result field; if the sign
+is negative, the second string is to be overlaid.
+<P>
+The string selected to be overlaid into the result field, called
+a floating string, appears immediately to the left of
+the first significant result character.  If significance is
+never set, neither string is placed in the result field.
+<P>
+Conditional source digit positions (hex B2 control characters) must be
+provided in the <I>edit mask</I> immediately following the
+hex B1 field to accommodate the longer of the two
+floating strings; otherwise, a <I> length conformance&nbsp; </I> ((hex <A HREF="../exceptions/EX0C08.htm">0C08</A>)) exception
+is signaled.  For each of these B2 strings, the
+fill character is inserted into the
+result field, and source digits are not consumed.  This
+ensures that the floating string never
+overlays bytes preceding the <I>receiver</I> operand.
+<P>
+Floating string specification
+field format:
+<P>
+&lt;Hex B1&gt;  &lt;fill character&gt;  &lt;positive string&gt;. . .
+&lt;end-of-string character&gt;  &lt;negative
+string&gt;. . .&lt;end-of-string character&gt;
+<P>followed by
+<P>
+&lt;Hex B2&gt;. . .
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_7">Conditional String Character</A></H5>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex B0
+</TD><TD><P>
+This control character
+indicates the start of a conditional string, which consists
+of any characters delimited by
+the end-of-string control character.  Depending on the state
+of the significance indicator, this
+string or fill characters replacing it is inserted into the
+result field.  If the significance
+indicator is off, a fill character for every character in the
+conditional string is placed in the
+result field.  If the indicator is on, the characters in the
+conditional string are placed in the result field.
+<P>
+Conditional string format:
+<P>
+&lt;Hex B0&gt; &lt;conditional string&gt;. . .&lt;end-of-string character&gt;
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_8">Unconditional String Character</A></H5>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex B3
+</TD><TD><P>
+This control character turns on the significance indicator
+and indicates the start of an unconditional string that
+consists of any characters delimited by the end-of-string
+control character.  This string
+is unconditionally inserted into the result field regardless
+of the state of the significance
+indicator.  If the indicator is off when a B3 control character
+is encountered, the appropriate
+floating string is overlaid into the result field before (to
+the left of) the B3 unconditional string (or to the left of where
+the unconditional string would have been if it were not null).
+<P>
+Unconditional string format:
+<P>
+&lt;Hex B3&gt;  &lt;unconditional string&gt;. . .&lt;end-of-string character&gt;
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_9">Control Characters That Correspond to Digits in the Source Field</A></H5>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex B2
+</TD><TD><P>
+This control character specifies that either the corresponding source
+field digit or the floating string (hex B1) fill
+character is inserted into the result field, depending on the
+state of the significance indicator.
+If the significance indicator is off, the fill character is
+placed in the result field; if the
+indicator is on, the source digit is placed.  When a source digit
+is moved to the result field, the zone supplied is hex F.  When
+significance (that is, a nonzero source digit) is detected, the
+floating string is overlaid to the left of the first
+significant character.
+</TD></TR></TABLE>
+Control characters hex AA, hex AB, hex AC, and hex AD turn
+on the significance indicator.  If the
+indicator is off when one of these control characters is encountered, the
+appropriate floating
+string is overlaid into the result field before (to the
+left of) the result digit.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex AA
+</TD><TD><P>
+This control character
+specifies that the corresponding source field digit is
+unconditionally placed in the 4 low-order bits of the result field
+with the zone set to a hex&nbsp;F.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex AB
+</TD><TD><P>
+This control character specifies that the corresponding source field
+digit is unconditionally placed in the result
+field.  If the sign of the source field is positive, the
+zoned portion of the digit is set to hex F
+(the preferred positive sign); if the sign is negative, the zone
+portion is set to hex D (the preferred negative sign).
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex AC
+</TD><TD><P>
+This control character specifies that the corresponding source field
+digit is unconditionally placed in the result
+field.  If the algebraic sign of the source field is
+positive, the zone portion of the result is
+set to hex F (the preferred positive sign); otherwise, the
+source sign field is moved to the result zone field.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex AD
+</TD><TD><P>
+This control character specifies that the corresponding
+source field digit is unconditionally placed in the result
+field.  If the algebraic sign of the source field is
+negative, the zone is set to hex D (the
+preferred negative sign); otherwise, the source field sign is
+moved to the zone position of the result byte.
+</TD></TR></TABLE>
+<P>
+The following table provides an overview of the results obtained
+with the valid edit conditions and sequences.
+<BR>
+<P><B><A NAME="Table_1">Table 1. Valid Edit Conditions and Results</A></B><BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<PRE>
+&nbsp;
+Mask
+Character
+&nbsp;
+</PRE>
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<PRE>
+Previous
+Significance
+Indicator
+&nbsp;
+</PRE>
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<PRE>
+&nbsp;
+Source
+Digit
+&nbsp;
+</PRE>
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<PRE>
+&nbsp;
+Source
+Sign
+&nbsp;
+</PRE>
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">
+<PRE>
+&nbsp;
+Result
+Character(s)
+&nbsp;
+</PRE>
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<PRE>
+Resulting
+Significance
+Indicator
+&nbsp;
+</PRE>
+<BR></TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+AF
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off/On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Positive string inserted
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">No Change
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off/On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Negative string inserted
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">No Change
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+AA
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Positive floating string overlaid; hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Negative floating string overlaid; hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+AB
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Positive floating string overlaid;
+hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Negative floating string overlaid;
+hex D, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex D, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+AC
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Positive floating string overlaid;
+hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Negative floating string overlaid;
+source sign and digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Source sign and digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+AD
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Positive floating string overlaid;
+source sign and digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Negative floating string overlaid;
+hex D, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Source sign and digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex D, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+B0
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Insert fill character for each
+B0 string character
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Insert B0 character string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+B1 (including necessary B2s)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Insert the fill character for each B2 character
+that corresponds to a character in the
+longer of the two floating strings
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">No Change
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+B2 (not for a B1 field)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Insert fill character
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">1-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Overlay positive floating string and insert
+hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">1-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Overlay negative floating string and
+insert hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">0-9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Hex F, source digit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+B3
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Positive
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Overlay positive floating string and
+insert B3 character string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Off
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Negative
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Overlay negative floating string and
+insert B3 character string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Any
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Insert B3 character string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">On
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><B>Note&#58; </B>
+<OL COMPACT TYPE=1>
+<LI>Any character is
+a valid fill character, including the end-of-string character.
+<LI>
+Hex AF, hex B1, hex B0, and
+hex B3 strings must be terminated by the end-of-string character
+even if they are null strings.
+<LI>
+If a hex
+B1 field has not been encountered (specified) when the
+significance indicator is turned on, the
+floating string is considered to be a null string and is
+therefore not used to overlay into the result field.
+<LI>
+If the positive
+and negative strings of a static field are of unequal
+length, additional static fields are
+necessary to ensure that the sum of the lengths of the
+positive strings equal the sum of the
+lengths of the negative strings; otherwise, a <I> length conformance&nbsp; </I> ((hex <A HREF="../exceptions/EX0C08.htm">0C08</A>)) exception
+is signaled because the <I>receiver</I> length does not correspond to the length implied
+by the <I>edit mask</I> and source field sign.
+</OL>
+</TD></TR></TABLE>
+<P>
+The following figure indicates the valid ordering of control
+characters in an <I>edit mask</I> field.
+<P><B><A NAME="Figure_1">Figure 1. Edit Mask Field Control Characters</A></B><BR>
+<B><BR><IMG SRC="aac011.gif" ALT="AAC011 Edit Mask Field Control Characters"><BR></B><BR>
+<P><BR>
+</PRE>
+Explanation:<BR>
+<TABLE CELLPADDING="3"><BR>
+<TR VALIGN="TOP"><TD><B>Condition</B><BR>
+</TD><TD><B>Definition</B><BR>
+</TD></TR><TR VALIGN="TOP"><TD><B></B><BR>
+</TD><TD><B></B><BR>
+</TD></TR><TR VALIGN="TOP"><TD>0<BR>
+</TD><TD>Both X and Y can appear in the edit mask field in either order.<BR>
+</TD></TR><TR VALIGN="TOP"><TD>1<BR>
+</TD><TD>Y cannot precede X.<BR>
+</TD></TR><TR VALIGN="TOP"><TD>2<BR>
+</TD><TD>X cannot precede Y.<BR>
+</TD></TR><TR VALIGN="TOP"><TD>3<BR>
+</TD><TD>Both control characters<BR>
+(two B1's) cannot appear in an <I>edit mask</I> field.<BR>
+</TD></TR></TABLE><BR>
+Violation of any of the above rules will result in an <I> edit mask syntax&nbsp;</I> (hex <A HREF="../exceptions/EX0C05.htm">0C05</A>) exception.<BR>
+<P><BR>
+<P>
+The following steps are performed when the editing is done:
+<UL>
+<P><LI>
+Convert Source Value to Packed Decimal
+<UL>
+<P><LI>
+The numeric value in the <I>source</I> operand is converted to a packed
+decimal intermediate value before the editing is done.  If the <I>source</I> operand is binary,
+the attributes of the intermediate
+packed field before the edit are calculated as follows:
+<DL COMPACT>
+<DD>Binary(2) = packed (5,0) or
+<DD>Binary(4) = packed (10,0)
+</DL>
+<P>
+A data-pointer-defined <I>source</I> operand
+with 8 byte binary attributes is not supported and will cause a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+to be signaled.
+</UL>
+<P><LI>
+Edit
+<UL>
+<P><LI>
+The editing of the source digits and
+mask insertion characters into the <I>receiver</I> operand is done
+from left to right.
+</UL>
+<P><LI>
+Insert Floating String into
+Receiver Field
+<UL>
+<P><LI>
+If a floating string is
+to be inserted into the receiver field, this is done after the other
+editing.
+</UL>
+</UL>
+<P>
+<P>
+<H5><A NAME="Header_10">Edit Digit Count Exception</A></H5>
+<P>
+An <I> edit digit count&nbsp; </I> (hex <A HREF="../exceptions/EX0C04.htm">0C04</A>) exception
+is signaled when:
+<UL>
+<P><LI>
+The end of
+the source field is reached and there are more control characters that
+correspond to digits in the <I>edit mask</I> field.
+<P><LI>
+The end of
+the <I>edit mask</I> field is reached and there are more digit
+positions in the source field.
+</UL>
+<P>
+<H5><A NAME="Header_11">Edit Mask Syntax Exception</A></H5>
+<P>
+An <I> edit mask syntax&nbsp; </I> (hex <A HREF="../exceptions/EX0C05.htm">0C05</A>) exception
+is signaled when an invalid <I>edit
+mask</I> control character is
+encountered or when a sequence rule is violated.
+<P>
+<H5><A NAME="Header_12">Length Conformance Exception</A></H5>
+<P>
+A <I> length conformance&nbsp; </I> ((hex <A HREF="../exceptions/EX0C08.htm">0C08</A>)) exception
+is signaled when:
+<UL>
+<P><LI>
+The end of
+the <I>edit mask</I> field is reached and there are more character
+positions in the result field.
+<P><LI>
+The end of
+the result field is reached and more positions remain in the <I>edit mask</I> field.
+<P><LI>
+The number of
+B2s following a B1 field cannot accommodate the longer of the
+two floating strings.
+</UL>
+<P>
+<H4><A NAME="Header_13">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_14">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_15">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0604.htm">0604 External Data Object Not Found</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C04.htm">0C04 Edit Digit Count</A>
+<DD><A HREF="../exceptions/EX0C05.htm">0C05 Edit Mask Syntax</A>
+<DD><A HREF="../exceptions/EX0C08.htm">0C08 Length Conformance</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3202.htm">3202 Scalar Attributes Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,2690 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> XLATEMB Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Translate Multiple Bytes (XLATEMB)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1071
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">Translation template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><BR></TD></TR></TABLE>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for XLATEMB is 390.
+XLATEMB ( translation_template   : address )
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The source data string specified in the operand 1 <I>translation
+template</I> is
+converted starting with the left-most input byte using
+the <I>function byte</I>, <I>control map 1</I>, <I>control map 2</I>, and the <I>verification map</I>.  The converted data string
+is returned in the <I>receiver</I> space
+specified in the
+operand 1 <I>translation template</I>.
+<P>
+<H5><A NAME="Header_3">Terminology</A></H5>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>ASCII
+</U></B></TD><TD><P>Abbreviation for
+American National Standard Code for Information Interchange.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Control map
+</U></B></TD><TD><P>A special layout of bytes used to control data conversion.
+The different types of <I>control maps</I> will be discussed
+later in this document.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Code page
+</U></B></TD><TD><P>A collection of characters assigned to code points.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Code points
+</U></B></TD><TD><P>A unique bit-pattern assigned to each graphic character,
+to be used by the computer when
+entering, storing, viewing, printing,
+or exchanging information.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Double Byte Character Set (DBCS)
+</U></B></TD><TD><P>A set of characters in which each character
+is represented by a 2-byte code.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>EBCDIC
+</U></B></TD><TD><P>Abbreviation for
+extended binary coded decimal interchange code.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Graphic
+</U></B></TD><TD><P>Term used to designate
+pure DBCS data.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>ISO/IEC 10646
+</U></B></TD><TD><P>The international standard used to represent most of the world's
+written languages by assigning multiple bytes for each character.  This
+standard was written by the International Organization for
+Standardization (ISO) and the International Electrotechnical Commission
+(IEC).
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Mixed data
+</U></B></TD><TD><P>Data that contains single-byte and double-byte encoding.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Well formed mixed data
+</U></B></TD><TD><P>Mixed data where DBCS data is bracketed by shift-out (SO)
+and shift-in (SI) controls.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Octet
+</U></B></TD><TD><P>An ordered sequence of eight bits, considered as a unit.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Single Byte Character Set (SBCS)
+</U></B></TD><TD><P>A set of characters in which each character
+is represented by a 1-byte code.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Substitution Value
+</U></B></TD><TD><P>A single-byte or multiple-byte code to be output from a conversion
+when the input character is not
+found in a <I>ward control block</I> or <I>ward</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>UCS-2 Level 1
+</U></B></TD><TD><P>Defines the form and level of <I>UCS</I>. <I>UCS-2</I> is a 16-bit form of <I>UCS</I>.  Level 1
+is an implementation level
+that does not support combining of characters.  Every UCS-2 Level 1
+character must be made up of only 2 bytes.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Universal Multiple-Octet Coded Character Set (UCS)
+</U></B></TD><TD><P>Character set defined by IS0/IEC standard 10646.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Ward
+</U></B></TD><TD><P>A set of 256 single-byte or multiple-byte
+codes where all of the codes share a common first hex input
+byte when converting from a 2-byte code.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Ward control block
+</U></B></TD><TD><P>A set of 256
+2-byte values within a <I>control map</I>.  The 2-byte
+values provide the offsets from the start of the <I>control map</I>
+space
+to the beginning of all of the wards within the <I>control map</I>.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_4">Operand 1</A></H5>
+<P>&nbsp;
+<P>Operand 1 is a space pointer
+to a 128-byte <I>translation template</I> aligned
+on a 16-byte boundary.
+If the <I>translation template</I> is not
+aligned on a 16-byte boundary, <I> boundary alignment&nbsp; </I> (hex <A HREF="../exceptions/EX0602.htm">0602</A>) exception
+is signaled.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Function
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Control flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Control map type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+<font color=blue>
+</FONT></TD><TD><font color=blue><I>Control map</I> type D not supplied.
+</FONT>
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD><I>Control map</I> type D supplied.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Substitution check
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not check for <I>substitution</I>.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Check for <I>substitution</I> on conversion from
+UCS-2 Level 1.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Override default multiple-byte substitution value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Use the default UCS-2 Level 1 <I>multiple-byte substitution value</I>.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Use the specified <I>multiple-byte substitution value</I>.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Ward transparency
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Use the <I>multiple-byte substitution value</I>
+when converting characters in an empty ward.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Do not convert characters in an empty ward.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Well formed mixed data output
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not ensure well formed mixed data on output
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Ensure well formed mixed data on output
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Caching requested
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not request caching for <I>function</I> hex 0100 requests
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Do request caching for <I>function</I> hex 0100 requests
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 6-15
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Source length
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Receiver buffer length
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Receiver converted data length
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Source range
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Range 1 lower limit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 0-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Range 1 upper limit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 8-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Range 2 lower limit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 16-23
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Range 2 upper limit
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 24-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Single-byte substitution value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Multiple-byte substitution value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(41)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Verification pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">112
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">70
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Control map
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">Fields annotated with a plus sign (+) are reserved fields.  A
+reserved field value of non-zero results in the signaling of the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_5">Translation Template Field Descriptions</A></H5>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Function
+</U></B></TD><TD><P>The <I>function</I> selected determines the type of conversion
+to be performed.
+<A class="content" HREF="#TBLFUNCT">Table 1</A>
+outlines the types
+of conversions that may be performed and
+the operands required for each <I>function</I>.
+The <A class="content" HREF="#TBLFUNCT">Table 1</A> columns are defined as follows:
+<UL>
+<P><LI>Function - The function selected.
+<P><LI>Control map type  - The type of <I>control map</I>
+required as input
+for the given <I>function</I>.
+<P><LI>Verification map allowed -
+A <I>verification map</I> is allowed
+for the given <I>function</I>.
+A <I>verification map</I>
+is never required.
+<P><LI>Source data type - The <I>source</I>
+data type
+required for the given <I>function</I>.
+<P><LI>Receiver data type - The <I>receiver</I>
+data type returned for the given <I>function</I>.
+<P><LI>Estimated required buffer size - Value used to determine the actual
+required <I>receiver</I> buffer length.  Multiply the <I>estimated required buffer size</I> value by
+the <I>source length</I> to get the required <I>receiver buffer length</I>.
+If this value is less than the minimum buffer
+size,
+use the minimum buffer size value for the <I>receiver buffer length</I>.
+</UL>
+<BR>
+<P><B><A NAME="TBLFUNCT">Table 1. XLATEMB supported functions</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Function (hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Control map type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Verification map allowed
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Source data type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Receiver data type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Estimated required buffer size
+<font color=blue>
+</FONT></TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>0001 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>A or D 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>No  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>SBCS           
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>UCS-2 Level 1         
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>2
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>0002 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>B or D 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>Yes 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>UCS-2 Level 1  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>SBCS                 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%"><font color=blue>.5
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0003 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C or D 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Graphic        
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1         
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0004 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C or D 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Yes 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Graphic               
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0005 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C or D 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Mixed EBCDIC   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1         
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">2
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0006 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C or D 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Yes 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Mixed EBCDIC          
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">2
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0007 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C      
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Mixed ASCII    
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1         
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">2
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0008 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">C      
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Yes 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Mixed ASCII             
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0009 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">none   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Uppercase UCS-2 Level 1 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">000A 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">none   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Lowercase UCS-2 Level 1 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0100 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">E      
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">No  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">UCS-2 Level 1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Weighted UCS-2        
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">1
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Use of a function value not shown in
+<A class="content" HREF="#TBLFUNCT">Table 1</A>
+results in the signaling of the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+</TD></TR></TABLE>
+<P>While the instruction specifically describes
+conversions to and from UCS-2 Level 1,
+it can also be used for other multiple-byte conversions.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Control flags
+</U></B></TD><TD><P>
+<UL>
+<font color=blue>
+<P><LI><B><U>Control map type:</U></B>
+Determines which control map type will be supplied for the specified <I>function</I>.
+This field is verified against the <I>function</I>
+specified when a <I>type D</I><I>
+control map</I> is specified.
+A contol map type of D specified with an incorrect function
+results in the signaling of the <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+Refer to <A class="content" HREF="#TBLFUNCT">Table 1</A> for details on which <I>functions</I>
+require this flag to be set.
+</FONT>
+<P>
+<P><LI><B><U>Substitution check:</U></B>
+Check for <I>substitution</I> on conversion from
+UCS-2 Level 1 data. <I>Substitution check</I> is only supported for <I>functions</I>
+2, 4, 6, and 8.
+<P>
+When a <I>substitution</I> character is encountered, a <I> substitution character used&nbsp; </I> (hex <A HREF="../exceptions/EX0C20.htm">0C20</A>) exception
+is signaled at instruction completion.  Complete results
+are placed in the <I>receiver</I> and <I>receiver converted data length</I> fields.
+The number of substitutions in the <I>receiver</I> data
+will be stored in the <I>number of substitutions</I> field of the
+exception data for the <I> substitution character used&nbsp;</I> (hex <A HREF="../exceptions/EX0C20.htm">0C20</A>) exception.
+<P><LI><B><U>Override default multiple-byte substitution value:</U></B>
+Determines which <I>multiple-byte substitution value</I>
+will be placed into the <I>receiver</I> space when using a <I>type C</I> or <I>type D control map</I> and
+substitution is required on conversion to UCS-2 Level 1 data. <I>Override default multiple-byte substitution value</I>
+is only supported for functions 3, 5, and 7.
+<P>When substitution is required and the function is 3, 5, or 7, the <I>multiple-byte substitution value</I>
+will be one of the following:
+<UL>
+<P><LI>If the <I>override default multiple-byte substitution value</I>
+is 0, the default UCS-2 Level 1 substitution value
+of hex FFFD
+will be used.
+<P><LI>If the <I>override default multiple-byte substitution value</I>
+is 1, the <I>multiple-byte substitution value</I>
+specified in the template will be used.
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>override default multiple-byte substitution value</I>
+field must be set to 0 for functions 1, 2, 4, 6, 8, 9,
+A and 0100
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+<P><LI><B><U>Ward transparency:</U></B>
+Determines whether <I>source</I> characters in an
+empty ward are converted using a <I>multiple-byte substitution value</I>,
+or moved to the <I>receiver</I> space transparently with no conversion
+taking place.  <I>Ward transparency</I> is only
+supported for <I>functions</I>
+3, 4, 5, and 7.  If the <I>ward transparency</I> field is binary 1,
+then the <I>multiple-byte substitution value</I> is not used
+and the <I>override default multiple-byte substitution value</I>
+field is ignored.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>ward transparency</I>
+field must be set to binary 0 for functions 1, 2, 6, 8, 9,
+A and 0100
+or
+a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+When using the <I>ward transparency</I> feature with <I>functions</I> 5 and 7,
+the first entry in the <I>control map ward control block</I> must
+be non-zero, or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+<P><LI><B><U>Well formed mixed data output:</U></B> Determines whether a DBCS
+character in the last two bytes of the <I>receiver</I> space (as
+defined by <I>receiver buffer size</I>) should be replaced
+by a shift-in control.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>well formed mixed data output</I>
+field must be set to 0 for function 0100
+or a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be signaled.
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+This control is only applied where data truncation is
+necessary.  Mixed data output will always be well formed
+if the <I>receiver</I> space is large enough.
+</TD></TR></TABLE>
+<P><LI><B><U>Caching requested:</U></B> Requests caching for the internal data
+structures used for a <I>type E control map</I>.
+The <I>cache descriptor</I>
+field in the control map must not be modified.
+</UL>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Source length
+</U></B></TD><TD><P>The length of the source data contained in the space addressed by
+the <I>source</I> space pointer.  A length value of less than 1
+results in the signaling of the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Receiver buffer length
+</U></B></TD><TD><P>The length of the receiver space pointed to by the
+receiver space pointer.
+A length value of less than 1
+results in the
+signaling of the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Receiver converted data length
+</U></B></TD><TD><P>The length of the data placed in the <I>receiver</I> space
+after conversion.  This field is set by the machine and will
+always be less than or equal to the value specified for <I>receiver buffer length</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Source range
+</U></B></TD><TD><P>The range of the
+double-byte content of the mixed ASCII <I>source</I>
+input data.  <I>Source range</I> is only used with <I>function</I> 07.  The <I>source range</I> field
+is divided into 2 ranges, range 1 and range 2.
+Each range has a 1 byte lower and 1 byte upper limit.
+Some actual working examples of <I>source ranges</I>
+are defined below:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Source</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Ranges</B>
+</TD><TD><P><B>Supported language</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 819FE0FC </TD><TD><P>Japanese
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 81BF0000 </TD><TD><P>Korean
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 81FC0000 </TD><TD><P>Simplified Chinese
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 81FC0000 </TD><TD><P>Traditional Chinese
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 8FFE0000 </TD><TD><P>Republic of Korea National Standard
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+A <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled if one of the following occurs:
+<UL>
+<P><LI>If the <I>function</I> is 07 and range 1 is set to nulls.
+<P><LI>If the <I>function</I> is 07 and the upper limit is less than
+the lower limit for either <I>range 1</I> or <I>range 2</I>.
+</UL>
+If range 2 is nulls then it will not be used and no exception
+will be signaled.
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>source range</I>
+field must be set to binary 0 for any function except <I>function</I> 07 or a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be signaled.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Single-byte substitution value
+</U></B></TD><TD><P>
+A single-byte value to be output from a conversion when the
+following
+occurs:
+<UL>
+<P><LI>A <I>type C control map</I><I>
+ward control block</I> entry is hex zeros and single-byte data is
+being processed.
+<P><LI>A <I>type B control map</I><I>
+ward control block</I> entry is hex zeros.
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>single-byte substitution value</I> must be set to hex 00
+for functions  1, 3, 4, 5, 7, 9,
+A and 0100
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Multiple-byte substitution value
+</U></B></TD><TD><P>
+A 2-byte value to be output from a conversion
+when a <I>type C or type D control map</I> <I>ward control block</I> entry is hex zeros and multiple-byte data is
+being processed.
+The <I>multiple-byte substitution value</I> is ignored if the <I>ward transparency</I> feature is being used.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>multiple-byte substitution value</I> must be set to hex 0000
+for functions  1, 2, 9,
+A and 0100
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+If the <I>function</I> is 3, 5, or 7, and the <I>override default multiple-byte substitution value</I>
+field is 0, then the <I>multiple-byte substitution value</I> must be set to hex 0000
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Source
+</U></B></TD><TD><P>A space pointer to the source data.  The length is defined
+by the <I>source length</I> field.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Receiver
+</U></B></TD><TD><P>A space pointer to the receiver data buffer.  The number of
+bytes available
+is specified by
+the <I>receiver buffer length</I> field.
+If an error occurs during conversion
+this buffer will contain the data converted
+up to the point of the error.  The length of the data converted
+is stored in the <I>receiver converted data length</I> field.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Undefined results can occur if the storage locations specified by <I>source</I> and <I>receiver</I> overlap.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Verification pointer (optional)
+</U></B></TD><TD><P>A space pointer to a <I>verification map</I>
+to be used to verify UCS-2 Level 1 <I>source</I> data.
+The <I>verification map</I> has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Map size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Verification map entry
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <I>map size</I>
+is a hex value that indicates the number of
+2-byte <I>verification map</I>
+entries that exist in the map.
+<P>
+Each <I>verification map entry</I> contains one UCS-2 Level 1
+code.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">The number of 2-byte <I>verification map</I> entries is determined
+by the number specified in the <I>map size</I> field.
+</TD></TR></TABLE>
+If a <I>verification map</I>
+is specified, it is used to verify
+that the UCS-2 Level 1 data in the <I>source</I>
+input is correct.
+The verification map contains a list of valid UCS-2 Level 1
+codes.
+The map values
+must be encoded in <I>UCS-2 Level 1</I> and must be sorted in
+ascending numerical order.
+Failure to sort the <I>verification map</I>
+will result in unpredictable results.
+Refer to
+<A class="content" HREF="#TBLFUNCT">Table 1</A> for
+specific  <I>function</I> codes which support
+use of the <I>verification map</I>.
+If any UCS-2 Level 1 code is
+not found in the <I>verification map</I> during the conversion,
+a <I> source verification error&nbsp; </I> (hex 0C21) exception
+is
+signaled.
+If unused, the <I>verification pointer</I> must be a null pointer
+value.
+This ensures no verification takes place.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The <I>verification pointer</I>
+field must be set to a null pointer value for function 0100
+or a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be signaled.
+</TD></TR></TABLE>
+<P>
+The following is an example of a <I>verification map</I>:
+<PRE>
+0011009A0100010101020103010401050106010701080109010A010B010C010D03B103B2
+</PRE>
+<font color=blue>
+<A class="content" HREF="#TBLVTAB">Table 2</A>
+shows the
+layout of the example <I>verification map</I> shown above
+with offsets and entry number included for clarity.
+The first 2-byte value, at offset hex 0000,
+indicates the number of 2-byte UCS-2 Level 1 codes in the remainder of the
+map.
+In this example, the first value in the map is hex 0011 (decimal 17),
+indicating that there are 17 2-byte codes
+in the remainder of the map.
+</FONT>
+<font color=blue>
+<BR>
+<P><B><A NAME="TBLVTAB">Table 2. Verification map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>Offset
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>Entry Number
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>Verification Map Value
+</FONT></TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0000  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0011  ( Number of entries in verification map. )
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0002  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>1  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>009A
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0004  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>2  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0100
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0006  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>3  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0101
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0008  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>4  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0102
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>000A  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>5  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0103
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>000C  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>6  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0104
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>000E  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>7  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0105
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0010  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>8  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0106
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0012  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>9  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0107
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0014  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>10  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0108
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0016  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>11  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>0109
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0018  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>12  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>010A
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>001A  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>13  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>010B
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>001C  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>14  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>010C
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>001E  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>15  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>010D
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0020  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>16  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>03B1
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>0022  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="28%"><font color=blue>17  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="57%"><font color=blue>03B2
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue><B>Note&#58; </B>
+Offset values are from the start of the <I>verification map</I>.
+</FONT></TD></TR></TABLE>
+</FONT>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Control map
+</U></B></TD><TD><P>A space pointer to a <I>control map</I>
+to be used in the conversion of the <I>source</I> data.
+Refer to <A class="content" HREF="#TBLFUNCT">Table 1</A>
+for information on types of maps
+required for the various <I>functions</I>.
+If unused, the <I>control map</I> pointer must be a null pointer value.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Control map types
+</U></B></TD><TD><P>The following list explains the different types
+of control maps:
+<P><I>Type A</I> --
+Used to map SBCS data to <I>UCS-2 Level 1</I> multiple-byte data.
+The <I>type A control map</I> has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Type A control map
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+A <I>type A control map</I> consists of 256 2-byte codes.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Type A map entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>
+The <I>type A control map</I> entries are indexed by the hex
+input byte.  Hex input values can range from 00 to FF for a total of 256
+2-byte values.  All entries are required to be fully populated for the
+index range of hex 00 to hex FF.  To ensure proper conversion, unused
+entries should be set to some value.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">The <I>type A control map</I>
+entry field is repeated 256 times to give the
+byte total of 512.
+</TD></TR></TABLE>
+<P>
+The following is a partial example of a <I>type A control map</I>:
+<PRE>
+0100010101020103010401050106010701080109010A010B010C...01FE01FF
+</PRE>
+<font color=blue>
+<A class="content" HREF="#TBLATAB">Table 3</A>
+shows a partial layout of the example <I>type A control map</I> shown above
+with hex input values and offsets included for clarity.
+To find the result
+with a 3-byte input value of (hex <A HREF="../exceptions/EX0C08.htm">0C08</A>)05, do the following:
+</FONT>
+<OL TYPE=1>
+<P><LI>Use the first input
+byte, hex
+0C, to index into the map.
+<font color=blue>
+<P><LI>At offset hex 0018, the control map value is hex 010C.
+</FONT>
+<P><LI>Now index into the space, using the second input byte of
+hex 08.
+<font color=blue>
+<P><LI>At offset hex 0010, the control map value is hex 0108.
+</FONT>
+<P><LI>Now index into the space, using the third input byte of
+hex 05.
+<font color=blue>
+<P><LI>At offset hex 000A, the control map value is hex 0105.
+</FONT>
+<P><LI>The result placed in the receiver data buffer is hex 010C01080105.
+</OL>
+<BR>
+<P><B><A NAME="TBLATAB">Table 3. Type A map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">Hex Input Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Offset
+<font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>Control Map Value
+</FONT>
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">00  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0000   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0100
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">01  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0002   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0101
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">02  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0004   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0102
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">03  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0006   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0103
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">04  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0008   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0104
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">05  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">000A   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0105
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">06  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">000C   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0106
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">07  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">000E   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0107
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">08  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0010   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0108
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">09  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0012   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0109
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">0A  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0014   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">010A
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">0B  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0016   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">010B
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">0C  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0018   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">010C
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">&middot;   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">&middot;      
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FE  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">01FC   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">01FE
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FF  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">01FE   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">01FF
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><B>Note&#58; </B>
+Offset values are from the start of the <I>type A
+control map</I> space.  The output value is the actual map value at
+the specified offset.
+</TD></TR></TABLE>
+<P><I>Type B</I> -- Used to map UCS-2 Level 1 multiple-byte data
+to SBCS data.
+The <I>type B control map</I> has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Ward control block
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+A <I>type B control map ward control block</I>
+consists of 256
+2-byte offsets that are indexed by the first hex input byte.  This block
+defines the offsets into the <I>type
+B control map</I>  for each of the wards defined in the <I>type B
+control map</I>.  The <I>ward control block</I>  section of the <I>type B control map</I>  begins at offset hex 0000.  The first byte
+of the 2-byte hex input data is used to index into the <I>ward control block</I> section of the <I>type B control
+map</I>.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Ward control block entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>
+The <I>ward control block</I> entry
+is a 2-byte offset into the <I>type B control map</I>
+to the beginning of one of the <I>ward detail maps</I>.
+All <I>ward control block</I> entries are
+required to be fully populated for a range of hex 00 to hex FF
+for a total of 256 2-byte entries.
+Unused control entries should be set to hex zeros.
+There is no ward
+associated with
+control entries of all zeros.
+If zeros are encountered,
+the <I>single byte
+substitution value</I> will be output, the next hex input
+byte is skipped,
+and the conversion
+will continue with the next input byte.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Ward details
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+A <I>type B control map ward</I> consists
+of 256 1-byte codes.
+A ward is addressed
+by the <I>ward control block</I>.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Ward detail entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>
+The <I>ward detail</I> entries
+are indexed by the second hex input byte.  Hex input values range from
+00 to FF for a total of 256 single-byte values.  All <I>ward</I>
+entries are required to be fully populated for the index range of hex 00
+to hex FF.  Unused entries should be set to a substitution value.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">768
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">300
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<font color=blue>
+<A class="content" HREF="#TBLBTAB">Table 4</A>
+shows a partial layout of a <I>type B control map</I> with hex input values
+and offsets included for clarity.
+To find the result with an input value of hex 03B3,
+do the following:
+</FONT>
+<OL TYPE=1>
+<P><LI>Use the first input byte, hex 03, to index
+into the <I>ward control block</I> section.
+<P><LI>The corresponding <I>ward control block</I> entry
+value, hex 0300, is used as
+an offset to the start of the <I>ward</I> detail for ward 03.
+<P><LI>Using offset hex 0300
+as a base, use the second input byte value, hex B3, to
+index into the <I>ward detail for ward 03</I>.
+<font color=blue>
+<P><LI>The corresponding
+entry in the <I>ward 03 detail</I>
+is the single-byte control map value of hex 8C.
+</FONT>
+<P><LI>The result
+placed in the receiver data buffer is hex 8C.
+</OL>
+<BR>
+<P><B><A NAME="TBLBTAB">Table 4. Type B map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">Hex Input Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">Offset
+<font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="44%"><font color=blue>Control Map Value
+</FONT>
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Control Block</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">00   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0000   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0200
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">01   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0002   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">02   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0004   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">03   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0006   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0300
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">04   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0008   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">05   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">000A   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">&middot;    
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">&middot;      
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FE   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">01FC   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FF   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">01FE   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Detail (for Ward 00)</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">00 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0200  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">00
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">01 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0201  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">01
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">02 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0202  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">02
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">&middot;  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">&middot;   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">99 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0299  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">39
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">9A 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">029A  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3A
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">9B 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">029B  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3B
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">&middot;   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">&middot; 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FD 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">02FD  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FE 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">02FE  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FF 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">02FF  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Detail: (for Ward 03)</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">00 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0300  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">00
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">01 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0301  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">01
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">02 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">0302  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">02
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">&middot;  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">&middot; 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">B1 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03B1  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">8A
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">B2 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03B2  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">8B
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">B3 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03B3  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">8C
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">B4 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03B4  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">8D
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">B5 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03B5  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">8E
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">&middot;  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">&middot; 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FE 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03FE  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">FF 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="16%">03FF  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="44%">3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><B>Note&#58; </B>
+Offset values are from the start of the <I>type B
+control map</I> space.  The output value is the actual map value at
+the specified offset.
+</TD></TR></TABLE>
+<P><I>Type C</I> -- The
+type C control map is used for conversion of the following:
+<UL>
+<P><LI><I>UCS-2 Level 1</I> to <I>graphic</I>
+<P><LI><I>Graphic</I> to <I>UCS-2 Level 1</I>
+<P><LI><I>UCS-2 Level 1</I> to <I>mixed EBCDIC</I>
+<P><LI><I>Mixed EBCDIC</I> to <I>UCS-2 Level 1</I>
+<P><LI><I>UCS-2 Level 1</I> to <I>mixed ASCII</I>
+<P><LI><I>Mixed ASCII</I> to <I>UCS-2 Level 1</I>
+</UL>
+The <I>type C control map</I> has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Ward control block
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+A <I>type C control map ward control block</I> consists
+of 256 2-byte offsets
+that are indexed by the first hex input byte.
+This block defines the offsets into the <I>type
+C control map</I> for each of the wards defined in the <I>type C control
+map</I>.  The <I>ward control block</I> section
+of the <I>type C control map</I>
+begins at offset hex 0000.
+The first byte of the 2-byte hex input data is used to index into the <I>ward control block</I> section of the <I>type C control
+map</I>.
+When converting mixed data to UCS-2 Level 1 (functions 5 and 7),
+and the input data is single-byte, ward control block entry 00 is
+used for translation.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Ward control block entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>
+The <I>ward control block</I> entry
+is a 2-byte offset into the <I>type C control map</I>
+to the beginning of one of the <I>ward detail maps</I>.
+All <I>ward control block</I> entries are
+required to be fully populated for a range of hex 00 to hex FF
+for a total of 256 2-byte entries.
+Unused control entries should be set to hex zeros.  There is no
+ward associated with control entries of all zeros.
+<P>If zeros are encountered and single-byte data is being processed,
+the <I>single-byte substitution value</I> will be output and the
+conversion will continue with the next input byte.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>If zeros are encountered and multiple-byte data is being processed,
+one of the following will occur:
+<UL>
+<P><LI>If the <I>ward transparency</I> field is binary 0, then the
+appropriate <I>multiple-byte substitution value</I> will be
+output, the next input byte is skipped, and the conversion will
+continue with the next input byte.
+<P><LI>If the <I>ward transparency</I> field is binary 1, then the
+two source characters will be transparently moved to the <I>receiver</I> buffer, with no conversion taking place.
+The conversion will continue with the next input byte.
+</UL>
+<font color=blue>
+<P>If a control map size greater than 64K bytes is specified, offset values
+referencing the control map must be specified in multiples of 512 bytes.
+For example a value of hex 0002 would indicate an offset of 1024 bytes.
+</FONT>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Ward details
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+A <I>type C control map ward</I> consists
+of 256 2-byte codes.
+A ward is addressed
+by the <I>ward control block</I>.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Ward detail entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<P>
+The <I>ward detail</I> entries
+are indexed by the second hex input byte.
+Hex input values can range from 00 to FF for a
+total of 256 2-byte values.
+All <I>ward</I> entries are
+required to be fully populated for the index range of hex 00 to hex FF.
+Unused entries should be set to some <I>substitution value</I>.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1024
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">400
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<font color=blue>
+<P>
+The following is a partial example of a <I>type C control map</I>
+with simple offset values:
+<PRE>
+000000000200040000000000...000000000000000100020003000400050006
+0007...3F3F3F3F0200020102020203020402050206...3F3F3F3F
+</PRE>
+<P>
+The following is a partial example of a <I>type C control map</I>
+with offset values that are multiples of 512 bytes:
+<PRE>
+000000000001000200000000...000000000000000100020003000400050006
+0007...3F3F3F3F0200020102020203020402050206...3F3F3F3F
+</PRE>
+</FONT>
+<font color=blue>
+<A class="content" HREF="#TBLCTAB">Table 5</A>
+shows a partial layout of a <I>type C control map</I>
+with hex input values and offsets included for clarity.
+</FONT>
+To find the result with a graphic input value of hex 0207, perform the
+following:
+<OL TYPE=1>
+<P><LI>Use the first byte of input value, hex 02, to index
+into the <I>ward control block</I> section of the type C map.
+<font color=blue>
+<P><LI>The corresponding <I>ward control block</I> entry
+value, hex 0200, is used as an offset to the start of
+the <I>ward</I> detail for <I>ward 02</I>, when the control map
+size is less than or equal to 64K. For example, control maps sizes greater than
+64K the control map value of 0001 would be used, indicating an offset of
+512 bytes.
+</FONT>
+<P><LI>Using offset hex 0200 as a base, the second byte of the
+input value, hex 07, is used to index into the <I>ward detail for ward 02</I>.
+<font color=blue>
+<P><LI>The corresponding entry in the <I>ward 02</I> detail
+is the double-byte control map value of hex 0007.
+</FONT>
+<P><LI>The result placed in the receiver data buffer is hex 0007.
+</OL>
+<BR>
+<P><B><A NAME="TBLCTAB">Table 5. Type C map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">Hex Input Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Offset
+<font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>Control Map Value
+</FONT>
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Control Block</I>
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>00   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>0000   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>01   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>0002   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>02   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>0004   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0200 or 0001
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>03   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>0006   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0400 or 0002
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>04   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>0008   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>05   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>000A   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>&middot;  
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>&middot; 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>&middot;
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>FE   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>01FC   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%"><font color=blue>FF   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%"><font color=blue>01FE   
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%"><font color=blue>0000 or 0000
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Detail: (for Ward 02)</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">00   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0200   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">01   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0202   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0001
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">02   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0204   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0002
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">03   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0206   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0003
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">04   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0208   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0004
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">05   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">020A   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0005
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">06   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">020C   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0006
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">07   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">020E   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0007
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">&middot;  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">&middot; 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FE   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">03FC   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">3F3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FF   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">03FE   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">3F3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Ward Detail: (for Ward 03)</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">00  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0400   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0200
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">01  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0402   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0201
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">02  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0404   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0202
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">03  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0406   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0203
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">04  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">0408   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0204
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">05  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">040A   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0205
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">06  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">040C   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">0206
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">&middot;  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">&middot; 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">&middot;
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FE  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">5FC    
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">3F3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="39%">FF  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">5FD    
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="43%">3F3F
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><B>Note&#58; </B>
+Offset values are from the start of the <I>type C
+control map</I> space.  The output value is the actual map value at
+the specified offset.
+</TD></TR></TABLE>
+<font color=blue>
+<P><I>Type D</I>  -- A 4-byte selection code that indicates
+which predefined <I>control map</I> is to be used.  The selection code is
+pointed to by the <I>control map</I> space pointer. <I>Type D maps</I> are only supported for <I>functions</I>
+1, 2, 5, and 6.
+The predefined <I>control maps</I> have the same layout as the <I>type C</I> control map.  If zeros are encountered in the <I>ward control block</I> and the <I>function</I> is 6,
+the specified <I>single-byte substitution value</I> or <I>multiple-byte substitution value</I> is placed into the <I>receiver</I> buffer.
+</FONT>
+<P>If zeros are encountered and the <I>function</I> is 5,
+the value output will be one of the following:
+<UL>
+<P><LI>If the <I>ward transparency</I> field is binary 0, then the
+appropriate <I>multiple-byte substitution value</I> will be
+output, the next input byte is skipped, and the conversion will
+continue with the next input byte.
+<P><LI>If the <I>ward transparency</I> field is binary 1, then the
+two source characters will be transparently moved to the <I>receiver</I> buffer, with no conversion taking place.
+The conversion will continue with the next input byte.
+</UL>
+The <I>type D control map</I> selection code has the
+following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Selection code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The predefined control maps are defined in <A class="content" HREF="#TBLPRDMAP">Table 6</A>.
+<BR>
+<P><B><A NAME="TBLPRDMAP">Table 6. Supported predefined control maps</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Selection Code
+<font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Language/Country Supported
+</FONT>
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">UCS2 CCSID Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">Other CCSID Value
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 0000012C 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese English pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">300
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 00000342 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Korean pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">834
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 00000343 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Traditional Chinese pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">835
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 00000345 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Simplified Chinese pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">837
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000003A2 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">930
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000003A5 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Korean mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">933
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000003A7 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Simplified Chinese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">935
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000003A9 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Traditional Chinese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">937
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000003AB 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">939
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 00000554 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korean mixed extended with Hangul
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>61952 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1364
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 0000056C 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Chinese GBK mixed
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">1388
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 00000577 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese Latin-Kanji mixed w/ 4370 UDC and Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>61952 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1399
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 00001342 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korean pure extended with Hangul
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>61952 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>4930
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 00001345 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Chinese GBK pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">4933
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000013A2 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese Katakana mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">5026
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 000013AB 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese English mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">61952 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">5035
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 0000412C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese Latin pure w/ 4370 UDC and Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>61952 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>16684
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B0012C 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese English pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">300
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B00342 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Korean pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">834
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B00343 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Traditional Chinese pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">835
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B00345 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Simplified Chinese pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">837
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B003A2 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">930
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B003A5 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Korean mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">933
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B003A7 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Simplified Chinese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">935
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B003A9 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Traditional Chinese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">937
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B003AB 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">939
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00554 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korean mixed extended with Hangul
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1364
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B0056C 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">GBK mixed
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">1388
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00577 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese Latin-Kanji mixed w/ 4370 UDC and Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1399
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B01342 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korean pure extended with Hangul
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>4930
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B01345 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">GBK pure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">4933
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B013A2 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese Katakana mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">5026
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%">Hex 34B013AB 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%">Japanese English mixed extended
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">13488 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%">5035
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0412C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese Latin pure w/ 4370 UDC and Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>16684
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00025 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>USA/Canada
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>37
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00100 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Netherlands
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>256
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00111 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Germany F.R./Austria
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>273
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00115 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Denmark, Norway
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>277
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00116 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Finland, Sweden
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>278
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00118 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Italy
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>280
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0011C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Spain/Latin America
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>284
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0011D 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>United Kingdom
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>285
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00122 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese (Katakana)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>290
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00129 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>France
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>297
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B001A7 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Greece
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>423
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B001F4 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Latin-1
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>500
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00341 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korea Extended
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>833
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00344 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Simplified Chinese Extended
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>836
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00346 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Thai Extended
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>838
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00366 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Latin-2 Multilingual
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>870
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00367 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Iceland
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>871
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0036B 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Greece
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>875
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00370 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Cyrillic, Multilingual
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>880
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00389 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Turkey Extended Code Page
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>905
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00396 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Urdu
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>918
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0039C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Latin - 9
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>924
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00401 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Cyrillic, Multilingual
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1025
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00402 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Turkey
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1026
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00403 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese (Latin) Extended
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1027
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00449 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Farsi
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1097
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00458 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Baltic, Multilingual
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1112
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00462 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Estonian
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1122
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00463 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Cyrillic Ukraine
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1123
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0046A 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Vietnamese
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1130
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0046C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Lao
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1132
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00474 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>USA/Canada w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1140
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00475 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Germany F.R./Austria w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1141
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00476 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Denmark, Norway w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1142
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00477 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Finland, Sweden w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1143
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00478 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Italy w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1144
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00479 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Spain/Latin America w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1145
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0047A 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>United Kingdom w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1146
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0047B 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>France w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1147
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0047C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Common Europe w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1148
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0047D 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Iceland w/Euro
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1149
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00481 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Latin #2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1153
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00482 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Cyrillic
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1154
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00483 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Turkish
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1155
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00484 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Baltic
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1156
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00485 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Estonia
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1157
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00486 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Ukraine
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1158
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B00488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Thai
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1160
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0048C 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Vietnamese
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>1164
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B01403 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Japanese
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>5123
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B021A4 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Arabic
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>8612
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B02346 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Thai
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>9030
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B03341 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Korean SB
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13121
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B03344 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Simplified Chinese SB
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13124
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B07025 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Traditional Chinese
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>28709
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0F303 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Hebrew
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>62211
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0F310 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Arabic
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>62224
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0F31B 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Hebrew
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>62235
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="21%"><font color=blue>Hex 34B0F325 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="49%"><font color=blue>Hebrew
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>13488 
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="15%"><font color=blue>62245
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><B>Note&#58; </B>
+<P>Reference the International Application Development SC41-4603
+for information on CCSIDs.
+</TD></TR></TABLE>
+<P>If the <I>selection code</I> field does not contain one of the
+supported values, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+<P><I>Type E</I> -- Used to map UCS-2 Level 1 multiple-byte data
+to its weights.
+The <I>type E control map</I> has two formats.
+<P>
+<P>The first format, <I>type E-1</I> has
+the following format. <I>Type E-1 maps</I> are only supported for <I>function</I>
+0100
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Cache descriptor
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(128)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+The <I>type E-1 control map cache descriptor</I> field
+is reserved for use by XLATEMB.
+Do not
+modify these bytes; they are controlled by XLATEMB.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+The <I>type E-1 control map number of entries</I> field contains
+the number of entries in the <I>sort details</I> array.  This field must have a value between 1
+and 65536 (this indicates that this a type E-1 control map).
+A value of 0 would indicate that this is a type E-2 control
+map.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">132
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">84
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Sort details
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;256&#93; Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+The <I>type E-1 control map sort details</I> array consists of a
+series of 4-byte entries.
+Each entry is made up of a 2-byte UCS code point and a 2-byte weight for
+that code point.  The MI user must ensure that the code points are in
+ascending hex order and that the weights start at 0000.  Code points
+that are not included in the control map are weighted after the last
+specified code point.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">132
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">84
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">USC code point
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">134
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">86
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">USC code point weight
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1156
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">484
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<font color=blue>
+<A class="content" HREF="#TBLBTABE1">Table 7</A>
+shows a partial layout of a <I>type E-1 control map</I>
+with offsets and output weights included for clarity.
+</FONT>
+<BR>
+<P><B><A NAME="TBLBTABE1">Table 7. Type E-1 map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Offset (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">UCS Code Point
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Output Weight
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Cache field for the 1st 128 bytes </I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">0000
+</TD><TD ALIGN="LEFT" VALIGN="TOP">000...000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Number of entries</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">0080
+</TD><TD ALIGN="LEFT" VALIGN="TOP">00000007
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><I>Sort details</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0084  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">0024   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0001
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0088  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">0041   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">008C  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">0042   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0003
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0090  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">0043   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0002
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0094  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">0044   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0002
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0098  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">FFE1   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0004
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">009C  
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">FFE2   
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">0004
+</TD></TR></TABLE>
+<P>The second format, <I>type E-2</I> has
+the following format:
+<P><I>Type E-2</I>  -- has a
+4-byte selection code that indicates
+which predefined <I>control map</I> is to be used.  The selection code is
+pointed to by the <I>control map</I> space pointer. <I>Type E-2 maps</I> are only supported for <I>function</I>
+0100
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Cache descriptor
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(128)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+The <I>type E-2 control map cache descriptor</I> field
+is reserved for use by XLATEMB.
+Do not
+modify these bytes; they are controlled by XLATEMB.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">E-2 map indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+The <I>type E-2 control map E-2 map indicator</I> field must
+contain zero to indicate that this is an E-2 type control map.
+A non-zero value would indicate that this is an E-1 type control map.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">132
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">84
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Selection code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>
+The <I>type E-2 control map selection code</I> field specifies
+a 4-byte selection code of a predefined control map.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">136
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">88
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<A class="content" HREF="#TBLBTABE2">Table 8</A>
+shows the
+layout of the example <I>type E-2 control map</I> shown above
+with offsets included for clarity.
+<BR>
+<P><B><A NAME="TBLBTABE2">Table 8. Type E-2 map layout</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="45%">Offset (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="55%">Field value (Hex)
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><I>Cache field for the 1st 128 bytes </I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">0000
+</TD><TD ALIGN="LEFT" VALIGN="TOP">000...000
+</TD></TR><TR>
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><I>E-2 map indicator</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">0080
+</TD><TD ALIGN="LEFT" VALIGN="TOP">00000000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><I>Selection code</I>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">0084
+</TD><TD ALIGN="LEFT" VALIGN="TOP">03A50000
+</TD></TR></TABLE>
+<P>
+The predefined control maps are defined in <A class="content" HREF="#TBLPRDMAP2">Table 9</A>.
+<BR>
+<P><B><A NAME="TBLPRDMAP2">Table 9. Supported predefined control maps</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Selection Code
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Language Supported
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A50000 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Korean Unique Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A50001 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Korean Shared Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A70000 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Simplified Chinese Unique Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A70001 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Simplified Chinese Shared Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A90000 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Traditional Chinese Unique Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 03A90001 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Traditional Chinese Shared Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 13A20000 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Japanese Unique Sequence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="31%">Hex 13A20001 
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="69%">Japanese Shared Sequence
+</TD></TR></TABLE>
+<P>If the <I>selection code</I> field does not contain one of the
+supported values, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_6">Template Value Invalid exception reason codes</A></H5>
+<P>
+This instruction supports setting of the optional reason code field in
+the exception data which can be retrieved when the <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+The <I>template value invalid reason codes</I> are
+defined as follows:
+<DL>
+<DD><P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Reason</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Description</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0001 =
+</TD><TD><P>
+Template value is not valid.
+The template field in error can be determined by using
+the offset, stored in the template offset information of the exception
+data for the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception,
+to offset from the start of the operand 1 <I>translation template</I>
+to the start of the field in error.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0002 =
+</TD><TD><P>
+Unsupported function selected.
+No conversion will occur.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0004 =
+</TD><TD><P>
+The specified <I>type D control map</I>
+is not supported.
+No conversion will occur.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0005 =
+</TD><TD><P>
+The <I>source range</I> field was specified incorrectly for
+one of the following conditions:
+<UL>
+<P><LI>Range 1 is set to nulls.
+<P><LI>The upper limit is less than
+the lower limit for either <I>range 1</I> or <I>range 2</I>.
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reason code hex 0005 can only occur when <I>function</I>  07 is
+selected.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0006 =
+</TD><TD><P>
+The specified <I>type E control map</I>
+is invalid.
+No conversion will occur.
+</TD></TR></TABLE>
+</DL>
+<P>
+<H5><A NAME="Header_7">XLATEMB Examples</A></H5>
+<P>
+<P><I>Example 1:</I> Convert
+hex 0B05 using XLATEMB <I>function
+01</I> (convert from SBCS to UCS-2 Level 1).
+This example uses the <I>type A control map</I> in <A class="content" HREF="#TBLATAB">Table 3</A>.
+To find the result:
+<OL TYPE=1>
+<P><LI>Use the first byte of the input data, hex 0B,
+to index (2-bytes for each index value)
+into the <I>type A</I> map.
+<P><LI>At offset hex 0016, the corresponding UCS-2 Level 1
+value is hex 010B.
+<P><LI>Use the second byte of the input data, hex 05,
+to index (2-bytes for each index value)
+into the <I>type A</I> map.
+<P><LI>At offset hex 000A, the corresponding UCS-2 Level 1
+value hex 0105 is output.
+<P><LI>The instruction completes
+with a value of hex 010B0105 placed in the <I>receiver</I>
+and a hex 0004 will be placed in the <I>receiver converted data length</I>.
+</OL>
+<P>
+<P><I>Example 2:</I> Convert
+hex 03B1009A
+using XLATEMB <I>function</I> 02 (convert from UCS-2 Level 1 to SBCS).
+This example uses the <I>verification map</I> in <A class="content" HREF="#TBLVTAB">Table 2</A> and<I>
+type B</I> map in <A class="content" HREF="#TBLBTAB">Table 4</A>.
+To find the result:
+<OL TYPE=1>
+<P><LI>The first UCS-2 Level 1 input value, hex 03B1, is compared
+against the <I>verification map</I>.  Since the value
+is found
+at offset hex 0020
+in the <I>verification map</I>, processing will continue.
+<P><LI>Use the first byte of the input data, hex 03,
+to index into the <I>type B control map
+ward control block</I> starting at offset hex 0000.
+<P><LI>At offset hex
+0006, the <I>ward control block</I> entry value
+is hex 0300.
+<P><LI>Use hex 0300 to offset from the start of the <I>control
+map</I>
+to the start of the <I>ward detail for ward 03</I>.
+<P><LI>Use the second input byte, hex B1, to
+index into the <I>ward detail for ward 03</I>.
+<P><LI>At offset hex 03B1, the corresponding SBCS
+value hex 8A is output.
+<P><LI>The second UCS-2 Level 1 input value, hex 009A, will be compared
+against the <I>verification map</I>.
+Since the value
+is found
+at offset hex 0002
+in the <I>verification map</I>, processing will continue.
+<P><LI>Use the first byte of the input data, hex 00,
+to index into the <I>type B control map
+ward control block</I>, starting at offset hex 0000.
+<P><LI>At offset
+hex 0000, the <I>ward control block</I> entry value
+is hex 0200.
+<P><LI>Use hex 0200 to offset from the start of the <I>control
+map</I>
+to the start of the <I>ward detail for ward 00</I>.
+<P><LI>Use the second input byte, hex 9A, to
+index into the <I>ward detail for ward 00</I>.
+<P><LI>At offset hex 029A, the corresponding SBCS
+value hex 3A is output.
+<P><LI>The final output of hex 8A3A is placed in the <I>receiver</I>
+and a hex 0002 will be placed in the <I>receiver converted data length</I>.
+</OL>
+<P>
+<H4><A NAME="Header_8">Authorization Required</A></H4>
+<UL>
+<P><LI>As appropriate for the space objects pointed to by the operand 1
+template.
+</UL>
+<P>
+<H4><A NAME="Header_9">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_10">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD>0C20 Substitution Character Used
+<DD>0C21 Source Verification Error
+<DD>0C22 Unpaired Shift Control
+<DD>0C23 Source Information Error
+<DD>0C24 Receiver Buffer Length Exceeded
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

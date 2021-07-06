@@ -1,0 +1,156 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> RETCA Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Retrieve Computational Attributes (RETCA)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for RETCA is 145.
+RETCA (
+       selector   : unsigned binary(4) literal value; its 
+                    rightmost byte specifies the 
+                    computational attributes to retrieve
+) :   unsigned binary(4) value which contains the 
+      computational attributes specified by <VAR>selector</VAR>
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The right-most byte of <VAR>selector</VAR> specifies the computational
+attributes
+to retrieve.  The format of this byte is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Definition
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">0-3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (must be 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Exception mask
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (must be 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Exception occurrence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Rounding mode
+</TD></TR></TABLE>
+<P>All other bytes of <VAR>selector</VAR> are reserved (must be 0).
+<P>The value returned by RETCA has the following structure:
+<B><BR><IMG SRC="images/retca.gif" ALT="Figure retca not displayed."><BR></B>
+<UL>
+<P><LI>Byte 0: Exception mask
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">0-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point overflow
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point underflow
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point zero divide
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point inexact result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point invalid operand
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR></TABLE>
+<P><LI>Byte 1: Reserved (binary 0)
+<P><LI>Byte 2: Exception occurrence
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">0-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point overflow
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point underflow
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point zero divide
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point inexact result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Floating-point invalid operand
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR></TABLE>
+<P><LI>Byte 3: Computational mode
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1-2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Rounding mode
+<UL COMPACT>
+<LI>00 - Round towards positive infinity
+<LI>01 - Round towards negative infinity
+<LI>10 - Round towards 0
+<LI>11 - Round to nearest
+</UL>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">3-7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (binary 0)
+</TD></TR></TABLE>
+</UL>
+<P><B>Note: </B>Any floating-point operations currently on the value stack will
+be computed prior to retrieving the computational attributes.
+Therefore, the effect of such floating-point operations on the
+<VAR>exception occurrence</VAR> byte, for example, will be reflected
+in the value returned by the function.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>

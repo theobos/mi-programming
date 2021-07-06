@@ -1,0 +1,67 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0C22 Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0C22
+</B></TD><TD><P><I>Unpaired Shift Control
+</I>
+<P>
+The source mixed
+data has an unpaired shift out control
+character (SO = hex 0E) and shift in control character (SI= hex 0F).
+If this exception is signalled for the <A HREF="../instructions/XLATEMB.htm">XLATEMB</A>instruction,
+the <I>receiver</I> field contains the data converted up to the point
+that the error was encountered.
+The length of the converted data is
+stored in the <I>receiver converted data length</I>
+field in the <A HREF="../instructions/XLATEMB.htm">XLATEMB</A>translation template.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset of the source byte in error
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Translate Multiple Bytes (<A HREF="../instructions/XLATEMB.htm">XLATEMB</A>)
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

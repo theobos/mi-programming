@@ -1,0 +1,128 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CALLI Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<h1>Call Internal (CALLI)</h1>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0293
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Internal entry point
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Argument list
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Return target
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Internal entry point.
+<P>
+<I>Operand 2</I>:  Operand list or null.
+<P>
+<I>Operand 3</I>:  Instruction pointer.
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+The <I>internal entry point</I> specified by operand
+1 is located in the same invocation
+from which the Call Internal instruction is executed.  A subinvocation
+is defined and execution control is transferred to the first instruction
+associated with the <I>internal entry point</I>.  The instruction does
+not cause a new invocation to be established.  Therefore,
+there is no allocation of objects and instructions in the subinvocation
+have access to all invocation objects.
+<P>
+Operand 2 specifies an operand list that identifies the
+arguments to be passed to the
+subinvocation.  If operand 2 is null, no arguments are passed.  After an
+argument has been passed on a Call Internal instruction,
+the corresponding parameter may
+be referenced.  This causes an indirect reference to the
+storage area located by the argument.
+This mapping exists until the parameter is
+assigned a new mapping based on a subsequent Call Internal
+instruction.  A reference to an internal
+parameter before its being assigned an argument mapping causes a <I> parameter reference violation&nbsp; </I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception
+to be signaled.
+<P>
+Operand 3 specifies an instruction pointer that identifies
+the pointer into which the machine
+places addressability to the instruction immediately following
+the Call Internal instruction.  A branch instruction in the
+called subinvocation can directly reference this instruction pointer to
+cause control to be passed back to the instruction immediately
+following the Call Internal instruction.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

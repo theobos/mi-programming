@@ -1,0 +1,162 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 3602 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>3602
+</B></TD><TD><P><I>Invalid Space Modification
+</I>
+<P>
+An attempt was made to modify
+the attributes of a space but the requested modification was invalid.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P> <B><U>Error code</U></B> hex values and their meanings are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0001
+</TD><TD><P>An attempt was made to modify the
+performance class attribute of the
+system object containing the space
+and the space was not a fixed
+length of size zero.
+</TD></TR><TR VALIGN="TOP"><TD><P>0002
+</TD><TD><P>An attempt was made to modify a
+system object to or from the
+state of having a fixed length
+space of size zero and the
+operation is invalid for
+that type of system object.
+</TD></TR><TR VALIGN="TOP"><TD><P>0003
+</TD><TD><P>An attempt was made to modify a
+system object to the state of
+having a fixed length
+space and the automatic extend
+attribute. These are mutually
+exclusive.
+</TD></TR><TR VALIGN="TOP"><TD><P>0004
+</TD><TD><P>An attempt was made to modify the associated
+space of a program while running in user state
+on a system running at security level 40 or
+above. This combination is invalid.
+</TD></TR><TR VALIGN="TOP"><TD><P>0005
+</TD><TD><P>The number of the secondary associated space to be
+created or modified is larger than the maximum allowed for
+this object.
+</TD></TR><TR VALIGN="TOP"><TD><P>0006
+</TD><TD><P>An attempt was made to modify the hardware storage protection
+enforcement of an associated space while running in user state.
+</TD></TR><TR VALIGN="TOP"><TD><P>0007
+</TD><TD><P>An attempt was made to modify the hardware storage protection
+enforcement of an associated space in a manner which would
+conflict with the hardware storage protection
+enforcement of the encapsulated part of the object.
+</TD></TR><TR VALIGN="TOP"><TD><P>0008
+</TD><TD><P>An attempt was made to create a secondary associated space
+for an object which was not created to allow secondaries.
+</TD></TR><TR VALIGN="TOP"><TD><P>0009
+</TD><TD><P>The number of the secondary associated space to be
+created already exists.
+</TD></TR><TR VALIGN="TOP"><TD><P>000A
+</TD><TD><P>An attempt was made to modify a packed secondary associated space.
+</TD></TR><TR VALIGN="TOP"><TD><P>000B
+</TD><TD><P>An attempt was made to create a secondary associated space while
+running in user state.
+</TD></TR><TR VALIGN="TOP"><TD><P>000C
+</TD><TD><P>An attempt was made to modify the hardware storage protection on
+a space of size zero, the space alignment was not chosen by the
+machine, the space of an object type that is not allowed to have this
+attribute changed, or the space does not exist.
+</TD></TR><TR VALIGN="TOP"><TD><P>000D
+</TD><TD><P>An attempt was made while running in user state to delete or truncate
+an associated space of an object which has secondary associated spaces.
+</TD></TR><TR VALIGN="TOP"><TD><P>0010
+</TD><TD><P>An attempt was made to modify the hardware storage
+protection enforcement of an associated space for an object
+type that is not allowed to have this attribute changed.
+</TD></TR><TR VALIGN="TOP"><TD><P>0011
+</TD><TD><P>An attempt was made to modify the expanded transfer size
+attribute of an associated space for an object
+type that is not allowed to have this attribute changed.
+</TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Modify Space Attributes (<A HREF="../instructions/MODS.htm">MODS</A>)
+<LI>Modify Space Attributes (<A HREF="../instructions/MODS.htm#mods1">MODS1</A>)
+<LI>Modify Space Attributes (<A HREF="../instructions/MODS.htm#mods2">MODS2</A>)
+</UL>
+</TD></TR></TABLE>
+
+  
+ 
+</body>
+
+ 
+</HTML>

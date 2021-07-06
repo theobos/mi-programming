@@ -1,0 +1,134 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 3006 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+
+ 
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>3006
+</B></TD><TD><P><I>Journal Space Not at a Recoverable Boundary
+</I>
+<P>
+An operation was
+attempted on a journal space or journal port that required all
+object changes corresponding to
+journal entries contained on the indicated journal space to be
+at a recoverable boundary.
+The condition described in the exception data identifies the
+reason for the failure.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Journal port
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Journal space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Sequence number of final uncloaked entry
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Return value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="60">Hex 01=
+</TD><TD>One or more objects journaled to this journal space are not at a
+recoverable boundary.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 02=
+</TD><TD>One or more objects journaled to this journal space are not at a
+commit boundary.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 03=
+</TD><TD>The journal space is retained for recovery.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 04=
+</TD><TD>Some cloaked entries persist in a Remote Journal.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">41
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">29
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+   
+ 
+</body>
+
+ 
+</HTML>

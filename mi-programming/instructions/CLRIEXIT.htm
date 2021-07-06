@@ -1,0 +1,71 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CLRIEXIT Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<h1>Clear Invocation Exit (CLRIEXIT)</h1>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0250
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The instruction removes the invocation
+exit program for the requesting
+invocation.  No exception is signaled if an invocation exit
+program is not specified for the
+current invocation.  Also, an implicit clear of the invocation
+exit occurs when the invocation exit program is given control, or
+the program which set the invocation exit completes execution.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+</DL>
+
+
+</body>
+
+</HTML>

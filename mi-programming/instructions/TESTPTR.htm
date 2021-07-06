@@ -1,0 +1,152 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+
+<title> TESTPTR Instruction </title>
+		<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Test Pointer (TESTPTR)</H1>
+<P>
+
+<font color=blue>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Op Code (Hex)
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Operand 1
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Operand 2
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Operand 3
+</FONT></TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>01D3
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Source pointer
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Test type
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Test result
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Pointer data object.
+<P>
+<I>Operand 2</I>:  Character(1) scalar immediate or constant.
+<P>
+<I>Operand 3</I>:  Signed binary(4) variable scalar.
+<P>
+</FONT>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TESTPTR is 538.
+TESTPTR (<font color=blue>
+         source_pointer   : pointer(16)</FONT>
+         test_type        : literal(1) OR
+                            literal(4)
+) :   signed binary(4)  /* return_code */
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>Test the pointer specified by <VAR>source pointer</VAR> in the manner
+specified by <VAR>test type</VAR>.  The value of the <VAR>return code</VAR>
+is determined by <VAR>test type</VAR>.
+<P>The <VAR>test type</VAR> operand may be declared as a literal of
+any scalar data type.
+If <VAR>test type</VAR> is a 4 byte literal, only the least
+significant byte is used to determine the operation to be performed.
+The remaining bytes must be binary zero.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Test Type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Description
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Hex 00
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Test the <VAR>source pointer</VAR>
+procedure pointer to see if it points to a procedure expecting
+<VAR>optimized procedure parameter passing</VAR>.
+If <VAR>source pointer</VAR>
+is a <VAR>null pointer value</VAR> then a <I>pointer does not exist&nbsp; </I>(hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+is signalled.
+If <VAR>source pointer</VAR>
+is not a procedure pointer then a <I>pointer type invalid&nbsp; </I>(hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception is
+signalled.
+If <VAR>source pointer</VAR>
+is a procedure pointer, but it identifies an activation
+which does not exist then an <I>object destroyed&nbsp; </I>(hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception is signalled.
+When an exception is signalled, the value of <VAR>return code</VAR>
+is undefined. When an exception is not signalled, the value of
+<VAR>return code</VAR> will be:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD><VAR>source pointer</VAR> does not point to a
+procedure expecting optimized parameter passing.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD><VAR>source pointer</VAR> points to a
+procedure expecting optimized parameter passing.
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><font color=blue>Hex 01
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%"><font color=blue>Test the <VAR>source pointer</VAR>
+to see if it points to teraspace.
+If <VAR>source pointer</VAR>
+is a <VAR>null pointer value</VAR> then a <I>pointer does not exist&nbsp; </I>(hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+is signalled.
+If <VAR>source pointer</VAR>
+is not a space pointer then a <I>pointer type invalid&nbsp; </I>(hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception is signalled.
+When an exception is signalled, the value of <VAR>return code</VAR>
+is undefined.
+When an exception is not signalled, the value of
+<VAR>return code</VAR> will be:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>0 =
+</FONT></TD><TD><font color=blue><VAR>source pointer</VAR> does not point to teraspace.
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>1 =
+</FONT></TD><TD><font color=blue><VAR>source pointer</VAR> points to teraspace.
+</FONT></TD></TR></TABLE>
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%"><font color=blue>Hex 02-FF
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%"><font color=blue>Reserved.
+</FONT>
+</TD></TR></TABLE>
+<font color=blue>
+</FONT>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<font color=blue>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</FONT>
+</DL>
+</DL>
+</body>
+
+</HTML>

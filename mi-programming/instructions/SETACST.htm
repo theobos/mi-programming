@@ -1,0 +1,581 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SETACST Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Set Access State (SETACST)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0341
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Access state template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SETACST is 70.
+SETACST (<font color=blue>
+         access_state_template   : address</FONT>
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The instruction specifies the access state (which specifies the desired
+speed of access) that the issuing thread has for a set of objects or
+subobject elements in the execution interval following the execution of
+the instruction.  The specification of an access state for an object
+momentarily preempts the machine's normal management of an object.
+<P><B>Note: </B>This instruction should be used with caution when the <I>pointer to
+object whose access state is to be changed</I> field in the template
+below points to a process space (i.e. static storage, automatic storage,
+and
+activation group-based
+heap space storage).  These process spaces may be shared by other
+programs,
+so explicit access management may
+affect those other programs.
+This instruction should be used with caution when the <I>pointer to
+object whose access state is to be changed</I> field in the template
+below points to handle-based heap space storage.  Handle-based heap
+space storage may be shared by other threads in the process, so explicit
+access management may affect programs in those other threads.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>CAUTION:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+MI system objects can be implemented with one or more storage structures
+for the functional part (encapsulated part) of the object.  Unless
+explicitly noted otherwise,
+if a system pointer is specified for <I>pointer to object whose
+access state is to be changed</I>,
+the SETACST operations only act on the first
+(base) storage structure of an MI object's functional part and the
+object's primary associated space.  The MI objects that are implemented
+with multiple storage structures are:
+<UL COMPACT>
+<LI>Cursor
+<LI>Byte stream file
+<LI>Byte string space
+<LI>Data space
+<LI>Data space index
+<LI>Dump space
+<LI>Independent index
+<LI>Journal space
+<LI>Module
+<LI>Program
+<LI>Queue
+<LI>Queue space
+<LI>User profile
+<LI>XOM (Extended Object Model)
+</UL>
+</TD></TR></TABLE>
+<P>
+The <I>access state template</I> must be aligned on a 16-byte
+boundary.  The format is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of objects to be acted upon
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Access state specifications
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated as many times as necessary)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Pointer to object whose
+access state is to be changed
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space pointer
+or
+System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Access state code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">33
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Access state parameter
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Access pool ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Space length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Operational object size
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<P><B>Note: </B>This value is returned for some of
+the <I>access state code</I> options.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+The <B><U>number of objects</U></B> field specifies how many objects are
+potential candidates for access state modification.  An <B><U>access state
+specification</U></B> is included for each object to be acted upon.
+<P>
+The <B><U>pointer to object</U></B> field identifies the object or space
+which is to be acted upon.  For the space associated with a system
+object, the space pointer may address any byte in the space.  This
+pointer is followed by parameters that define in detail the action to be
+applied to the object.
+<P>
+The <B><U>access state code</U></B> designates the desired access state.  The
+allowed values are as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Access State
+Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">&nbsp;
+Function and Required Parameter
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">00
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">No operations are performed.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">01
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object is moved into main storage (if not already there)
+synchronously with the execution of the instruction.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">02
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object is moved into main storage (if not already there)
+asynchronously with the execution of the instruction.
+<P>This operation will be applied to all internal storage areas for
+queue objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">03
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object is placed in main storage without regard to the
+current contents of the object.  This causes access to secondary storage
+to be reduced or eliminated.  For this access state code, a space
+pointer must be provided.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">04
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object is removed from main storage in a manner which
+reduces or eliminates access to secondary storage.  Content of the
+object is unpredictable after this operation.  For this access state
+code, a space pointer must be provided.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">The object is synchronously ensured (changes written to auxiliary
+storage) and then removed from main storage.
+<font color=blue>
+If the system pointer
+points to an object whose type is not a cursor, data space, data space
+index, program, or space then an <I> object not eligible for operation&nbsp;</I> (hex <A HREF="../exceptions/EX2204.htm">2204</A>) exception is signaled.
+</FONT>
+<P>
+This option returns a number in the <I>operational object size</I>
+field.  The unit assumed is the machine minimum transfer size (page
+size).  The value returned is the total size of the operational parts
+of the object examined/processed, including the associated space (if
+there is one).
+<P><B>Note: </B>This number is not the number of pages written or removed, but rather,
+is the total size of the object being processed.  Some, all or none of
+the object may be in mainstore prior to the execution of the
+instruction.
+<P>
+The <I>space length</I> field must be zero for this operation.  The
+entire associated space, if any, will be processed with the rest of the
+object's storage.
+<P>
+The <I>access pool ID</I> field is ignored for this operation.
+<P>
+The associated pointer to the object must be a system pointer.
+<P>
+This operation will be applied to all internal storage areas for queue
+objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">This operation essentially combines the functions of a 10 code
+followed by asynchronously bringing the operational parts of the object
+into main storage.  The object is brought into the main storage pool
+identified by the <I>access pool ID</I> field.  If the system pointer
+points to an object whose type is not a cursor, data space, data space
+index, program, or space then an <I> object not eligible for operation&nbsp;</I> (hex <A HREF="../exceptions/EX2204.htm">2204</A>) exception is signaled.
+<P><B>Note: </B>Because this function first removes the object from main storage
+and then brings it into main storage, this can be used to "move" an
+object from one main storage pool to another.
+<P>
+This option returns a number in the <I>operational object size</I>
+field.  The unit assumed is the machine minimum transfer size (page
+size).  The value returned is the total size of the object processed.
+<P><B>Note: </B>If this value is larger than the size of the main storage pool
+being used, unpredictable parts of the object will be resident in the
+main storage pool following processing.
+<P>
+A preceding access code of 40 is ignored for this operation.
+<P>
+The <I>space length</I> field must be zero for this operation.  The
+entire associated space, if any, will be processed with the rest of the
+object's storage.
+<P>
+The <I>access pool ID</I> field must be specified for this access
+code.  It must be one of the storage pools existing in the machine as
+defined by the machine attribute.
+<P>
+The associated pointer to the object must be a system pointer.
+<P>
+This operation will be applied to all internal storage areas for cursor,
+data space and data space index objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object attributes are moved into main storage synchronous
+with the instruction's execution.  The associated attributes are the
+attributes that are common to all system objects.  The associated
+pointer to object must be a resolved system pointer.
+<P>
+The "space length" field is ignored for this access code.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">21
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object attributes are moved into main storage asynchronous
+with the instruction's execution.  The associated attributes are the
+attributes that are common to all system objects.  The associated
+pointer to object must be a resolved system pointer.
+<P>
+The "space length" field is ignored for this access code.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">22
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Common associated object attributes plus some specified amount of
+object-specific attributes are moved into main storage synchronous with
+the instruction's execution.  The common associated attributes are the
+attributes that are common to all system objects.  The object-specific
+attributes are attributes that vary from one object type to another.
+The amount of these attributes brought into main storage is controlled
+by the <I>space length</I> field.
+<P><B>Note: </B>This use of <I>space length</I> is not consistent with the name of
+the field.  For this code, the <I>space length</I> field does not
+control the size of any associated space processing, it controls
+the length of object-specific attributes processed.
+<P>
+The <I>space length</I> field works in the following manner: it
+specifies the amount of storage above and beyond the common object
+attributes which will be synchronously brought into storage.
+Therefore, a <I>space length</I> of 0 is valid, and results in
+an operation identical to access code 20.
+<P>
+The associated pointer to object must be a resolved system pointer.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Common associated object attributes plus some specified amount of
+object-specific attributes are moved into main storage asynchronous with
+the instruction's execution.  The common associated attributes are the
+attributes that are common to all system objects.  The object-specific
+attributes are attributes that vary from one object type to another.
+The amount of these attributes brought into main storage is controlled
+by the <I>space length</I> field.
+<P><B>Note: </B>This use of <I>space length</I> is not consistent with the name of
+the field.  For this code, the <I>space length</I> field does not
+control the size of any associated space processing, it controls
+the length of object-specific attributes processed.
+<P>
+The <I>space length</I> field works in the following manner: it
+specifies the amount of storage above and beyond the common object
+attributes which will be asynchronously brought into storage.
+Therefore, a <I>space length</I> of 0 is valid, and results in an
+operation identical to access code 21.
+<P>
+The associated pointer to object must be a resolved system pointer.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">The associated space of the object is moved into main storage (if not
+already there) synchronously with the execution of the instruction.  The <I>space length</I> field is honored for this operation.  The
+associated pointer to the object must be a system pointer.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">The associated space of the object is moved into main storage (if not
+already there) asynchronously with the execution of the instruction.
+The <I>space length</I> field is honored for this operation.  The
+associated pointer to the object must be a system pointer.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Perform no operation on the associated object.  The main storage
+occupied by this object is to be used, if possible, to satisfy the
+request in the next access state specification entry.  Either a space or
+system pointer may be provided for this access state code.
+<P>
+This operation will be applied to all internal storage areas for queue
+objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">41
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Wait for any previously issued but incomplete hex 81 or hex 91 access
+state code operations to complete.  This includes all previous hex 81
+and hex 91 operations that may have been performed on previous Set
+Access State instructions within the current thread as well as those
+that may have been issued in previous access state specification entries
+in the current instruction.  The pointer is ignored for this access
+state code entry.
+<P>
+This operation will be applied to all internal storage areas for queue
+objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Object should be written and it is not needed in main storage by
+issuing thread.  Object is written to nonvolatile storage synchronously
+with the execution of the instruction.  Any main storage that the object
+occupied is then marked as to make it quickly available for replacement.
+<P>This operation will be applied to all internal storage areas for
+queue objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">81
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Object should be written and it is not needed in main storage
+by issuing process.
+Object is written to nonvolatile storage
+asynchronously with the execution of
+the instruction.  Any main storage that the object occupied is
+then marked as to make it quickly available for replacement.
+<P>If desired, the thread can synchronize with any outstanding
+hex 81 access state operation by issuing a hex 41 access state
+operation either within the current instruction or during
+a subsequent Set Access State instruction.
+<P>This operation will be applied to all internal storage areas for
+queue objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">90
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object must be insured,
+but is still needed in main storage.
+Object is written to nonvolatile storage
+synchronously with the execution of
+the instruction.
+Unlike access state codes hex 80 and hex 81, this
+access state code does not mark any main storage occupied by the
+object as to make it quickly available for replacement.
+<P>This operation will be applied to all internal storage areas for
+queue objects.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">91
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Associated object must be insured,
+but is still needed in main storage.
+Object is written to nonvolatile storage
+asynchronously with the execution of
+the instruction.
+Unlike access state codes hex 80 and hex 81, this
+access state code does not mark any main storage occupied by the
+object as to make it quickly available for replacement.
+<P>If desired, the thread can synchronize with any outstanding
+hex 91 access state operation by issuing a hex 41 access state
+operation either within the current instruction or during
+a subsequent Set Access State instruction.
+</TD></TR></TABLE> <I>Access state codes</I>
+hex 03 and hex 04 may be used for spaces only.  The
+pointer to the object in the access
+state specification must be a space pointer.  Otherwise, the <I> pointer type invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception
+is signaled.
+<P>
+Access state code hex 40 may be used in conjunction
+with access state codes hex 01, hex 02, or hex
+03.  The access state specification entry with access
+state code hex 40 must immediately precede
+the access state specification entry with access state
+code hex 01, hex 02, or hex 03 with which it
+is to be combined.  The pointer to the object in both
+entries must be a space pointer.  Otherwise,
+the <I> pointer type invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception
+is signaled.  The <I>access state parameter</I> field in the <I>access
+state specification entry</I> with code hex 40 is ignored.  The <I>access pool ID</I> and the <I>space length</I> in
+the entry with access state code hex 01, hex 02, or hex 03 are used.
+<P>
+The <B><U>access pool ID</U></B> field indicates the desired main
+storage pool in which the
+object is to be placed (0-16).  The storage
+pool ID entry is treated as a 4-byte logical binary
+value.  When a 0 storage
+pool ID is specified, the storage pool associated
+with the issuing thread is used.
+<P>
+The <B><U>space length</U></B> field designates the part of the space
+associated with the object to be operated
+on.  If the pointer to the object entry
+is a system pointer, the operation begins with the first
+byte of the space.  If the pointer to the
+object entry is a space pointer
+that specifies a location, the operation proceeds
+for the number of storage units that are
+designated.  No exception is signaled
+when the number of referenced bytes of the space are not allocated.  When
+operations on objects are designated by system
+pointers, this operation is performed in addition to the access state
+modification of the object.
+This entry is ignored for <I>access state codes</I> hex 20 and hex 21.
+This entry will be truncated to a maximum of 65,536 for <I>access state
+codes</I> immediately following access state code 40.
+<P>
+The <B><U>operational object size</U></B> field is a value which is
+ignored upon input to the instruction and is set by the instruction
+for access codes 10 and 18.  It represents, in units of minimum machine
+transfer size, the total size of the object which could/did participate
+in the operation.  The parts of an object which are considered
+"operational" are decided by the machine and does include the
+associated space, if any.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>Execute
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>04 Access State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0401.htm">0401 Access State Specification Invalid</A>
+</DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2204.htm">2204 Object Not Eligible for Operation</A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+<DD><A HREF="../exceptions/EX2404.htm">2404 Pointer Not Resolved</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

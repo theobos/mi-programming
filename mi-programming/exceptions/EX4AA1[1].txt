@@ -1,0 +1,559 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4AA1 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4AA1
+</B></TD><TD><P><I>Java Class Format Error
+</I>
+<P>
+An error was detected in the format of a Java class file.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Class file pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Class number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>class file pointer</U></B> addresses the vnode of
+the Java class file or Java archive (JAR) file containing
+the error being reported.
+<P>If the <I>class file pointer</I> addresses the vnode
+of a JAR file, the <B><U>class number</U></B> indicates, by index, which
+class in the JAR file contains the error.  If the <I>class
+file pointer</I> addresses the vnode of a Java class file, <I>class number</I> is zero.
+<P>The <B><U>error offset</U></B> is the byte offset into the
+class file or JAR file bytecode stream at which the error
+occurs.
+<P>The <B><U>reason code</U></B> indicates the specific reason
+for the exception, and is one of the following&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Reason</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>00001001
+</TD><TD><P>Truncated class file.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001002
+</TD><TD><P>Extra data at end of class file.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001101
+</TD><TD><P>The first 4 bytes of a class file must contain the value
+hex CAFEBABE.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001201
+</TD><TD><P><I>minor_version</I> is not valid.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001202
+</TD><TD><P><I>major_version</I> is not valid.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001302
+</TD><TD><P>Interface classes must not have the ACC_FINAL set in <I>access_flags</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001304
+</TD><TD><P>Classes cannot have both ACC_FINAL and ACC_ABSTRACT set in <I>access_flags</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001411
+</TD><TD><P><I>this_class</I> must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001412
+</TD><TD><P><I>this_class</I> must refer to a CONSTANT_Class constant pool entry
+</TD></TR><TR VALIGN="TOP"><TD><P>00001413
+</TD><TD><P>(Jar file members only) The package/class name of the Jar file
+member must match the package/class name of the class within the file.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001421
+</TD><TD><P>The value of <I>super_class</I> must be either 0 or a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001422
+</TD><TD><P><I>super_class</I> may only be 0 if the class file represents
+a class (not an interface).
+</TD></TR><TR VALIGN="TOP"><TD><P>00001423
+</TD><TD><P>If <I>super_class</I> is non-zero then it must refer to a
+CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001424
+</TD><TD><P>If <I>super_class</I> is 0, then <I>this_class</I> must
+refer to a CONSTANT_Class constant pool entry representing the class
+'java.lang.Object'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001426
+</TD><TD><P><I>super_class</I> must not match <I>this_class</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001501
+</TD><TD><P>For class file attributes, the <I>attribute_name_index</I> must
+be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001502
+</TD><TD><P>For class file attributes, <I>attribute_name_index</I>
+must refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001503
+</TD><TD><P>There may be no more than one SourceFile attribute for the
+class file.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002101
+</TD><TD><P>The <I>constant_pool_count</I> must be greater than 0.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002102
+</TD><TD><P>Constant pool tag values must be in the range from 1 to 12,
+except for the value 2.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002201
+</TD><TD><P>For a CONSTANT_Class constant pool entry, <I>name_index</I> must be a valid
+constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002204
+</TD><TD><P>For a CONSTANT_Class constant pool entry, the class name represented
+by the CONSTANT_Utf8 entry (indicated by <I>name_index</I>)
+cannot have more than 255 array dimensions.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002301
+</TD><TD><P>For a CONSTANT_Fieldref constant pool entry, <I>class_index</I> must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002302
+</TD><TD><P>For a CONSTANT_Fieldref constant pool entry, <I>class_index</I> must refer
+to a CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002304
+</TD><TD><P>For a CONSTANT_Fieldref constant pool entry, <I>name_and_type_index</I>  must
+be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002305
+</TD><TD><P>For a CONSTANT_Fieldref constant pool entry, <I>name_and_type_index</I> must
+refer to a CONSTANT_NameAndType constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002401
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, <I>class_index</I> must be a
+valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002402
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, <I>class_index</I> must be
+a CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002404
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, <I>name_and_type_index</I> must
+be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002405
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, <I>name_and_type_index</I> must
+refer to a CONSTANT_NameAndType constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002406
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, if the method
+name identified by the CONSTANT_NameAndType constant pool entry
+(indicated by <I>name_and_type_index</I>)
+starts with '&lt;', then the full name must either be '&lt;init&gt;' or
+'&lt;clinit&gt;'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002407
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, the special methods named '&lt;init&gt;' and
+'&lt;clinit&gt;' may only return type 'void'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002501
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, <I>class_index</I>
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002502
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, <I>class_index</I>
+must refer to a CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002504
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, <I>name_and_type_index</I> must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002505
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, <I>name_and_type_index</I>
+must refer to a CONSTANT_NameAndType constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002506
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, if the method
+name identified by the CONSTANT_NameAndType constant pool entry
+(indicated by <I>name_and_type_index</I>)
+starts with '&lt;', then the full name must either be '&lt;init&gt;' or
+'&lt;clinit&gt;'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002507
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, the special methods named
+'&lt;init&gt;' and '&lt;clinit&gt;' may only return type 'void'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002601
+</TD><TD><P>For a CONSTANT_String constant pool entry, <I>string_index</I> must be
+a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002602
+</TD><TD><P>For a CONSTANT_String constant pool entry, <I>string_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b01
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, <I>name_index</I>
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b02
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, <I>name_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b03
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, the name identified
+by <I>name_index</I> must be a valid
+Java field or method name, that is a simple (not qualified) name.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b04
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, <I>descriptor_index</I>  must
+be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b05
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, <I>descriptor_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002b06
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, the descriptor
+identified by <I>descriptor_index</I> must be a
+valid Java field or method descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002c01
+</TD><TD><P>For a CONSTANT_Utf8 constant pool entry, no byte in the <I>bytes</I> array may
+have the value hex 00 or a value in the range hex F0 to hex FF.
+</TD></TR><TR VALIGN="TOP"><TD><P>00003001
+</TD><TD><P>Each value in the <I>interfaces</I> array must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00003002
+</TD><TD><P>Each constant pool index in the interfaces array, must refer to a CONSTANT_Class
+constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004001
+</TD><TD><P>No two fields in a class file may have the same name and
+descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004102
+</TD><TD><P>Interface fields must have ACC_PUBLIC, ACC_STATIC, and ACC_FINAL
+set in <I>access_flags</I>. No other flags are allowed for interface fields.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004103
+</TD><TD><P>Class fields may have only one of flags ACC_PUBLIC,
+ACC_PROTECTED, and ACC_PRIVATE set in <I>access_flags</I> (if any).
+</TD></TR><TR VALIGN="TOP"><TD><P>00004104
+</TD><TD><P>A field cannot have both ACC_FINAL and ACC_VOLATILE set in <I>access_flags</I>
+</TD></TR><TR VALIGN="TOP"><TD><P>00004201
+</TD><TD><P>For a field_info structure, <I>name_index</I>
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004202
+</TD><TD><P>For a field_info structure, <I>name_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004203
+</TD><TD><P>For a field_info structure, the name identified
+by <I>name_index</I> must be a valid
+Java field name, that is a simple (not qualified) name.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004301
+</TD><TD><P>For a field_info structure, <I>descriptor_index</I>  must be a
+valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004302
+</TD><TD><P>For a field_info structure, <I>descriptor_index</I> must
+refer to CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004303
+</TD><TD><P>For a field_info structure, the descriptor identified
+by <I>descriptor_index</I> must represent a
+valid Java field descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004401
+</TD><TD><P>For a field_info structure, <I>attribute_name_index</I>
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004402
+</TD><TD><P>For a field_info structure, <I>attribute_name_index</I>
+must refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00004404
+</TD><TD><P>There can be no more than one ConstantValue attribute per
+field_info structure.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005001
+</TD><TD><P>No two methods in a class file may have the same name and
+descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005002
+</TD><TD><P>For an interface class, only the &lt;clinit&gt; method may be
+implemented (have a Code attribute). All other methods must be
+abstract methods.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005102
+</TD><TD><P>Methods within an interface class must have ACC_PUBLIC and
+ACC_ABSTRACT set in <I>access_flags</I>. Only these flags can be
+set for interface methods.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005103
+</TD><TD><P>Constructors (named '&lt;init&gt;') may only have ACC_PUBLIC,
+ACC_PROTECTED, and ACC_PRIVATE set in <I>access_flags</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005104
+</TD><TD><P>For a method_info structure, at most, only one of ACC_PUBLIC,
+ACC_PROTECTED and ACC_PRIVATE may be set in <I>access_flags</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005105
+</TD><TD><P>For a method_info structure, ACC_ABSTRACT may not be used together
+with ACC_FINAL, ACC_NATIVE or ACC_SYNCHRONIZED in <I>access_flags</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005201
+</TD><TD><P>For a method_info structure, <I>name_index</I> must be a valid
+constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005202
+</TD><TD><P>For a method_info structure, <I>name_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005203
+</TD><TD><P>For a method_info structure, the name identified
+by <I>name_index</I> must be one of the
+special method names (either '&lt;init&gt;' or '&lt;clinit&gt;') or be valid
+Java method name, that is a simple (not qualified) name.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005301
+</TD><TD><P>For a method_info structure, <I>descriptor_index</I> must be a
+valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005302
+</TD><TD><P>For a method_info structure, <I>descriptor_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005304
+</TD><TD><P>For a method_info structure, the descriptor identified
+by <I>descriptor_index</I> is limited to 255 words of parameters,
+(including 1 word for 'this' in the case of instance methods).
+Parameters of type 'long' and 'double' use 2 words each.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005401
+</TD><TD><P>For a method_info structure, <I>attribute_name_index</I>
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005402
+</TD><TD><P>For a method_info structure, <I>attribute_name_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005403
+</TD><TD><P>For a method_info structure, if the <I>access_flags</I> do not
+indicate that the method is native or abstract, then there must be
+exactly one Code attribute.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005404
+</TD><TD><P>For a method_info structure, there may be at most one Exceptions
+attribute.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005406
+</TD><TD><P>For a method_info structure, if the <I>access_flags</I> indicate
+that the method is native or abstract, there must be no Code
+attribute.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006101
+</TD><TD><P>For a SourceFile attribute, <I>attribute_length</I> must be 2.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006102
+</TD><TD><P>For a SourceFile attribute, <I>sourcefile_index</I> must be a valid
+constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006103
+</TD><TD><P>For a SourceFile attribute, <I>sourcefile_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006201
+</TD><TD><P>For a ConstantValue attribute, <I>attribute_length</I>  must be 2.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006202
+</TD><TD><P>For a ConstantValue attribute, <I>constantvalue_index</I> must be a valid
+constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006203
+</TD><TD><P>For a ConstantValue attribute, <I>constantvalue_index</I>
+must refer to a constant pool entry type which is appropriate for the field.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006301
+</TD><TD><P>For a Code attribute, <I>code_length</I> must be greater than 0.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006303
+</TD><TD><P>For a Code attribute, <I>length</I> must equal the sum of the
+attribute parts.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006304
+</TD><TD><P>For a Code attribute, <I>length</I> must be less than or equal to
+65536 bytes .
+</TD></TR><TR VALIGN="TOP"><TD><P>00006311
+</TD><TD><P>For a Code attribute, <I>start_pc</I> must be less than <I>end_pc</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006312
+</TD><TD><P>For a Code attribute, <I>start_pc</I> must be less than <I>code_length</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006313
+</TD><TD><P>For a Code attribute, <I>handler_pc</I> must be less than <I>code_length</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006314
+</TD><TD><P>For a Code attribute, if <I>catch_type</I> is non-zero, then it
+must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006315
+</TD><TD><P>For a Code attribute, if <I>catch_type</I> is non-zero it must
+refer to a CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006319
+</TD><TD><P>For a Code attribute, <I>end_pc</I> must be less than or equal to
+the <I>code_length</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006321
+</TD><TD><P>For a Code attribute, <I>attribute_name_index</I> must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006322
+</TD><TD><P>For a Code attribute, <I>attribute_name_index</I> must refer
+to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006401
+</TD><TD><P>For an Exceptions attribute, each non-zero value in the <I>exception_index_table</I> must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006402
+</TD><TD><P>For an Exceptions attribute, each non-zero value
+in the <I>exception_index_table</I> must refer to a CONSTANT_Class constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006403
+</TD><TD><P>For an Exceptions attribute, <I>length</I> must match the size of the
+attribute parts.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006501
+</TD><TD><P>For a LineNumberTable attribute, <I>start_pc</I> must be less than the <I>code_length</I> of the associated Code attribute.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006502
+</TD><TD><P>For a LineNumberTable attribute, <I>length</I> must match the size of
+the attribute parts.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006601
+</TD><TD><P>For a LocalVariableTable attribute, <I>name_index</I> in each
+entry of the LocalVariableTable attribute must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006602
+</TD><TD><P>For a LocalVariableTable attribute, <I>name_index</I>  in each
+entry of the LocalVariableTable attribute must refer to a CONSTANT_Utf8
+constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006603
+</TD><TD><P>For a LocalVariableTable attribute, the name identified
+by <I>name_index</I> must represent a simple
+(not qualified) name.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006604
+</TD><TD><P>For a LocalVariableTable attribute, <I>descriptor_index</I> in
+each entry of the LocalVariableTable
+attribute must be a valid constant pool index.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006605
+</TD><TD><P>For a LocalVariableTable attribute, <I>descriptor_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006606
+</TD><TD><P>For a LocalVariableTable attribute,  the string identified
+by <I>descriptor_index</I> must represent a
+valid Java local variable descriptor. Local variable descriptors have
+the same form as field descriptors.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006607
+</TD><TD><P>For a LocalVariableTable attribute, <I>start_pc</I> must be a
+valid index into the code array of the corresponding Code attribute.
+It must be the index of the beginning of an instruction.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006608
+</TD><TD><P>For a LocalVariableTable attribute, <I>start_pc</I>+<I>length</I>
+must be either be a valid index into the code array of the corresponding
+Code attribute (the beginning of an instruction)
+or the first byte beyond the end of the code array.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000660a
+</TD><TD><P>For a LocalVariableTable attribute, <I>length</I> must
+match the size of the attribute parts.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000660b
+</TD><TD><P>For a LocalVariableTable attribute, there may be no more than one
+LocalVariableTable attribute entry per local variable in the Code
+attribute.
+(A local variable is identified as a local variable <I>index</I>
+within a range of instructions from <I>start_pc</I> through <I>start_pc</I>+<I>length</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006701
+</TD><TD><P>For an InnerClasses attribute, <I>length</I> must match the size of
+the attribute parts.
+</TD></TR><TR VALIGN="TOP"><TD><P>00006801
+</TD><TD><P>For a Synthetic attribute, <I>length</I> must be 0.
+</TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

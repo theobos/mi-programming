@@ -1,0 +1,261 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATMTX Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Mutex (MATMTX)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATMTX is 163.
+MATMTX (
+        operand1   : address
+        operand2   : address
+        operand3   : address of unsigned binary(4) value
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The current state of the mutex
+or replica of a mutex
+whose address is passed in operand 2 is
+materialized into the receiver space identified by operand 1.
+A replica of a mutex can be returned by the <A HREF="MATPRMTX.htm">MATPRMTX</A> instruction.
+The space pointed to by operand 3 is a
+4-byte unsigned binary
+field used to indicate what type of information should be
+returned by this instruction.
+<P>
+The mutex must be aligned on a 16-byte boundary.
+<P>The <I>materialization options</I> referenced by operand 3 must be
+set to hex 00000000 in order to materialize the mutex information.
+Specifying an invalid <I>materialization option</I> will cause a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+to be generated.
+<P>The materialization template identified by operand
+1 must be 16-byte aligned.  The format of the
+materialization is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Materialization size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of waiters
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Mutex name
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Lock owner
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">62
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">3E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(18)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Wait list
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(48)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated for each process waiting for mutex)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Process identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">110
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(18)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The first 4 bytes of the materialization identifies the total <B><U>number of bytes provided</U></B> for use by the instruction.
+This value is
+supplied as input to the instruction and is not modified by the
+instruction.  A value of less than 8 causes the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+to be signaled.
+<P>The second 4 bytes of the materialization identifies the total <B><U>number of bytes available</U></B> to be materialized.  The instruction
+materializes as many bytes as can be contained in the area specified
+as the receiver.  If the byte area identified by the receiver is
+greater than that required to contain the information requested,
+then the excess bytes are unchanged.  No exceptions are signaled
+in the event that the receiver contains insufficient area for the
+materialization, other than the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+described previously.
+<P>The <B><U>number of waiters</U></B> is the number of processes that
+are currently waiting for the mutex to become unlocked.
+<P><B><U>Mutex name</U></B> contains the name of the mutex.
+The name is left-justified and padded to the right with
+blanks.
+If the mutex was created using
+a null-terminated name string, the name materialized with this
+instruction is null-terminated instead of padded with blanks.
+If the mutex was created without a name, this field will contain
+the character string "UNNAMED_" followed by the first 8 characters
+of the program which created the mutex.
+<P>The <B><U>lock owner</U></B>
+contains the name of the process
+that holds the mutex lock.  If this field is all blanks,
+the mutex is not locked.
+The name returned here is the 30-character process
+control space name.
+<P><B><U>Wait list</U></B> contains a list of the processes waiting for
+the mutex to become unlocked.  <B><U>Process identifier</U></B>
+contains the name of the process.
+The name returned here is the 30-character process
+control space name.
+<P>If operand 3 contains a null pointer value,
+the default <I>materialization options</I>
+are used.  An <I> invalid mutex&nbsp; </I> (hex <A HREF="../exceptions/EX3804.htm">3804</A>) exception
+is generated if an
+attempt is made to materialize a mutex that does not exist.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1002.htm">1002 Machine Context Damage State </A>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+<DD><A HREF="../exceptions/EX3804.htm">3804 Invalid Mutex</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

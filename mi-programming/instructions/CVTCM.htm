@@ -1,0 +1,543 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CVTCM Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Convert Character to MRJE (CVTCM)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCM</B>
+108B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCMB</B>
+1C8B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCMI</B>
+188B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Character variable scalar.
+<P>
+<I>Operand 2</I>:  Character(13) variable scalar.
+<P>
+<I>Operand 3</I>:  Character scalar.&nbsp;
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CVTCM is 133.
+CVTCM (
+       receiver          : address
+       receiver_length   : unsigned binary(4)
+       controls          : address
+       source            : address
+       source_length     : unsigned binary(4)
+       return_code       : address of signed binary(4)
+)
+</PRE>
+<P>The return_code will be set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><TT>-1</TT>
+</B></TD><TD><P>Receiver Overrun.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><TT> 0</TT>
+</B></TD><TD><P>Source Exhausted.
+</TD></TR></TABLE>
+<P>The <VAR>receiver</VAR>, <VAR>controls</VAR> and <VAR>source</VAR>
+parameters correspond to operands 1, 2 and 3 on the
+CVTCM operation.
+<P>The <VAR>receiver_length</VAR> and <VAR>source_length</VAR>
+parameters contain the length, in bytes, of the receiver and
+source strings.  They are expected to contain values between 1
+and 32,767.
+<P>The <VAR>return_code</VAR> parameter is used to provide support for
+the branch and indicator forms of the CVTCM operation.  The user
+must specify code to process the <VAR>return_code</VAR> and perform
+the desired branching or indicator setting.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction converts a string of
+characters to MRJE (MULTI-LEAVING remote
+job entry) compressed format.  The operation converts the <I>source</I>
+(operand 3) from character to the
+MRJE compressed format under control of the <I>controls</I> (operand 2)
+and places the results in the <I>receiver</I> (operand 1).
+<P>
+The <I>source</I> and <I>receiver</I> operands must both be character
+strings.  The <I>source</I> operand cannot be
+specified as either a signed or unsigned immediate value.
+<P>
+The <I>source</I> operand can be described through
+the <I>controls</I> operand as being
+composed of one or more
+fixed length data fields, which may be separated by fixed length gaps of
+characters to be ignored
+during the conversion operation.  Additionally, the <I>controls</I>
+operand specifies the amount of data
+to be processed from the <I>source</I> to produce a converted record
+in the <I>receiver</I>.  This may be a
+different value than the length of the data fields in the <I>source</I>.  The following
+diagram shows this structure for the <I>source</I> operand.
+<P>
+<P><BR>
+<B><BR><IMG SRC="images/aac010.gif" ALT="Figure AAC010 not displayed."><BR></B><BR>
+<P>
+The <I>controls</I> operand must be a character scalar
+that specifies additional
+information to be used to control the conversion operation.  It must
+be at least 13 bytes in length and have the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(13)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Receiver offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Source offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Algorithm modifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Source record length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Data field length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Gap offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Gap length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Record control block (RCB) value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">D
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+As input to the instruction, the <B><U>source offset</U></B>
+and <B><U>receiver offset</U></B>
+fields specify the offsets where bytes
+of the <I>source</I> and <I>receiver</I> operands are
+to be processed.  If
+an offset is equal to or greater than
+the length specified for the operand it corresponds to (i.e. it
+identifies a byte beyond the end of the
+operand), a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+As output from the instruction, the <I>source offset</I>
+and <I>receiver offset</I>
+fields specify offsets that indicate
+how much of the operation is complete when the instruction ends.
+<P>
+The <B><U>algorithm modifier</U></B> has the following valid values:
+<UL>
+<P><LI>Hex 00 = Perform full compression.
+<P><LI>
+Hex 01 = Perform only
+truncation of trailing blanks.
+</UL>
+The <B><U>source record length</U></B> value specifies the amount of data
+from the <I>source</I> to be processed.  If a <I>source record length</I> of 0 is specified, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+<P>
+The <B><U>data field length</U></B> value specifies the length of the
+data fields in the <I>source</I>.  Data fields
+occurring in the <I>source</I> may be separated by gaps of
+characters, which are to be ignored during the
+conversion operation.  Specification of a <I>data field
+length</I> of 0 indicates that the source operand
+is one data field.  In this case, the <I>gap length</I> and <I>gap offset</I> values have no meaning and are ignored.
+<P>
+The <B><U>gap offset</U></B> value specifies the offset to the next gap
+in the <I>source</I>.  This value is both input
+to and output from the instruction.  This is relative to
+the current byte to be processed in the <I>source</I> as located by the <I>source offset</I> field.
+No validation
+is done for this offset.  It is assumed
+to be valid relative to the <I>source</I> operand.
+The <I>gap offset</I>
+value is ignored if the <I>data field length</I>
+is specified with a value of 0.
+<P>
+The <B><U>gap length</U></B> value specifies the amount of data occurring
+between data fields in the <I>source</I>
+operand which is to be ignored during the conversion
+operation.  The <I>gap length</I> value is ignored if
+the <I>data field length</I> is specified with a value of 0.
+<P>
+The <B><U>record control block (RCB) value</U></B>
+field specifies the RCB value
+that is to precede the converted form
+of each record in the <I>receiver</I>.  It can have any value.
+<P>
+Only the first 13 bytes of the <I>controls</I> operand are used.  Any
+excess bytes are ignored.
+<P>
+The operation begins by accessing the bytes
+of the <I>source</I> operand at the
+location specified by the <I>source offset</I>.  This is assumed to be the start of a source
+record.  Only the bytes of the data
+fields in the <I>source</I> are accessed for conversion purposes.  Gaps
+between data fields are ignored,
+causing the access of data field bytes to occur as if the
+data fields were contiguous with one
+another.  Bytes accessed from the source for the source record length are
+considered a source record
+for the conversion operation.  They are converted into the <I>receiver</I> operand at the location
+specified by the <I>receiver offset</I>
+according to the following algorithm.
+<P>
+The <I>RCB value</I>
+is placed into the first byte of the receiver record.
+<P>
+An SRCB (sub record control byte) value of hex 80 is placed
+into the second byte of the receiver record.
+<P>
+If the <I>algorithm modifier</I> specifies <I>full
+compression</I> (a value
+of hex 00) then:
+<P>
+The bytes of
+the source record are interrogated to locate the blank
+character strings (2 or more
+consecutive blanks), identical character strings (3 or more consecutive
+identical characters), and
+nonidentical character strings occurring in the source.  A
+blank character string occurring at the
+end of the record is treated as a special case (see following
+information on trailing blanks).
+<P>
+If the <I>algorithm modifier</I> specifies <I>blank truncation</I>
+(a value of hex 01) then:
+<P>
+The bytes of the
+source record are interrogated to determine if a blank
+character string exists at the end of the
+source record.  If one exists, it is treated as a string of
+trailing blanks.  All characters prior
+to it in the record are treated as one string of nonidentical characters.
+<P>
+The strings encountered (blank, identical, or nonidentical)
+are reflected in the <I>receiver</I> by
+building one or more SCBs (string control bytes) in the <I>receiver</I> to describe them.
+<P>
+The format of the SCBs built into the <I>receiver</I> is:
+<UL>
+<P><LI>
+SCB format is
+<TT>
+o k l jjjjj
+</TT>
+</UL>
+<P>
+The bit meanings are:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP">Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">o
+</TD><TD ALIGN="LEFT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">End of record; the EOR SCB is hex 00.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">All other SCBs.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">k
+</TD><TD ALIGN="LEFT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">The string is compressed.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">The string is not compressed.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">l
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">For k = 0:
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Blanks (hex 40s) have been deleted.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Nonblank characters have been deleted.
+The next character in the data stream
+is the specimen character.
+<P>
+For k = 1:
+<P>
+This bit is part of the length
+field for length of uncompressed data.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">jjjjj
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Number of characters that have been
+deleted if k = 0.  The value can be 2-31.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">ljjjjj
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">Number of characters to the next
+SCB (no compression) if k = 1.  The value
+can be 1-63.  The uncompressed
+(nonidentical bytes) follow the SCB
+in the data stream.
+</TD></TR></TABLE>
+<P>
+When the end of a source record is encountered, an EOR (end
+of record) SCB (hex 00) is built into
+the <I>receiver</I>.  Trailing blanks in a record including a record
+of all blanks are represented in the <I>receiver</I> by an EOR character.
+However, a record of all blanks is reflected in the compressed result
+by an RCB, an SRCB, a compression entry describing an 'unlike string' of
+one blank character, and an EOR character.
+<P>Additionally, the <I>receiver offset</I>, the <I>source
+offset</I>, and the <I>gap offset</I> are
+updated in the <I>controls</I>
+operand.
+<P>
+If the end of the <I>source</I> operand is not encountered,
+the operation then
+continues by reapplying the
+above algorithm to the next record in the <I>source</I> operand.
+<P>
+If the end of the <I>source</I> operand is encountered (whether or
+not in conjunction with a record
+boundary), the instruction ends with a resultant condition
+of <I>source exhausted</I>.  The <I>source offset</I>
+locates the byte following the last source
+record for which conversion was
+completed.  The <I>gap offset</I>
+value indicates the offset to the next
+gap relative to the <I>source offset</I>
+value set for this condition.  The <I>gap offset</I>
+value has no meaning
+and is not set when the <I>data
+field length</I> is 0.  The <I>receiver offset</I> locates the
+byte following the last
+fully converted record in the <I>receiver</I>.  The value of the
+remaining bytes in the receiver after the
+last converted record is unpredictable.
+<P>
+If the converted form of a record cannot be completely contained in the <I>receiver</I>, the instruction
+ends with a resultant condition of <I>receiver overrun</I>.  The <I>source offset</I> locates the
+byte following the last source record for which conversion
+was completed.  The <I>gap offset</I> value
+indicates the offset to the next gap relative to the source
+offset value set for this condition.
+The <I>gap offset</I> value has no meaning and is not set when the <I>data field length</I> is 0.  The <I>receiver offset</I>
+locates the byte following the last
+fully converted record in the <I>receiver</I>.
+The value of the remaining bytes in the <I>receiver</I> after the
+last converted record is unpredictable.
+<P>
+Any form of overlap between the operands of this instruction yields
+unpredictable results in the <I>receiver</I> operand.
+<P>
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Source exhausted-All complete records
+in the <I>source</I> operand have been
+converted into the <I>receiver</I>
+operand.
+<P><LI>Receiver overrun-An overrun condition in the <I>receiver</I> operand was detected prior to
+processing all of the bytes in the <I>source</I> operand.
+</UL>
+<P>
+If <I>source exhausted</I> and <I>receiver overrun</I>
+occur at the same
+time, the <I>source exhausted</I> condition is
+recognized first.  When <I>source exhausted</I>
+is the resultant condition, the <I>receiver</I> may
+also be full.  In this case, the <I>receiver offset</I>
+may contain a value equal to the length
+specified for the <I>receiver</I>, and this condition will cause
+an exception on the next invocation of
+the instruction.  The processing performed for the <I>source
+exhausted</I> condition provides for this
+case when the instruction is invoked multiple times with
+the same <I>controls</I> operand template.  When
+the <I>receiver overrun</I> condition is the resultant condition,
+the <I>source</I> always contains data that can be converted.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

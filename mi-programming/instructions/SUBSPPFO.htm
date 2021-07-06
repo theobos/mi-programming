@@ -1,0 +1,151 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SUBSPPFO Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Subtract Space Pointers For Offset (SUBSPPFO)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0033
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Offset difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Minuend pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Binary(4) variable scalar.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<P>
+<I>Operand 3</I>:  Space pointer.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The offset portion of the space address contained in the operand 3
+space pointer is
+subtracted from the offset of the
+space address contained in the space pointer
+specified by operand 2; the result
+is stored in the 4 byte binary scalar identified by operand 1.
+<P>The
+offsets for operands 2 and 3 are strictly unsigned values, while the
+operand 1 result can have a positive or negative value.
+<P>
+No check is made to determine that the space pointers point to the same
+space.
+In addition, the existence of the pointers is not checked
+except for pointers
+used as a base for the operands.
+When the space pointers point to different spaces, or
+exactly one
+of the pointer
+operands is subject to the pointer does not exist condition,
+the resulting value is undefined, but no
+exception is signaled.
+However, if both operand 2 and operand 3 are subject to the pointer
+does not exist condition, the result value is zero.
+<P>
+If either operand 2 or operand 3 contains a pointer which is
+not a space pointer, a <I> pointer type invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception
+is signaled.
+<P>
+A <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+occurs when the operand 1 field is unsigned binary,
+the resulting value of the subtraction is negative, and the program
+attribute to <I>signal size exceptions</I> is in effect.
+<font color=blue>
+Note that no exception
+occurs if pointers to teraspace are subtracted and the offset value is
+larger than the result field can contain.
+</FONT>
+<P>
+The <I> object destroyed&nbsp;</I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception, <I> parameter reference violation&nbsp;</I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception,
+and <I> pointer does not exist&nbsp; </I> (hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+are not signaled when operand 2 and
+operand 3 are space pointer machine objects.
+This occurs when operand 2 or operand 3
+contains an internal
+machine value that indicates one of these error conditions exists.
+If the corresponding exception
+is not signaled, operand 1 is undefined, but no exception is signaled.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0607.htm">0607 Unsupported Space Use</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+</HTML>

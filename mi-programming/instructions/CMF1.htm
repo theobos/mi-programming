@@ -1,0 +1,956 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+   <title> CMF1 Instruction </title>
+   <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<a name="HDRCMF1"></a>
+<H1>Compute Math Function Using One Input Value (CMF1)</H1>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CMF1</B>
+100B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CMF1B</B>
+1C0B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CMF1I</B>
+180B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Character(2) scalar.
+<P>
+<I>Operand 3</I>:  Numeric scalar.
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The mathematical function, indicated by the <I>controls</I> operand, is performed on
+the <I>source</I> operand value and the result
+is placed in the <I>receiver</I>
+operand.
+<P>
+The calculation is always done in floating-point.
+<P>
+The result of the operation is copied into the <I>receiver</I> operand.
+<P>
+<P>
+The <I>controls</I> operand must be a character scalar
+that specifies which
+mathematical function is to be
+performed.  It must be at least 2 bytes in length and has
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<DL COMPACT>
+<DD><A HREF="#sin"  >Hex 0001 = Sine</A>
+<DD><A HREF="#asin" >Hex 0002 = Arc sine</A>
+<DD><A HREF="#cos"  >Hex 0003 = Cosine</A>
+<DD><A HREF="#acos" >Hex 0004 = Arc cosine</A>
+<DD><A HREF="#tan"  >Hex 0005 = Tangent</A>
+<DD><A HREF="#atan" >Hex 0006 = Arc tangent</A>
+<DD><A HREF="#cot"  >Hex 0007 = Cotangent</A>
+<DD><A HREF="#e"    >Hex 0010 = Exponential function</A>
+<DD><A HREF="#ln"   >Hex 0011 = Logarithm based e (natural logarithm)</A>
+<DD><A HREF="#sinh" >Hex 0012 = Sine hyperbolic</A>
+<DD><A HREF="#cosh" >Hex 0013 = Cosine hyperbolic</A>
+<DD><A HREF="#tanh" >Hex 0014 = Tangent hyperbolic</A>
+<DD><A HREF="#atanh">Hex 0015 = Arc tangent hyperbolic</A>
+<DD><A HREF="#sqrt" >Hex 0020 = Square root</A>
+<DD>All other values are reserved
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <I>controls</I> operand mathematical functions are as follows:
+<UL>
+<P><LI><A NAME="sin"></A><B>Hex 0001-Sine</B>
+<P>
+The sine of
+the numeric value of the <I>source</I> operand, whose value is
+considered to be in radians,
+is computed and placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-1 &lt;&#61; SIN(x) &lt;&#61; 1
+</PRE>
+<P><LI><A NAME="asin"></A>
+<B>Hex 0002-Arc sine</B>
+<P>
+The arc sine of
+the numeric value of the <I>source</I> operand
+is computed and the result
+(in radians) is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-pi/2 &lt;&#61; ASIN(x) &lt;&#61; +pi/2
+</PRE>
+<P><LI><A NAME="cos"></A>
+<B>Hex 0003-Cosine</B>
+<P>
+The cosine of
+the numeric value of the <I>source</I> operand,
+whose value is considered
+to be in radians, is computed and placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-1 &lt;&#61; COS(x) &lt;&#61; 1
+</PRE>
+<P><LI>
+<A NAME="acos"></A><B>Hex 0004-Arc cosine</B>
+<P>
+The arc cosine of
+the numeric value of the <I>source</I> operand
+is computed and the result
+(in radians) is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+0 &lt;&#61; ACOS(x) &lt;&#61; pi
+</PRE>
+<P><LI><A NAME="tan"></A>
+<B>Hex 0005-Tangent</B>
+<P>
+The tangent of
+the <I>source</I> operand, whose value is considered to be in radians,
+is computed and the result is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-infinity &lt;&#61; TAN(x) &lt;&#61; +infinity
+</PRE>
+<P><LI>
+<A NAME="atan"></A><B>Hex 0006-Arc tangent</B>
+<P>
+The arc tangent of the <I>source</I> operand is computed and the result
+(in radians) is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-pi/2 &lt;&#61; ATAN(x) &lt;&#61; pi/2
+</PRE>
+<P><LI><A NAME="cot"></A>
+<B>Hex 0007-Cotangent</B>
+<P>
+The cotangent of the <I>source</I> operand, whose value is considered
+to be in radians, is computed and the result is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-infinity &lt;&#61; COT(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="e"></A>
+<B>Hex 0010-Exponential function</B>
+<P>
+The computation e power (<I>source</I> operand) is performed and the
+result is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+0 &lt;&#61; EXP(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="ln"></A>
+<B>Hex 0011-Logarithm based e (natural logarithm)</B>
+<P>
+The natural logarithm of the <I>source</I> operand is computed and
+the result is placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-infinity &lt;&#61; LN(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="sinh"></A>
+<B>Hex 0012-Sine hyperbolic</B>
+<P>
+The sine hyperbolic of the numeric value of the <I>source</I> operand
+is computed and the result (in radians) is placed in the <I>receiver</I>
+operand.
+<P>
+The result is in the range:
+<PRE>
+-infinity &lt;&#61; SINH(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="cosh"></A>
+<B>Hex 0013-Cosine hyperbolic</B>
+<P>
+The cosine hyperbolic of the numeric value of the <I>source</I> operand
+is computed and the result (in radians) is placed in the <I>receiver</I>
+operand.
+<P>
+The result is in the range:
+<PRE>
++1 &lt;&#61; COSH(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="tanh"></A>
+<B>Hex 0014-Tangent hyperbolic</B>
+<P>
+The tangent hyperbolic of the numeric value of
+the <I>source</I> operand
+is computed and the result (in radians) is placed in the <I>receiver</I>
+operand.
+<P>
+The result is in the range:
+<PRE>
+-1 &lt;&#61; TANH(x) &lt;&#61; +1
+</PRE>
+<P><LI><A NAME="atanh"></A>
+<B>Hex 0015-Arc tangent hyperbolic</B>
+<P>
+The inverse of the tangent hyperbolic of the numeric value of the <I>source</I> operand is computed and the result (in radians) is placed
+in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+-infinity &lt;&#61; ATANH(x) &lt;&#61; +infinity
+</PRE>
+<P><LI><A NAME="sqrt"></A>
+<B>Hex 0020-Square root</B>
+<P>
+The square
+root of the numeric value of the <I>source</I> operand is computed and
+placed in the <I>receiver</I> operand.
+<P>
+The result is in the range:
+<PRE>
+0 &lt;&#61; SQRT(x) &lt;&#61; +infinity
+</PRE>
+</UL>
+<P>
+The following chart shows some special cases for certain arguments
+(X) of the different mathematical
+functions which take one argument value.
+<BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">X
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Masked
+</TH><TH ALIGN="CENTER" VALIGN="TOP">UnMasked
+</TH><TH ALIGN="CENTER" VALIGN="TOP">
+<BR></TH><TH ALIGN="CENTER" VALIGN="TOP">
+<BR></TH><TH ALIGN="CENTER" VALIGN="TOP">
+<BR></TH><TH ALIGN="CENTER" VALIGN="TOP">
+<BR></TH><TH ALIGN="CENTER" VALIGN="TOP">Maximum
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Minimum
+</TH><TH ALIGN="CENTER" VALIGN="TOP">
+<BR></TH></TR><TR><TH ALIGN="CENTER" VALIGN="TOP">Function
+</TH><TH ALIGN="CENTER" VALIGN="TOP">NaN
+</TH><TH ALIGN="CENTER" VALIGN="TOP">NaN
+</TH><TH ALIGN="CENTER" VALIGN="TOP">+Infinity
+</TH><TH ALIGN="CENTER" VALIGN="TOP">-Infinity
+</TH><TH ALIGN="CENTER" VALIGN="TOP">+0
+</TH><TH ALIGN="CENTER" VALIGN="TOP">-0
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Value
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Value
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Other
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Sine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">B(3)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Arc sine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">B(3)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Arc cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+pi/2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+pi/2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Tangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">B(3)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Arc Tangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+pi/2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-pi/2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Cotangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(1,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">B(3)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">E Exponent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">C(4,a)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">D(5,b)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Logarithm
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(2,f)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Sine hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Cosine hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Tangent hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Arc tangent hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(6,f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="18%">Square root
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">g
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(e)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+inf
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(f)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">+0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="9%">A(2,f)
+</TD></TR><TR>
+<TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="10">Special cases for single argument math functions
+</TH></TR></TABLE>
+<P>
+Capital letters in the chart indicate the exceptions, small letters
+indicate the returned results,
+and Arabic numerals indicate the limits of the arguments (X) as
+defined in the following lists:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>A =
+</I></TD><TD><P> <I> Floating-point invalid operand &nbsp; </I> (hex 0C09) exception
+(no result stored if
+unmasked; if masked, occurrence bit is set)
+</TD></TR><TR VALIGN="TOP"><TD><P><I>B =
+</I></TD><TD><P> <I> Floating-point inexact result &nbsp; </I> (hex 0C0D) exception
+(result is stored
+whether or not exception is masked)
+</TD></TR><TR VALIGN="TOP"><TD><P><I>C =
+</I></TD><TD><P> <I> Floating-point overflow &nbsp; </I> (hex 0C06) exception
+(no result is stored if
+unmasked; if masked, occurrence bit is set)
+</TD></TR><TR VALIGN="TOP"><TD><P><I>D =
+</I></TD><TD><P> <I> Floating-point underflow &nbsp; </I> (hex 0C07) exception
+(no result is stored
+if unmasked; occurrence bit is always set)
+</TD></TR><TR VALIGN="TOP"><TD><P><I>a =
+</I></TD><TD><P>Result follows the rules that depend on round mode
+</TD></TR><TR VALIGN="TOP"><TD><P><I>b =
+</I></TD><TD><P>Result is +0 or a denormalized value
+</TD></TR><TR VALIGN="TOP"><TD><P><I>c =
+</I></TD><TD><P>Result is +infinity
+</TD></TR><TR VALIGN="TOP"><TD><P><I>d =
+</I></TD><TD><P>Result is -infinity
+</TD></TR><TR VALIGN="TOP"><TD><P><I>e =
+</I></TD><TD><P>Result is the masked form of the input NaN
+</TD></TR><TR VALIGN="TOP"><TD><P><I>f =
+</I></TD><TD><P>Result is the system default masked NaN
+</TD></TR><TR VALIGN="TOP"><TD><P><I>g =
+</I></TD><TD><P>Result is the input NaN
+</TD></TR><TR VALIGN="TOP"><TD><P><I>inf =
+</I></TD><TD><P>Result is infinity
+</TD></TR><TR VALIGN="TOP"><TD><P><I>1 =
+</I></TD><TD><P>| pi * 2**50 |=Hex 432921FB54442D18
+</TD></TR><TR VALIGN="TOP"><TD><P><I>2 =
+</I></TD><TD><P>Argument is in the range:  -inf &lt; x &lt; -0
+</TD></TR><TR VALIGN="TOP"><TD><P><I>3 =
+</I></TD><TD><P>| pi * 2**26 |=Hex 41A921FB54442D18
+</TD></TR><TR VALIGN="TOP"><TD><P><I>4 =
+</I></TD><TD><P>1n(2**1023) Hex 40862E42FEFA39EF
+</TD></TR><TR VALIGN="TOP"><TD><P><I>5 =
+</I></TD><TD><P>1n(2**-1021.4555)=Hex C086200000000000
+</TD></TR><TR VALIGN="TOP"><TD><P><I>6 =
+</I></TD><TD><P>Argument is in the range:  -1 &lt;&#61; x &lt;&#61; &#43;1
+</TD></TR></TABLE>
+<P>
+The following chart provides accuracy data for the mathematical
+functions that can be invoked by this instruction.
+<P>
+<BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" ROWSPAN="3">Function Name
+</TH><TH ALIGN="CENTER" VALIGN="TOP" ROWSPAN="2" COLSPAN="3">Sample Selection
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="4">Accuracy data
+</TH></TR><TR><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Relative Error(e)
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Absolute Error(E)
+</TH></TR><TR><TH ALIGN="CENTER" VALIGN="TOP">A
+</TH><TH ALIGN="CENTER" VALIGN="TOP">Range of x
+</TH><TH ALIGN="CENTER" VALIGN="TOP">D
+</TH><TH ALIGN="CENTER" VALIGN="TOP">MAX(e)
+</TH><TH ALIGN="CENTER" VALIGN="TOP">SD(e)
+</TH><TH ALIGN="CENTER" VALIGN="TOP">MAX(E)
+</TH><TH ALIGN="CENTER" VALIGN="TOP">SD(E)
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Arc cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0&lt;=x&lt;=3.14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8.26* 10**-14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.11*10**-15
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Arc sine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-1.57&lt;=x&lt;=1.57
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.02*10**-13
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.66*10**-15
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Arc tangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-pi/2&lt;x&lt;pi/2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3.33*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9.57*10**-17
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Arc tangent hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-3&lt;=x&lt;=3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.06*10**-14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.79*10**-15
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">(See Sine below)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Cosine hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">(See Sine Hyperbolic below)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Cotangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-10&lt;=x&lt;=100
+<P>.000001&lt;=x&lt;=.001
+<P>4000&lt;=x&lt;=4000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+<P>U
+<P>U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4.83*10**-16
+<P>4.36*10**-16
+<P>5.72*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.48*10**-16
+<P>1.49*10**-16
+<P>1.46*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Exponential
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-100&lt;=x&lt;=300
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5.70*10**-14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.13*10**-14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Natural Logarithm
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0.5&lt;=x&lt;=1.5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.77*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8.01*10**-17
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Natural Logarithm
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-100&lt;=x&lt;=700
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.17*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7.37*10**-17
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Sine cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-10&lt;=x&lt;=100
+<P>.000001&lt;=x&lt;=.001
+<P>4000&lt;=x&lt;=4000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+<P>U
+<P>U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.22*10**-16
+<P>2.22*10**-16
+<P>2.22*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.31*10**-16
+<P>1.56*10**-16
+<P>1.28*10**-16
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Sine cosine
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-10&lt;=x&lt;=100
+<P>.000001&lt;=x&lt;=.001
+<P>4000&lt;=x&lt;=4000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+<P>U
+<P>U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3.33*10**-16
+<P>4.33*10**-19
+<P>3.33*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8.39*10**-17
+<P>1.28*10**-19
+<P>8.17*10**-17
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Sine/cosine hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-100&lt;=x&lt;=300
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6.31*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.97*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Square root
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-100&lt;=x&lt;=700
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4.13*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.27*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Tangent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-10&lt;=x&lt;=100
+<P>.000001&lt;=x&lt;=.001
+<P>4000&lt;=x&lt;=4000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+<P>U
+<P>U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4.59*10**-16
+<P>4.42*10**-16
+<P>4.77*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">1.54*10**-16
+<P>1.44*10**-16
+<P>1.43*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%"><P>&nbsp;
+<P>3.25*10**-19
+<P>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%"><P>&nbsp;
+<P>8.06*10**-20
+<P>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Tangent hyperbolic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">13
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">-100&lt;=x&lt;=300
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="7%">U
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8.35*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3.87*10**-17
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">2.22*10**-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3.17*10**-17
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="8"><B>Note&#58; </B>
+<P><U>Algorithm Notes:</U>
+<OL TYPE=1>
+<P><LI>f(x) = x, and g(x) = ATAN(TAN(x)).
+<P><LI>f(x) = e**x, and g(x) = e**(1n(e**x)).
+<P><LI>f(x) = 1n(x), and g(x) = 1n(e**(1n(x))).
+<P><LI>f(x) = x, and g(x) = 1n(e**x).
+<P><LI>Sum of squares algorithm.  f(x) = 1, and g(x) = SIN(x))**2 + (COS(x))**2.
+<P><LI>Double angle algorithm.  f(x) - SIN(2x), and g(x) = 2*(SIN(x)*COS(x)).
+<P><LI>f(x) = e(**x, and g(x) = (SQR(e**x))**2.
+<P><LI>f(x) = TAN(x), and g(x) = SIN(x) / COS(x).
+<P><LI>f(x) = x, and g(x) = ACOS(COS(x)).
+<P><LI>f(x) = x, and g(x) = ASIN(SIN(x)).
+<P><LI>f(x) = COT(x), and g(x) = COS(x) / SIN(x).
+<P><LI>f(x) = SINH(2x), and g(x) = 2*(SINH(x)*COSH(x)).
+<P><LI>f(x) = TANH(x), and g(x) = SINH(x) / COSH(x).
+<P><LI>f(x) = x, and g(x) = ATANH(TANH(x)).
+</OL>
+<P><U>Distribution Note:</U>
+<OL TYPE=1>
+<P><LI>The sample input arguments were tangents of numbers, x, uniformly
+distributed between -pi/2 and +pi/2.
+</OL>
+</TD></TR><TR>
+<TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="8">Accuracy data for CMF1 mathematical functions
+</TH></TR></TABLE>
+<P>
+The vertical columns in the accuracy data chart have the
+following meanings:
+<UL>
+<P><LI>
+<I>Function Name</I>:  This
+column identifies the principal mathematical functions evaluated with
+entries arranged in alphabetical order by function name.
+<P><LI>
+<I>Sample Selection</I>:  This
+column identifies the selection of samples taken for a
+particular math function through the following subcolumns:
+<UL>
+<P><LI>
+<I>A</I>:  identifies the algorithm
+used against the argument, x, to gather the accuracy
+samples.  The numbers in this column refer
+to notes describing the functions, f(x) and g(x), which
+were calculated to test for the anticipated
+relation where f(x) should equal g(x).  An accuracy sample
+then, is an evaluation of the degree to
+which this relation held true.  The algorithm used to sample
+the arctangent function, for example,
+defines g(x) to first calculate the tangent of x to provide
+an appropriate distribution of input
+arguments for the arctangent function.  Since f(x) is defined
+simply as the value of x, the
+relation to be evaluated is then x=ARCTAN(TAN(x)).  This type
+of algorithm, where a function and
+its inverse are used in tandem, is the usual type employed to
+provide the appropriate comparison values for the evaluation.
+<P><LI>"Range of x":  gives the
+range of x used to obtain the accuracy samples.  The test
+values for x are uniformly distributed
+over this range.  It should be noted that x is not always the
+direct input argument to the function
+being tested; it is sometimes desirable to distribute the
+input arguments in a nonuniform fashion
+to provide a more complete test of the function (see column D
+below).  For each function, accuracy
+data is given for one or more segments within the valid range
+of x.  In each case, the numbers
+given are the most meaningful to the function and range under
+consideration.
+<P><LI>
+<I>D</I>:  identifies
+the distribution of arguments input to the particular
+function being sampled.  The letter E
+indicates an exponential distribution.  The letter U
+indicates a uniform distribution.  A number refers to
+a note providing detailed information regarding the distribution.
+</UL>
+<P><LI>
+<I>Accuracy Data</I>:  The maximum
+relative error and standard deviation of the relative error
+are generally useful and revealing
+statistics; however, they are useless for the range of a
+function where its value becomes zero.
+This is because the slightest error in the argument can
+cause an unpredictable fluctuation in the
+magnitude of the answer.  When a small argument error
+would have this effect, the maximum absolute
+error and standard deviation of the absolute error are
+given for the range.
+<UL>
+<P><LI>
+<I>Relative Error (e)</I>:  The maximum
+relative error and standard deviation (root mean square)
+of the relative error are defined:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>MAX(e) =
+</I></TD><TD><P>MAX( ABS((f(x) - g(x) ) / f(x)))
+<P>
+where:  MAX selects the largest of its arguments
+and ABS takes the absolute value of its argument.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>SD(e) =
+</I></TD><TD><P>SQR( (1/N) SUMSQ((f(x) - g(x) ) / f(x)))
+<P>
+where:  SQR
+takes the square root of its argument and SUMSQ takes the
+summation of the squares of its
+arguments over all of the test cases.
+</TD></TR></TABLE>
+<P><LI>
+<I>Absolute Error (E)</I>:  The maximum
+absolute error produced during the testing and the standard
+deviation (root mean square) of the absolute error are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>MAX(E) =
+</I></TD><TD><P>MAX( ABS( f(x) - g(x) ) )
+<P>
+where:  the operators are those defined above.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>SD(E) =
+</I></TD><TD><P>SQR( (1/N) SUMSQ( f(x) - g(x) ) )
+<P>
+where:  the operators are those defined above.
+</TD></TR></TABLE>
+</UL>
+</UL>
+<P>
+<H5><A NAME="Header_3">Limitations (Subject to Change)</A></H5>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+<P>
+The <I>source</I> and <I>receiver</I> operands
+must both be specified as
+floating-point with the same length (4
+bytes for short format or 8 bytes for long format).
+<P>
+<H5><A NAME="Header_4">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Positive-The
+algebraic value of the receiver
+operand is positive.
+<P><LI>Negative-The
+algebraic value of the receiver
+operand is negative.
+<P><LI>Zero-The
+algebraic value of the receiver
+operand is zero.
+<P><LI>Unordered-The value
+assigned to the floating-point result is NaN.
+</UL>
+<P>
+<H4><A NAME="Header_5">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_7">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX2E02.htm">2E02 Security Audit Journal Failure </A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

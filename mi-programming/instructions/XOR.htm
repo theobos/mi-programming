@@ -1,0 +1,274 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> XOR Instruction </title>			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Exclusive Or (XOR)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>XOR</B>
+109B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>XORI</B>
+189B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>XORB</B>
+1C9B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Character variable scalar or numeric variable
+scalar.
+<P>
+<I>Operand 2</I>:  Character scalar or numeric scalar.
+<P>
+<I>Operand 3</I>:  Character scalar or numeric scalar.
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Short forms</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand &#91;3-4&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>XORS</B>
+119B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>XORIS</B>
+199B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>XORBS</B>
+1D9B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Character variable scalar or numeric variable
+scalar.
+<P>
+<I>Operand 2</I>:  Character scalar or numeric scalar.
+<P>
+<I>Operand 3-4</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+The Boolean <B>exclusive or</B> operation is
+performed on the string values in the source operands.
+The resulting string is placed in the <I>receiver</I> operand.
+<P>
+The operands may be character or numeric scalars.  They are both
+interpreted as bit strings.  Substringing is supported for both character
+and numeric operands.
+<P>
+The length of the operation is equal to the length of the
+longer of the two source operands.
+The shorter of the two operands is padded on the right.  The
+operation begins
+with the two source operands left-adjusted and continues bit by bit
+until they are completed.
+<P>
+<A NAME="xor">The bit values of the result are determined as follows:</A>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source 1 Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source 2 Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Result Bit
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%"><BR></TD></TR></TABLE>
+<P>
+The result value is then placed (left-adjusted) in the <I>receiver</I> operand with truncating or
+padding taking place on the right.
+<P>
+The pad value used in this instruction is a hex 00.
+<P>
+Substring operand references that allow for a null substring
+reference (a length value of zero) may be specified for operands
+1, 2, and 3.  The effect of specifying a null substring reference for
+one source operand is that the other source operand is <B>exclusive
+or</B>ed with an equal length string of all hex 00s.  When a null
+substring reference is specified for both source operands, the result
+is all zero and the instruction's resultant condition is zero.
+When a null substring reference is specified for the <I>receiver</I>,
+a result is not set and the instruction's resultant condition
+is zero regardless of the values of the source operands.
+<P>
+If operands overlap but do not share all of the same bytes, results of
+operations performed on
+these operands are not predictable.  If overlapped operands
+share all of the same bytes, the
+results are predictable when direct addressing is used.  If
+indirect addressing is used (that is,
+based operands, parameters, strings with variable lengths,
+and arrays with variable subscripts),
+the results are not always predictable.
+<P>
+When the <I>receiver</I> operand is a numeric variable scalar,
+it is possible
+that the result produced will not be a valid value for the numeric type.
+This can occur due to padding with hex 00, due to truncation, or due
+to the resultant bit string produced by the instruction.  The instruction
+completes normally and signals no exceptions for these conditions.
+<P>
+<P>
+<H5><A NAME="Header_4">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Zero-The bit value for the bits
+of the scalar <I>receiver</I> operand is
+either all zero or a null substring
+reference is specified for the <I>receiver</I>.
+<P><LI>Not zero-The bit value for
+the bits of the scalar <I>receiver</I> operand is not all zero.
+</UL>
+<P>
+<H4><A NAME="Header_5">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_7">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+
+</HTML>

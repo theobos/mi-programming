@@ -1,0 +1,54 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CLRINVF Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<h1>Clear Invocation Flags (CLRINVF)</h1>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CLRINVF is 4.
+CLRINVF (
+         clear_mask   : unsigned binary(4) value which 
+                        specifies the invocation flags
+                        to be cleared
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>Operand 1 selects which invocation flags are to be
+cleared.
+The invocation flags to be cleared are indicated with 0 values
+in the bit positions of
+operand 1, based on the correspondence described below.
+Only the invocation flags that are "writeable" can be
+cleared.  Any "read-only" flags selected by the stack value are
+unchanged.
+<P>
+The operation is performed by doing a bit-wise Boolean <B><U>and</U></B>
+of the 16 writeable status bits with the low-order two bytes of the <I>clear mask</I> operand,
+and then replacing the writeable status bits with the
+result of this <B><U>and</U></B>.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+
+</body>
+
+</HTML>

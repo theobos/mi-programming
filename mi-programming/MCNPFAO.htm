@@ -1,0 +1,1072 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> Arithmetic Operations </title>
+  <link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body TOPMARGIN=2 LEFTMARGIN=2 MARGINWIDTH=2 MARGINHEIGHT=2>
+<p><br>
+<h1>Arithmetic Operations</h1>
+<P>
+
+<MENU>
+<LI><A NAME="ToC_2" HREF="#Header_2" class="content">Signed Binary Computation</A>
+<LI><A NAME="ToC_3" HREF="#Header_3" class="content">Unsigned Binary Computation</A>
+<LI><A NAME="ToC_4" HREF="#Header_4" class="content">Packed Decimal Computation</A>
+<LI><A NAME="ToC_5" HREF="#Header_5" class="content">Zoned Decimal Computation</A>
+<LI><A NAME="ToC_6" HREF="#Header_6" class="content">Floating-Point Computation</A>
+<LI><A NAME="ToC_7" HREF="#Header_7" class="content">Floating-Point Exceptions</A>
+<LI><A NAME="ToC_13" HREF="#Header_13" class="content">Arithmetic Instructions</A>
+</MENU><P>
+<A  NAME="Header_1" class="content"></A>
+
+<P>
+iSeries arithmetic instructions are primarily designed to
+compute numeric results; they operate on numeric scalars of the
+following types:  binary, zoned decimal, and packed decimal.
+<P>
+The result of an arithmetic operation is placed in the receiver
+based on the characteristics of the result and the attributes of
+the receiver.
+<P><A NAME="Header_2"></A>
+<h2>Signed Binary Computation</h2>
+<P>
+The following rules apply to signed binary operands in arithmetic
+instructions:
+<UL>
+<P><LI>
+An attempt to complement the maximum negative value causes a size
+exception.
+<P><LI>
+Truncation is performed on the left; a size exception is signaled
+when significant high order digits are lost.  Significant
+high-order digits are lost if all of the bits truncated on the
+left are not equal to the sign bit of the truncated result.  The
+rightmost 16 or 32 bits of the result are placed in the receiving
+field for 2-byte and 4-byte binary receivers, respectively.
+<P><LI>
+Padding is done on the left by propagating the sign from the
+high-order bit.
+<P><LI>
+A zero result in a computation has a positive sign.
+<P><LI>
+As a program attribute, binary size exceptions
+can be suppressed. When this attribute is used, the
+signed binary field will contain the appropriate truncated value.
+The OVRPGATR instruction will allow the <I>binary size exception</I>
+program attribute to be changed within the program.
+</UL>
+<P><A NAME="Header_3"></A>
+<h2>Unsigned Binary Computation</h2>
+
+<P>
+The following rules apply to unsigned binary operands in arithmetic
+instructions:
+<UL>
+<P><LI>
+Truncation is performed on the left; a size exception is signaled
+when significant high order digits are lost.
+<P><LI>
+Padding is done on the left by propagating zeros.
+<P><LI>
+Assigning a negative value to an unsigned binary field will cause
+a size exception.
+<P><LI>
+As a program attribute, binary size exceptions
+can be suppressed. When this attribute is used, the
+unsigned binary field will contain the appropriate truncated value.
+The OVRPGATR instruction will allow the <I>binary size exception</I>
+program attribute to be changed within the program.
+</UL>
+<P><A NAME="Header_4" ></A>
+<h2>Packed Decimal Computation</h2>
+
+
+<P>
+The following rules apply to packed decimal operands in
+arithmetic instructions.
+<UL>
+<P><LI>
+All digits are checked for valid encoding of hex 0 through hex 9.
+If an invalid digit is detected, a decimal data exception is
+signaled.
+<P>
+<P><LI>
+All signs are checked for valid encoding as follows:
+<UL COMPACT>
+<LI>Hex B or hex D means the value is negative.
+<LI>Hex A, hex C, hex E, or hex F means the value is positive.
+</UL>
+<P>
+An invalid sign causes the decimal data exception to be signaled.
+<P><LI>
+As a program attribute, the decimal data exception can be suppressed
+on the CPYNV instruction which does not use data pointers.
+When this attribute is used as the instruction copies the source to
+the target
+an invalid sign is forced to a positive
+sign and an invalid digit is forced to zero.
+The OVRPGATR instruction will allow this program attribute to be
+changed within the program.
+<P><LI>
+If alignment is necessary, source operands are aligned based on
+the assumed decimal point by truncating digits or padding with
+zeros on the right.  Fractional digits that can affect the value
+to be placed in the receiving field participate in the
+calculation of the result.
+<P><LI>
+If necessary, the operands are expanded to the length needed to
+perform the operation by padding with zeros on the left.
+<P><LI>
+When aligning a source operand, if more than 31 decimal digits
+are required to contain the aligned value, a decimal point
+alignment exception is signaled.  The exception is signaled when
+nonzero digits must be truncated from the left end of the aligned
+value to conform to a 31-digit field.
+<P><LI>
+Length adjustment and decimal point alignment are performed at
+the left and right ends of the result, respectively, by
+truncating digits or padding with zeros to match the precision of
+the receiver operand.  If nonzero digits are lost in truncating
+at the left, a size exception is signaled.  If the optional round
+form of an instruction is being used, rounding on the right end
+occurs if any digits are truncated.
+<P><LI>
+The sign of a receiver operand value is always set independently
+of any truncation and/or padding that could have taken place
+(that is, in the rightmost 4 bits of the rightmost byte of the
+result).
+<P><LI>
+Arithmetic results are given the preferred sign (hex F for
+positive and hex D for negative).  Zero values are given the
+preferred positive sign.
+<P><LI>
+The four high-order bits of the leftmost byte of a packed
+receiver field with an even number of digits
+contains a value of hex 0 when no size exception is signalled.
+If a size exception is signaled then the value in this position is not
+predictable.
+</UL>
+<P><A NAME="Header_5"></A>
+<h2>Zoned Decimal Computation</h2>
+
+
+<P>
+The rules for zoned decimal operands in arithmetic instructions
+are the same as those for packed decimal operands.  In addition,
+the zone portion of each nonsigned digit in the receiver operand
+is set to a hex F.
+<P><A NAME="Header_6"></A>
+<h2>Floating Point Computation</h2>
+
+<P>
+The following rules apply to floating-point operands in computational
+instructions.
+<UL>
+<P><LI>
+Floating-point operations are performed for instructions for
+which any of the operands are specified as floating-point.
+Fixed-operations are performed for instructions for which all
+operands are specified as either fixed-point binary or
+fixed-point decimal.
+<P><LI>
+Certain computational attributes for floating-point operations
+can be controlled on a thread basis through use of the Store and
+Set Computational Attributes (SSCA) instruction.  A default set of
+computational attributes is in effect when a thread is
+initiated.  The computational attributes can be set by an
+invocation and are in effect for subsequent invocations unless
+changed with the Store and Set Computational Attributes (SSCA)
+instruction.  When processing returns to an invocation from
+subsequent invocations, the computational attributes are reset to
+the attributes that were in effect when the invocation gave up
+control.  Refer to the "Store and Set Computational
+Attributes" (SSCA) instruction
+for details about managing the
+computational attributes for a thread.
+<P><LI>
+Alignment of the binary point, if necessary, is performed
+according to the requirements of the particular operation.
+<P><LI>
+The operands are expanded to the length needed, or converted to
+the type needed according to the requirements of the particular
+operation.  This occurs when an intermediate result is formed.
+<P>
+When all operands are floating-point and of the same length,
+operations are performed as if to infinite precision.  This
+occurs unless specified otherwise in the particular instruction.
+These operations are only subject to one rounding error when the
+result is stored in the receiver.
+<P>
+When at least one of the operands is floating-point, but all
+operands are not floating-point of the same length, operations
+may not be performed as if to infinite precision.  The result is
+formed using the short or long format, depending upon the
+precision required, to adequately provide for the requirements of
+the specified operation.  Conversions of input values to the
+floating-point format appropriate for the operation are subject
+to rounding errors when the input value is not an integer value.
+This can only occur for decimal fields with fractional digit
+positions.  The calculation of the result is also subject to a
+rounding error.  A rounding error can also occur when the result
+is stored in the receiver.  Therefore, these operations are
+subject to multiple rounding errors in the value stored in the
+receiver.
+<P><LI>
+Floating-point operations produce an intermediate result that is
+a normalized number, signed zero, infinity, or an NaN
+floating-point value.
+<P>
+When the result is a normalized number, it is produced as if it
+were infinitely precise and unlimited in exponent range, unless
+stated otherwise in the specific instruction, or the operation
+involved conversions as previously stated.  The normalized number
+may be the result of internal calculations that produced an
+internal result that did not satisfy the definition of a
+normalized number.  In this case, a normalization operation is
+performed on the internal result; this operation appropriately
+shifts the bits of precision, while adjusting the exponent, until
+the leading one bit is just to the left of the binary point.  The
+exponent is regarded as if its range were unlimited.
+<P>
+For an intermediate result value of signed 0, infinity, or an
+NaN, assigning this result to the receiver simply means
+representing its value in the receiver format.
+<P>
+If the receiver is fixed-point, an infinity or an NaN value
+causes the invalid floating-point conversion exception to be
+signaled.  See the discussion of floating-point exceptions which
+follows for details.  A signed 0 value is represented as the
+appropriate 0 value in the receiver format.
+<P>
+If the receiver is floating-point, the assignment of the result
+does not alter the result value to another type of floating-point
+value, as can happen for an intermediate result that is a
+normalized number.
+<P>
+When an intermediate result value of a normalized number is
+assigned to the receiver, the result may require an adjustment
+because it is outside the range of normalized numbers that can be
+represented in the receiver.
+<P>
+If the receiver is fixed-point, the normalized number is
+converted to the format of the receiver.  Also, it is adjusted to
+the precision of the receiver under control of the rounding mode
+currently in effect for the thread unless overridden by
+specifying the optional round form of an instruction.  The
+optional round form of an instruction is only allowed for
+operations that specify fixed-point receivers.  Due to the
+possible adjustment in precision, the floating-point inexact
+result exception condition can be detected.  Additionally, the
+assignment of the result value to the receiver can result in the
+signaling of the invalid floating-point conversion exception.
+<P>
+If the receiver is floating-point, the system performs several
+steps to provide for properly representing the normalized number
+in the receiver.
+<P>
+The initial step is to check for the floating-point underflow
+condition.  This is done by verifying that the signed exponent of
+the result is not less than the minimum value (-126 for short
+format or -1022 for long format) for representation of normalized
+numbers in the receiver format.  If it is not less than the
+minimum value, the operation continues with the rounding step.
+If it is less than the minimum value, a floating-point underflow
+exception condition may or may not be detected depending upon the
+mask state of the exception.  When the exception is masked, the
+intermediate result is adjusted, as if to infinite precision, to
+a denormalized number appropriate for the format of the receiver,
+and the operation continues with the rounding step.  The
+intermediate denormalized result is produced by shifting the
+significand of the intermediate result right and incrementing the
+exponent until the exponent attains the receiver format's fixed
+value for denormalized numbers (-126 for short format or -1022
+for long format).  As a result of the rounding step, the
+floating-point underflow occurrence indicator is set if the
+intermediate denormalized result cannot be represented in the
+receiver format.  In this case, the intermediate denormalized
+result may be adjusted back to a normalized number, to signed 0,
+or remain a denormalized number.  In any case, the result is no
+longer exact and, therefore, forces the floating-point underflow
+occurrence indicator to be set.
+<P>
+The next step, rounding, chooses a representation in the format
+of the result field for the intermediate result.  The
+intermediate result is regarded to be of infinite precision.  The
+rounding mode currently in effect controls the adjustment of the
+result value.  If the adjustment of the result value causes a
+loss of nonzero digits from the significand, a floating-point
+inexact result exception condition is detected.  As previously
+noted, detection of the inexact result condition on the
+adjustment of an intermediate denormalized result forces the
+setting of the floating-point underflow occurrence indicator
+regardless of the value to which the result is adjusted.  In
+conjunction with the process of rounding, a check for the
+floating-point overflow condition is performed.  This is done by
+verifying that the signed exponent of what is the rounded result,
+or what would have been the rounded result if the exponent range
+was unlimited, is not greater than the maximum value (127 for
+short format or 1023 for long format) for representation of
+normalized numbers in the receiver format.  If it is not, the
+operation continues with the final step, which assigns the value
+of the intermediate result into the receiver.  If it is, the
+floating-point overflow exception condition is detected.  See the
+discussion of floating-point exceptions provided below for
+details.
+<P>
+The final step is to represent the value of the adjusted
+intermediate result in the floating-point element specified as
+the receiver.  The adjusted value of the intermediate result may
+still be a normalized number, or it may have been altered to a
+denormalized number or signed 0.
+<P><LI>
+Floating-point fields can only represent numeric values as
+normalized numbers, denormalized numbers, or signed 0.
+Therefore, the concept of an unnormalized number (one which would
+allow for a variable exponent in conjunction with one or more
+leading 0 bits prior to the first significand 1 bit) does not
+exist and cannot be represented.
+<P><LI>
+Four floating-point rounding modes are supported.  For example,
+assume y is the infinitely precise number that is to be rounded.
+In addition, assume that y is bracketed most closely by x and z,
+where x is the largest representable value less than y, and z is
+the smallest representable value greater than y.  Note that x or
+z may be infinity.  The following diagram shows this relationship
+of x, y, and z on a scale of numerically progressing values where
+the vertical bars denote values representable in a floating-point
+format.
+<P><BR>
+<B><BR><IMG SRC="rsly218.gif" ALT="Figure RSLY218 not displayed."><BR></B><BR>
+If y is not exactly representable in the receiving field format,
+the rounding modes change y as follows:
+<UL>
+<P><LI>
+Round to nearest with round to even in case of a tie is the
+default rounding mode in effect when a thread is initiated.  For
+this rounding mode, y is rounded to the closer of x or z.  If
+they are equally close, the even one (the one whose least
+significant bit is a 0) is chosen.  For the purposes of this mode
+of rounding, infinity is treated as if it were even.  Except when
+y is rounded to a value of infinity, the rounded result will
+differ from the infinitely precise result by at most half of the
+least significant digit position of the chosen value.  This
+rounding mode differs slightly from the decimal round algorithm
+performed for the optional round form of an instruction.  This
+rounding mode would round a value of 0.5 to 0, whereas the
+decimal round algorithm would round that value to 1.
+<P><LI>
+Round toward positive infinity mode indicates that directed
+rounding upward is to occur.  For this mode, y is rounded to z.
+<P><LI>
+Round toward negative infinity mode indicates that directed
+rounding downward is to occur.  For this mode, y is rounded to x.
+<P><LI>
+Round toward zero mode indicates that truncation is to occur.
+For this mode, y is rounded to the smaller (in magnitude) of x or
+z.
+</UL>
+<P><LI>
+Conversions between floating-point integers and fixed-point
+integer formats (binary or decimal with no fractional digits)
+will be exact, unless the number of significant digits of a
+source decimal value exceeds the precision constraints of a
+floating-point receiver.
+<P><LI>
+Conversions between floating-point numbers and fixed-point
+decimal numbers are performed such that all the decimal digits
+specified for the decimal number are either used in or produced
+from the conversion.  However, the precision provided by
+floating-point fields is not as great as that provided by decimal
+fields.  The short format provides unique representation of a
+maximum of 7 significant decimal digits of precision, and the
+long format provides for a maximum of 15.  The leftmost nonzero
+digit of the decimal number is considered the start of the
+significant digits of the number.
+<UL>
+<P><LI>
+When the system converts a fixed-point decimal value to
+floating-point, significant digits of the source decimal field
+beyond 7 (for short format) or 15 (for long format) may not be
+saved in the floating-point field; their only function is to
+provide for rounding and uniqueness of the conversion.
+<P><LI>
+When the system converts a floating-point value to fixed-point
+decimal, significant digits produced in the receiver beyond the
+first 7 (for short format) or the first 15 (for long format) are
+correct relative to the specific source floating-point value.
+These digits, which exceed the precision constraints of the
+floating-point field, serve to provide for uniqueness of
+conversion and should be considered only as precise as the
+calculations that produced the floating-point number.  The
+floating-point inexact result exception provides a means of
+detecting loss of precision in floating-point calculations.
+<P><LI>
+When a round to nearest operation occurs, conversion from
+floating-point to decimal and back to floating-point is identical
+as long as the decimal string provides for a precision of 9
+significant decimal digits for short format conversions and 17
+significant decimal digits for long format conversions.
+</UL>
+<P><LI>
+The sign of a product or a quotient is the exclusive OR of the
+operands' signs.  The sign of a sum or of a difference differs
+from at most one of the operands' signs following the standard
+rules of algebra.  The previous rules apply even when operands or
+results are 0 or infinite.  The only exception is when the sum of
+two operands with opposite signs (or the difference of two
+operands with like signs) is exactly 0; the sign of that sum (or
+difference) depends on the current rounding mode for the thread.
+<UL COMPACT>
+<LI>For round toward negative infinity mode, the sign is -.
+<LI>For all other rounding modes, the sign is +.
+</UL>
+<P>
+Conversion operations, including those between floating-point and
+fixed-point, preserve the sign of 0 if the result of the
+conversion operation can be represented in the receiver.  This
+cannot be done for conversion of a negative zero value into a
+fixed-point binary field, as that data type has no representation
+for negative zero.
+<P><LI>
+Masked NaNs in source operands are moved into floating-point
+receivers.  Unmasked NaNs in source operands are changed to
+masked NaNs and moved into floating-point receivers when the
+floating-point invalid operand exception is masked.  If more than
+one source operand is a NaN, then the NaN moved into the receiver
+is the NaN with the largest fraction field value.  For the
+purpose of the comparison, all of the input NaNs are considered
+masked.  Additionally, if the floating-point receiver is longer
+than the source field that supplied the NaN, the resulting masked
+NaN is set with the fraction field value from the source padded
+with 0 bits on the right out to the float receiver fraction field
+length.  The sign field of the NaN set into the receiver is
+preserved with the value it contained in the source.
+<P><LI>
+Unmasked NaNs in source operands force detection of the
+floating-point invalid operand exception.  An exception to this
+is when a numeric value operation copies the value represented in
+a source floating-point element to a receiver of the same format.
+This is defined as a simple move operation and the invalid
+floating-point operation exception is not detected if the source
+represents an unmasked NaN.
+<P><LI>
+Infinity values in source operands can be used in arithmetic
+operations according to the standard rules of algebra.  They
+produce a correctly signed infinity value in the receiver, unless
+otherwise specified by a specific instruction.  Negative infinity
+compares less than every finite value, and every finite value
+compares less than positive infinity.
+</UL>
+<P>
+The following are examples of floating-point computations.  See the
+discussion of floating-point elements for an explanation of the syntax
+used in these examples.
+<UL>
+<P><LI>
+This example shows an add operation (A = B + C) executed as an
+Add Numeric instruction (ADDN A,B,C) involving all short format
+operands.
+</UL>
+<BR>
+<P>
+<P>
+Initially, the add operation is shown as:
+<BR>
+<TABLE WIDTH="100%">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">&nbsp;
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Element Value in
+Hexadecimal
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">&nbsp;
+Conceptional Numeric Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">&nbsp;
+Comments
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">3F800000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">   0 NUM +1.00000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of C, +1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">40400000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM  +1.10000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of B, +3
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP"><TT>__</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><TT>_________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><TT>______________________________________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(add operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">40800000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM  +1.00000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Result value +4
+</TD></TR></TABLE>
+<P>
+<P>
+Internally, the addition operation is shown as:
+<BR>
+<TABLE WIDTH="100%">
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +0.10000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Aligned value of C
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +1.1000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of B
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP"><TT>__</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><TT>_____________________________________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(add operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +10.000000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">The internal result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(normalization operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM +1.0000000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">The intermediate result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(rounding operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM +1.00000000000000000000000
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of A
+</TD></TR></TABLE>
+<BR>
+<P>
+<UL>
+<P><LI>
+This example shows an add operation (A = B + C) executed as an
+Add Numeric instruction (ADDN A,B,C) involving all short format
+operands with the round to nearest rounding mode in effect.
+</UL>
+<BR>
+<P>
+<P>
+Initially, the addition operation is shown as:
+<BR>
+<TABLE WIDTH="100%">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">&nbsp;
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Element Value in
+Hexadecimal
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">&nbsp;
+Conceptional Numeric Value
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">&nbsp;
+Comments
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">3FFFFFFE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">   0 NUM +1.11111111111111111111110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of C, almost +2
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">407FFFFC
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +1.11111111111111111111100
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of B, almost +4
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP"><TT>__</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%"><TT>________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><TT>______________________________________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(add operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">40BFFFFE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM +1.01111111111111111111110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Result value, almost +6
+</TD></TR></TABLE>
+<P>
+<P>
+Internally, the addition operation is shown as:
+<BR>
+<TABLE WIDTH="100%">
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +0.111111111111111111111110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Aligned value of C
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +1.11111111111111111111100
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of B
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP"><TT>__</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%"><TT>______________________________________</TT>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(add operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+1 NUM +10.111111111111111111110110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">The internal result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(normalization operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM +1.0111111111111111111110110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">The intermediate result
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">(rounding operation produces)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="2%">+2 NUM +1.01111111111111111111110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="97%">Value of A
+</TD></TR></TABLE>
+<BR>
+<P><A NAME="Header_7"></A>
+<h2>Floating Point Exceptions</h2>
+
+
+<P>
+The following floating-point exception conditions can be detected
+during floating-point operations:
+<UL COMPACT>
+<LI>Floating-point overflow
+<LI>Floating-point underflow
+<LI>Floating-point zero divide
+<LI>Floating-point inexact result
+<LI>Floating-point invalid operand
+<LI>Invalid floating-point conversion
+</UL>
+<P>
+Associated with each of
+the first five
+exceptions is a set of mask and
+occurrence bits.
+<P>
+The mask bit determines whether an exception is signaled.  If the
+mask bit is 0, the exception is considered to be masked and is
+not signaled.  If the mask bit is 1, the exception is considered
+to be unmasked and is signaled.  When a thread is initiated, the
+default mask bit values specify that the floating-point inexact
+result is masked, and all other exceptions are unmasked.  The
+mask bits can be tested and set with the Store And Set
+Computational Attributes (SSCA) instruction.  The result of float
+exceptions can vary depending upon whether the exception is
+masked or unmasked.
+<P>
+The occurrence bit records the occurrence of the exception
+condition whether or not the exception is masked when it is
+detected.  A value of 1 is set to indicate an exception condition
+has occurred.  A value of 0 indicates that the exception
+condition has not occurred.  When a thread is initiated, the
+default occurrence bit values are all 0's.  The occurrence bits
+can be set (0 or 1) with the Store And Set Computational
+Attributes (SSCA) instruction.
+<P>
+Conversion operations from binary floating-point to other than
+binary floating-point format can cause
+the invalid floating-point
+conversion exception to be signaled.
+This exception cannot be
+masked and has no associated occurrence bit.  For details of this
+exception, refer to
+the <I>invalid floating-point conversion&nbsp; </I>(hex 0C0C) exception documentation.
+<P><A NAME="Header_8"></A>
+<b>Floating-Point Overflow</b>
+<P>
+A floating-point overflow condition is detected whenever the
+largest finite number that can be represented in the format of
+the floating-point receiver is exceeded in magnitude by what
+would have been the rounded floating-point result if the range of
+the exponent was unlimited.  For this to occur, the signed
+exponent of the result must exceed 127 for a short format
+receiver or 1023 for a long format receiver.
+<P>
+The occurrence of the floating-point overflow condition is
+indicated through the setting of the floating-point overflow
+occurrence bit.
+<P>
+The setting of the floating-point overflow mask affects the
+result of the operation as follows:
+<UL>
+<P><LI>
+If the exception is masked, the exception is not signaled, the
+floating-point inexact result is detected, and the result of the
+operation is determined by the rounding mode and the sign of the
+intermediate result as follows:
+<UL>
+<P><LI>
+Round to nearest mode produces infinity with the sign of the
+intermediate result.
+<P><LI>
+Round toward zero mode produces the receiver format's largest
+finite number with the sign of the intermediate result.
+<P><LI>
+Round toward negative infinity mode produces the receiver
+format's largest finite number for positive overflows, and
+negative infinity for negative overflows.
+<P><LI>
+Round toward positive infinity mode produces the receiver
+format's most negative finite number for negative overflows, and
+positive infinity for positive overflows.
+</UL>
+<P><LI>
+If the exception is not masked, the exception is signaled, the
+value of the receiver operand is unpredictable, and the exception
+data available depends upon the operation being performed.
+<UL>
+<P><LI>
+An overflow detected on a conversion operation from the long to
+the short floating-point format results in a long format value
+rounded to a short format precision to be provided in the
+exception data.
+<P><LI>
+An overflow detected on a conversion operation from a decimal
+form of a floating-point value, on the scaling operation
+performed in the SCALE instruction, or on certain cases of the
+Compute Math Function instruction (CMF1, CMF2)
+causes a long format system
+default masked NaN value to be provided in the exception data.
+<P><LI>
+An overflow detected on an arithmetic operation causes a long
+format value to be provided in the exception data.  For a short
+format receiver, the long format value provided is rounded to
+short format precision.  For a long format receiver, the long
+format value provided is a correctly rounded significand, a
+correct sign, and a modified exponent.  The modified exponent is
+set from the overflowed normal biased exponent minus a bias
+adjust value of 1536.  This bias adjust value (1536) translates
+overflowed biased exponents as nearly as possible to the middle
+of the representable biased exponent range for the long format.
+An exception handler can then be provided with appropriate
+information for later reconstruction of the correct result.  The
+following diagram summarizes the relationships among the
+overflowed values for the signed exponent, the normal biased
+exponent, and the modified biased exponent.
+</UL>
+</UL>
+<BR>
+<P><B><A NAME="Table_1">Table 1. Floating point overflow</A></B><BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="75%">Overflowed Exponent
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Signed
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Normal Biased
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Modified Biased
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Minimum value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1024
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">2047
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">511
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Maximum value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">2047
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">3070
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1534
+</TD></TR></TABLE>
+<P><A NAME="Header_9"></A>
+<b>Floating-Point Underflow</b>
+<P>
+A floating-point underflow condition may be detected when a
+result that is not 0 is examined prior to rounding and is found
+to have too small an exponent to be represented in the format of
+the receiver without being denormalized.  For the underflow
+condition to exist, the signed exponent of the result must be
+less than -126 for a short format receiver or less than -1022 for
+a long format receiver.
+<P>
+The value (0 or 1) of the floating-point underflow mask bit
+affects the detection of the exception condition as well as the
+result of the operation.
+<UL>
+<P><LI>
+If the exception is masked (bit value equals 0), the underflow
+condition is only detected and indicated through the setting of
+its related occurrence bit if the denormalized number for the
+intermediate result cannot be exactly represented in the
+floating-point receiver.  In this case, the floating-point
+receiver is set with a value that is produced by first
+denormalizing the unrounded result, then rounding, then moving
+the result to its receiver.  Only the occurrence bit for
+underflow is set, the underflow exception is not signaled.
+<P><LI>
+If the exception is not masked (bit value equals 1), the
+floating-point underflow condition is indicated through the
+setting of the floating-point underflow occurrence bit and the
+exception is signaled whenever the signed exponent of the result
+is too small for a normalized number to be represented in the
+receiver.  The value of the receiver operand is unpredictable,
+and the exception data available depends upon the operation being
+performed.
+<UL>
+<P><LI>
+A long format value rounded to short format precision is
+available if an underflow condition is detected on a conversion
+operation from the long to the short floating-point format.
+<P><LI>
+A long floating-point system default masked NaN value is
+available if an underflow condition is detected on a conversion
+from a decimal form of a floating-point value, on the scale
+operation performed for the SCALE instruction, or on the Compute
+Math Function (CMF1, CMF2) instructions.
+<P><LI>
+A long format value is available if an underflow condition is
+detected on an arithmetic operation.  For a short format
+receiver, the long format value available is rounded to short
+format precision.  For a long format receiver, the long format
+value available is a correctly rounded significand, a correct
+sign, and a modified exponent.  The modified exponent is set from
+the underflowed normal biased exponent plus 1536.  This bias
+adjust value translates underflowed biased exponents as nearly as
+possible to the middle of the representable biased exponent range
+for the long format.  This provides the appropriate information
+to an exception handler for later reconstruction of the correct
+result.  The following diagram summarizes the relationship
+between the underflowed values for the signed exponent, the
+normal biased exponent, and the modified biased exponent.
+</UL>
+<BR>
+<P><B><A NAME="Table_2">Table 2. Floating point underflow</A></B><BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="75%">Underflowed Exponent
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Signed
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Normal Biased
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Modified Biased
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Maximum value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">-1022
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">1537
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Minimum value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">-2148
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">-1125
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">411
+</TD></TR></TABLE>
+<P>
+The maximum underflowed exponent value in the previous diagram
+occurs when rounding of the underflowed value increases its value
+back above the underflow threshold.
+<P>
+The minimum underflowed exponent value in the previous diagram
+occurs when two minimum valued denormalized numbers are
+multiplied together to produce an intermediate result with a
+signed exponent of the indicated value.
+</UL>
+<P><A NAME="Header_10"></A>
+<b>Floating-Point Zero Divide</b>
+<P>
+A floating-point zero divide condition is detected for floating-point
+division if the divisor is zero and the dividend is a finite nonzero
+number.  The floating-point zero divide condition is indicated through
+the setting of the floating-point zero divide occurrence bit.  The
+setting of the floating-point zero divide mask bit affects the result of
+the operation.
+<UL>
+<P><LI>
+If the exception is masked (bit value equals 0), the result of
+the operation is a correctly signed infinity value (exclusive OR
+of the operands' signs), and the exception is not signaled.
+<P><LI>
+If the exception is not masked (bit value equals 1), the
+operation is suppressed, and the exception is signaled.
+</UL>
+<P><A NAME="Header_11"></A>
+<b>Floating-Point Inexact Result</b>
+<P>
+A floating-point inexact result condition is detected (in the
+absence of the floating-point invalid operand exception
+condition) if the rounded result of an operation is not exact.
+<UL>
+<P><LI>
+The rounded result of an operation is not exact when the rounding
+operation on an intermediate result causes a loss of nonzero
+significand digits in representing the value of the result in the
+receiver.  This applies to fixed-point receivers of
+floating-point operations as well as to floating-point receivers.
+<P><LI>
+The result of an operation is not exact when a floating-point
+overflow condition occurs while that condition is masked.  The
+receiver is set at either infinity, or the receiver format's
+largest magnitude finite number.
+</UL>
+<P>
+The floating-point inexact result condition is indicated by the
+floating-point inexact result occurrence bit.
+<P>
+If the floating-point inexact result exception is either masked
+or unmasked, the rounded or overflowed result is moved to the
+receiver.  If the exception is masked (bit value equals 0), the
+exception is not signaled.  If the exception is not masked (bit
+value equals 1), the exception is signaled.
+<P><A NAME="Header_12"></A>
+<b>Floating-Point Invalid Operand</b>
+<P>
+A floating-point invalid operand condition is detected when an
+operand is invalid for the operation to be performed:
+<UL>
+<P><LI>
+A source operand is an unmasked NaN.
+<P><LI>
+Addition of infinities of different signs or subtraction of
+infinities of the same sign.
+<P><LI>
+Multiplication of 0 times infinity.
+<P><LI>
+Division of 0 by 0, or infinity by infinity.
+<P><LI>
+Computing a math function for certain operand combinations.
+Refer to the documentation for the
+Compute Math Function instructions (CMF1 and CMF2) for details.
+<P><LI>
+Floating-point values compare unordered, and no branch or
+indicator options are specified for the unordered, negation of
+unordered, equal, or negation of equal conditions when the
+Compare Numeric Value (CMPNV) instruction is executed.
+<P><LI>
+An unordered resultant condition occurs on a computational
+instruction when the result is a NaN, and branch or indicator
+conditions are specified, but none of the unordered, negation of
+unordered, zero, or negation of zero conditions are selected.
+</UL>
+<P>
+The floating-point invalid operand condition is indicated by the
+floating-point invalid operand occurrence bit.
+<P>
+The value (0 or 1) of the floating-point invalid operand mask bit
+affects the result of the operation.
+<UL>
+<P><LI>
+If the exception is masked (bit value equals 0), the exception is
+not signaled.
+<P>
+If the exception condition is detected on a comparison operation,
+and the condition is caused by an invalid operand associated with
+the specified branch or indicator options, the receiving field
+(if applicable) is left intact with the calculated result of the
+operation.
+<P>
+If the exception is detected during an operation in which a
+floating-point result is to be stored, the result of the
+operation is a masked NaN value.
+<UL>
+<P><LI>
+If the exception was due to one or more operands being an
+unmasked NaN, then the input NaN with the largest fraction field
+value is propagated into the receiver with its mask state set to
+masked.  All of the input NaNs are considered masked for the
+compare operation.  Additionally, if the receiver format is
+longer than the source field that supplied the NaN, the resulting
+masked NaN is set with the fraction field value from the source,
+and padded with 0 bits on the right out to the float receiver
+fraction field length.
+<P><LI>
+If the exception was not due to an operand being an unmasked NaN,
+then the resulting masked NaN that is propagated into the
+receiver is the system default NaN which is appropriately
+represented in the receiver format.
+</UL>
+<P><LI>
+If the exception is not masked, the exception is signaled and the
+value of the receiver operand is unpredictable.  The exception
+data available indicates whether or not the exception was
+detected due to an invalid branch or indicator option.
+</UL>
+<P><A NAME="Header_13"></A>
+<h2>Arithmetic Instructions</h2>
+
+
+<P>
+The following table shows the function of each arithmetic
+instruction; in each case, the result is placed in the receiver
+operand.
+<BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Instruction
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Function
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Add Numeric
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">ADDN
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic sum of two numeric values.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtract Numeric
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">SUBN
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic difference of two numeric values.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Multiply
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">MULT
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic product of two numeric values.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Divide
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">DIV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic quotient of two numeric values.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Divide with Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">DIVREM
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic quotient and the remainder of two
+numeric values
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">REM
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the algebraic remainder as the result of dividing two
+numeric values.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extract Magnitude
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">EXTRMAG
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Forms the value of a numeric operand as a positive quantity.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Negate
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">NEG
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Changes the sign of a numeric operand (positive values become
+negative and negative values become positive).
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Scale
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">SCALE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Multiplies a numeric operand by B**n.  The quantity B is 10
+for decimal, and 2 for binary.  The quantity n is the scale
+factor.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compute Math Function Using One Input Value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">CMF1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Computes a floating-point result by applying the mathematical
+function requested in the controls operand to the specified
+source operand.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compute Math Function Using Two Input Values
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">CMF2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Computes a floating-point result by applying the mathematical
+function requested in the controls operand to the specified
+source operands
+</TD></TR></TABLE>
+
+</body>
+</HTML>

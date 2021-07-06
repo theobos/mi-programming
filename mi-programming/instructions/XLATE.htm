@@ -1,0 +1,177 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> XLATE Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Translate (XLATE)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 4
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1094
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Position
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Replacement
+</TD></TR></TABLE>
+<I>Operand 1</I>:  Character variable scalar.
+<P>
+<I>Operand 2</I>:  Character scalar.
+<P>
+<I>Operand 3</I>:  Character scalar or null.
+<P>
+<I>Operand 4</I>:  Character scalar.
+<P>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Selected characters in the string value of
+the <I>source</I> operand
+are translated into a different encoding and placed in the <I>receiver</I> operand.
+The characters selected for translation and the character values they are
+translated
+to are indicated by entries
+in the <I>position</I> and <I>replacement</I> strings.
+All the operands must be character strings.  The <I>source</I> and <I>receiver</I> values
+must be of the same length.
+The <I>position</I> and <I>replacement</I>
+operands can differ
+in length.  If operand 3 is null, a 256-character string
+is used, ranging in
+value from hex 00 to hex FF (EBCDIC collating sequence).
+<P>
+The operation begins with all the operands left-adjusted
+and proceeds character by character, from left to right until the
+character string value of the <I>receiver</I> operand is completed.
+<P>
+Each character of the <I>source</I> operand value is compared
+with the individual characters
+in the <I>position</I> operand.  If a character of equal value
+does not exist in the <I>position</I> string, the <I>source</I> character
+is placed unchanged in the <I>receiver</I>
+operand.
+If a character of equal value is found
+in the <I>position</I> string, the
+corresponding character in the same relative location within the <I>replacement</I> string is placed
+in the <I>receiver</I> operand as
+the <I>source</I> character translated value.  If the <I>replacement</I> string is shorter
+than the position string and a match
+of a source to <I>position</I>
+string character occurs for which there is no corresponding replacement
+character,
+the <I>source</I> character is placed unchanged
+in the <I>receiver</I> operand.  If the <I>replacement</I> string is longer than the position string,
+the rightmost excess characters of the <I>replacement</I> string
+are not used in the
+translation operation because they have no corresponding position string
+characters.
+If a character in the <I>position</I> string
+is duplicated, the first occurrence
+(leftmost) is used.
+<P>
+If operands overlap but do not share all of the same bytes, results of
+operations performed on
+these operands are not predictable.  If overlapped operands
+share all of the same bytes, the
+results are predictable when direct addressing is used.  If
+indirect addressing is used (that is,
+based operands, parameters, strings with variable lengths,
+and arrays with variable subscripts),
+the results are not always predictable.
+<P>
+The <I>receiver, source, position</I>,
+and <I>replacement</I> operands
+can be variable length substring compound operands.
+<P>
+Substring operand references that allow for a null substring
+reference (a length value of zero) may be specified for all of the
+operands on this instruction.  The effect of specifying a null
+substring reference for either
+the <I>position</I> or <I>replacement</I>
+operands is that the <I>source</I> operand
+is copied to the <I>receiver</I>
+with no change in value.  The effect of specifying a null substring
+reference for both the <I>receiver</I> and
+the <I>source</I> operands (they must
+have the same length) is that no result is set.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C08.htm">0C08 Length Conformance</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

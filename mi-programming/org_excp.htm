@@ -1,0 +1,1049 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Exceptions </title>
+			<link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body>
+<h1>Exceptions</h1>
+<table><tr>
+<td valign=top>
+<ul>
+<li><A class="content" HREF="EXCEPS.htm">General exception information</a>
+<li><A class="content" HREF="#allex">All exceptions</a>
+<li><A class="content" HREF="#ex02">02 Access Group</a>
+<li><A class="content" HREF="#ex04">04 Access State</a>
+<li><A class="content" HREF="#ex06">06 Addressing</a>
+<li><A class="content" HREF="#ex08">08 Argument/Parameter</a>
+<li><A class="content" HREF="#ex0a">0A Authorization</a>
+<li><A class="content" HREF="#ex0c">0C Computation</a>
+<li><A class="content" HREF="#ex0e">0E Context Operation</a>
+<li><A class="content" HREF="#ex10">10 Damage Encountered</a>
+<li><A class="content" HREF="#ex12">12 Data Base Management</a>
+<li><A class="content" HREF="#ex14">14 Event Management</a>
+<li><A class="content" HREF="#ex16">16 Exception Management</a>
+<li><A class="content" HREF="#ex18">18 Independent Index</a>
+<li><A class="content" HREF="#ex1a">1A Lock State</a>
+<li><A class="content" HREF="#ex1c">1C Machine-Dependent</a>
+<li><A class="content" HREF="#ex1e">1E Machine Observation</a>
+<li><A class="content" HREF="#ex20">20 Machine Support</a>
+<li><A class="content" HREF="#ex22">22 Object Access</a>
+<li><A class="content" HREF="#ex24">24 Pointer Specification</a>
+<li><A class="content" HREF="#ex26">26 Process Management</a>
+
+</ul></td>
+<td valign=top><ul>
+<li><A class="content" HREF="#ex28">28 Process/Thread State</a>
+<li><A class="content" HREF="#ex2a">2A Program Creation</a>
+<li><A class="content" HREF="#ex2c">2C Program Execution</a>
+<li><A class="content" HREF="#ex2e">2E Resource Control Limit</a>
+<li><A class="content" HREF="#ex30">30 Journal</a>
+<li><A class="content" HREF="#ex32">32 Scalar Specification</a>
+<li><A class="content" HREF="#ex34">34 Source/Sink Management</a>
+<li><A class="content" HREF="#ex36">36 Space Management</a>
+<li><A class="content" HREF="#ex38">38 Template Specification</a>
+<li><A class="content" HREF="#ex3a">3A Wait Time-Out</a>
+<li><A class="content" HREF="#ex3c">3C Service</a>
+<li><A class="content" HREF="#ex3e">3E Commitment Control</a>
+<li><A class="content" HREF="#ex40">40 Dump Space Management</a>
+<li><A class="content" HREF="#ex44">44 Protection Violation</a>
+<li><A class="content" HREF="#ex45">45 Heap Space</a>
+<li><A class="content" HREF="#ex46">46 Queue Space</a>
+<li><A class="content" HREF="#ex48">48 Kernel Environment</a>
+<li><A class="content" HREF="#ex4a">4A Java</a>
+<li><A class="content" HREF="#ex4c">4C Signals Management</a>
+<li><A class="content" HREF="#ex4e">4E Handle-Based Object</a>
+</ul></td>
+</table>
+
+
+
+<P>
+<A NAME="allex"></a>
+<font size=+2>
+The following is a list of all exceptions in alphabetic and numeric order
+by group.  The subtypes within each group are in numeric order.
+</font>
+<DL>
+<A NAME="ex02"></a>
+<DD><P><b>02 Access Group</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0201.htm">Object ineligible for access group</a>
+</DL>
+</DL>
+<A NAME="ex04"></a>
+<DD><P><b>04 Access State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0401.htm">Access state specification invalid</a>
+</DL>
+</DL>
+<A NAME="ex06"></a>
+<DD><P><b>06 Addressing</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0601.htm">Space addressing violation</a>
+<DT>02
+<DD><A class="content" HREF="EX0602.htm">Boundary alignment</a>
+<DT>03
+<DD><A class="content" HREF="EX0603.htm">Range</a>
+<DT>04
+<DD><A class="content" HREF="EX0604.htm">External data object not found</a>
+<DT>05
+<DD><A class="content" HREF="EX0605.htm">Invalid space reference</a>
+<DT>07
+<DD><A class="content" HREF="EX0607.htm">Unsupported space use</a>
+<DT>09
+<DD><A class="content" HREF="EX0609.htm">Space address is not a teraspace address</a>
+</DL>
+</DL>
+<A NAME="ex08"></a>
+<DD><P><b>08 Argument/Parameter</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0801.htm">Parameter reference violation</a>
+<DT>02
+<DD><A class="content" HREF="EX0802.htm">Argument list length violation</a>
+<DT>03
+<DD><A class="content" HREF="EX0803.htm">Argument list length modification violation</a>
+</DL>
+</DL>
+<A NAME="ex0a"</a>
+<DD><P><b>0A Authorization</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0A01.htm">Unauthorized for operation</a>
+<DT>02
+<DD><A class="content" HREF="EX0A02.htm">Privileged instruction</a>
+<DT>03
+<DD><A class="content" HREF="EX0A03.htm">Attempt to grant/retract authority state to an object that is not authorized</a>
+<DT>04
+<DD><A class="content" HREF="EX0A04.htm">Special authorization required</a>
+<DT>05
+<DD><A class="content" HREF="EX0A05.htm">Create/modify user profile beyond level of authorization</a>
+<DT>06
+<DD><A class="content" HREF="EX0A06.htm">Grant/retract authority invalid</a>
+
+<DT>08
+<DD><A class="content" HREF="EX0A08.htm">Unable to generate UID/GID</a>
+<DT>09
+<DD><A class="content" HREF="EX0A09.htm">Duplicate UID/GID specified</a>
+<DT>0A
+<DD><A class="content" HREF="EX0A0A.htm">ID index not available</a>
+<DT>0B
+<DD><A class="content" HREF="EX0A0B.htm">Cannot transfer to new owner or primary group</a>
+</DL>
+</DL>
+<A NAME="ex0c"></a>
+<DD><P><b>0C Computation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0C01.htm">Conversion</a>
+<DT>02
+<DD><A class="content" HREF="EX0C02.htm">Decimal data</a>
+<DT>03
+<DD><A class="content" HREF="EX0C03.htm">Decimal point alignment</a>
+<DT>04
+<DD><A class="content" HREF="EX0C04.htm">Edit digit count</a>
+<DT>05
+<DD><A class="content" HREF="EX0C05.htm">Edit mask syntax</a>
+<DT>06
+<DD><A class="content" HREF="EX0C06.htm">Floating-point overflow</a>
+<DT>07
+<DD><A class="content" HREF="EX0C07.htm">Floating-point underflow</a>
+<DT>08
+<DD><A class="content" HREF="EX0C08.htm">Length conformance</a>
+<DT>09
+<DD><A class="content" HREF="EX0C09.htm">Floating-point invalid operand</a>
+<DT>0A
+<DD><A class="content" HREF="EX0C0A.htm">Size</a>
+<DT>0B
+<DD><A class="content" HREF="EX0C0B.htm">Zero divide</a>
+<DT>0C
+<DD><A class="content" HREF="EX0C0C.htm">Invalid floating-point conversion</a>
+<DT>0D
+<DD><A class="content" HREF="EX0C0D.htm">Floating-point inexact result</a>
+<DT>0E
+<DD><A class="content" HREF="EX0C0E.htm">Floating-point zero divide</a>
+<DT>0F
+<DD><A class="content" HREF="EX0C0F.htm">Master key not defined</a>
+<DT>10
+<DD><A class="content" HREF="EX0C10.htm">Weak key not valid</a>
+<DT>11
+<DD><A class="content" HREF="EX0C11.htm">Key parity invalid</a>
+<DT>12
+<DD><A class="content" HREF="EX0C12.htm">Invalid extended character data</a>
+<DT>13
+<DD><A class="content" HREF="EX0C13.htm">Invalid extended character operation</a>
+<DT>14
+<DD><A class="content" HREF="EX0C14.htm">Invalid compressed data</a>
+<DT>15
+<DD><A class="content" HREF="EX0C15.htm">Date boundary overflow</a>
+<DT>16
+<DD><A class="content" HREF="EX0C16.htm">Data format error</a>
+<DT>17
+<DD><A class="content" HREF="EX0C17.htm">Data value error</a>
+<DT>18
+<DD><A class="content" HREF="EX0C18.htm">Date boundary underflow</a>
+<DT>19
+<DD><A class="content" HREF="EX0C19.htm">Space pointer operands do not point to the same space object</a>
+<DT>20
+<DD><A class="content" HREF="EX0C20.htm">Substitution character used</a>
+<DT>21
+<DD><A class="content" HREF="EX0C21.htm">Source verification error</a>
+<DT>22
+<DD><A class="content" HREF="EX0C22.htm">Unpaired shift control</a>
+<DT>23
+<DD><A class="content" HREF="EX0C23.htm">Source information error</a>
+<DT>24
+<DD><A class="content" HREF="EX0C24.htm">Receiver buffer length exceeded</a>
+</DL>
+</DL>
+<A NAME="ex0e"></a>
+<DD><P><b>0E Context Operation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX0E01.htm">Duplicate object identification</a>
+<DT>02
+<DD><A class="content" HREF="EX0E02.htm">Object ineligible for context</a>
+</DL>
+</DL>
+<A NAME="ex10"></a>
+<DD><P><b>10 Damage Encountered</b>
+<DL>
+<DL COMPACT>
+<DT>02
+<DD><A class="content" HREF="EX1002.htm">Machine context damage state</a>
+<DT>04
+<DD><A class="content" HREF="EX1004.htm">System object damage state</a>
+<DT>05
+<DD><A class="content" HREF="EX1005.htm">Authority verification terminated due to damaged object</a>
+<DT>44
+<DD><A class="content" HREF="EX1044.htm">Partial system object damage</a>
+</DL>
+</DL>
+<A NAME="ex12"></a>
+<DD><P><b>12 Data Base Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1201.htm">Conversion mapping error</a>
+<DT>02
+<DD><A class="content" HREF="EX1202.htm">Key mapping error</a>
+<DT>03
+<DD><A class="content" HREF="EX1203.htm">Cursor not set</a>
+<DT>04
+<DD><A class="content" HREF="EX1204.htm">Data space entry limit exceeded</a>
+<DT>05
+<DD><A class="content" HREF="EX1205.htm">Data space entry already locked</a>
+<DT>06
+<DD><A class="content" HREF="EX1206.htm">Data space entry not found</a>
+<DT>07
+<DD><A class="content" HREF="EX1207.htm">Data space index invalid</a>
+<DT>08
+<DD><A class="content" HREF="EX1208.htm">Incomplete key description</a>
+<DT>09
+<DD><A class="content" HREF="EX1209.htm">Duplicate key value in existing data space entry</a>
+<DT>0A
+<DD><A class="content" HREF="EX120A.htm">End of path</a>
+<DT>0B
+<DD><A class="content" HREF="EX120B.htm">Duplicate key value detected</a>
+<DT>0D
+<DD><A class="content" HREF="EX120D.htm">No entries locked, or entries locked to a different thread</a>
+<DT>0F
+<DD><A class="content" HREF="EX120F.htm">Duplicate key value in uncommitted data space entry</a>
+<DT>11
+<DD><A class="content" HREF="EX1211.htm">Compare key mapping error</a>
+<DT>12
+<DD><A class="content" HREF="EX1212.htm">Incomplete compare key description</a>
+<DT>13
+<DD><A class="content" HREF="EX1213.htm">Invalid mapping template</a>
+<DT>14
+<DD><A class="content" HREF="EX1214.htm">Invalid selection template</a>
+<DT>15
+<DD><A class="content" HREF="EX1215.htm">Data space not addressed by index</a>
+<DT>16
+<DD><A class="content" HREF="EX1216.htm">Data space not addressed by cursor</a>
+<DT>17
+<DD><A class="content" HREF="EX1217.htm">Key value changed since set cursor</a>
+<DT>18
+<DD><A class="content" HREF="EX1218.htm">Invalid key value modification</a>
+<DT>19
+<DD><A class="content" HREF="EX1219.htm">Invalid rule option</a>
+<DT>1A
+<DD><A class="content" HREF="EX121A.htm">Data space entry size exceeded</a>
+<DT>1B
+<DD><A class="content" HREF="EX121B.htm">Logical data space entry size limit exceeded</a>
+<DT>1C
+<DD><A class="content" HREF="EX121C.htm">Key size limit exceeded</a>
+<DT>1D
+<DD><A class="content" HREF="EX121D.htm">Logical key size limit exceeded</a>
+<DT>21
+<DD><A class="content" HREF="EX1221.htm">Unable to maintain a unique key data space index</a>
+<DT>25
+<DD><A class="content" HREF="EX1225.htm">Invalid data base operation</a>
+<DT>26
+<DD><A class="content" HREF="EX1226.htm">Data space index with invalid floating-point field build termination</a>
+<DT>27
+<DD><A class="content" HREF="EX1227.htm">Data space index key with invalid floating-point field</a>
+<DT>30
+<DD><A class="content" HREF="EX1230.htm">Specified data space entry rejected</a>
+<DT>31
+<DD><A class="content" HREF="EX1231.htm">New data space entry image rejected</a>
+<DT>32
+<DD><A class="content" HREF="EX1232.htm">Join value changed</a>
+<DT>33
+<DD><A class="content" HREF="EX1233.htm">Data space index with non-user exit selection routine build termination</a>
+<DT>34
+<DD><A class="content" HREF="EX1234.htm">Non-user exit selection routine failure</a>
+<DT>36
+<DD><A class="content" HREF="EX1236.htm">No mapping code specified</a>
+<DT>37
+<DD><A class="content" HREF="EX1237.htm">Operation not valid with join cursor</a>
+<DT>38
+<DD><A class="content" HREF="EX1238.htm">Derived field operation error</a>
+<DT>39
+<DD><A class="content" HREF="EX1239.htm">Derived field operation error during build index</a>
+<DT>40
+<DD><A class="content" HREF="EX1240.htm">Invalid entry definition table</a>
+<DT>41
+<DD><A class="content" HREF="EX1241.htm">ISV parameter value in runtime data pointer array not correct</a>
+<DT>42
+<DD><A class="content" HREF="EX1242.htm">Non-unique fanout on unique join</a>
+<DT>43
+<DD><A class="content" HREF="EX1243.htm">Invalid data definitional attributes template (DDAT)</a>
+<DT>45
+<DD><A class="content" HREF="EX1245.htm">Invalid frogger array template</a>
+<DT>46
+<DD><A class="content" HREF="EX1246.htm">Invalid global literal list</a>
+<DT>47
+<DD><A class="content" HREF="EX1247.htm">Invalid per-data space selection template</a>
+<DT>48
+<DD><A class="content" HREF="EX1248.htm">Re-create/replace cursor</a>
+<DT>49
+<DD><A class="content" HREF="EX1249.htm">No control block for shared derivation</a>
+<DT>50
+<DD><A class="content" HREF="EX1250.htm">Referential constraint violation</a>
+<DT>51
+<DD><A class="content" HREF="EX1251.htm">Object unavailable for referential constraint enforcement</a>
+<DT>52
+<DD><A class="content" HREF="EX1252.htm">Invalid constraint state</a>
+<DT>53
+<DD><A class="content" HREF="EX1253.htm">Invalid journal for referential constraint enforcement</a>
+<DT>54
+<DD><A class="content" HREF="EX1254.htm">Cursor must be activated under secondary commit cycle</a>
+<DT>55
+<DD><A class="content" HREF="EX1255.htm">Operation conflict with data space constraints</a>
+<DT>56
+<DD><A class="content" HREF="EX1256.htm">Constraint structure damage</a>
+<DT>57
+<DD><A class="content" HREF="EX1257.htm">Check constraint violation</a>
+<DT>63
+<DD><A class="content" HREF="EX1263.htm">Data space index templates are invalid</a>
+<DT>64
+<DD><A class="content" HREF="EX1264.htm">Data space index templates/keys are invalid</a>
+<DT>65
+<DD><A class="content" HREF="EX1265.htm">Copy index not temporary (invalid - nonenforcing)</a>
+<DT>66
+<DD><A class="content" HREF="EX1266.htm">Data spaces for copy index and permanent index do not match</a>
+<DT>9D
+<DD><A class="content" HREF="EX129D.htm">Maximum number of unique encoded vector index values exceeded</a>
+</DL>
+</DL>
+<A NAME="ex14"></a>
+<DD><P><b>14 Event Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1401.htm">Duplicate event monitor</a>
+<DT>02
+<DD><A class="content" HREF="EX1402.htm">Event monitor not present</a>
+<DT>03
+<DD><A class="content" HREF="EX1403.htm">Machine event requires specification of a compare value</a>
+<DT>04
+<DD><A class="content" HREF="EX1404.htm">Wait on event attempted while masked</a>
+<DT>05
+<DD><A class="content" HREF="EX1405.htm">Disable timer event monitor invalid</a>
+<DT>06
+<DD><A class="content" HREF="EX1406.htm">Signal timer event monitor invalid</a>
+<DT>07
+<DD><A class="content" HREF="EX1407.htm">Wait on event not allowed in kernel mode</a>
+</DL>
+</DL>
+<A NAME="ex16"></a>
+<DD><P><b>16 Exception Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1601.htm">Exception description status invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX1602.htm">Exception state of thread invalid</a>
+<DT>03
+<DD><A class="content" HREF="EX1603.htm">Invalid invocation address</a>
+<DT>04
+<DD><A class="content" HREF="EX1604.htm">Retry/resume invalid</a>
+<DT>05
+<DD><A class="content" HREF="EX1605.htm">No inquiry message found for reply message</a>
+<DT>06
+<DD><A class="content" HREF="EX1606.htm">Invalid control action specified</a>
+</DL>
+</DL>
+<A NAME="ex18"></a>
+<DD><P><b>18 Independent Index</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1801.htm">Duplicate key argument in index</a>
+</DL>
+</DL>
+<A NAME="ex1a"</a>
+<DD><P><b>1A Lock State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1A01.htm">Invalid lock state</a>
+<DT>02
+<DD><A class="content" HREF="EX1A02.htm">Lock request not grantable</a>
+<DT>03
+<DD><A class="content" HREF="EX1A03.htm">Invalid unlock request</a>
+<DT>04
+<DD><A class="content" HREF="EX1A04.htm">Invalid object lock transfer request</a>
+<DT>05
+<DD><A class="content" HREF="EX1A05.htm">Invalid space location unlocked</a>
+</DL>
+</DL>
+<A NAME="ex1c"></a>
+
+<DD><P><b>1C Machine-Dependent</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1C01.htm">Machine-dependent request invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX1C02.htm">Program limitation exceeded</a>
+<DT>03
+<DD><A class="content" HREF="EX1C03.htm">Machine storage limit exceeded</a>
+<DT>04
+<DD><A class="content" HREF="EX1C04.htm">Object storage limit exceeded</a>
+<DT>05
+<DD><A class="content" HREF="EX1C05.htm">System address range limit exceeded</a>
+<DT>06
+<DD><A class="content" HREF="EX1C06.htm">Machine lock limit exceeded</a>
+<DT>07
+<DD><A class="content" HREF="EX1C07.htm">Modify main storage pool controls invalid</a>
+<DT>08
+<DD><A class="content" HREF="EX1C08.htm">Requested function not valid</a>
+<DT>09
+<DD><A class="content" HREF="EX1C09.htm">Auxiliary storage pool number invalid</a>
+<DT>0A
+<DD><A class="content" HREF="EX1C0A.htm">Service processor unable to process request</a>
+<DT>0B
+<DD><A class="content" HREF="EX1C0B.htm">Program not valid for machine</a>
+<DT>0C
+<DD><A class="content" HREF="EX1C0C.htm">Attribute cannot be modified from a secondary partition</a>
+<DT>0D
+<DD><A class="content" HREF="EX1C0D.htm">Requested data collection function not valid</a>
+<DT>0E
+<DD><A class="content" HREF="EX1C0E.htm">IASP resources exceeded</a>
+<DT>0F
+<DD><A class="content" HREF="EX1C0F.htm">Software license management function failed</a>
+<DT>10
+<DD><A class="content" HREF="EX1C10.htm">Failure due to logical partitioning action</a>
+</DL>
+</DL>
+<A NAME="ex1e"></a>
+<DD><P><b>1E Machine Observation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX1E01.htm">Program not observable</a>
+<DT>02
+<DD><A class="content" HREF="EX1E02.htm">Invocation not found</a>
+<DT>03
+<DD><A class="content" HREF="EX1E03.htm">Invalid D-code instruction</a>
+<DT>04
+<DD><A class="content" HREF="EX1E04.htm">DBGINT error</a>
+<DT>05
+<DD><A class="content" HREF="EX1E05.htm">DBGINT error on operation</a>
+<DT>06
+<DD><A class="content" HREF="EX1E06.htm">DBGINT SOM function error</a>
+</DL>
+</DL>
+<A NAME="ex20"></a>
+<DD><P><b>20 Machine Support</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2001.htm">Diagnose</a>
+<DT>02
+<DD><A class="content" HREF="EX2002.htm">Machine check</a>
+<DT>03
+<DD><A class="content" HREF="EX2003.htm">Function check</a>
+</DL>
+</DL>
+<A NAME="ex22"></a>
+<DD><P><b>22 Object Access</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2201.htm">Object not found</a>
+<DT>02
+<DD><A class="content" HREF="EX2202.htm">Object destroyed</a>
+<DT>03
+<DD><A class="content" HREF="EX2203.htm">Object suspended</a>
+<DT>04
+<DD><A class="content" HREF="EX2204.htm">Object not eligible for operation</a>
+<DT>05
+<DD><A class="content" HREF="EX2205.htm">Object not available to process</a>
+<DT>06
+<DD><A class="content" HREF="EX2206.htm">Object not eligible for destruction</a>
+<DT>07
+<DD><A class="content" HREF="EX2207.htm">Authority verification terminated due to destroyed object</a>
+<DT>08
+<DD><A class="content" HREF="EX2208.htm">Object compressed</a>
+<DT>0A
+<DD><A class="content" HREF="EX220A.htm">Program not eligible for operation</a>
+<DT>0B
+<DD><A class="content" HREF="EX220B.htm">Object not available</a>
+</DL>
+</DL>
+<A NAME="ex24"></a>
+<DD><P><b>24 Pointer Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2401.htm">Pointer does not exist</a>
+<DT>02
+<DD><A class="content" HREF="EX2402.htm">Pointer type invalid</a>
+<DT>03
+<DD><A class="content" HREF="EX2403.htm">Pointer addressing invalid object type</a>
+<DT>04
+<DD><A class="content" HREF="EX2404.htm">Pointer not resolved</a>
+</DL>
+</DL>
+<A NAME="ex26"></a>
+<DD><P><b>26 Process Management</b>
+<DL>
+<DL COMPACT>
+<DT>02
+<DD><A class="content" HREF="EX2602.htm">Queue full</a>
+</DL>
+</DL>
+<A NAME="ex28"></a>
+<DD><P><b>28 Process/Thread State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2801.htm">Process ineligible for operation</a>
+<DT>02
+<DD><A class="content" HREF="EX2802.htm">Process control space not associated with a process</a>
+<DT>03
+<DD><A class="content" HREF="EX2803.htm">User profile UID/GID invalid</a>
+<DT>04
+<DD><A class="content" HREF="EX2804.htm">Thread handle not associated with an active thread</a>
+
+<DT>0A
+<DD><A class="content" HREF="EX280A.htm">Process attribute modification invalid</a>
+</DL>
+</DL>
+<A NAME="ex2a"></a>
+<DD><P><b>2A Program Creation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2A01.htm">Program header invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX2A02.htm">ODT syntax error</a>
+<DT>03
+<DD><A class="content" HREF="EX2A03.htm">ODT relational error</a>
+<DT>04
+<DD><A class="content" HREF="EX2A04.htm">Operation code invalid</a>
+<DT>05
+<DD><A class="content" HREF="EX2A05.htm">Invalid op code extender field</a>
+<DT>06
+<DD><A class="content" HREF="EX2A06.htm">Invalid operand type</a>
+<DT>07
+<DD><A class="content" HREF="EX2A07.htm">Invalid operand attribute</a>
+<DT>08
+<DD><A class="content" HREF="EX2A08.htm">Invalid operand value range</a>
+<DT>09
+<DD><A class="content" HREF="EX2A09.htm">Invalid branch target operand</a>
+<DT>0A
+<DD><A class="content" HREF="EX2A0A.htm">Invalid operand length</a>
+<DT>0B
+<DD><A class="content" HREF="EX2A0B.htm">Invalid number of operands</a>
+<DT>0C
+<DD><A class="content" HREF="EX2A0C.htm">Invalid operand ODT reference</a>
+<DT>0D
+<DD><A class="content" HREF="EX2A0D.htm">Reserved bits are not zero</a>
+<DT>10
+<DD><A class="content" HREF="EX2A10.htm">Automatic storage for procedure exceeds maximum</a>
+<DT>11
+<DD><A class="content" HREF="EX2A11.htm">Machine automatic storage exceeds maximum</a>
+<DT>12
+<DD><A class="content" HREF="EX2A12.htm">Data type or length of initial value not valid</a>
+<DT>13
+<DD><A class="content" HREF="EX2A13.htm">Exceeded internal limit on number of temporary segments</a>
+<DT>14
+<DD><A class="content" HREF="EX2A14.htm">Static data initialized to address of automatic data</a>
+<DT>15
+<DD><A class="content" HREF="EX2A15.htm">Initial value for static data not valid</a>
+<DT>16
+<DD><A class="content" HREF="EX2A16.htm">Number of procedures exceeds maximum allowed</a>
+<DT>17
+<DD><A class="content" HREF="EX2A17.htm">Type table entry not valid</a>
+<DT>18
+<DD><A class="content" HREF="EX2A18.htm">Alias table entry not valid</a>
+<DT>19
+<DD><A class="content" HREF="EX2A19.htm">Size of constants exceeds maximum</a>
+<DT>1A
+<DD><A class="content" HREF="EX2A1A.htm">Procedure size exceeds maximum</a>
+<DT>1B
+<DD><A class="content" HREF="EX2A1B.htm">Instruction stream not valid</a>
+<DT>1C
+<DD><A class="content" HREF="EX2A1C.htm">Size of literals exceeds maximum</a>
+<DT>1D
+<DD><A class="content" HREF="EX2A1D.htm">Dictionary entry not valid</a>
+<DT>1E
+<DD><A class="content" HREF="EX2A1E.htm">Level of machine interface not supported on target release</a>
+<DT>1F
+<DD><A class="content" HREF="EX2A1F.htm">Size of dictionary exceeds maximum</a>
+<DT>20
+<DD><A class="content" HREF="EX2A20.htm">Internal machine operation not valid</a>
+<DT>21
+<DD><A class="content" HREF="EX2A21.htm">Size of internal binding table exceeds maximum</a>
+<DT>22
+<DD><A class="content" HREF="EX2A22.htm">Size of internal label table exceeds maximum</a>
+<DT>23
+<DD><A class="content" HREF="EX2A23.htm">Size of internal symbolic register table exceeds maximum</a>
+<DT>24
+<DD><A class="content" HREF="EX2A24.htm">Size of internal computation table exceeds maximum</a>
+<DT>28
+<DD><A class="content" HREF="EX2A28.htm">Size of internal basic block table exceeds maximum</a>
+<DT>29
+<DD><A class="content" HREF="EX2A29.htm">Size of internal successor arc table exceeds maximum</a>
+<DT>2A
+<DD><A class="content" HREF="EX2A2A.htm">Size of internal register table exceeds maximum</a>
+<DT>2B
+<DD><A class="content" HREF="EX2A2B.htm">Size of internal late bound offset table exceeds maximum</a>
+<DT>2C
+<DD><A class="content" HREF="EX2A2C.htm">Invalid function prototype component entry</a>
+<DT>5E
+<DD><A class="content" HREF="EX2A5E.htm">An error was detected in a static storage definition or initialization</a>
+<DT>5F
+<DD><A class="content" HREF="EX2A5F.htm">Overlapping initializations not valid</a>
+<DT>60
+<DD><A class="content" HREF="EX2A60.htm">Dictionary ID is not valid</a>
+<DT>61
+<DD><A class="content" HREF="EX2A61.htm">Binding specification value not valid</a>
+<DT>62
+<DD><A class="content" HREF="EX2A62.htm">Copyright component value not valid</a>
+<DT>63
+<DD><A class="content" HREF="EX2A63.htm">Module limitation exceeded</a>
+<DT>A0
+<DD><A class="content" HREF="EX2AA0.htm">Attempt to delete part that may not be deleted</a>
+<DT>B0
+<DD><A class="content" HREF="EX2AB0.htm">Object list referential extension not valid</a>
+<DT>B1
+<DD><A class="content" HREF="EX2AB1.htm">Symbol resolution list referential extension not valid</a>
+<DT>B2
+<DD><A class="content" HREF="EX2AB2.htm">Service program export list referential extension not valid</a>
+<DT>B3
+<DD><A class="content" HREF="EX2AB3.htm">Secondary associated spaces list referential extension not valid</a>
+<DT>B4
+<DD><A class="content" HREF="EX2AB4.htm">Program limitation exceeded</a>
+<DT>B5
+<DD><A class="content" HREF="EX2AB5.htm">Observable information necessary for retranslation not encapsulated</a>
+<DT>B6
+<DD><A class="content" HREF="EX2AB6.htm">Procedure order list referential extension not valid</a>
+<DT>C0
+<DD><A class="content" HREF="EX2AC0.htm">Attempt to delete part that may not be deleted</a>
+<DT>C1
+<DD><A class="content" HREF="EX2AC1.htm">An attempt was made to delete a required module part</a>
+</DL>
+</DL>
+<A NAME="ex2c"></a>
+
+<DD><P><b>2C Program Execution</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2C01.htm">Return instruction invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX2C02.htm">Return point invalid</a>
+<DT>04
+<DD><A class="content" HREF="EX2C04.htm">Branch target invalid</a>
+<DT>05
+<DD><A class="content" HREF="EX2C05.htm">Activation in use by invocation</a>
+<DT>06
+<DD><A class="content" HREF="EX2C06.htm">Instruction cancellation</a>
+<DT>07
+<DD><A class="content" HREF="EX2C07.htm">Instruction termination</a>
+<DT>08
+<DD><A class="content" HREF="EX2C08.htm">Branch target defined by label pointer not valid</a>
+<DT>10
+<DD><A class="content" HREF="EX2C10.htm">Process object destroyed</a>
+<DT>11
+<DD><A class="content" HREF="EX2C11.htm">Process object access invalid</a>
+<DT>12
+<DD><A class="content" HREF="EX2C12.htm">Activation group access violation</a>
+<DT>13
+<DD><A class="content" HREF="EX2C13.htm">Activation group not found</a>
+<DT>14
+<DD><A class="content" HREF="EX2C14.htm">Activation group in use</a>
+<DT>15
+<DD><A class="content" HREF="EX2C15.htm">Invalid operation for program</a>
+<DT>16
+<DD><A class="content" HREF="EX2C16.htm">Program activation not found</a>
+<DT>17
+<DD><A class="content" HREF="EX2C17.htm">Default activation group not destroyed</a>
+<DT>18
+<DD><A class="content" HREF="EX2C18.htm">Invalid source invocation</a>
+<DT>19
+<DD><A class="content" HREF="EX2C19.htm">Invalid origin invocation</a>
+<DT>1A
+<DD><A class="content" HREF="EX2C1A.htm">Invocation offset outside range of current stack</a>
+<DT>1B
+<DD><A class="content" HREF="EX2C1B.htm">Invocation not eligible for operation</a>
+<DT>1C
+<DD><A class="content" HREF="EX2C1C.htm">Instruction not valid for invocation type</a>
+<DT>1D
+<DD><A class="content" HREF="EX2C1D.htm">Automatic storage overflow</a>
+<DT>1E
+<DD><A class="content" HREF="EX2C1E.htm">Activation access violation</a>
+<DT>1F
+<DD><A class="content" HREF="EX2C1F.htm">Program signature violation</a>
+<DT>20
+<DD><A class="content" HREF="EX2C20.htm">Static storage overflow</a>
+<DT>21
+<DD><A class="content" HREF="EX2C21.htm">Program import invalid</a>
+<DT>22
+<DD><A class="content" HREF="EX2C22.htm">Data reference invalid</a>
+<DT>23
+<DD><A class="content" HREF="EX2C23.htm">Imported object invalid</a>
+<DT>24
+<DD><A class="content" HREF="EX2C24.htm">Activation group export conflict</a>
+<DT>25
+<DD><A class="content" HREF="EX2C25.htm">Import not found</a>
+<DT>26
+<DD><A class="content" HREF="EX2C26.htm">Invalid activation group</a>
+<DT>27
+<DD><A class="content" HREF="EX2C27.htm">Unresolved import</a>
+<DT>28
+<DD><A class="content" HREF="EX2C28.htm">Activation group directory error</a>
+<DT>29
+<DD><A class="content" HREF="EX2C29.htm">Caller parameter mask does not match procedure parameter mask</a>
+<DT>2A
+<DD><A class="content" HREF="EX2C2A.htm">Caller parameter mask does not match imported procedure parameter mask</a>
+<DT>2B
+<DD><A class="content" HREF="EX2C2B.htm">Invalid Storage Model</a>
+</DL>
+</DL>
+<A NAME="ex2e"></a>
+<DD><P><b>2E Resource Control Limit</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX2E01.htm">User profile storage limit exceeded</a>
+<DT>02
+<DD><A class="content" HREF="EX2E02.htm">Security audit journal failure</a>
+</DL>
+</DL>
+<A NAME="ex30"></a>
+<DD><P><b>30 Journal</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3001.htm">Apply journal changes failure</a>
+<DT>02
+<DD><A class="content" HREF="EX3002.htm">Entry not journaled</a>
+<DT>03
+<DD><A class="content" HREF="EX3003.htm">Maximum objects through a journal port limit exceeded</a>
+<DT>04
+<DD><A class="content" HREF="EX3004.htm">Invalid journal space</a>
+<DT>05
+<DD><A class="content" HREF="EX3005.htm">Invalid selection/transaction list entry</a>
+<DT>06
+<DD><A class="content" HREF="EX3006.htm">Journal space not at a recoverable boundary</a>
+<DT>07
+<DD><A class="content" HREF="EX3007.htm">Journal ID not unique</a>
+<DT>08
+<DD><A class="content" HREF="EX3008.htm">Object already being journaled</a>
+<DT>09
+<DD><A class="content" HREF="EX3009.htm">Transaction list limit reached</a>
+<DT>0A
+<DD><A class="content" HREF="EX300A.htm">Data space index currently journaled</a>
+<DT>0B
+<DD><A class="content" HREF="EX300B.htm">Data space index currently in force mode</a>
+<DT>0C
+<DD><A class="content" HREF="EX300C.htm">Underlying data space not journaled to same journal</a>
+<dt>0E
+<DD><A class="content" HREF="EX300E.htm">File ID not available</a>
+
+<DT>10
+<DD><A class="content" HREF="EX3010.htm">Unrecoverable system managed access path protection failure</a>
+<DT>11
+<DD><A class="content" HREF="EX3011.htm">Journal violation</a>
+<DT>20
+<DD><A class="content" HREF="EX3020.htm">Remote journal operation error</a>
+</DL>
+</DL>
+<A NAME="ex32"></a>
+<DD><P><b>32 Scalar Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3201.htm">Scalar type invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX3202.htm">Scalar attributes invalid</a>
+<DT>03
+<DD><A class="content" HREF="EX3203.htm">Scalar value invalid</a>
+</DL>
+</DL>
+<A NAME="ex34"></a>
+<DD><P><b>34 Source/Sink Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3401.htm">Source/sink configuration invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX3402.htm">Source/sink physical address invalid</a>
+<DT>03
+<DD><A class="content" HREF="EX3403.htm">Source/sink object state invalid</a>
+<DT>04
+<DD><A class="content" HREF="EX3404.htm">Source/sink resource not available</a>
+<DT>41
+<DD><A class="content" HREF="EX3441.htm">Invalid starting verb index was specified</a>
+<DT>42
+<DD><A class="content" HREF="EX3442.htm">System pointer area was tagged and non-zero</a>
+<DT>43
+<DD><A class="content" HREF="EX3443.htm">Invalid open in list of operations</a>
+<DT>44
+<DD><A class="content" HREF="EX3444.htm">Unsupported stream operation</a>
+<DT>45
+<DD><A class="content" HREF="EX3445.htm">Incorrect length specified</a>
+</DL>
+</DL>
+<A NAME="ex36"></a>
+<DD><P><b>36 Space Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3601.htm">Space extension/truncation</a>
+<DT>02
+<DD><A class="content" HREF="EX3602.htm">Invalid space modification</a>
+</DL>
+</DL>
+<A NAME="ex38"></a>
+<DD><P><b>38 Template Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3801.htm">Template value invalid</a>
+<DT>02
+<DD><A class="content" HREF="EX3802.htm">Template size invalid</a>
+<DT>03
+<DD><A class="content" HREF="EX3803.htm">Materialization length invalid</a>
+<DT>04
+<DD><A class="content" HREF="EX3804.htm">Invalid mutex</a>
+</DL>
+</DL>
+<A NAME="ex3a"></a>
+<DD><P><b>3A Wait Time-Out</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3A01.htm">Dequeue time-out</a>
+<DT>02
+<DD><A class="content" HREF="EX3A02.htm">Lock time-out</a>
+<DT>03
+<DD><A class="content" HREF="EX3A03.htm">Event time-out</a>
+<DT>04
+<DD><A class="content" HREF="EX3A04.htm">Space location lock wait time-out</a>
+<DT>05
+<DD><A class="content" HREF="EX3A05.htm">Object location lock wait time-out</a>
+</DL>
+</DL>
+<A NAME="ex3c"></a>
+<DD><P><b>3C Service</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3C01.htm">Invalid service session state</a>
+<DT>02
+<DD><A class="content" HREF="EX3C02.htm">Unable to start service session</a>
+</DL>
+</DL>
+<A NAME="ex3e"></a>
+<DD><P><b>3E Commitment Control</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX3E01.htm">Invalid commit block status change</a>
+<DT>02
+<DD><A class="content" HREF="EX3E02.htm">Commit block must be decommitted</a>
+<DT>03
+<DD><A class="content" HREF="EX3E03.htm">Commit block is attached to process</a>
+<DT>04
+<DD><A class="content" HREF="EX3E04.htm">Commit blocks control uncommitted changes</a>
+<DT>05
+<DD><A class="content" HREF="EX3E05.htm">Operation not valid on commit block in prepared state</a>
+<DT>06
+<DD><A class="content" HREF="EX3E06.htm">Commitment control resource limit exceeded</a>
+<DT>07
+<DD><A class="content" HREF="EX3E07.htm">Operation not valid on commit block in decommit only state</a>
+<DT>08
+<DD><A class="content" HREF="EX3E08.htm">Object under commitment control being journaled incorrectly</a>
+<DT>09
+<DD><A class="content" HREF="EX3E09.htm">Reconstruct of commit block environment failure</a>
+<DT>10
+<DD><A class="content" HREF="EX3E10.htm">Operation not valid under commitment control</a>
+<DT>11
+<DD><A class="content" HREF="EX3E11.htm">Process has attempted to attach too many commit blocks</a>
+<DT>12
+<DD><A class="content" HREF="EX3E12.htm">Objects under commitment control</a>
+<DT>13
+<DD><A class="content" HREF="EX3E13.htm">Commit block not journaled</a>
+<DT>14
+<DD><A class="content" HREF="EX3E14.htm">Errors during decommit</a>
+<DT>15
+<DD><A class="content" HREF="EX3E15.htm">Object ineligible for commitment control</a>
+<DT>16
+<DD><A class="content" HREF="EX3E16.htm">Object ineligible for removal from commitment control</a>
+</DL>
+</DL>
+<A NAME="ex40"></a>
+<DD><P><b>40 Dump Space Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4001.htm">Dump data space size limit exceeded</a>
+<DT>02
+<DD><A class="content" HREF="EX4002.htm">Invalid dump data insertion</a>
+<DT>03
+<DD><A class="content" HREF="EX4003.htm">Invalid dump space modification</a>
+<DT>04
+<DD><A class="content" HREF="EX4004.htm">Invalid dump data retrieval</a>
+</DL>
+</DL>
+<A NAME="ex44"></a>
+<DD><P><b>44 Protection Violation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4401.htm">Object domain or hardware storage protection violation</a>
+<DT>02
+<DD><A class="content" HREF="EX4402.htm">Literal values cannot be changed</a>
+</DL>
+</DL>
+<A NAME="ex45"></a>
+<DD><P><b>45 Heap Space</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4501.htm">Invalid heap identifier</a>
+<DT>02
+<DD><A class="content" HREF="EX4502.htm">Invalid request</a>
+<DT>03
+<DD><A class="content" HREF="EX4503.htm">Heap space full</a>
+<DT>04
+<DD><A class="content" HREF="EX4504.htm">Invalid size request</a>
+<DT>05
+<DD><A class="content" HREF="EX4505.htm">Heap space destroyed</a>
+<DT>06
+<DD><A class="content" HREF="EX4506.htm">Invalid heap space condition</a>
+<DT>07
+<DD><A class="content" HREF="EX4507.htm">Invalid mark identifier</a>
+</DL>
+</DL>
+<A NAME="ex46"</a>
+<DD><P><b>46 Queue Space</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4601.htm">Queue space not associated with the process</a>
+<DT>02
+<DD><A class="content" HREF="EX4602.htm">Queue space cannot be modified</a>
+<DT>03
+<DD><A class="content" HREF="EX4603.htm">Message reference index does not identify a valid message</a>
+<DT>04
+<DD><A class="content" HREF="EX4604.htm">Queue space not eligible for destruction</a>
+</DL>
+</DL>
+<A NAME="ex48"></a>
+<DD><P><b>48 Kernel Environment</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4801.htm">Function code out of range</a>
+<DT>02
+<DD><A class="content" HREF="EX4802.htm">Kernel environment already active</a>
+<DT>03
+<DD><A class="content" HREF="EX4803.htm">Kernel environment not initialized</a>
+<DT>04
+<DD><A class="content" HREF="EX4804.htm">Kernel environment not active</a>
+<DT>05
+<DD><A class="content" HREF="EX4805.htm">MI wait in kernel mode terminated</a>
+</DL>
+</DL>
+<A NAME="ex4a"></a>
+<DD><P><b>4A Java</b>
+<DL>
+<DL COMPACT>
+<DT>A0
+<DD><A class="content" HREF="EX4AA0.htm">Generic Java exception</a>
+<DT>A1
+<DD><A class="content" HREF="EX4AA1.htm">Java class format error</a>
+<DT>A2
+<DD><A class="content" HREF="EX4AA2.htm">Java verify error</a>
+<DT>A3
+<DD><A class="content" HREF="EX4AA3.htm">Java archive file error</a>
+<DT>A4
+<DD><A class="content" HREF="EX4AA4.htm">Java invalid native method return</a>
+<DT>A5
+<DD><A class="content" HREF="EX4AA5.htm">Java virtual machine terminated</a>
+<DT>A6
+<DD><A class="content" HREF="EX4AA6.htm">Java native interface unattached caller</a>
+<DT>A7
+<DD><A class="content" HREF="EX4AA7.htm">Java Stand-Alone Program Creation Error</a>
+</DL>
+</DL>
+<A NAME="ex4c"></a>
+<DD><P><b>4C Signals Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4C01.htm">Asynchronous signal terminated MI wait</a>
+<DT>02
+<DD><A class="content" HREF="EX4C02.htm">Signal controls not initialized</a>
+<DT>03
+<DD><A class="content" HREF="EX4C03.htm">Asynchronous signal received</a>
+</DL>
+</DL>
+<A NAME="ex4e"></a>
+<DD><P><b>4E Handle-Based Object</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="EX4E01.htm">Invalid handle</a>
+<DT>02
+<DD><A class="content" HREF="EX4E02.htm">Invalid handle type</a>
+<DT>03
+<DD><A class="content" HREF="EX4E03.htm">Handle-based primitive exists</a>
+</DL>
+</DL>
+</DL>
+
+</body>
+
+</HTML>
+

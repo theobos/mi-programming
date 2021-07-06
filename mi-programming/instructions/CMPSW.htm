@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CMPSW Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Compare and Swap (CMPSW)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 4&nbsp;&#91;5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CMPSWB</B>
+1C37
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Swap operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch target
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CMPSWI</B>
+1837
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Swap operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator target
+</TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Character(1,2,4,8) variable scalar.
+<P>
+<I>Operand 2</I>:  Character(1,2,4,8) variable scalar.
+<P>
+<I>Operand 3</I>:  Character(1,2,4,8) scalar.
+<P>
+<I>Operand 4&nbsp;&#91;4-5&#93;</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Instruction
+number, relative instruction number, branch point,
+or instruction pointer.
+<P><LI>
+<I>Indicator Form</I>-Numeric
+variable scalar or character variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P><A NAME="cmpswp"></A>Built-in number for CMPSWP is 156.
+CMPSWP (
+        op1   : address of a scalar(1,2,4,8) value
+        op2   : address of a scalar(1,2,4,8) value (has alignment
+                restrictions based on the length of the scalar - see
+                description below)
+        op3   : scalar(1,2,4,8) value
+) :   signed binary(4)
+</PRE>
+<P>If the values of op1 and op2 are equal, the value 1 is returned.
+Otherwise, the value 0 is returned.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The value of the first compare operand
+is compared with the value of the
+second compare
+operand.  If they are equal, the <I>swap</I> operand is stored in the
+second compare operand's
+location.  If they are unequal, the second compare operand is stored
+into the first compare operand's location.
+Based on the comparison,
+the resulting condition is used with the extender field to:
+<UL>
+<P><LI>
+Transfer
+control conditionally to the instruction indicated
+in one of the branch target operands (branch form).
+<P><LI>
+Assign
+a value to each of the indicator operands (indicator form).
+</UL>
+<P>
+When an equal comparison occurs, it is assured that no access by another
+Compare and Swap instruction will occur at the second compare operand
+location
+between the moment that the second compare operand is fetched for
+comparison and the moment that the <I>swap</I> operand is stored at the
+second compare operand location.
+<P>
+When an unequal comparison occurs, no atomicity guarantees are made
+regarding the store to the first compare operand location and other
+Compare and Swap instruction access.
+Thus only the second compare operand should be a variable shared for
+concurrent processing control.
+<P>
+Both compare operands must be 1, 2, 4 or 8 byte character variable
+scalars and the <I>swap</I> operand must be
+a 1, 2, 4 or 8 byte character
+scalar.  All three operands must have the same length.  Failure to have
+the operands the same length will not be detected and the results of the
+Compare and Swap instruction are undefined when this occurs.  The second
+operand must be aligned based on its length:
+<P>
+<UL>
+<P><LI>one byte length   - no alignment restrictions
+<P><LI>two byte length   - halfword aligned
+<P><LI>four byte length  - fullword aligned
+<P><LI>eight byte length - doubleword aligned
+</UL>
+Failure to have the second operand aligned properly will not be detected,
+but the results of the Compare and Swap instruction are undefined when
+this occurs.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Equal-The first
+compare operand is equal
+to the second compare operand.
+<P><LI>Unequal -The first
+compare operand is unequal
+to the second compare operand.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+
+</body>
+
+</HTML>

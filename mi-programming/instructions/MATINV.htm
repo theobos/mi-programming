@@ -1,0 +1,659 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATINV Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Invocation (MATINV)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0516
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Selection information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P><I>Operand 2</I>:  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATINV is 149.
+MATINV (
+        receiver                : address
+        selection_information   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>The attributes of the invocation selected through operand 2 are
+materialized into the <I>receiver</I> designated by operand 1.
+<P>Operand 2 is a space pointer that addresses a template that has the
+following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Control information
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Template extension
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Template extension is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Template extension is present.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Invocation number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to list of parameters
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of parameter ODV numbers
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to list of exception descriptions
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of exception description ODV numbers
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template extension (optional)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(14)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Offset to list of space pointer machine objects
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of space pointer machine object ODV numbers
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Fields annotated with a (+) must be set to all binary 0s if the
+invocation is not for a non-bound program. Otherwise, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+</TD></TR></TABLE>
+<P>The <B><U>offset to list of space pointer machine objects</U></B>, <B><U>offset to
+list of parameters</U></B>, and the <B><U>offset to list of exception
+descriptions</U></B> are relative to the start of the operand 2 template.
+Each list is an array of Char(2) ODV numbers.  The <B><U>number of space
+pointer machine object ODV numbers</U></B>, <B><U>number of parameter ODV numbers</U></B>,
+and <B><U>the
+number of exception description ODV numbers</U></B> define the sizes of
+the arrays.
+<P>Operand 1 is a space pointer that addresses a 16-byte aligned
+template into which the materialized data is placed.  The format of the
+data is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Materialization size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided by the user
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object identification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Trace specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Invocation trace status
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not tracing new invocations
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Tracing new invocations
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Return trace
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not tracing returns
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Tracing returns
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Invocation trace propagation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not propagating invocation trace
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Propagating invocation trace
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Return trace propagation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not propagating return trace
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Propagating return trace
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">42
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The following fields are returned only for non-bound program invocations.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">42
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Instruction number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to parameter values
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to exception description value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">52
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to space pointer machine object values
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(Optional-This data is present only if the
+template extension is present in the
+selection information.)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer machine objects
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(Optional-This data is present only if the
+template extension is present in the
+selection information.)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">For each ODV number specified for a
+space pointer machine object, the value
+of the space pointer machine object is
+materialized as follows:
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">&#91;*&#93; Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(15)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Pointer value indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>Addressability value is not valid
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Addressability value is valid
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Space pointer data object containing
+the space pointer machine object value
+if addressability value is valid.
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Parameters
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">For each parameter ODT number specified,
+the address of the parameter data is
+materialized (If no parameter ODT
+numbers are materialized, this
+parameter is binary 0.)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">&#91;*&#93; Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception description
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">For each exception description ODT number
+specified, the following is materialized:
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">&#91;*&#93; Char(36)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Control flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Exception handling action
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 0-2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Ignore occurrence of exception and continue processing
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Disabled exception description
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Continue search for an exception description by resignaling the
+exception to the immediately preceding invocation
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Defer handling
+</TD></TR><TR VALIGN="TOP"><TD>101 =
+</TD><TD>Pass control to the specified exception handler
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 3-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Compare value length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Compare value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+The first 4 bytes of the materialization identify the total <B><U>number of
+bytes provided</U></B> for use by the instruction.
+This value is supplied as input to the instruction and is not modified
+by the instruction.  A value of less than 8 causes the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+to be signaled.
+<P>The second 4 bytes of the materialization identify the total <B><U>number
+of bytes available</U></B>
+to be materialized.  The instruction materializes as
+many bytes as can be contained in the area
+specified as the <I>receiver</I>.
+If the byte area identified by the <I>receiver</I> is greater than that
+required to contain the information requested, then excess bytes are
+unchanged.
+<P>No exceptions (other than the <I> materialization length invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception)
+are
+signaled in the event that the <I>receiver</I> contains
+insufficient area for
+the materialization.
+<P>The instruction number returned depends on how control was passed
+from the invocation:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Exit Type</B>
+</TD><TD><P><B>Instruction Number</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>Call External
+</TD><TD><P>Locates the Call External instruction
+</TD></TR><TR VALIGN="TOP"><TD><P>Event
+</TD><TD><P>Locates the next instruction to execute
+</TD></TR><TR VALIGN="TOP"><TD><P>Exception
+</TD><TD><P>Locates the instruction that caused the exception
+</TD></TR></TABLE>
+The space pointers that address parameter values are returned in the
+same order as the corresponding ODT numbers in the input array.  The
+same is true for the exception description values.
+<P>If the <I>offset to list of parameters</I>
+or the <I>number of parameter
+ODT numbers</I> is 0, no parameters are returned and the <I>offset to
+parameters</I> value is 0.  If any parameters are returned, they are
+16-byte aligned.  If the <I>offset to list of exception
+descriptions</I> or
+the <I>number of exception description ODT numbers</I>
+is 0, no exception
+descriptions are returned and the <I>offset to exception description
+values</I> are 0.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>1E Machine Observation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1E01.htm">1E01 Program Not Observable</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3202.htm">3202 Scalar Attributes Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3802.htm">3802 Template Size Invalid </A>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

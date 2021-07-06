@@ -1,0 +1,180 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> TESTTOBJ Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Test Temporary Object (TESTTOBJ)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2 &#91;3&#93;
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>TESTTOBJB</B>
+1CA1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Object
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>TESTTOBJI</B>
+18A1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Object
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  System pointer.
+<P>
+<I>Operand 2</I> &#91;3&#93;:
+<P>
+<UL>
+<P><LI>
+<I>Branch Form</I>-Instruction
+number, relative instruction number, branch point, or
+instruction pointer.
+<P><LI>
+<I>Indicator Form</I>-Numeric
+variable scalar or character variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TESTTOBJ is 462.
+TESTTOBJ (
+          object   : address of system pointer
+) :   signed binary(4) /* return_code */
+</PRE>
+<P>The return code will be set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>1
+</B></TD><TD><P>Pointer addresses temporary object
+</TD></TR><TR VALIGN="TOP"><TD><P><B>0
+</B></TD><TD><P>Pointer does not address temporary object (permanent object)
+</TD></TR></TABLE>
+<P>This built-in function is used to provide support for the branch
+and indicator forms of the TESTTOBJ operation.  The user
+must specify code to process the <VAR>return code</VAR> and
+perform the desired branching or indicator setting.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The object addressed by the pointer in operand 1 is checked to
+determine if it is a temporary object.
+<P><B>Note: </B>A temporary object is an object that does not persist across
+IPL's.  It is automatically destroyed at system termination.
+<P>Based on results, the resulting condition is used with the extender
+to transfer control (branch form) or to assign a value to indicator
+operand (indicator form).
+<P><B>Operand 1</B>
+<P>The <I>object</I> to be tested is addressed by this system pointer.
+Any system object can be tested.  An unresolved system pointer will be
+resolved by this instruction.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Temporary-The object specified by the system pointer is
+a temporary object.
+<P>This is the equal condition.
+<P><LI>Not temporary-The object specified by the system pointer is
+not a temporary object.  It is a permanent object.
+<P>This is the unequal condition.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>Object management
+<UL>
+<P><LI>Operand 1
+</UL>
+<P><LI>Execute
+<UL>
+<P><LI>Context referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>Materialize
+<UL>
+<P><LI>Operand 1
+<P><LI>Context referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2204.htm">2204 Object Not Eligible for Operation</A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

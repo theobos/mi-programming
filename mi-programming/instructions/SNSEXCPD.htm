@@ -1,0 +1,607 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SNSEXCPD Instruction </title>
+		<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Sense Exception Description (SNSEXCPD)</H1>
+<P>
+
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03E3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Invocation template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Exception template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<P>
+<I>Operand 3</I>:  Space pointer.
+<P><B>Note: </B>A change has been made in the way in which exceptions are handled
+for bound programs.  This instruction is intended for use
+with non-bound programs, but can be used against
+bound programs.  The data that is returned when
+a bound program
+is accessed will always say that there is an external
+handler for the sensed exception, that there is no exception data being
+returned and a starting exception description number of 0.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This
+instruction searches the invocation specified by
+operand 2 for an exception description that matches
+the <I>exception identifier</I> and <I>compare value</I>
+specified by operand 3 and returns the <I>user data</I>
+and <I>exception handling action</I> specified in the
+exception description.  The exception descriptions
+of the invocation are searched in ascending Object Definition Table (ODT)
+number sequence.
+<P>
+The template identified by operand 1 must be 16-byte aligned.
+<P>
+The format of the <I>attribute receiver</I> is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Control flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Exception handling action
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 0-2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+000 =
+</TD><TD>
+Do not handle- Ignore occurrence of
+exception and continue processing
+</TD></TR><TR VALIGN="TOP"><TD>
+010 =
+</TD><TD>
+Do not handle- Continue search for an
+exception description by resignaling the
+exception to the immediately preceding
+invocation
+</TD></TR><TR VALIGN="TOP"><TD>
+100 =
+</TD><TD>
+Defer handling- Save exception data for
+later exception handling
+</TD></TR><TR VALIGN="TOP"><TD>
+101 =
+</TD><TD>
+Pass control to the specified exception
+handler
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">No data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Exception data is returned
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Exception data is not
+returned
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">User data indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+User data not present
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+User data present
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 6-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Exception handler type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 8-9
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+00 =
+</TD><TD>
+External entry point
+</TD></TR><TR VALIGN="TOP"><TD>
+01 =
+</TD><TD>
+Internal entry point
+</TD></TR><TR VALIGN="TOP"><TD>
+10 =
+</TD><TD>
+Branch point
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 10-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Relative exception description number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Pointer to user data (binary 0 if value of
+user data indicator is 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The first 4 bytes of the materialization identify
+the total <B><U>number of bytes provided</U></B> for use by the
+instruction.  This value is supplied as input to the
+instruction and is not modified by the
+instruction.  A value of less than 8 causes the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+to be signaled.
+<P>
+The second 4 bytes of the materialization identify
+the total <B><U>number of bytes available</U></B> to be
+materialized.  The instruction materializes as many
+bytes as can be contained in the area specified
+as the receiver.  If the byte area identified by the
+receiver is greater than that required to
+contain the information requested, then the excess
+bytes are unchanged.  No exception is signaled
+in the event the receiver contains insufficient area
+for the materialization, other than the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+described previously.
+<P>
+The <B><U>relative exception description number</U></B> field identifies
+the relative number of the exception
+description that matched the search criteria.  The
+order of definition of the exception
+descriptions in the ODT determines the value of the
+index.  A value of 1 indicates that the first
+exception description defined in the ODT matched the search criteria.
+<P>
+The format of the <I>invocation template</I> is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation address/offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+or
+Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Search flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Use offset option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Use invocation address as a pointer value
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Use invocation address as an offset value
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">First exception description to search
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The template identified by operand 2 must be 16-byte
+aligned.  The <B><U>invocation address/offset</U></B> field is a
+space/invocation pointer that identifies the invocation to be searched.
+The invocation is searched for a matching exception description.
+If the <I>invocation address</I> locates
+either an invalid invocation or the invocation stack
+base entry, the <I>invalid invocation address</I> (hex <A HREF="../exceptions/EX1603.htm">1603</A>)
+exception is signaled.
+<P>
+The <I>invocation address/offset</I> field can also be
+an offset value from the current requesting invocation
+to the invocation to be searched.  This is setting the <B><U>use offset option</U></B>
+bit field that follows the <I>invocation address</I> field to 1.
+If the <I>invocation offset</I> value locates the invocation stack
+base entry, the <I> invocation offset outside range of current stack&nbsp; </I> (hex <A HREF="../exceptions/EX2C1A.htm">2C1A</A>) exception
+is signaled.
+If the <I>invocation offset</I> value is positive or zero, a <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+is signaled.
+<P>
+The <B><U>first exception description to search</U></B> field specifies
+the relative number of the exception
+description to be used to start the search.  The number
+must be a nonzero positive binary number
+determined by the order of definition of exception
+descriptions in the ODT.  A value of 1 indicates
+that the first exception description in the invocation
+is to be used to begin the search.  If the
+value is greater than the number of exception descriptions
+for the invocation, the operand 1 template is materialized with
+the <I>number of bytes available</I> for materialization set to 0.
+<P>
+The operand 3 <I>exception template</I> specifies the
+exception-related data to be used as a search
+argument.  The format of the template is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+(must be at least 44)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare value length (maximum of 32)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Fields noted with a plus sign (+) are
+ignored by the instruction.
+</TD></TR></TABLE>
+<P>
+The <B><U>exception identifier</U></B> in the exception description
+can be specified in one of the following ways:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex 0000 =
+</TD><TD><P>
+Any exception
+ID will result in a match
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex nn00 =
+</TD><TD><P>
+Any exception ID in class nn will result
+in a match
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex nnmm =
+</TD><TD><P>
+Only exception ID nnmm will result in a
+match
+</TD></TR></TABLE>
+If a match on <I>exception ID</I> is detected, the corresponding <B><U>compare values</U></B> are matched.  If the <I>compare value length</I> in the exception description is
+less than the <I>compare value</I> in the search
+template, the length of the <I>compare value</I> in the
+exception description is used for the match.  If
+the <I>compare value length</I> in the exception description
+is greater than the <I>compare value</I> in the
+search template, an automatic mismatch results.
+<P>
+If a match on <I>exception ID</I> and <I>compare value</I>
+is detected,
+the exception handling action of the exception description
+determines which of the following actions is taken:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>
+IGNORE
+</I></TD><TD><P>
+The operand 1
+template is materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+DISABLE
+</I></TD><TD><P>
+The exception description is bypassed
+and the search for an exception
+description continues with the next exception description defined for the
+invocation.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+RESIGNAL
+</I></TD><TD><P>
+The operand 1 template
+is materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+DEFER
+</I></TD><TD><P>
+The operand 1 template
+is materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+HANDLE
+</I></TD><TD><P>
+The operand
+1 template is materialized.
+</TD></TR></TABLE>
+If no exception description of the invocation matches
+the <I>exception ID</I> and <I>compare value</I> of operand
+3, the <I>number of bytes available for materialization</I>
+on the operand 1 template is set to 0.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>16 Exception Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1603.htm">1603 Invalid Invocation Address</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C1A.htm">2C1A Invocation Offset Outside Range of Current Stack</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3802.htm">3802 Template Size Invalid </A>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

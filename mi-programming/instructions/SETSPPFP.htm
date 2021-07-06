@@ -1,0 +1,197 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SETSPPFP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Set Space Pointer from Pointer (SETSPPFP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0022
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Data pointer, system pointer, or space pointer.&nbsp;
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SETSPPFP is 141.
+SETSPPFP (
+          source_pointer   : system pointer OR
+                             data pointer OR<font color=blue>
+                             space pointer(16)</FONT>
+) :   address /* receiver */
+</PRE>
+<P>The <VAR>source pointer</VAR> operand corresponds to operand 2 on
+the SETSPPFP operation.  The return value corresponds to operand 1
+after the function completes.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+A space pointer is returned in operand 1
+with the addressability to a space from the pointer
+specified by operand 2.
+<P>
+The meaning of the pointers allowed for operand 2 is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Pointer
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+Data pointer or
+space pointer
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">
+The space pointer returned
+in operand 1 is set to address
+the same byte
+addressed by the operand 2 source pointer.
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+System pointer
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="99%">
+The space pointer returned in operand 1 is
+set to address the first byte of the space
+associated with
+the system object addressed by the system pointer for operand 2.
+The space
+addressed is either the created system
+space or an associated space for the system
+object addressed by the system pointer.
+If
+the operand 2 system pointer addresses a
+system object with no associated space, the <I> invalid space reference&nbsp; </I> (hex <A HREF="../exceptions/EX0605.htm">0605</A>) exception
+is signaled.
+<BR></TD></TR></TABLE>
+<P>
+The <I> object destroyed&nbsp;</I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception, <I> parameter reference violation&nbsp;</I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception,
+and <I> pointer does not exist&nbsp; </I> (hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+are not signaled when operand 1 and
+operand 2 are space pointer machine objects.  This occurs when operand 2
+contains an internal
+machine value that indicates one of these error conditions
+exists.  If the corresponding exception
+is not signaled, operand 1 is set with an internal machine
+value that preserves the exception
+condition that existed for operand 2.  The appropriate
+exception condition will be signaled for
+either pointer when a subsequent attempt is made to reference
+the space data that the pointer addresses.
+<P>If operand 2 is a system pointer to a XOM object, the <I> object not eligible for operation&nbsp; </I> (hex <A HREF="../exceptions/EX2204.htm">2204</A>) exception
+will be signalled.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Space authority
+<UL>
+<P><LI>
+Operand 2 (if a system pointer)
+</UL>
+<P><LI>
+Execute
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0604.htm">0604 External Data Object Not Found</A>
+<DD><A HREF="../exceptions/EX0605.htm">0605 Invalid Space Reference</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>16 Exception Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1604.htm">1604 Retry/Resume Invalid </A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2204.htm">2204 Object Not Eligible for Operation</A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

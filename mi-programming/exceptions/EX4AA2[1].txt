@@ -1,0 +1,347 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4AA2 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4AA2
+</B></TD><TD><P><I>Java Verify Error
+</I>
+<P>
+A Java class file failed to pass bytecode verification.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Class file pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Class number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Java method number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bytecode offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>class file pointer</U></B> addresses the vnode of
+the Java class file or Java archive (JAR) file containing
+the error being reported.
+<P>If the <I>class file pointer</I> addresses the vnode
+of a JAR file, the <B><U>class number</U></B> indicates, by index, which
+class in the JAR file contains the error.  If the <I>class
+file pointer</I> addresses the vnode of a Java class file, <I>class number</I> is zero.
+<P>The <B><U>Java method number</U></B> is the index of the Java method within
+the Java class containing the bytecode in error.
+<P>The <B><U>bytecode offset</U></B> is the byte offset into the
+Java method identified by <I>method number</I> at which the error
+occurs.
+<P>The <B><U>reason code</U></B> indicates the specific reason
+for the exception, and is one of the following&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Reason</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>00000001
+</TD><TD><P>"InvalidBytecode"&#58; A byte was encountered
+in the bytecode stream that is not a valid Java bytecode.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000002
+</TD><TD><P>"InvalidWideBytecode"&#58; A byte was encountered
+following the wide bytecode that is not one of the bytecodes that
+can be modified by the wide bytecode.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000003
+</TD><TD><P>"InvalidLiteralValue"&#58; An immediate operand of
+a bytecode has an invalid value.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000004
+</TD><TD><P>"InvalidLocalVariableIndex"&#58; A local variable index
+operand of a bytecode is not in the range of valid local variable index values.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000005
+</TD><TD><P>"InvalidConstantIndex"&#58; A constant index operand of a
+bytecode is not in the range of valid constant index values.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000006
+</TD><TD><P>"BranchOffsetOutOfRange"&#58; A branch offset operand of
+a bytecode does not produce a branch within the current bytecode stream.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000007
+</TD><TD><P>"SplitBytecode"&#58; A branch target or exception range value
+does not specify a valid bytecode boundary.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000008
+</TD><TD><P>"DanglingCodeBlock"&#58; A method does not end with an
+unconditional branch, throw, or return.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000009
+</TD><TD><P>"StackUnderflow"&#58; An attempt was made to pop more values
+than are on the stack.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000A
+</TD><TD><P>"StackOverflow"&#58; An attempt was made to push more
+values than will fit in the specified stack size.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000B
+</TD><TD><P>"StackDepthMismatch"&#58; Where control flows join, stack
+depths are not equal.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000C
+</TD><TD><P>"ClassRefRequired"&#58; A bytecode requires a Classref
+constant, but the specified constant is not a Classref.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000D
+</TD><TD><P>"FieldRefRequired"&#58; A bytecode requires a
+Fieldref constant, but the specified constant is not a Fieldref.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000E
+</TD><TD><P>"MethodRefRequired"&#58; A bytecode requires a Methodref
+constant, but the specified constant is not a Methodref.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000F
+</TD><TD><P>"InterfaceMethodRefRequired"&#58; A bytecode
+requires an InterfaceMethodref constant, but the specified constant
+is not an InterfaceMethodref.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000010
+</TD><TD><P>"WrongDataType"&#58; A bytecode requires a certain
+type of stack operand, but the operand present is a different type.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000011
+</TD><TD><P>"WrongObjectTypeForAastore"&#58; (Not used)
+</TD></TR><TR VALIGN="TOP"><TD><P>00000012
+</TD><TD><P>"JsrRecursion"&#58; A jsr bytecode is being attempted
+from within the subroutine that is the jsr target.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000013
+</TD><TD><P>"SplitLongOrDouble"&#58; An attempt was made to reference
+one word of a two-word stack operand.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000014
+</TD><TD><P>"WrongReturnType"&#58; The type of the stack value supplied
+to a return bytecode does not match the type expected by the return bytecode.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000015
+</TD><TD><P>"WrongNumberOfParameters"&#58; (Not used)
+</TD></TR><TR VALIGN="TOP"><TD><P>00000016
+</TD><TD><P>"InitInvocationError"&#58; An &lt;init&gt; or &lt;clinit&gt; method
+is called in the wrong context.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000017
+</TD><TD><P>"WrongClassForInit"&#58; An attempt is made to call &lt;init&gt;
+with an operand that is not the target class or derived from the target class.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000018
+</TD><TD><P>"AmbiguousClassForInit"&#58; The class of the object
+passed to an &lt;init&gt; method is ambiguous.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000019
+</TD><TD><P>"InitingNonNewObject"&#58; An attempt is made to
+call &lt;init&gt; for an object which has already been processed by &lt;init&gt;.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001A
+</TD><TD><P>"InitClassNotThisOrSuper"&#58; An attempt is made to
+call &lt;init&gt; from within an &lt;init&gt; method, and the target class
+is not the 'this' class or superclass of 'this' class.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001B
+</TD><TD><P>"MethodNotFound"&#58; The specified method is not a
+member of the specified class.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001C
+</TD><TD><P>"FieldNotFound"&#58; The specified field is not a
+member of the specified class.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001D
+</TD><TD><P>"JsrReturnPointerNotSet"&#58; The return address for
+a JSR must be fully set.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001E
+</TD><TD><P>"MultipleJsrReturns"&#58; Each JSR return target must
+have only one RET predecessor.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000001F
+</TD><TD><P>"BytecodeEndsOutOfRange"&#58; An instruction extends
+beyond the end of the code stream.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000020
+</TD><TD><P>"MaxLocalsTooSmallForParms"&#58; The total number of
+parameters must be less than or equal to the number of local variables.
+</TD></TR><TR VALIGN="TOP"><TD><P>00001425
+</TD><TD><P>For an interface class, <I>super_class</I> must refer to a CONSTANT_Class
+constant pool entry which represents the class 'java.lang.Object'.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002202
+</TD><TD><P>For a CONSTANT_Class constant pool entry, <I>name_index</I>
+must refer to a CONSTANT_UTf8 constant pool entry.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002203
+</TD><TD><P>For a CONSTANT_Class constant pool entry, <I>name_index</I> must refer to a
+CONSTANT_Utf8 constant pool entry representing a fully qualified Java class
+name that has been converted to the internal format. (All-numeric
+identifiers are allowed.)
+</TD></TR><TR VALIGN="TOP"><TD><P>00002306
+</TD><TD><P>For a CONSTANT_Fieldref constant pool entry, <I>name_and_type_index</I> must
+refer to a CONSTANT_NameAndType constant pool entry containing a valid field descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002408
+</TD><TD><P>For a CONSTANT_Methodref constant pool entry, <I>name_and_type_index</I> must
+refer to a CONSTANT_NameAndType constant pool entry containing a valid method signature.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002508
+</TD><TD><P>For a CONSTANT_InterfaceMethodref constant pool entry, <I>name_and_type_index</I> must refer to a CONSTANT_NameAndType constant pool entry
+containing a valid method signature.
+</TD></TR><TR VALIGN="TOP"><TD><P>00002B06
+</TD><TD><P>For a CONSTANT_NameAndType constant pool entry, <I>descriptor_index</I> must
+refer to a CONSTANT_Utf8 constant pool entry representing a valid Java field or method
+descriptor.
+</TD></TR><TR VALIGN="TOP"><TD><P>00005303
+</TD><TD><P>For a method_info structure, <I>descriptor_index</I> must refer to
+a CONSTANT_Utf8 constant pool entry representing a valid method descriptor.
+</TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

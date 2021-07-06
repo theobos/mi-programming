@@ -1,0 +1,420 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 2A1B Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>2A1B
+</B></TD><TD><P><I>Instruction Stream Not Valid
+</I>
+<P>
+The object was not created because the sequence of instruction stream
+objects is not valid.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT> 1 </TT>
+</TD><TD>Undefined MI operation code.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 2 </TT>
+</TD><TD>Invalid type table index.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 3 </TT>
+</TD><TD>Invalid dictionary number.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 4 </TT>
+</TD><TD>Invalid label identifier.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 5 </TT>
+</TD><TD>One or more instructions are out of sequence.
+Typically signaled when the first instruction in a procedure is not ENT.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 6 </TT>
+</TD><TD>The dictionary id on the END instruction does not match the
+dictionary id on first ENT instruction in the current procedure.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 7 </TT>
+</TD><TD>An operand of an MI instruction has an invalid value.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 8 </TT>
+</TD><TD>The data type of the stack operand(s) is invalid for the operation
+being attempted.
+</TD></TR><TR VALIGN="TOP"><TD><TT> 9 </TT>
+</TD><TD>The length of the stack operand(s) is invalid for the operation
+being attempted.
+</TD></TR><TR VALIGN="TOP"><TD><TT>10 </TT>
+</TD><TD>An operand of a load instruction has an invalid data type.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT>11 </TT>
+</TD><TD>An object which is loaded has scope greater than the current
+procedure's scope.
+</TD></TR><TR VALIGN="TOP"><TD><TT>12 </TT>
+</TD><TD>The target of a STR operation in the bound program instruction stream
+is not a variable, or the target is a register variable and either offset
+or typeNo are nonzero.
+</TD></TR><TR VALIGN="TOP"><TD><TT>13 </TT>
+</TD><TD>The MI value stack is not empty at a label, jump, or other point in
+the instruction stream at which the MI architecture asserts it must.
+</TD></TR><TR VALIGN="TOP"><TD><TT>14 </TT>
+</TD><TD>The MI value stack has fewer items on it than need to be popped.
+</TD></TR><TR VALIGN="TOP"><TD><TT>15 </TT>
+</TD><TD>The values retrieved from the MI value stack are not compatible.
+</TD></TR><TR VALIGN="TOP"><TD><TT>16 </TT>
+</TD><TD>The data type of the stack operands is invalid for the comparison
+being attempted, (i.e.  UNORD on binary dt).
+</TD></TR><TR VALIGN="TOP"><TD><TT>17 </TT>
+</TD><TD>There is control flow in the bound program which reaches either a
+secondary entry point or an END instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>18 </TT>
+</TD><TD>No exception handlers are currently enabled when a DHNDLR is
+encountered.
+</TD></TR><TR VALIGN="TOP"><TD><TT>19 </TT>
+</TD><TD>A DHNDLR instruction specifies an exception handler that was not the
+last one enabled.
+</TD></TR><TR VALIGN="TOP"><TD><TT>20 </TT>
+</TD><TD>A LAB instruction was encountered where the label qualifier was not
+one of:  FwdOnlyLabel (1) or GeneralLabel (2).
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT>21 </TT>
+</TD><TD>An object in the dictionary with the "is_reg" attribute lacks one or
+more of the required characteristics for inclusion in the machine
+storage class.  For example, the dictionary object is the target of a
+LDA operation, or the dictionary object has its data type or length
+superseded with a type table entry on a load or store operation.
+</TD></TR><TR VALIGN="TOP"><TD><TT>22 </TT>
+</TD><TD>A blocked built-in function is called.
+</TD></TR><TR VALIGN="TOP"><TD><TT>23 </TT>
+</TD><TD>An invalid built-in function number in CALLBI instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>24 </TT>
+</TD><TD>An invalid alias union id in PALI instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>25 </TT>
+</TD><TD>An invalid pali flag in PALI instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>26 </TT>
+</TD><TD>A switch-specific operation (i.e.  CASE, DEFAULT, BRK, ENDS) was
+encountered outside of a SWE-ENDS block.
+</TD></TR><TR VALIGN="TOP"><TD><TT>27 </TT>
+</TD><TD>Two CASE ranges were found with one or more elements in common,
+violating the requirement that all CASE ranges be totally disjoint.
+</TD></TR><TR VALIGN="TOP"><TD><TT>28 </TT>
+</TD><TD>The low selector value for the range of a CASE statement is greater
+than the high selector value.
+</TD></TR><TR VALIGN="TOP"><TD><TT>29 </TT>
+</TD><TD>A second DEFAULT case was found for a switch statement in the
+instruction stream.
+</TD></TR><TR VALIGN="TOP"><TD><TT>30 </TT>
+</TD><TD>Built-in OPMPARMADDR or OPMPARMCNT is not invoked from PEP.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT>31 </TT>
+</TD><TD>A required built-in function argument was not specified.
+</TD></TR><TR VALIGN="TOP"><TD><TT>35 </TT>
+</TD><TD>The number of arguments specified for a built-in function is
+incorrect.
+</TD></TR><TR VALIGN="TOP"><TD><TT>36 </TT>
+</TD><TD>The null op mask specifies an argument that is not valid.
+</TD></TR><TR VALIGN="TOP"><TD><TT>37 </TT>
+</TD><TD>A switch statement is still active (i.e.  the ENDS operation for an
+open switch has not been encountered) at the END of a procedure.
+</TD></TR><TR VALIGN="TOP"><TD><TT>38 </TT>
+</TD><TD>All three labels on a MiCMPB operation were found to equal zero.
+</TD></TR><TR VALIGN="TOP"><TD><TT>39 </TT>
+</TD><TD>Built-in function NPMPARMLISTADDR was invoked from PEP.
+</TD></TR><TR VALIGN="TOP"><TD><TT>40 </TT>
+</TD><TD>A label that was the target of a jump (FJP,TJP,CMPB,UJP) was not
+found in the instruction stream.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT>41 </TT>
+</TD><TD>A label that is in the dictionary, and that is indicated therein to
+have had its address taken, was not found in the instruction stream.
+</TD></TR><TR VALIGN="TOP"><TD><TT>42 </TT>
+</TD><TD>A label constant on the stack when IJMP was encountered was now
+owned by the current procedure being translated.
+</TD></TR><TR VALIGN="TOP"><TD><TT>43 </TT>
+</TD><TD>A data object which has been allocated to a machine storage class is
+the target of a LDA instruction, has its address referenced from the
+initialization component, or is used as an exception handler
+communication area.  This situation can occur if the front end did not
+set the addr_taken flag for the data object (or for the data object's
+owner if it is the member of a aggregate).
+</TD></TR><TR VALIGN="TOP"><TD><TT>44 </TT>
+</TD><TD>An item loaded on the stack which can be validated at translate time
+has an invalid value.
+</TD></TR><TR VALIGN="TOP"><TD><TT>45 </TT>
+</TD><TD>Procedures in the instruction stream are out of order.  When a
+module contains nested procedures, there is a requirement that before
+procedure 'x' is translated all of the lexically enclosing parents of
+procedure 'x' be translated.
+</TD></TR><TR VALIGN="TOP"><TD><TT>46 </TT>
+</TD><TD>A data object which is referenced from a nested procedure doesn't
+have the Nested Use attribute set.
+</TD></TR><TR VALIGN="TOP"><TD><TT>47 </TT>
+</TD><TD>No exception handlers were defined in a procedure that requires one,
+for instruction INITEHCA, e.g..
+</TD></TR><TR VALIGN="TOP"><TD><TT>48 </TT>
+</TD><TD>A RSTSCA instruction was found in the instruction stream without
+a corresponding SAVSETCA instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>49 </TT>
+</TD><TD>Multiple RSTSCA instructions encountered in the instruction
+stream before a statement boundary.
+</TD></TR><TR VALIGN="TOP"><TD><TT>50 </TT>
+</TD><TD>Multiple SAVSETCA instructions encountered in the instruction
+stream before a statement boundary.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><TT>51 </TT>
+</TD><TD>A SAVSETCA instruction was found in the instruction stream
+without a corresponding RSTSCA instruction.
+</TD></TR><TR VALIGN="TOP"><TD><TT>52 </TT>
+</TD><TD>Implicit exception boundary flag not set for machine operation.
+</TD></TR><TR VALIGN="TOP"><TD><TT>53 </TT>
+</TD><TD>An OPM monitor was defined but never enabled in the module.
+</TD></TR><TR VALIGN="TOP"><TD><TT>54 </TT>
+</TD><TD>Data type and length in the function prototype component is
+not compatible with the data type and length of a parameter defined
+by a PSTR or the argument on a call bound procedure operation.
+</TD></TR><TR VALIGN="TOP"><TD><TT>55 </TT>
+</TD><TD>The number of parameters in the function prototype component
+is not equal to the number of parameters defined by PSTRs or the
+number of arguments on a call bound procedure operation.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current instruction count
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current instruction offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current instruction opcode
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current statement number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Machine log note ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

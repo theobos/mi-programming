@@ -1,0 +1,129 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SETHSSMK Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Set Activation Group-Based Heap Space Storage Mark (SETHSSMK)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03B6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mark identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Heap identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer data object.
+<P>
+<I>Operand 2</I>:  Binary(4) scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SETHSSMK is 118.
+SETHSSMK (<font color=blue>
+          mark_identifier   : address of space pointer(16)</FONT>
+          heap_identifier   : address of signed binary(4)
+)
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "heap space" in this instruction refers to an
+"activation group-based heap space".
+<P>
+<H5><A Name="Header_2">Description</A></H5>
+<P>
+The heap space identified by operand 2 is marked and the <I>mark
+identifier</I> is returned in operand 1.
+<P>
+Marking a heap space allows a subsequent
+Free Activation Group-Based Heap Space Storage from Mark (<A HREF="FREHSSMK.htm">FREHSSMK</A>)
+instruction, using the <I>mark identifier</I> returned in operand 1,
+to free all outstanding allocations that were performed against the heap
+space since the heap space was marked with that mark identifier.  This
+relieves the user of performing a
+Free Activation Group-Based Heap Space Storage (<A HREF="FREHSS.htm">FREHSS</A>)
+for every individual heap space allocation.
+<P>
+A heap space may have multiple marks.
+<P>
+The <I>heap identifier</I> specified in operand 2 is the identifier
+that was returned on the
+Create Activation Group-Based Heap Space (<A HREF="CRTHS.htm">CRTHS)</A>
+instruction.  An attempt to mark the default heap space (heap identifier
+value of 0) will result in an <I> invalid request&nbsp;</I> (hex <A HREF="../exceptions/EX4502.htm">4502</A>) exception.
+An attempt to mark a heap space that has been created to not allow a Set
+Heap Space Storage Mark will result in an <I> invalid request&nbsp;</I> (hex <A HREF="../exceptions/EX4502.htm">4502</A>) exception.
+<P>Operand 2 is not modified by the instruction.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C09.htm">1C09 Auxiliary Storage Pool Number Invalid</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+<DD><P>45 Heap Space
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4501.htm">4501 Invalid Heap Identifier</A>
+<DD><A HREF="../exceptions/EX4502.htm">4502 Invalid Request</A>
+<DD><A HREF="../exceptions/EX4503.htm">4503 Heap Space Full</A>
+<DD><A HREF="../exceptions/EX4505.htm">4505 Heap Space Destroyed</A>
+<DD><A HREF="../exceptions/EX4506.htm">4506 Invalid Heap Space Condition </A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

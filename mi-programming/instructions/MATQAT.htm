@@ -1,0 +1,852 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATQAT Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Queue Attributes (MATQAT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0336
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Queue
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE><P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  System pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATQAT is 44.
+MATQAT (
+        receiver   : address
+        queue      : address of system pointer
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The attributes of the <I>queue</I> specified by operand 2
+are materialized into the <I>receiver</I> specified by operand 1.
+The <I>receiver</I> must be
+aligned on a 16-byte multiple.
+The format of the materialized queue attributes
+is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Materialization size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#nobp">Number of bytes provided for materialization</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#noba">Number of bytes available for materialization</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><A HREF="#oi">Object identification</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#oi">Object type</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Object name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object creation options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#ea">Existence attributes</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Temporary
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Permanent
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#sa">Space attribute</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Fixed-length
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Variable-length
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#ic">Initial context</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Addressability not in context
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Addressability in context
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#ag">Access group</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not a member of access group
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Member of access group
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-12
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#is">Initialize space</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 13
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 14-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Size of space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">52
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><A HREF="#is">Initial value of space</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Performance class
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>The space associated with
+the object is allocated to
+allow proper alignment of
+pointers at 16-byte alignments within the space.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>The space associated with
+the object is allocated to
+allow proper alignment of
+pointers at 16-byte alignments within the space as
+well as to allow proper
+alignment of input/output
+buffers at 512-byte alignments within the space.
+</TD></TR></TABLE>
+Ignore the value of this field when
+the <I>machine chooses space alignment</I> field has a value of
+binary 1.
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Machine chooses space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+The space alignment indicated by the <I>space alignment</I>
+field is in effect.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+The machine chose the space alignment most beneficial to
+performance, which may have reduced maximum space capacity.
+The alignment chosen is a multiple of 512.
+Ignore the value of the <I>space alignment</I> field.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Main storage pool selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Process default main storage
+pool is used for object.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Machine default main storage
+pool is used for object.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Block transfer on implicit access state modification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Transfer the minimum storage
+transfer size for this object.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Transfer the machine default
+storage transfer size for this object.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">53
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 8-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">57
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">39
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(7)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Context
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Access group
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Queue attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#mc">Message content</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Contains scalar data only
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Contains pointers and scalar data
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#qt">Queue type</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>Keyed
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Last in, first out (LIFO)
+</TD></TR><TR VALIGN="TOP"><TD>10 =
+</TD><TD>First in, first out (FIFO)
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Queue overflow action
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Signal exception
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Extend queue
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#cmnoe">Choose maximum number of extends</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Machine chooses maximum number of extends
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>User specifies maximum number of extends
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><A HREF="#rs">Reclaim storage</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not reclaim queue storage
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Reclaim storage when messages enqueued is zero
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 6-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">97
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">61
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current maximum number of messages
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">101
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">65
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of messages enqueued
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">105
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">69
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Extension value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">109
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6D
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Key length
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">111
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6F
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum size of message to be enqueued
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">115
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">73
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">116
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">74
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of extends
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">120
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">78
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of extends
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">124
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">7C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><A HREF="#inom">Initial number of messages</A>
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The first 4 bytes of the materialization identify the total <B><U>number of bytes provided</U></B>
+for use by the instruction.  This
+value is supplied as input to the instruction and is not
+modified by the instruction.  A value of less than 8
+causes the <I> materialization length invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception.
+<P>
+The second 4 bytes of the materialization identify the
+total <B><U>number of bytes
+available</U></B> to be materialized.  The instruction materializes
+as many bytes as can
+be contained in the area specified
+as the receiver.  If the byte area identified by the
+receiver is greater than
+that required to contain
+the information requested, then the excess bytes are
+unchanged.  No exceptions
+(other than the <I> materialization length invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3803.htm">3803</A>) exception
+described previously) are signaled when the receiver
+contains insufficient area for the materialization.
+<P>
+The following fields in the template are returned.  No queue
+attributes are modified by the MATQAT instruction.
+<P>
+The <B><U>object identification</U></B>
+specifies the symbolic name that identifies
+the queue within the machine.  An <B><U>object type</U></B> of hex 0A is
+implicitly supplied by the machine.  The <I>object identification</I>
+is used to identify the object on materialize instructions as well as to
+locate the object in a context that addresses the object.
+<P>
+If the created object is permanent, it is owned by the
+user profile governing
+thread execution when the queue was created.  The owning user profile
+is implicitly assigned all private authority states for
+the object.  The storage occupied by the created object is charged
+to this owning user profile.  If the created object is
+temporary, no owning user profile exists, and all authority states
+are assigned as public.  Storage occupied by the created
+object is charged to the creating process.
+<P>
+The <B><U>existence attribute</U></B> specifies whether the queue is to be
+created as <I>temporary</I> or <I>permanent</I>.  A <I>temporary</I> queue, if not explicitly destroyed by the user, is
+implicitly destroyed by the machine when machine processing is
+terminated.
+<P>
+If a space is associated with the queue,
+the space may be <I>fixed</I> or <I>variable</I>
+in size, as specified by the <B><U>space attribute</U></B>.
+The current allocation is as
+specified in the <B><U>size of space</U></B> field.  The machine
+allocates a space of at least the size specified at queue creation;
+the actual size allocated depends on an algorithm defined by
+a specific implementation.
+<P>
+If the <B><U>initial context</U></B> attribute field indicates that <I>addressability is inserted in a context</I>,
+the <B><U>context</U></B> field contains
+a system pointer that identifies the context where addressability
+to the queue is placed.
+<P>
+If the <B><U>access group</U></B> creation attribute field indicates <I>member of access group</I>,
+the <B><U>access group</U></B>
+field contains a system pointer
+that identifies the access group in which the object was
+created.  Only temporary queues may be created in an
+access group.
+<P>
+The <B><U>initialize space</U></B>
+creation option controls whether or not the space is to be
+initialized.  When <I>initialize</I>
+is specified, each byte of the space is initialized to the value
+specified by the <B><U>initial value of space</U></B>
+field.  Additionally, when the space is
+extended in size, this byte value is also used to initialize the new
+allocation.
+When <I>do not initialize</I>
+is specified, the <I>initial value of space</I>
+field is ignored and the initial value of the bytes of the space are
+unpredictable.
+<P>
+When <I>do not initialize</I>
+is specified for a space,
+internal machine algorithms do ensure that
+any storage resources last used for allocations to another object
+which are reused to satisfy allocations for the
+space are reset to a machine default value to avoid possible access of
+data which may have been stored in the other object.  To the contrary,
+reuse of storage areas previously used by the space object are not
+reset, thereby exposing subsequent reallocations of those storage
+areas within the space to access of the data which was previously
+stored within
+them.
+<P>
+The <B><U>message content</U></B>
+attribute specifies whether the messages to be
+enqueued will <I>contain pointers and scalar data</I>,
+or <I>scalar data only</I>.
+If the messages are to contain pointers, the message text operand
+on Enqueue and Dequeue instructions must be aligned
+on 16-byte boundaries.
+<P>
+The <B><U>queue type</U></B> attribute establishes the basic sequence in
+which messages are dequeued from the queue.
+<P>
+The <B><U>current number of messages enqueued</U></B> field contains the
+number of messages currently enqueued on the queue.
+<P>
+The <B><U>queue overflow action</U></B> field establishes the machine
+action when the number of messages resident on the queue
+(enqueued and not yet dequeued) exceeds the
+current maximum capacity of the queue.  This value is
+initially established by the value specified
+in the <B><U>maximum number of messages</U></B> field.  The <I> queue full&nbsp; </I> (hex <A HREF="../exceptions/EX2602.htm">2602</A>) exception
+is
+signalled when the number of resident messages exceeds this field
+unless the extend queue option is specified.  When the <I>extend queue</I> option is specified for the <I>queue overflow
+action</I> field,
+the value
+of the <I>current maximum number of messages</I> field is
+increased by the amount specified by the <B><U>extension value</U></B>
+field each time the number of enqueued messages
+exceeds the value of the <I>current maximum
+number of messages</I> field.  When the <I>extend
+queue</I> option is specified for the <I>queue overflow action</I>
+field,
+the <I>extension value</I>
+field contains a value greater than 0.  If the <I>signal exception</I> option is specified, the <I>extension value</I> field
+is ignored and the <I>current maximum number of messages</I>
+field contains
+a value greater than zero.
+<P>
+The <B><U>choose maximum number of extends</U></B> field allows the
+user to overide the value for the maximum number of extends to the
+queue which would otherwise be chosen by the machine.  If this
+field specifies <I>machine chooses maximum number of extends</I>, then
+the number of extends will be chosen such that the maximum number of
+messages for the queue will never be greater than what can be completely
+materialized into 16MB or require overall object size greater than 32MB.
+The overall object size depends upon the amount of storage needed for
+queue definition plus entries enqueued to queue and excludes the size
+of the associated space, if any.
+If this field specifies <I>user specifies maximum number of extends</I>,
+the queue will be extended by the number of messages specified
+by the <I>extension value</I> field until the number of extends
+reaches the value returned by the <B><U>maximum number of extends</U></B>
+field is reached.
+The <B><U>current number of extends</U></B> field specifies the number of
+times the queue has currently been extended.
+<P>
+The <B><U>reclaim storage</U></B> field specifies whether storage reclaim
+will be attempted when the number of currently enqueued messages on
+the queue reaches zero.  If this field specifies <I>reclaim storage when
+messages enqueued is zero</I>
+then the size of the queue will be reduced to
+the number of messages specified by the <B><U>initial number of messages</U></B> field when the queue was created.
+The <I>current number of extends</I> field is reset to zero after
+the queue is reclaimed.
+If this field specifies <I>do not reclaim queue storage</I> then
+no action is taken.
+<P>
+The <B><U>key length</U></B> field establishes the size of the
+queue's key.  The key can contain pointers, but the pointers are
+considered to be scalar data when
+they are placed on the queue by an Enqueue instruction.  If
+the <I>queue type</I>
+field specifies LIFO or FIFO, the <I>key length</I>
+can be equal to or greater than 0; however,
+the queue is not treated as a keyed queue.
+<P>
+The size of all messages to be enqueued is established by the <B><U>maximum
+size of messages to be enqueued</U></B> field.  The Enqueue
+instruction may specify a size (in the message prefix)
+that is greater than this value, but the message is truncated to
+this length.  The <I>maximum size of messages to be
+enqueued</I> field has a value of 0 or
+greater, up to a maximum value of
+64 K bytes.
+The maximum size of a queue, excluding its associated
+space, cannot exceed
+2 gigabytes.
+This value
+includes machine overhead associated with the queue.
+<P>
+<H5><A NAME="Header_3">Limitations (Subject to Change)</A></H5>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+These limits may change on different implementations of the machine.
+<P>
+The size of the object specific portion of this object is limited to a
+maximum of
+2 gigabytes.
+This size is dependent upon the amount of storage needed for the
+queue definition plus entries enqueued to queue
+and excludes the size of the associated space, if any.
+<P>
+The size of the associated space for this object is limited to a
+maximum of
+16MB-32 bytes if the machine does not choose the space
+alignment and 0 is specified for the <I>space alignment</I> field.
+The size of the associated space for this object is limited to a
+maximum of
+16MB-512 bytes if the machine does not choose the space
+alignment and 1 is specified for the <I>space alignment</I> field.
+The maximum size of an associated space for this object
+if the machine choose the space alignment
+is returned
+by option Hex 0003 of <A HREF="MATMDATA.htm#hex0003">MATMDATA</A>.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>Operational
+<UL>
+<P><LI>Operand 2
+</UL>
+<P><LI>Execute
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>Operand 2
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

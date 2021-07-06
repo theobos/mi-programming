@@ -1,0 +1,191 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CVTDFFP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Convert Decimal Form to Floating-Point (CVTDFFP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">107F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Decimal exponent
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Decimal significand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Floating-point variable scalar.
+<P>
+<I>Operand 2</I>:  Packed scalar or zoned scalar.
+<P>
+<I>Operand 3</I>:  Packed scalar or zoned scalar.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction converts the decimal form of a
+floating-point value specified
+by a <I>decimal exponent</I> and a <I>decimal significand</I>
+to binary
+floating-point format, and places the
+result in the <I>receiver</I> operand.  The <I>decimal exponent</I>
+(operand 2) and <I>decimal significand</I> (operand
+3) are considered to specify a decimal form of a
+floating-point number.  The
+value of this number is considered to be as follows:
+<PRE>
+Value = S * (10**E)
+</PRE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>where:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>S =
+</TD><TD>The value of the <I>decimal
+significand</I> operand.
+</TD></TR><TR VALIGN="TOP"><TD>E =
+</TD><TD>The value of the <I>decimal
+exponent</I> operand.
+</TD></TR><TR VALIGN="TOP"><TD>*
+</TD><TD>Denotes multiplication.
+</TD></TR><TR VALIGN="TOP"><TD>**
+</TD><TD>Denotes exponentiation.
+</TD></TR></TABLE>
+</TD></TABLE>
+The <I>decimal exponent</I> must be specified
+as a decimal integer value;
+no fractional digit positions
+may be specified in its definition.  The <I>decimal exponent</I> is a
+signed integer value specifying a
+power of 10 which gives the floating-point value its
+magnitude.  A <I>decimal exponent</I> value too large
+or too small to be represented in the <I>receiver</I> will result
+in the signaling of the appropriate <I> floating-point overflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C06.htm">0C06</A>) exception
+or <I> floating-point underflow&nbsp;</I> (hex <A HREF="../exceptions/EX0C07.htm">0C07</A>) exception.
+<P>
+The <I>decimal significand</I> must be specified as a decimal value
+with a single integer digit position
+and optional fractional digit positions.  The <I>decimal significand</I>
+is a signed decimal value
+specifying decimal digits which give the floating-point value its
+precision.  The significant
+digits of the <I>decimal significand</I> are considered to start with
+the leftmost nonzero decimal digit
+and continue to the right to the end
+of the <I>decimal significand</I> value.
+Significant digits beyond 7
+for a short float <I>receiver</I>, and beyond 15 for a long float <I>receiver</I> exceed the precision
+provided for in the binary floating-point receiver.  These
+excess digits do participate in the
+conversion to provide for uniqueness of the conversion as
+well as for proper rounding.
+<P>
+The decimal form floating-point value specified by the <I>decimal
+exponent</I> and <I>decimal significand</I>
+operands is converted to a binary floating-point number and
+rounded to the precision of the result field as follows:
+<P>
+Source values which, in magnitude M, are in the range where
+(10**31-1) * 10**-31 &lt;= M &lt;= (10**31-1)
+*10**+31 are converted subject to the normal rounding error
+defined for the floating-point rounding modes.
+<P>
+Source values which, in magnitude M, are in the range where
+(10**31-1) * 10**-31 &gt; M &gt; (10**31-1)
+*10**+31 are converted such that the rounding error incurred
+on the conversion may exceed that
+defined above.  For round to nearest, this error will not exceed
+by more than .47 units in the
+least significant digit position of the result in relation to the
+error that would be incurred for
+normal rounding.  For the other floating-point rounding modes,
+this error will not exceed 1.47
+units in the least significant digit position of the result.
+<P>
+The converted and rounded value is then assigned to the
+floating-point <I>receiver</I>.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,997 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Exceptions </title>
+			<link rel="stylesheet" type="text/css" HREF="./tstudio.css">
+</head>
+
+<body>
+<h2>All exceptions</h2>
+<A NAME="allex"></a>
+<P>
+To construct a MCHxxxx-message, the first two digits and the last two digits of the exception identification must
+be converted from hexadecimal to decimal separately, e.g:
+<UL>
+<LI>Exception 0C0A is equivalent to MCH1210, because hex 0C = decimal 12 and hex 0A = decimal 10
+</UL>
+<HR>
+<DL>
+<A NAME="ex02"></a>
+<DD><P><b>02 Access Group</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0201.htm">Object ineligible for access group - MCH0201</a>
+</DL>
+</DL>
+<A NAME="ex04"></a>
+<DD><P><b>04 Access State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0401.htm">Access state specification invalid - MCH0401</a>
+</DL>
+</DL>
+<A NAME="ex06"></a>
+<DD><P><b>06 Addressing</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0601.htm">Space addressing violation - MCH0601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX0602.htm">Boundary alignment - MCH0602</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX0603.htm">Range - MCH0603</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX0604.htm">External data object not found - MCH0604</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX0605.htm">Invalid space reference - MCH0605</a>
+<DT>07 
+<DD><A class="content" HREF="exceptions/EX0607.htm">Unsupported space use - MCH0607</a>
+<DT>09 
+<DD><A class="content" HREF="exceptions/EX0609.htm">Space address is not a teraspace address - MCH0609</a>
+</DL>
+</DL>
+<A NAME="ex08"></a>
+<DD><P><b>08 Argument/Parameter</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0801.htm">Parameter reference violation - MCH0801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX0802.htm">Argument list length violation - MCH0802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX0803.htm">Argument list length modification violation - MCH0803</a>
+</DL>
+</DL>
+<A NAME="ex0a"</a>
+<DD><P><b>0A Authorization</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0A01.htm">Unauthorized for operation - MCH1001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX0A02.htm">Privileged instruction - MCH1002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX0A03.htm">Attempt to grant/retract authority state to an object that is not authorized - MCH1003</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX0A04.htm">Special authorization required - MCH1004</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX0A05.htm">Create/modify user profile beyond level of authorization - MCH1005</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX0A06.htm">Grant/retract authority invalid - MCH1006</a>
+
+<DT>08
+<DD><A class="content" HREF="exceptions/EX0A08.htm">Unable to generate UID/GID - MCH1008</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX0A09.htm">Duplicate UID/GID specified - MCH1009</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX0A0A.htm">ID index not available - MCH1010</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX0A0B.htm">Cannot transfer to new owner or primary group - MCH1011</a>
+</DL>
+</DL>
+<A NAME="ex0c"></a>
+<DD><P><b>0C Computation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0C01.htm">Conversion - MCH1201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX0C02.htm">Decimal data - MCH1202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX0C03.htm">Decimal point alignment - MCH1203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX0C04.htm">Edit digit count - MCH1204</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX0C05.htm">Edit mask syntax - MCH1205</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX0C06.htm">Floating-point overflow - MCH1206</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX0C07.htm">Floating-point underflow - MCH1207</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX0C08.htm">Length conformance - MCH1208</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX0C09.htm">Floating-point invalid operand - MCH1209</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX0C0A.htm">Size - MCH1210</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX0C0B.htm">Zero divide - MCH1211</a>
+<DT>0C
+<DD><A class="content" HREF="exceptions/EX0C0C.htm">Invalid floating-point conversion - MCH1212</a>
+<DT>0D
+<DD><A class="content" HREF="exceptions/EX0C0D.htm">Floating-point inexact result - MCH1213</a>
+<DT>0E
+<DD><A class="content" HREF="exceptions/EX0C0E.htm">Floating-point zero divide - MCH1214</a>
+<DT>0F
+<DD><A class="content" HREF="exceptions/EX0C0F.htm">Master key not defined - MCH1215</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX0C10.htm">Weak key not valid - MCH1216</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX0C11.htm">Key parity invalid - MCH1217</a>
+<DT>12
+<DD><A class="content" HREF="exceptions/EX0C12.htm">Invalid extended character data - MCH1218</a>
+<DT>13
+<DD><A class="content" HREF="exceptions/EX0C13.htm">Invalid extended character operation - MCH1219</a>
+<DT>14
+<DD><A class="content" HREF="exceptions/EX0C14.htm">Invalid compressed data - MCH1220</a>
+<DT>15
+<DD><A class="content" HREF="exceptions/EX0C15.htm">Date boundary overflow - MCH1221</a>
+<DT>16
+<DD><A class="content" HREF="exceptions/EX0C16.htm">Data format error - MCH1222</a>
+<DT>17
+<DD><A class="content" HREF="exceptions/EX0C17.htm">Data value error - MCH1223</a>
+<DT>18
+<DD><A class="content" HREF="exceptions/EX0C18.htm">Date boundary underflow - MCH1224</a>
+<DT>19
+<DD><A class="content" HREF="exceptions/EX0C19.htm">Space pointer operands do not point to the same space object - MCH1225</a>
+<DT>20
+<DD><A class="content" HREF="exceptions/EX0C20.htm">Substitution character used - MCH1232</a>
+<DT>21
+<DD><A class="content" HREF="exceptions/EX0C21.htm">Source verification error - MCH1233</a>
+<DT>22
+<DD><A class="content" HREF="exceptions/EX0C22.htm">Unpaired shift control - MCH1234</a>
+<DT>23
+<DD><A class="content" HREF="exceptions/EX0C23.htm">Source information error - MCH1235</a>
+<DT>24
+<DD><A class="content" HREF="exceptions/EX0C24.htm">Receiver buffer length exceeded - MCH1236</a>
+</DL>
+</DL>
+<A NAME="ex0e"></a>
+<DD><P><b>0E Context Operation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX0E01.htm">Duplicate object identification - MCH1401</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX0E02.htm">Object ineligible for context - MCH1402</a>
+</DL>
+</DL>
+<A NAME="ex10"></a>
+<DD><P><b>10 Damage Encountered</b>
+<DL>
+<DL COMPACT>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1002.htm">Machine context damage state - MCH1602</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1004.htm">System object damage state - MCH1604</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1005.htm">Authority verification terminated due to damaged object - MCH1605</a>
+<DT>44
+<DD><A class="content" HREF="exceptions/EX1044.htm">Partial system object damage - MCH1668</a>
+</DL>
+</DL>
+<A NAME="ex12"></a>
+<DD><P><b>12 Data Base Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1201.htm">Conversion mapping error - MCH1801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1202.htm">Key mapping error - MCH1802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1203.htm">Cursor not set - MCH1803</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1204.htm">Data space entry limit exceeded - MCH1804</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1205.htm">Data space entry already locked - MCH1805</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX1206.htm">Data space entry not found - MCH1806</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX1207.htm">Data space index invalid - MCH1807</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX1208.htm">Incomplete key description - MCH1808</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX1209.htm">Duplicate key value in existing data space entry - MCH1809</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX120A.htm">End of path - MCH1810</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX120B.htm">Duplicate key value detected - MCH1811</a>
+<DT>0D
+<DD><A class="content" HREF="exceptions/EX120D.htm">No entries locked, or entries locked to a different thread - MCH1813</a>
+<DT>0F
+<DD><A class="content" HREF="exceptions/EX120F.htm">Duplicate key value in uncommitted data space entry - MCH1815</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX1211.htm">Compare key mapping error - MCH1817</a>
+<DT>12
+<DD><A class="content" HREF="exceptions/EX1212.htm">Incomplete compare key description - MCH1818</a>
+<DT>13
+<DD><A class="content" HREF="exceptions/EX1213.htm">Invalid mapping template - MCH1819</a>
+<DT>14
+<DD><A class="content" HREF="exceptions/EX1214.htm">Invalid selection template - MCH1820</a>
+<DT>15
+<DD><A class="content" HREF="exceptions/EX1215.htm">Data space not addressed by index - MCH1821</a>
+<DT>16
+<DD><A class="content" HREF="exceptions/EX1216.htm">Data space not addressed by cursor - MCH1822</a>
+<DT>17
+<DD><A class="content" HREF="exceptions/EX1217.htm">Key value changed since set cursor - MCH1823</a>
+<DT>18
+<DD><A class="content" HREF="exceptions/EX1218.htm">Invalid key value modification - MCH1824</a>
+<DT>19
+<DD><A class="content" HREF="exceptions/EX1219.htm">Invalid rule option - MCH1825</a>
+<DT>1A
+<DD><A class="content" HREF="exceptions/EX121A.htm">Data space entry size exceeded - MCH1826</a>
+<DT>1B
+<DD><A class="content" HREF="exceptions/EX121B.htm">Logical data space entry size limit exceeded - MCH1827</a>
+<DT>1C
+<DD><A class="content" HREF="exceptions/EX121C.htm">Key size limit exceeded - MCH1828</a>
+<DT>1D
+<DD><A class="content" HREF="exceptions/EX121D.htm">Logical key size limit exceeded - MCH1829</a>
+<DT>21
+<DD><A class="content" HREF="exceptions/EX1221.htm">Unable to maintain a unique key data space index - MCH1833</a>
+<DT>25
+<DD><A class="content" HREF="exceptions/EX1225.htm">Invalid data base operation - MCH1837</a>
+<DT>26
+<DD><A class="content" HREF="exceptions/EX1226.htm">Data space index with invalid floating-point field build termination - MCH1838</a>
+<DT>27
+<DD><A class="content" HREF="exceptions/EX1227.htm">Data space index key with invalid floating-point field - MCH1839</a>
+<DT>30
+<DD><A class="content" HREF="exceptions/EX1230.htm">Specified data space entry rejected - MCH1848</a>
+<DT>31
+<DD><A class="content" HREF="exceptions/EX1231.htm">New data space entry image rejected - MCH1849</a>
+<DT>32
+<DD><A class="content" HREF="exceptions/EX1232.htm">Join value changed - MCH1850</a>
+<DT>33
+<DD><A class="content" HREF="exceptions/EX1233.htm">Data space index with non-user exit selection routine build termination - MCH1851</a>
+<DT>34
+<DD><A class="content" HREF="exceptions/EX1234.htm">Non-user exit selection routine failure - MCH1852</a>
+<DT>36
+<DD><A class="content" HREF="exceptions/EX1236.htm">No mapping code specified - MCH1854</a>
+<DT>37
+<DD><A class="content" HREF="exceptions/EX1237.htm">Operation not valid with join cursor - MCH1855</a>
+<DT>38
+<DD><A class="content" HREF="exceptions/EX1238.htm">Derived field operation error - MCH1856</a>
+<DT>39
+<DD><A class="content" HREF="exceptions/EX1239.htm">Derived field operation error during build index - MCH1857</a>
+<DT>40
+<DD><A class="content" HREF="exceptions/EX1240.htm">Invalid entry definition table - MCH1864</a>
+<DT>41
+<DD><A class="content" HREF="exceptions/EX1241.htm">ISV parameter value in runtime data pointer array not correct - MCH1865</a>
+<DT>42
+<DD><A class="content" HREF="exceptions/EX1242.htm">Non-unique fanout on unique join - MCH1866</a>
+<DT>43
+<DD><A class="content" HREF="exceptions/EX1243.htm">Invalid data definitional attributes template (DDAT) - MCH1867</a>
+<DT>45
+<DD><A class="content" HREF="exceptions/EX1245.htm">Invalid frogger array template - MCH1869</a>
+<DT>46
+<DD><A class="content" HREF="exceptions/EX1246.htm">Invalid global literal list - MCH1870</a>
+<DT>47
+<DD><A class="content" HREF="exceptions/EX1247.htm">Invalid per-data space selection template - MCH1871</a>
+<DT>48
+<DD><A class="content" HREF="exceptions/EX1248.htm">Re-create/replace cursor - MCH1872</a>
+<DT>49
+<DD><A class="content" HREF="exceptions/EX1249.htm">No control block for shared derivation - MCH1873</a>
+<DT>50
+<DD><A class="content" HREF="exceptions/EX1250.htm">Referential constraint violation - MCH1880</a>
+<DT>51
+<DD><A class="content" HREF="exceptions/EX1251.htm">Object unavailable for referential constraint enforcement - MCH1881</a>
+<DT>52
+<DD><A class="content" HREF="exceptions/EX1252.htm">Invalid constraint state - MCH1882</a>
+<DT>53
+<DD><A class="content" HREF="exceptions/EX1253.htm">Invalid journal for referential constraint enforcement - MCH1883</a>
+<DT>54
+<DD><A class="content" HREF="exceptions/EX1254.htm">Cursor must be activated under secondary commit cycle - MCH1884</a>
+<DT>55
+<DD><A class="content" HREF="exceptions/EX1255.htm">Operation conflict with data space constraints - MCH1885</a>
+<DT>56
+<DD><A class="content" HREF="exceptions/EX1256.htm">Constraint structure damage - MCH1886</a>
+<DT>57
+<DD><A class="content" HREF="exceptions/EX1257.htm">Check constraint violation - MCH1887</a>
+<DT>63
+<DD><A class="content" HREF="exceptions/EX1263.htm">Data space index templates are invalid - MCH1899</a>
+<DT>64
+<DD><A class="content" HREF="exceptions/EX1264.htm">Data space index templates/keys are invalid</a>
+<DT>65
+<DD><A class="content" HREF="exceptions/EX1265.htm">Copy index not temporary (invalid - nonenforcing)</a>
+<DT>66
+<DD><A class="content" HREF="exceptions/EX1266.htm">Data spaces for copy index and permanent index do not match</a>
+<DT>9D
+<DD><A class="content" HREF="exceptions/EX129D.htm">Maximum number of unique encoded vector index values exceeded - MCH189D</a>
+</DL>
+</DL>
+<A NAME="ex14"></a>
+<DD><P><b>14 Event Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1401.htm">Duplicate event monitor - MCH2001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1402.htm">Event monitor not present - MCH2002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1403.htm">Machine event requires specification of a compare value - MCH2003</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1404.htm">Wait on event attempted while masked - MCH2004</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1405.htm">Disable timer event monitor invalid - MCH2005</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX1406.htm">Signal timer event monitor invalid - MCH2006</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX1407.htm">Wait on event not allowed in kernel mode - MCH2007</a>
+</DL>
+</DL>
+<A NAME="ex16"></a>
+<DD><P><b>16 Exception Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1601.htm">Exception description status invalid - MCH2201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1602.htm">Exception state of thread invalid - MCH2202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1603.htm">Invalid invocation address - MCH2203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1604.htm">Retry/resume invalid - MCH2204</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1605.htm">No inquiry message found for reply message - MCH2205</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX1606.htm">Invalid control action specified - MCH2206</a>
+</DL>
+</DL>
+<A NAME="ex18"></a>
+<DD><P><b>18 Independent Index</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1801.htm">Duplicate key argument in index - MCH2401</a>
+</DL>
+</DL>
+<A NAME="ex1a"</a>
+<DD><P><b>1A Lock State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1A01.htm">Invalid lock state - MCH2601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1A02.htm">Lock request not grantable - MCH2602</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1A03.htm">Invalid unlock request - MCH2603</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1A04.htm">Invalid object lock transfer request - MCH2604</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1A05.htm">Invalid space location unlocked - MCH2605</a>
+</DL>
+</DL>
+<A NAME="ex1c"></a>
+
+<DD><P><b>1C Machine-Dependent</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1C01.htm">Machine-dependent request invalid - MCH2801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1C02.htm">Program limitation exceeded - MCH2802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1C03.htm">Machine storage limit exceeded - MCH2803</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1C04.htm">Object storage limit exceeded - MCH2804</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1C05.htm">System address range limit exceeded - MCH2805</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX1C06.htm">Machine lock limit exceeded - MCH2806</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX1C07.htm">Modify main storage pool controls invalid - MCH2807</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX1C08.htm">Requested function not valid - MCH2808</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX1C09.htm">Auxiliary storage pool number invalid - MCH2809</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX1C0A.htm">Service processor unable to process request - MCH2810</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX1C0B.htm">Program not valid for machine - MCH2811</a>
+<DT>0C
+<DD><A class="content" HREF="exceptions/EX1C0C.htm">Attribute cannot be modified from a secondary partition - MCH2812</a>
+<DT>0D
+<DD><A class="content" HREF="exceptions/EX1C0D.htm">Requested data collection function not valid - MCH2813</a>
+<DT>0E
+<DD><A class="content" HREF="exceptions/EX1C0E.htm">IASP resources exceeded - MCH2814</a>
+<DT>0F
+<DD><A class="content" HREF="exceptions/EX1C0F.htm">Software license management function failed - MCH2815</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX1C10.htm">Failure due to logical partitioning action - MCH2816</a>
+</DL>
+</DL>
+<A NAME="ex1e"></a>
+<DD><P><b>1E Machine Observation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX1E01.htm">Program not observable - MCH3001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX1E02.htm">Invocation not found - MCH3002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX1E03.htm">Invalid D-code instruction - MCH3003</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX1E04.htm">DBGINT error - MCH3004</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX1E05.htm">DBGINT error on operation - MCH3005</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX1E06.htm">DBGINT SOM function error - MCH3006</a>
+</DL>
+</DL>
+<A NAME="ex20"></a>
+<DD><P><b>20 Machine Support</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2001.htm">Diagnose - MCH3201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2002.htm">Machine check - MCH3202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX2003.htm">Function check - MCH3203</a>
+</DL>
+</DL>
+<A NAME="ex22"></a>
+<DD><P><b>22 Object Access</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2201.htm">Object not found - MCH3401</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2202.htm">Object destroyed - MCH3402</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX2203.htm">Object suspended - MCH3403</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX2204.htm">Object not eligible for operation - MCH3404</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX2205.htm">Object not available to process - MCH3405</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX2206.htm">Object not eligible for destruction - MCH3406</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX2207.htm">Authority verification terminated due to destroyed object - MCH3407</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX2208.htm">Object compressed - MCH3408</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX220A.htm">Program not eligible for operation - MCH3410</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX220B.htm">Object not available - MCH3411</a>
+</DL>
+</DL>
+<A NAME="ex24"></a>
+<DD><P><b>24 Pointer Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2401.htm">Pointer does not exist - MCH3601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2402.htm">Pointer type invalid - MCH3602</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX2403.htm">Pointer addressing invalid object type - MCH3603</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX2404.htm">Pointer not resolved - MCH3604</a>
+</DL>
+</DL>
+<A NAME="ex26"></a>
+<DD><P><b>26 Process Management</b>
+<DL>
+<DL COMPACT>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2602.htm">Queue full - MCH3802</a>
+</DL>
+</DL>
+<A NAME="ex28"></a>
+<DD><P><b>28 Process/Thread State</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2801.htm">Process ineligible for operation - MCH4001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2802.htm">Process control space not associated with a process - MCH4002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX2803.htm">User profile UID/GID invalid - MCH4003</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX2804.htm">Thread handle not associated with an active thread - MCH4004</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX280A.htm">Process attribute modification invalid - MCH4010</a>
+</DL>
+</DL>
+<A NAME="ex2a"></a>
+<DD><P><b>2A Program Creation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2A01.htm">Program header invalid - MCH4201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2A02.htm">ODT syntax error - MCH4202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX2A03.htm">ODT relational error - MCH4203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX2A04.htm">Operation code invalid - MCH4204</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX2A05.htm">Invalid op code extender field - MCH4205</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX2A06.htm">Invalid operand type - MCH4206</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX2A07.htm">Invalid operand attribute - MCH4207</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX2A08.htm">Invalid operand value range - MCH4208</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX2A09.htm">Invalid branch target operand - MCH4209</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX2A0A.htm">Invalid operand length - MCH4210</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX2A0B.htm">Invalid number of operands - MCH4211</a>
+<DT>0C
+<DD><A class="content" HREF="exceptions/EX2A0C.htm">Invalid operand ODT reference - MCH4212</a>
+<DT>0D
+<DD><A class="content" HREF="exceptions/EX2A0D.htm">Reserved bits are not zero - MCH4213</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX2A10.htm">Automatic storage for procedure exceeds maximum - MCH4216</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX2A11.htm">Machine automatic storage exceeds maximum - MCH4217</a>
+<DT>12
+<DD><A class="content" HREF="exceptions/EX2A12.htm">Data type or length of initial value not valid - MCH4218</a>
+<DT>13
+<DD><A class="content" HREF="exceptions/EX2A13.htm">Exceeded internal limit on number of temporary segments - MCH4219</a>
+<DT>14
+<DD><A class="content" HREF="exceptions/EX2A14.htm">Static data initialized to address of automatic data - MCH4220</a>
+<DT>15
+<DD><A class="content" HREF="exceptions/EX2A15.htm">Initial value for static data not valid - MCH4221</a>
+<DT>16
+<DD><A class="content" HREF="exceptions/EX2A16.htm">Number of procedures exceeds maximum allowed - MCH4222</a>
+<DT>17
+<DD><A class="content" HREF="exceptions/EX2A17.htm">Type table entry not valid - MCH4223</a>
+<DT>18
+<DD><A class="content" HREF="exceptions/EX2A18.htm">Alias table entry not valid - MCH4224</a>
+<DT>19
+<DD><A class="content" HREF="exceptions/EX2A19.htm">Size of constants exceeds maximum - MCH4225</a>
+<DT>1A
+<DD><A class="content" HREF="exceptions/EX2A1A.htm">Procedure size exceeds maximum - MCH4226</a>
+<DT>1B
+<DD><A class="content" HREF="exceptions/EX2A1B.htm">Instruction stream not valid - MCH4227</a>
+<DT>1C
+<DD><A class="content" HREF="exceptions/EX2A1C.htm">Size of literals exceeds maximum - MCH4228</a>
+<DT>1D
+<DD><A class="content" HREF="exceptions/EX2A1D.htm">Dictionary entry not valid - MCH4229</a>
+<DT>1E
+<DD><A class="content" HREF="exceptions/EX2A1E.htm">Level of machine interface not supported on target release - MCH4230</a>
+<DT>1F
+<DD><A class="content" HREF="exceptions/EX2A1F.htm">Size of dictionary exceeds maximum - MCH4231</a>
+<DT>20
+<DD><A class="content" HREF="exceptions/EX2A20.htm">Internal machine operation not valid - MCH4232</a>
+<DT>21
+<DD><A class="content" HREF="exceptions/EX2A21.htm">Size of internal binding table exceeds maximum - MCH4233</a>
+<DT>22
+<DD><A class="content" HREF="exceptions/EX2A22.htm">Size of internal label table exceeds maximum - MCH4234</a>
+<DT>23
+<DD><A class="content" HREF="exceptions/EX2A23.htm">Size of internal symbolic register table exceeds maximum - MCH4235</a>
+<DT>24
+<DD><A class="content" HREF="exceptions/EX2A24.htm">Size of internal computation table exceeds maximum - MCH4236</a>
+<DT>28
+<DD><A class="content" HREF="exceptions/EX2A28.htm">Size of internal basic block table exceeds maximum - MCH4240</a>
+<DT>29
+<DD><A class="content" HREF="exceptions/EX2A29.htm">Size of internal successor arc table exceeds maximum - MCH4241</a>
+<DT>2A
+<DD><A class="content" HREF="exceptions/EX2A2A.htm">Size of internal register table exceeds maximum - MCH4242</a>
+<DT>2B
+<DD><A class="content" HREF="exceptions/EX2A2B.htm">Size of internal late bound offset table exceeds maximum - MCH4243</a>
+<DT>2C
+<DD><A class="content" HREF="exceptions/EX2A2C.htm">Invalid function prototype component entry - MCH4244</a>
+<DT>5E
+<DD><A class="content" HREF="exceptions/EX2A5E.htm">An error was detected in a static storage definition or initialization - MCH4294</a>
+<DT>5F
+<DD><A class="content" HREF="exceptions/EX2A5F.htm">Overlapping initializations not valid - MCH4295</a>
+<DT>60
+<DD><A class="content" HREF="exceptions/EX2A60.htm">Dictionary ID is not valid - MCH4296</a>
+<DT>61
+<DD><A class="content" HREF="exceptions/EX2A61.htm">Binding specification value not valid - MCH4297</a>
+<DT>62
+<DD><A class="content" HREF="exceptions/EX2A62.htm">Copyright component value not valid - MCH4298</a>
+<DT>63
+<DD><A class="content" HREF="exceptions/EX2A63.htm">Module limitation exceeded - MCH4299</a>
+<DT>A0
+<DD><A class="content" HREF="exceptions/EX2AA0.htm">Attempt to delete part that may not be deleted - MCH42A0</a>
+<DT>B0
+<DD><A class="content" HREF="exceptions/EX2AB0.htm">Object list referential extension not valid - MCH42B0</a>
+<DT>B1
+<DD><A class="content" HREF="exceptions/EX2AB1.htm">Symbol resolution list referential extension not valid - MCH42B1</a>
+<DT>B2
+<DD><A class="content" HREF="exceptions/EX2AB2.htm">Service program export list referential extension not valid - MCH42B2</a>
+<DT>B3
+<DD><A class="content" HREF="exceptions/EX2AB3.htm">Secondary associated spaces list referential extension not valid - MCH42B3</a>
+<DT>B4
+<DD><A class="content" HREF="exceptions/EX2AB4.htm">Program limitation exceeded - MCH42B4</a>
+<DT>B5
+<DD><A class="content" HREF="exceptions/EX2AB5.htm">Observable information necessary for retranslation not encapsulated - MCH42B5</a>
+<DT>B6
+<DD><A class="content" HREF="exceptions/EX2AB6.htm">Procedure order list referential extension not valid - MCH42B6</a>
+<DT>C0
+<DD><A class="content" HREF="exceptions/EX2AC0.htm">Attempt to delete part that may not be deleted - MCH42C0</a>
+<DT>C1
+<DD><A class="content" HREF="exceptions/EX2AC1.htm">An attempt was made to delete a required module part - MCH42C1</a>
+</DL>
+</DL>
+<A NAME="ex2c"></a>
+
+<DD><P><b>2C Program Execution</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2C01.htm">Return instruction invalid - MCH4401</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2C02.htm">Return point invalid - MCH4402</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX2C04.htm">Branch target invalid - MCH4404</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX2C05.htm">Activation in use by invocation - MCH4405</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX2C06.htm">Instruction cancellation - MCH4406</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX2C07.htm">Instruction termination - MCH4407</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX2C08.htm">Branch target defined by label pointer not valid - MCH4408</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX2C10.htm">Process object destroyed - MCH4416</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX2C11.htm">Process object access invalid - MCH4417</a>
+<DT>12
+<DD><A class="content" HREF="exceptions/EX2C12.htm">Activation group access violation - MCH4418</a>
+<DT>13
+<DD><A class="content" HREF="exceptions/EX2C13.htm">Activation group not found - MCH4419</a>
+<DT>14
+<DD><A class="content" HREF="exceptions/EX2C14.htm">Activation group in use - MCH4420</a>
+<DT>15
+<DD><A class="content" HREF="exceptions/EX2C15.htm">Invalid operation for program - MCH4421</a>
+<DT>16
+<DD><A class="content" HREF="exceptions/EX2C16.htm">Program activation not found - MCH4422</a>
+<DT>17
+<DD><A class="content" HREF="exceptions/EX2C17.htm">Default activation group not destroyed - MCH4423</a>
+<DT>18
+<DD><A class="content" HREF="exceptions/EX2C18.htm">Invalid source invocation - MCH4424</a>
+<DT>19
+<DD><A class="content" HREF="exceptions/EX2C19.htm">Invalid origin invocation - MCH4425</a>
+<DT>1A
+<DD><A class="content" HREF="exceptions/EX2C1A.htm">Invocation offset outside range of current stack - MCH4426</a>
+<DT>1B
+<DD><A class="content" HREF="exceptions/EX2C1B.htm">Invocation not eligible for operation - MCH4427</a>
+<DT>1C
+<DD><A class="content" HREF="exceptions/EX2C1C.htm">Instruction not valid for invocation type - MCH4428</a>
+<DT>1D
+<DD><A class="content" HREF="exceptions/EX2C1D.htm">Automatic storage overflow - MCH4429</a>
+<DT>1E
+<DD><A class="content" HREF="exceptions/EX2C1E.htm">Activation access violation - MCH4430</a>
+<DT>1F
+<DD><A class="content" HREF="exceptions/EX2C1F.htm">Program signature violation - MCH4431</a>
+<DT>20
+<DD><A class="content" HREF="exceptions/EX2C20.htm">Static storage overflow - MCH4432</a>
+<DT>21
+<DD><A class="content" HREF="exceptions/EX2C21.htm">Program import invalid - MCH4433</a>
+<DT>22
+<DD><A class="content" HREF="exceptions/EX2C22.htm">Data reference invalid - MCH4434</a>
+<DT>23
+<DD><A class="content" HREF="exceptions/EX2C23.htm">Imported object invalid - MCH4435</a>
+<DT>24
+<DD><A class="content" HREF="exceptions/EX2C24.htm">Activation group export conflict - MCH4436</a>
+<DT>25
+<DD><A class="content" HREF="exceptions/EX2C25.htm">Import not found - MCH4437</a>
+<DT>26
+<DD><A class="content" HREF="exceptions/EX2C26.htm">Invalid activation group - MCH4438</a>
+<DT>27
+<DD><A class="content" HREF="exceptions/EX2C27.htm">Unresolved import - MCH4439</a>
+<DT>28
+<DD><A class="content" HREF="exceptions/EX2C28.htm">Activation group directory error - MCH4440</a>
+<DT>29
+<DD><A class="content" HREF="exceptions/EX2C29.htm">Caller parameter mask does not match procedure parameter mask - MCH4441</a>
+<DT>2A
+<DD><A class="content" HREF="exceptions/EX2C2A.htm">Caller parameter mask does not match imported procedure parameter mask - MCH4442</a>
+<DT>2B
+<DD><A class="content" HREF="exceptions/EX2C2B.htm">Invalid Storage Model - MCH4443</a>
+</DL>
+</DL>
+<A NAME="ex2e"></a>
+<DD><P><b>2E Resource Control Limit</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX2E01.htm">User profile storage limit exceeded - MCH4601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX2E02.htm">Security audit journal failure - MCH4602</a>
+</DL>
+</DL>
+<A NAME="ex30"></a>
+<DD><P><b>30 Journal</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3001.htm">Apply journal changes failure - MCH4801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3002.htm">Entry not journaled - MCH4802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3003.htm">Maximum objects through a journal port limit exceeded - MCH4803</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX3004.htm">Invalid journal space - MCH4804</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX3005.htm">Invalid selection/transaction list entry - MCH4805</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX3006.htm">Journal space not at a recoverable boundary - MCH4806</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX3007.htm">Journal ID not unique - MCH4807</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX3008.htm">Object already being journaled - MCH4808</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX3009.htm">Transaction list limit reached - MCH4809</a>
+<DT>0A
+<DD><A class="content" HREF="exceptions/EX300A.htm">Data space index currently journaled - MCH4810</a>
+<DT>0B
+<DD><A class="content" HREF="exceptions/EX300B.htm">Data space index currently in force mode - MCH4811</a>
+<DT>0C
+<DD><A class="content" HREF="exceptions/EX300C.htm">Underlying data space not journaled to same journal - MCH4812</a>
+<dt>0E
+<DD><A class="content" HREF="exceptions/EX300E.htm">File ID not available - MCH4814</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX3010.htm">Unrecoverable system managed access path protection failure - MCH4816</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX3011.htm">Journal violation - MCH4817</a>
+<DT>20
+<DD><A class="content" HREF="exceptions/EX3020.htm">Remote journal operation error - MCH4832</a>
+</DL>
+</DL>
+<A NAME="ex32"></a>
+<DD><P><b>32 Scalar Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3201.htm">Scalar type invalid - MCH5001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3202.htm">Scalar attributes invalid - MCH5002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3203.htm">Scalar value invalid - MCH5003</A>
+</DL>
+</DL>
+<A NAME="ex34"></a>
+<DD><P><b>34 Source/Sink Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3401.htm">Source/sink configuration invalid - MCH5201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3402.htm">Source/sink physical address invalid - MCH5202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3403.htm">Source/sink object state invalid - MCH5203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX3404.htm">Source/sink resource not available - MCH5204</a>
+<DT>41
+<DD><A class="content" HREF="exceptions/EX3441.htm">Invalid starting verb index was specified - MCH5265</a>
+<DT>42
+<DD><A class="content" HREF="exceptions/EX3442.htm">System pointer area was tagged and non-zero - MCH5266</a>
+<DT>43
+<DD><A class="content" HREF="exceptions/EX3443.htm">Invalid open in list of operations - MCH5267</a>
+<DT>44
+<DD><A class="content" HREF="exceptions/EX3444.htm">Unsupported stream operation - MCH5268</a>
+<DT>45
+<DD><A class="content" HREF="exceptions/EX3445.htm">Incorrect length specified - MCH5269</a>
+</DL>
+</DL>
+<A NAME="ex36"></a>
+<DD><P><b>36 Space Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3601.htm">Space extension/truncation - MCH5401</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3602.htm">Invalid space modification - MCH5402</a>
+</DL>
+</DL>
+<A NAME="ex38"></a>
+<DD><P><b>38 Template Specification</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3801.htm">Template value invalid - MCH5601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3802.htm">Template size invalid - MCH5602</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3803.htm">Materialization length invalid - MCH5603</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX3804.htm">Invalid mutex - MCH5604</a>
+</DL>
+</DL>
+<A NAME="ex3a"></a>
+<DD><P><b>3A Wait Time-Out</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3A01.htm">Dequeue time-out - MCH5801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3A02.htm">Lock time-out - MCH5802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3A03.htm">Event time-out - MCH5803</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX3A04.htm">Space location lock wait time-out - MCH5804</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX3A05.htm">Object location lock wait time-out - MCH5805</a>
+</DL>
+</DL>
+<A NAME="ex3c"></a>
+<DD><P><b>3C Service</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3C01.htm">Invalid service session state - MCH6001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3C02.htm">Unable to start service session - MCH6002</a>
+</DL>
+</DL>
+<A NAME="ex3e"></a>
+<DD><P><b>3E Commitment Control</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX3E01.htm">Invalid commit block status change - MCH6201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX3E02.htm">Commit block must be decommitted - MCH6202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX3E03.htm">Commit block is attached to process - MCH6203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX3E04.htm">Commit blocks control uncommitted changes - MCH6204</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX3E05.htm">Operation not valid on commit block in prepared state - MCH6205</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX3E06.htm">Commitment control resource limit exceeded - MCH6206</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX3E07.htm">Operation not valid on commit block in decommit only state - MCH6207</a>
+<DT>08
+<DD><A class="content" HREF="exceptions/EX3E08.htm">Object under commitment control being journaled incorrectly - MCH6208</a>
+<DT>09
+<DD><A class="content" HREF="exceptions/EX3E09.htm">Reconstruct of commit block environment failure - MCH6209</a>
+<DT>10
+<DD><A class="content" HREF="exceptions/EX3E10.htm">Operation not valid under commitment control - MCH62016</a>
+<DT>11
+<DD><A class="content" HREF="exceptions/EX3E11.htm">Process has attempted to attach too many commit blocks - MCH6217</a>
+<DT>12
+<DD><A class="content" HREF="exceptions/EX3E12.htm">Objects under commitment control - MCH6218</a>
+<DT>13
+<DD><A class="content" HREF="exceptions/EX3E13.htm">Commit block not journaled - MCH6219</a>
+<DT>14
+<DD><A class="content" HREF="exceptions/EX3E14.htm">Errors during decommit - MCH6220</a>
+<DT>15
+<DD><A class="content" HREF="exceptions/EX3E15.htm">Object ineligible for commitment control - MCH6221</a>
+<DT>16
+<DD><A class="content" HREF="exceptions/EX3E16.htm">Object ineligible for removal from commitment control - MCH6222</a>
+</DL>
+</DL>
+<A NAME="ex40"></a>
+<DD><P><b>40 Dump Space Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4001.htm">Dump data space size limit exceeded - MCH6401</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4002.htm">Invalid dump data insertion - MCH6402</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4003.htm">Invalid dump space modification - MCH6403</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX4004.htm">Invalid dump data retrieval - MCH6404</a>
+</DL>
+</DL>
+<A NAME="ex44"></a>
+<DD><P><b>44 Protection Violation</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4401.htm">Object domain or hardware storage protection violation - MCH6801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4402.htm">Literal values cannot be changed - MCH6802</a>
+</DL>
+</DL>
+<A NAME="ex45"></a>
+<DD><P><b>45 Heap Space</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4501.htm">Invalid heap identifier - MCH6901</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4502.htm">Invalid request - MCH6902</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4503.htm">Heap space full - MCH6903</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX4504.htm">Invalid size request - MCH6904</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX4505.htm">Heap space destroyed - MCH6905</a>
+<DT>06
+<DD><A class="content" HREF="exceptions/EX4506.htm">Invalid heap space condition - MCH6906</a>
+<DT>07
+<DD><A class="content" HREF="exceptions/EX4507.htm">Invalid mark identifier - MCH6907</a>
+</DL>
+</DL>
+<A NAME="ex46"</a>
+<DD><P><b>46 Queue Space</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4601.htm">Queue space not associated with the process - MCH7001</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4602.htm">Queue space cannot be modified - MCH7002</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4603.htm">Message reference index does not identify a valid message - MCH7003</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX4604.htm">Queue space not eligible for destruction - MCH7004</a>
+</DL>
+</DL>
+<A NAME="ex48"></a>
+<DD><P><b>48 Kernel Environment</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4801.htm">Function code out of range - MCH7201</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4802.htm">Kernel environment already active - MCH7202</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4803.htm">Kernel environment not initialized - MCH7203</a>
+<DT>04
+<DD><A class="content" HREF="exceptions/EX4804.htm">Kernel environment not active - MCH7204</a>
+<DT>05
+<DD><A class="content" HREF="exceptions/EX4805.htm">MI wait in kernel mode terminated - MCH7205</a>
+</DL>
+</DL>
+<A NAME="ex4a"></a>
+<DD><P><b>4A Java</b>
+<DL>
+<DL COMPACT>
+<DT>A0
+<DD><A class="content" HREF="exceptions/EX4AA0.htm">Generic Java exception - MCH74A0</a>
+<DT>A1
+<DD><A class="content" HREF="exceptions/EX4AA1.htm">Java class format error - MCH74A1</a>
+<DT>A2
+<DD><A class="content" HREF="exceptions/EX4AA2.htm">Java verify error - MCH74A2</a>
+<DT>A3
+<DD><A class="content" HREF="exceptions/EX4AA3.htm">Java archive file error - MCH74A3</a>
+<DT>A4
+<DD><A class="content" HREF="exceptions/EX4AA4.htm">Java invalid native method return - MCH74A4</a>
+<DT>A5
+<DD><A class="content" HREF="exceptions/EX4AA5.htm">Java virtual machine terminated - MCH74A5</a>
+<DT>A6
+<DD><A class="content" HREF="exceptions/EX4AA6.htm">Java native interface unattached caller - MCH74A6</a>
+<DT>A7
+<DD><A class="content" HREF="exceptions/EX4AA7.htm">Java Stand-Alone Program Creation Error - MCH74A7</a>
+</DL>
+</DL>
+<A NAME="ex4c"></a>
+<DD><P><b>4C Signals Management</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4C01.htm">Asynchronous signal terminated MI wait - MCH7601</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4C02.htm">Signal controls not initialized - MCH7602</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4C03.htm">Asynchronous signal received - MCH7603</a>
+</DL>
+</DL>
+<A NAME="ex4e"></a>
+<DD><P><b>4E Handle-Based Object</b>
+<DL>
+<DL COMPACT>
+<DT>01
+<DD><A class="content" HREF="exceptions/EX4E01.htm">Invalid handle - MCH7801</a>
+<DT>02
+<DD><A class="content" HREF="exceptions/EX4E02.htm">Invalid handle type - MCH7802</a>
+<DT>03
+<DD><A class="content" HREF="exceptions/EX4E03.htm">Handle-based primitive exists - MCH7803</a>
+</DL>
+</DL>
+</DL>
+
+</body>
+
+</HTML>
+

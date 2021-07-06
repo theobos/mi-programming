@@ -1,0 +1,250 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> RINZSTAT Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Reinitialize Static Storage (RINZSTAT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">02C1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Activation template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for RINZSTAT is 417.
+RINZSTAT (
+          activation_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>This instruction reinitializes the static storage for eligible
+previously
+activated bound programs, including bound service programs.
+To be eligible, the program must have the <I>allow static storage re-initialization</I>
+attribute set.
+<font color=blue>
+The activation mark of any affected program
+activation is not changed.
+</FONT>
+<P>Operand 1 must contain a space pointer to the <I>activation
+template</I>.
+<P>The <I>activation template</I> must be quadword aligned
+and have the following structure:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation template
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(20)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">System pointer to the program
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Activation group mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>If the <B><U>system pointer to the program</U></B> is a null pointer value,
+all eligible activations of bound
+programs or bound service programs within the activation group
+specified by the <I>activation group mark</I> will be interrogated.
+<P>If the thread is in user state at the time this
+instruction is invoked and the activation group,
+specified by the <I>activation group mark</I>,
+is a system state
+activation group an <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+will be signalled.
+The user must have adequate authority to all bound programs with
+the <I>allow static storage re-initialization</I> attribute
+in the activation group or none of the programs will be
+reinitialized.
+<P>If the <I>system pointer to the program</I> is not
+a null pointer value, only the
+program activation in the activation group specified, provided
+there is adequate authority and the program
+has the <I>allow static storage re-initialization</I> attribute
+will have its static storage reinitialized.
+If the activation group specified by the <I>activation
+group mark</I> is not found, an <I> activation group not found&nbsp; </I> (hex <A HREF="../exceptions/EX2C13.htm">2C13</A>) exception
+will be signalled.
+If the
+program activation can not be found in the activation group, an <I> invalid operation for program&nbsp; </I> (hex <A HREF="../exceptions/EX2C15.htm">2C15</A>) exception
+will be signalled.
+If the program does not have the <I>allow static storage
+re-initialization</I> attribute set, an <I> invalid operation for program&nbsp; </I> (hex <A HREF="../exceptions/EX2C15.htm">2C15</A>) exception
+will be
+signalled.
+<P>The <B><U>activation group mark</U></B> uniquely
+identifies an activation
+group within a process.  A value of zero is interpreted to be a
+request to use the activation group of the current invocation.
+<P>Exported data to the activation group will not be changed.
+
+<P>
+<H4><A NAME="Header_4">Usage Notes</A></H4>
+<font color=blue>
+<P>Static storage is initialized by the machine each time a
+program (bound program or bound service program)
+is activated or reinitialized via this instruction.
+Only those static storage locations specified
+by the high-level language (HLL) compiler are initialized
+by the machine. Other locations are uninitialized.
+The machine can only initialize static storage with values
+which can be specified as constants at compile-time.
+Complex values which can only be evaluated at run-time
+cannot be initialized using this mechanism.
+For example,
+the current time of day or the "construction" of
+a C++ object.
+<P>
+Some HLL compilers (e.g. C++) make use of additional run-time
+static initialization (<I>s-init</I>) mechanisms to initialize
+variables with complex values.
+The <I>s-init</I> mechanism is triggered by execution of the
+program entry point (PEP) of a bound program and is supported by
+language run-time code.
+The RINZSTAT instruction <B>does not</B>
+cause this <I>s-init</I> code to be re-executed.
+The use of the RINZSTAT instruction on a
+program containing <I>s-init</I> items can lead to
+an inconsistent internal state of the program.
+</FONT>
+</FONT>
+<P>
+<H4><A NAME="Header_5">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Execute
+<UL>
+<P><LI>
+Program referenced by operand 1
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_6">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_7">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<font color=blue>
+<DD><A HREF="../exceptions/EX2C12.htm">2C12 Activation Group Access Violation</A>
+</FONT>
+<DD><A HREF="../exceptions/EX2C13.htm">2C13 Activation Group Not Found</A>
+<DD><A HREF="../exceptions/EX2C15.htm">2C15 Invalid Operation for Program</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,160 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> REALCHSS Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Reallocate Activation Group-Based Heap Space Storage (REALCHSS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03BA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Space allocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Size of space reallocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Binary(4) scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for REALCHSS is 117.
+REALCHSS (
+          space_allocation             : address
+          size_of_space_reallocation   : signed binary(4)<font color=blue>
+) :   space pointer(16) to space reallocation
+</FONT>
+</PRE>
+<P>
+<VAR>space allocation</VAR> and <VAR>size of space_reallocation</VAR>
+correspond to operands 1 and 2 on the REALCHSS operation; the return
+value corresponds to operand 1 after the function completes.
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "heap space" in this instruction refers to an
+"activation group-based heap space".
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+A new heap space storage allocation of at least the size indicated by
+operand 2 is provided from the same heap space as the original
+allocation, which is indicated by operand 1.  The operand 1 space
+pointer is set to address the first byte of the new allocation, which
+will begin on a boundary at least as great as the minimum boundary
+specified when the heap space was created.
+<P>
+Each allocation associated with a heap space provides a continuum of
+contiguously addressable bytes.  Individual allocations within a heap
+space have no addressability affinity with each other.
+<P>
+The maximum single allocation allowed is determined by the maximum
+single allocation size specified when the heap space was created.  The
+maximum single allocation possible is
+(16M - 1 page) bytes.  To determine the current page size use the
+<A HREF="MATRMD.htm">MATRMD</A> instruction.
+<P>
+Storage that is reallocated maintains the same mark/release status as
+the original allocation.  If the original allocation was marked, the new
+allocation carries the same mark and will be released by a
+Free Activation Group-Based Heap Space Storage from Mark (<A HREF="FREHSSMK.htm">FREHSSMK</A>)
+which specifies that mark identifier.
+<P>
+The original heap space storage allocation will be freed.  Subsequent
+references to the original allocation will cause unpredictable results.
+<P>
+The contents of the original allocation are preserved in the following
+fashion:
+<UL>
+<P><LI>
+If the new allocation size is greater than the original allocation size,
+the entire contents of the original allocation will appear in the new
+allocation.  The contents of the rest of the new allocation are
+unpredictable unless initialization of heap allocations was specified
+when the heap space was created.
+<P><LI>
+If the new allocation size is less then or equal to the original
+allocation size, the new allocation will contain at least as much of the
+original allocation contents as the new allocation size allows.
+<P><LI>
+If the minimum boundary alignment value for the heap space indicates
+at least a 16 byte boundary, valid pointers will be preserved.
+</UL>
+<P>
+REALCHSS will signal an <I> object domain or hardware storage protection violation&nbsp; </I> (hex <A HREF="../exceptions/EX4401.htm">4401</A>) exception
+if a program running user state attempts to reallocate heap space
+storage in a heap space with a <I>domain</I> of <I>system</I>.
+<P>
+Operand 2 is not modified by the instruction.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+<DD><P>45 Heap Space
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4502.htm">4502 Invalid Request</A>
+<DD><A HREF="../exceptions/EX4503.htm">4503 Heap Space Full</A>
+<DD><A HREF="../exceptions/EX4504.htm">4504 Invalid Size Request</A>
+<DD><A HREF="../exceptions/EX4505.htm">4505 Heap Space Destroyed</A>
+<DD><A HREF="../exceptions/EX4506.htm">4506 Invalid Heap Space Condition </A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

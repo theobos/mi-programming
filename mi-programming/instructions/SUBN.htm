@@ -1,0 +1,370 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SUBN Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Subtract Numeric (SUBN)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-7&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBN</B>
+1047
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBNR</B>
+1247
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBNB</B>
+1C47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBNBR</B>
+1E47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBNI</B>
+1847
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SUBNIR</B>
+1A47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Difference
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE><P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3</I>:  Numeric scalar.
+<P>
+<I>Operand 4-7</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H4><A NAME="Header_2">Short forms</A></H4>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand &#91;3-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNS</B>
+1147
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNSR</B>
+1347
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNBS</B>
+1D47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNBSR</B>
+1F47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNIS</B>
+1947
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SUBNISR</B>
+1B47
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Difference/Minuend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subtrahend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR></TABLE><P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3-6</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_3">Caution</A></H5>
+<P>
+If operands overlap but do not share all of the same bytes, results
+of operations performed on these operands are not predictable.
+If overlapped operands share all of the same bytes, the results are
+predictable when direct addressing is
+used or whenever the <I>assume coincident operand overlap</I>
+attribute has been specified in the program template.
+If
+the <I>assume coincident operand overlap</I> attribute has not been
+specified in the program template and
+indirect addressing is used (that is, based operands, parameters,
+strings with variable lengths, and arrays with variable subscripts),
+the results are not always predictable.
+<P>
+<H5><A NAME="Header_4">Description</A></H5>
+<P>
+The <I>difference</I> is the result of subtracting
+the <I>subtrahend</I> from the <I>minuend.</I>
+<P>
+Operands can have floating-point, packed or zoned decimal,
+signed or unsigned binary type.
+<P>
+Source operands are the <I>minuend</I> and <I>subtrahend.</I>
+The receiver operand is the <I>difference.</I>
+<P>
+If operands have different types, source operands, <I>minuend</I> and <I>subtrahend,</I> are converted according to the following rules:
+<OL TYPE=1>
+<P><LI>If any one of the operands has floating point type, source operands
+are converted to floating point type.
+<P><LI>Otherwise, if any one of the operands has zoned or packed decimal
+type, source operands are converted to packed decimal.
+<P><LI>Otherwise, the binary operands are converted to a like type.
+Note: unsigned binary(2) scalars are logically treated as signed
+binary(4) scalars.
+</OL>
+<P> <I>Minuend</I> and <I>subtrahend</I> are subtracted according to
+their type.  Floating
+point operands are subtracted using floating point subtraction.
+Packed decimal operands are subtracted using packed decimal
+subtraction.  Unsigned binary subtraction is used with unsigned
+binary operands.  Signed binary operands are subtracted using two's
+complement binary subtraction.
+<P>
+Better performance can be obtained if all operands have the same type.
+Signed and unsigned binary subtractions execute faster than either packed
+decimal or floating point subtractions.
+<P>
+Decimal operands used in floating-point operations cannot
+contain more than 15 total digit positions.
+<P>
+For a decimal operation, alignment of the assumed decimal point
+takes place by
+padding with 0's on the right end of the source operand with
+lesser precision.
+<P>
+Floating-point subtraction uses exponent comparison and
+significand subtraction.  Alignment of the
+binary point is performed, if necessary, by shifting the
+significand of the value with the smaller
+exponent to the right.  The exponent is increased by one
+for each binary digit shifted until the two exponents agree.
+<P>
+The operation uses the length and the precision of the
+source and receiver operands to calculate accurate results.
+Operations performed in decimal are limited to 31 decimal digits in
+the intermediate result.
+<P>
+The subtract operation is performed according to the rules of algebra.
+<P>
+The result of the operation is copied into the <I>difference</I>
+operand.  If this
+operand is not the same type as that used in performing the
+operation, the resultant
+value is converted to its type.  If necessary, the resultant
+value is adjusted to the length of the
+difference operand, aligned at the assumed decimal
+point of the <I>difference</I> operand, or both before being copied
+to it.
+For fixed-point operation, if significant digits
+are truncated
+on the left end of the resultant value, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+<P>
+For the optional round form of the instruction, specification of a
+floating-point receiver operand is invalid.
+<P>
+For floating-point operations involving a fixed-point receiver
+field, if nonzero digits would be
+truncated off the left end of the resultant value, an <I> invalid floating-point conversion&nbsp; </I> (hex <A HREF="../exceptions/EX0C0C.htm">0C0C</A>) exception
+is signaled.
+<P>
+For a floating-point <I>difference</I> operand, if the exponent of
+the resultant value is either too large
+or too small to be represented in the difference field, the <I> floating-point overflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C06.htm">0C06</A>) exception
+or the <I> floating-point underflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C07.htm">0C07</A>) exception
+is signaled.
+<P>
+If a decimal to binary conversion causes a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+to
+be signaled, the binary value contains the correct truncated
+result only if the decimal value contains 15 or fewer
+significant nonfractional digits.
+<P>
+Size exceptions can be inhibited.
+<P>
+<P>
+<H5><A NAME="Header_5">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Positive-The
+algebraic value of the numeric scalar <I>difference</I> is positive.
+<P><LI>Negative-The
+algebraic value of the numeric scalar <I>difference</I> is negative.
+<P><LI>Zero-The
+algebraic value of the numeric scalar <I>difference</I> is zero.
+<P><LI>Unordered-The
+value assigned a floating-point <I>difference</I> operand is NaN.
+</UL>
+<P>
+<H4><A NAME="Header_6">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_7">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_8">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C03.htm">0C03 Decimal Point Alignment</A>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+<DD><A HREF="../exceptions/EX0C0C.htm">0C0C Invalid Floating-Point Conversion</A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+
+</body>
+
+</HTML>

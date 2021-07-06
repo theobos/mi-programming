@@ -1,0 +1,508 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1202 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1202
+</B></TD><TD><P><I>Key Mapping Error
+</I>
+<P>During conversions of a field from one data representation to
+another, an error occurred.
+The specific error is indicated in the error type value, below.
+<P>
+<I>Information Passed:</I>
+<P>The following data is provided:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Cursor
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data space number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>18
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>12
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Ordinal entry number
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>UBin(4)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of fields in error
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated for each field that is in error)
+<font color=blue>
+</FONT><BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>24
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>18
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Field number
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Error type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Tolerate all mapping errors exception data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Status bits
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit map is specified
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Bit map is not returned in the exception data
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Bit map is returned in the exception data
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 2-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit map byte length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit map identifying the erroneous key buffer fields
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of first exceptions
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>First exception data
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>&#91;*&#93; Char(1040)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+(repeated for each offending field)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">First error cursor data space number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">First error ordinal entry number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">UBin(4)
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Char(1024)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>First error field number
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>UBin(2)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">First error error type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">First error field location
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(5)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>field number</U></B> is the
+relative location of the field as specified
+when creating the cursor.
+A <I>field number</I> of 1 is the first field
+in the data field location.
+<P>The <B><U>error type</U></B> values are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Hex 0002 = </TD><TD><P>Decimal Data:
+(1) Sign encoding is invalid for packed or zoned format, or (2) digit
+encoding is invalid for packed or zoned format.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0006 = </TD><TD><P>Floating-Point Overflow:
+During conversion, a floating-point value exceeded the maximum value
+that can be represented.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0007 = </TD><TD><P>Floating-Point Underflow:
+During conversion, a floating-point value became less than the minimum
+value that can be represented.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0008 = </TD><TD><P>Length Conformance:
+A length specified for a variable length field was outside the limits of
+that field.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0009 = </TD><TD><P>Floating-Point Invalid Operand:
+A floating-point NaN was used as an operand to convert from long
+floating-point format to short floating-point format or from short
+floating-point format to long floating-point format.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 000A = </TD><TD><P>Size:
+The destination field is too small to hold all significant digits of the
+source field.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 000C = </TD><TD><P>Invalid Floating-Point Conversion:
+An invalid floating-point value was used as an operand to convert
+floating-point to packed decimal or floating-point to binary.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 000D = </TD><TD><P>Floating-Point Inexact Result:
+In a conversion operation, a floating-point value had at least one bit
+of precision rounded away.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0014 = </TD><TD><P>Date boundary underflow:
+The end result of a date calculation or conversion, a date, precedes the
+beginning of the time line described in the <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>.
+For a further description of the data definitional attribute template,
+see
+<A class="content" HREF="MINDTCON.htm#HDR<A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>">Data Definitional Attribute Template</A>.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0015 = </TD><TD><P>Date boundary overflow:
+The end result of a date calculation or conversion, a date, exceeds the
+end of the time line described in the <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>.
+For a further description of the data definitional attribute template,
+see
+<A class="content" HREF="MINDTCON.htm#HDR<A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>">Data Definitional Attribute Template</A>.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0016 = </TD><TD><P>Data format:
+The format of the data does not conform to the format that is described
+in the <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>.
+For a further description of the data definitional attribute template,
+see
+<A class="content" HREF="MINDTCON.htm#HDR<A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>">Data Definitional Attribute Template</A>.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0017 = </TD><TD><P>Data value:
+The data value of a date, time, or timestamp is invalid with respect to
+the calendar specified in the <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>.
+For a further description of the data definitional attribute template,
+see
+<A class="content" HREF="MINDTCON.htm#HDR<A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A>">Data Definitional Attribute Template</A>.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 0018 = </TD><TD><P>Null status:
+An invalid situation exists relating to null capable fields.
+On instructions that materialize a key, a null field was encountered and
+a null map was not provided with the instruction.
+On instructions with a key as input, a null map was provided and
+indicated a field which is not null capable should be set to null or the
+null map contains an invalid null or not null value.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 001C = </TD><TD><P>Invalid Character for CAST:  An invalid source
+character was found while performing the CAST operation.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 001D = </TD><TD><P>CAST Size:  The character destination field is
+too short to hold all the significant digits of the source.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 00F0 = </TD><TD><P>A substring set cursor operation was requested:
+The byte count specified ended in a key field that cannot be severed.
+This key field type could be but is not limited to:
+binary, floating point, date, or timestamp.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 00F1 = </TD><TD><P>Unable to compute hash value:
+The data value of field(s) in the current entry could not be
+successfully computed into a hash value.
+</TD></TR></TABLE>
+<P>These errors are equivalent to the
+computational
+exceptions numbered 0C02, 0C06, 0C07,
+0C08,
+0C09, 0C0A, 0C0C,
+0C0D,
+0C14, 0C15, 0C16, and 0C17,
+and occur for similar reasons.
+<P>The <B><U>ordinal entry number</U></B> field will be zero
+if the exception occurred
+on input key mapping.
+For output key mapping, <I>ordinal entry number</I>
+will contain the ordinal
+number of the DSE which caused the exception.
+<P>The <B><U>bit map is specified</U></B> bit indicates
+if the bit map identifying the
+erroneous user buffer fields is present in the exception data
+<P>
+<P>The <B><U>bit map identifying the erroneous key buffer fields</U></B>
+maps each
+field of the key buffer to a bit map in a one-to-one correspondence.
+Field 1 is bit 1, field 2 is bit 2, etc.  If the bit corresponding to a
+key buffer field is 0 then that field incurred no errors.
+If the bit corresponding to a key buffer field is 1 then that field is
+erroneous and has been replaced with the default value (blank for
+character, zero for numeric).
+The length of the bit map is given by:
+<DL>
+<DD><P>(((number of fields in user buffer)+7)/8+1)&'FFFE'X.
+</DL>
+<P>The <B><U>first exception data</U></B> area identifies the first field that
+incurred an error when a cursor created with the tolerate all mapping
+errors attribute is being used for retrieval operations.
+The field identified is not necessarily represented in the returned key
+nor is it necessarily represented in the bitmap of erroneous fields
+since it may not have been mapped to the key buffer.
+Instead, this is the very first field which incurred an error in the
+series of mappings which ultimately produced the key-view in the key
+buffer.
+<P>The <B><U>first error cursor data space number</U></B> will
+contain binary 0
+when the error occurs during group-by derived field operations.
+<P>The <B><U>first error ordinal entry number</U></B> will
+contain binary 0 when
+the error occurs during group-by derived field operations.
+<P>The <B><U>first error field number</U></B> is as
+described for field number above.
+<P>The <B><U>first error error-type</U></B> is as
+described for error type above with
+the addition of the following types:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 000B =
+</TD><TD>An attempt was made to divide by zero in a fixed point divide
+operation.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 000E =
+</TD><TD>An attempt has been made to divide by zero in a floating point
+divide operation.
+</TD></TR></TABLE>
+The <B><U>first error field location</U></B>
+identifies the buffer where the first error
+occurred.  The following values can be returned:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>Data space entry
+</TD></TR><TR VALIGN="TOP"><TD>03 =
+</TD><TD>Intermediate key buffer
+</TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

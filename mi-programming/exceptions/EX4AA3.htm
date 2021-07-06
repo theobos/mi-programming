@@ -1,0 +1,139 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4AA3 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4AA3
+</B></TD><TD><P><I>Java Archive File Error
+</I>
+<P>
+An error was detected in a Java archive (JAR) file.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Java archive file pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>Java archive file pointer</U></B> addresses the vnode of
+the Java archive (JAR) file containing the error being reported.
+<P>The <B><U>error offset</U></B> is the byte offset into the JAR
+file at which the error was detected.
+<P>The <B><U>reason code</U></B> indicates the specific reason
+for the exception, and is one of&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Error</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>00000001
+</TD><TD><P>"InvalidMagic"&#58; The 'magic number'
+field of the JAR file is invalid.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000002
+</TD><TD><P>"MinorVersion"&#58; The minor_version
+field of the JAR file is invalid.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000003
+</TD><TD><P>"MajorVersion"&#58; The major_version
+field of the JAR file is invalid.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000004
+</TD><TD><P>"MainHeader"&#58; The main header
+of the JAR file contains invalid data.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000005
+</TD><TD><P>"MainHeaderCrcFailure"&#58;  The CRC check
+of the main header data of the JAR file failed.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000006
+</TD><TD><P>"EndHeader"&#58;  The end header of
+the JAR file contains invalid data.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000007
+</TD><TD><P>"EndHeaderCrcFailure"&#58;  The CRC check of the
+end header of the JAR file failed.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000008
+</TD><TD><P>"DirHeader"&#58;  The JAR file directory header
+contains invalid data.
+</TD></TR><TR VALIGN="TOP"><TD><P>00000009
+</TD><TD><P>"UnpackDir"&#58;  The unpacked JAR file directory
+is invalid.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000A
+</TD><TD><P>"DirEntry"&#58;  The JAR file directory entry contains
+invalid data.
+</TD></TR><TR VALIGN="TOP"><TD><P>0000000B
+</TD><TD><P>"EntryHeaderCrcFailure"&#58; The CRC check of the
+JAR file directory entry failed.
+</TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+   
+ 
+</body>
+
+ 
+</HTML>

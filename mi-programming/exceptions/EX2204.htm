@@ -1,0 +1,220 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 2204 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>2204
+</B></TD><TD><P><I>Object Not Eligible for Operation
+</I>
+<P>
+An attempt to reference an object was unsuccessful because the object
+was not eligible for the operation requested for one of the following
+reasons:
+<UL>
+<P><LI>
+An object that cannot be duplicated was specified on a Create Duplicate
+Object instruction.
+<P><LI>
+A data space or data space index was activated when a Suspend
+instruction or a load/dump operation was attempted.
+<P><LI>
+An index that can contain pointers was referenced by a Suspend Object
+instruction or was referenced for a load/dump operation.
+<P><LI>
+An attempt was made to activate a cursor that is already activated to
+this process or is activated to another process.
+<P><LI>
+A temporary object was referenced on a Transfer Ownership instruction.
+<P><LI>
+A temporary object was referenced on a Transfer Primary Group
+instruction.
+<P><LI>
+An attempt was made to replace a program through a load operation.
+<P><LI>
+An attempt was made to materialize cursor statistics when the cursor was
+not active for this process.
+<P><LI>
+The receiving data space for a Copy Data Space Entries instruction is
+active under more than one cursor.
+<P><LI>
+An attempt was made to modify (through the Modify Data Space Index
+Attributes instruction) a data space index when the current attributes
+of the data space index were incompatible with the attempted
+modification.
+<P><LI>
+An attempt was made to retrieve (through the Retrieve Data Space Entry
+instruction) a data space entry when the cursor position is the result
+of group-by processing.
+<P><LI>
+An attempt was made to set a cursor (by a Set Cursor or a Retrieve
+Sequential Data Space Entries instruction) in an event handler while the
+cursor is waiting for a lock for another Set Cursor instruction.  This
+can happen when an event is handled during a data base entry lock wait.
+<P><LI>
+The source or receiver cursor has had a set cursor operation or another
+operation performed on it that left the cursor set to a data space entry
+after the cursor was activated and before a Copy Data Space Entries
+instruction was issued.
+<P><LI>
+An attempt was made to apply journal changes to an object for which
+journaling is not supported.
+<P><LI>
+An attempt was made to apply journal changes to a data space that had a
+cursor active over it.
+<P><LI>
+An attempt was made to attach a new Journal space to a remote
+journal port without first attaching a matching journal space
+to the local journal port associated with this remote port.
+<P><LI>
+An attempt was made to start journaling for an object to a journal
+port which is not allowed to have objects journaled to it.
+<P><LI>
+An attempt was made to reset the journal entry sequence number
+of the first entry on a journal space attached to a remote journal
+port.
+<P><LI>
+An attempt was made to attach more than one journal space to a remote
+journal port.
+<P><LI>
+An attempt was made to change the journal entry prefix lengths for
+a remote journal port.
+<P><LI>
+An attempt was made to change the discard transient entries value for
+a default or remote journal port.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+for a default or remote journal port.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+so as to start preventing deposits
+for a journal port which is already preventing deposits.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+so as to cease preventing deposits
+for a journal port which has already ceased preventing deposits.
+<P><LI>
+An attempt was made to specify user specific data to be included in
+the initial entry deposited on a journal space attached to a remote
+journal port.
+<P><LI>
+An attempt was made to create a remote journal receiving environment
+for a default journal port, or for a journal port that has more
+than one journal space attached to it, or for a journal port that
+is not a remote journal port.
+<P><LI>
+An attempt was made to add a remote journal sending environment
+for a default journal port or for a journal port that has more
+than one journal space attached to it.
+<font color=blue>
+<P><LI>
+An attempt was made to begin journaling of a dataspace that supports
+a maximum record length of 3.5GB to a journal port that does not
+support a maximum journal entry length greater than 15MB.
+</FONT>
+<font color=blue>
+<P><LI>
+An attempt was made to journal a queue that was created with the<I>
+contains pointers and scalar data</I> attribute.
+<P><LI>
+An attempt was made to journal a space object whose subtype is not
+supported by journaling.
+</FONT>
+<P><LI>
+An attempt was made to insert a user profile or a temporary object into
+an authority list on the Modify Authority List instruction.
+<P><LI>
+An attempt was made to use the Modify Program instruction to compress or
+decompress a part of a program object that either does exist or is
+already in the requested format.
+<P><LI>
+An attempt was made to use the Modify Program instruction to compress a
+program that either was created before version 1 release 3, or has been
+modified outside of machine control.
+<P><LI>
+An attempt was made to use the Test System Object instruction
+on an object having an object type that is not supported by the
+instruction.
+<P><LI>
+An attempt was made to use the Test System Object instruction
+on a module object or a program object that has not been converted
+to version 3 release 6 format.
+<P><LI>
+An attempt was made to use the Set Space Pointer From Pointer instruction
+to set a space pointer from a system pointer pointing to a
+XOM object.
+</UL>
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object causing exception
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Ensure Object (<A HREF="../instructions/ENSOBJ.htm">ENSOBJ</A>)
+<LI>Materialize Authorized Objects (<A HREF="../instructions/MATAUOBJ.htm">MATAUOBJ</A>)
+<LI>Materialize Bound Program (<A HREF="../instructions/MATBPGM.htm">MATBPGM</A>)
+<LI>Set Access State (<A HREF="../instructions/SETACST.htm">SETACST</A>)
+<LI>Set Space Pointer From Pointer <A HREF="../instructions/SETSPPFP.htm">SETSPPFP</A>
+<LI>Test Temporary Object (<A HREF="../instructions/TESTTOBJ.htm">TESTTOBJ</A>)
+</UL>
+</TD></TR></TABLE>
+
+  
+ 
+</body>
+
+ 
+</HTML>

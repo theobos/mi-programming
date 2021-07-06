@@ -1,0 +1,63 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1C03 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1C03
+</B></TD><TD><P><I>Machine Storage Limit Exceeded
+</I>
+<P>
+The storage capacity of the machine was exceeded.
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+This exception can be signaled during any machine operation that
+causes auxiliary storage to be allocated.
+The operations can include creation or extension of system
+objects and extension of auxiliary
+storage for machine overhead supporting the established processes in the
+machine.
+<P>
+Any instruction which references bytes of data within a space object can
+cause an automatic extension of the space if the space has the attribute
+of being automatically extendible.  Therefore, this exception may be
+signaled for any instruction which has an operand which references bytes
+of data in a space.
+</UL>
+</TD></TR></TABLE>
+
+ 
+</body>
+
+ 
+</HTML>

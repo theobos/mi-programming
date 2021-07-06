@@ -1,0 +1,99 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1C0D Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1C0D
+</B></TD><TD><P><I>Requested Data Collection Function Not Valid
+</I>
+<P>
+The function requested by an instruction may not be performed
+because of the current status of the machine, process, or thread.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+Below is the list of the <B><U>reason codes</U></B> and their meanings:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>1
+</B></TD><TD>A request was received to start the collection of a category of
+data, while data collection for that category had already been started
+</TD></TR><TR VALIGN="TOP"><TD><B>2
+</B></TD><TD>A request was received to stop the collection of a category of data,
+while data collection for that category was currently stopped
+</TD></TR><TR VALIGN="TOP"><TD><B>3
+</B></TD><TD>A request was received to stop the collection of a category of data,
+from a process which was not the same process that started the
+collection
+</TD></TR><TR VALIGN="TOP"><TD><B>4
+</B></TD><TD>A request was received to start the collection of data into a
+byte stream file object which was already being used to collect data of
+a different category
+</TD></TR><TR VALIGN="TOP"><TD><B>5
+</B></TD><TD>A request was received to start the collection of data into a byte
+stream file which was not created to allow mapping into teraspace
+</TD></TR><TR VALIGN="TOP"><TD><B>6
+</B></TD><TD>A request was received to start the collection of data into a
+byte stream file object, whose data size was not less than the maximum
+data size specified with the request
+</TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+ 
+</body>
+
+ 
+</HTML>

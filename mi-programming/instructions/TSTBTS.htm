@@ -1,0 +1,182 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> TSTBTS Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Test Bit in String (TSTBTS)</H1>
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3&nbsp;&#91;4&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>TSTBTSB</B>
+1C0E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>TSTBTSI</B>
+180E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR></TABLE><P>
+<I>Operand 1</I>:  Character scalar or numeric scalar.
+<P>
+<I>Operand 2</I>:  Binary scalar.
+<P>
+<I>Operand 3</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TSTBTS is 1.
+TSTBTS (
+        source   : address
+        offset   : unsigned binary(4)
+) :   signed binary(4) /* return_code */
+</PRE>
+<P>The return code will be set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>1
+</B></TD><TD><P>Bit set.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>0
+</B></TD><TD><P>Bit clear.
+</TD></TR></TABLE>
+<P>This built-in function is used to provide support for the branch
+and indicator forms of the TSTBTS instruction.  The user
+must specify code to process the <VAR>return_code</VAR> and
+perform the desired branching or indicator setting.
+<P>The <VAR>offset</VAR> parameter must be between 0 and 65,535.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Tests the bit of the <I>source</I> operand
+as indicated by the <I>offset</I>
+operand to determine if the bit is set or not set.
+<P>
+Based on the test, the resulting condition is used with the extender
+field to either
+<UL>
+<P><LI>Transfer control conditionally to the instruction indicated in
+one of the branch target operands (branch form).
+<P><LI>Assign a value to each of the indicator operands (indicator
+form).
+</UL>
+<P>
+The <I>source</I> operand can be character or numeric.
+The leftmost bytes
+of the <I>source</I> operand are used in the operation.
+The <I>source</I> operand
+is interpreted as a bit string with the bits numbered left to right
+from 0 to the total number of bits in the string minus one.
+<P>
+The <I>offset</I> operand indicates which bit
+of the <I>source</I> operand is to
+be tested, with a offset of zero indicating the leftmost bit of the
+leftmost byte of the <I>source</I> operand.
+<P>
+If an <I>offset</I> value less than zero or
+beyond the length of the string is specified a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+is signaled.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Zero-The selected bit of the bit string <I>source</I> operand
+is zero.
+<P><LI>One-The selected bit of the bit string <I>source</I> operand
+is one.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

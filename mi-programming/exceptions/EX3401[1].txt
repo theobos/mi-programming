@@ -1,0 +1,737 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 3401 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>3401
+</B></TD><TD><P><I>Source/Sink Configuration Invalid
+</I>
+<P>
+A source/sink object
+was not properly configured to allow the requested operation.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object that prevented execution from completing
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(if appropriate, otherwise; binary 0)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<DL>
+<DD><P><B>Error Codes for CRTND</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1101
+</TD><TD>Backward object has the wrong source/sink type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1102
+</TD><TD>Backward object is already connected
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1103
+</TD><TD>Duplicate backward objects
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1104
+</TD><TD>Backward object attribute mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1105
+</TD><TD>Invalid eligibility objects, not switched, wrong type, etc.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1106
+</TD><TD>Backward pointers supplied to controller descriptions (CDs)
+having duplicate physical addresses
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1107
+</TD><TD>Attempt to create a network description (ND) for OU number
+already having maximum allowable number of NDs.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1113
+</TD><TD>Receive default packet size (DFTPKTSIZE) in CD was greater than
+receive maximum packet size (MAXPKTSIZE) in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1114
+</TD><TD>Maximum length of a path information unit (PIU) in the CD is
+greater than the network maximum PIU (NETMAXPIU) in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1115
+</TD><TD>NETPCL(*PCH) is specified in the CD with DFTPKTSIZE
+of -1; and the ND specified a DFTPKTSIZE that was not
+either 128 or 256
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1116
+</TD><TD>The DFTPKTSIZE specified in the CD is not compatible with the
+X25NETTYPE specified in the ND.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1120
+</TD><TD>An attempt is being made to create an ND with more than 1 OPEN CD
+in the ND's backward pointer list
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1130
+</TD><TD>Maximum frame size in ND does not match the one in the CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1132
+</TD><TD>Network interface description (NWID) interface type does not
+match template interface type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1133
+</TD><TD>NWID's interface identifier does not match template interface
+identifier
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1134
+</TD><TD>NWID channel is already in use by another ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1135
+</TD><TD>Channel not a permanent connect
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1136
+</TD><TD>Channel slot value is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1137
+</TD><TD>NWID is not an ISDN NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1138
+</TD><TD>Attempt to define a NETLINE to a first party call control or
+an attempt to define IDLC/X.25 line to third party call control
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1139
+</TD><TD>NWID kind in the ND does not match the NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1140
+</TD><TD>Max out the number of entries in the NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1143
+</TD><TD>NWID's interface identifier does not match template interface
+identifier
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1145
+</TD><TD>Channel not a B channel or not a switched connection
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1146
+</TD><TD>Channel slot value is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1147
+</TD><TD>NWID is not an ISDN NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1148
+</TD><TD>Attempt to define a switched B channel with third party call
+control
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1161
+</TD><TD>Transmit DFTPKTSIZE in the CD was
+greater than transmit MAXPKTSIZE in
+the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1162
+</TD><TD>Transmit default window size (DFTWDWSIZE) in the CD is not
+compatible with the X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1163
+</TD><TD>Remote network address in the CD is not compatible with the
+local network address in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1171
+</TD><TD>Maximum frame size in the CD is greater than the maximum
+frame size specified in the ND (for IDLC)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1173
+</TD><TD>Window size specified in the CD is greater than the window
+size specified in the ND (for IDLC)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1181
+</TD><TD>ND to attach to auxiliary server is wrong protocol.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1182
+</TD><TD>ND forward object kind does not match auxiliary server kind.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1183
+</TD><TD>Invalid port number.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1184
+</TD><TD>Port number on the server is already in use.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1185
+</TD><TD>Can not attach any objects to System 36 created NDs.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1186
+</TD><TD>Can only attach line on internal port if the auxiliary
+server is type
+Base.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1187
+</TD><TD>This line cannot use the physical port of this NWSD.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for CRTCD</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1201
+</TD><TD>Backward or forward object has wrong source/sink type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1202
+</TD><TD>Backward object is already connected
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1203
+</TD><TD>Duplicate backward objects
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1204
+</TD><TD>Backward or forward object attribute mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1205
+</TD><TD>Backward pointers supplied to logical unit descriptions (LUDs)
+having duplicate physical addresses
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1206
+</TD><TD>Invalid ND candidate (not switched, wrong type, etc.)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1207
+</TD><TD>Backward pointers supplied to AIC LUD's having duplicate
+logical unit (LU) names
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1208
+</TD><TD>Backward pointer supplied to a LUD having an out-of-range
+SNA-LU address, e.g. for WSC controller, LUD has SNA-LU
+address of 20-31, or for a 5251 controller, LUD has an SNA-LU
+address of 0, 1, or 10-27
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1209
+</TD><TD>For PEER or PU2 CDs, either the CD is APPN and the LUD is not,
+or the LUD is APPN and the CD is not
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1210
+</TD><TD>For WSC or WSCE CD, backward pointers supplied to LUDs having
+duplicate cable address and head address
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1211
+</TD><TD>Backward pointer to LUD with request unit (RU) buffer size not
+compatible with the CD being created
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1212
+</TD><TD>For retail CDs, there is an attached LUD with RCMS session bit
+on and this is not a 4680 controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1213
+</TD><TD>Receive DFTPKTSIZE in the CD was greater than the receive
+DFTPKTSIZE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1214
+</TD><TD>MAXLENPIU in the CD is greater than the NETMAXPIU in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1215
+</TD><TD>NETPCL(*PSH) in the CD is specified with DFTPKTSIZE of -1, and
+DFTPKTSIZE in the ND was neither 128 nor 256.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1216
+</TD><TD>Receive DFTWDWSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1217
+</TD><TD>Invalid ND candidate list.  The ND's APPN fields do not match the
+other NDs on the list
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1218
+</TD><TD>No A-box LUD attached to a 3430/3422/2440 tape controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1219
+</TD><TD>More than one A-box LUD attached to a 3430/3422/2240 tape
+controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1220
+</TD><TD>When creating an OPEN CD, the ND already has an attached OPEN
+CD and only 1 is allowed per ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1226
+</TD><TD>Invalid ND candidate list.  The ND and CD node types are not
+compatible
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1228
+</TD><TD>Invalid LUD - for short hold mode, LUD location address must not
+be zero for HOST controllers
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1230
+</TD><TD>Backward pointer supplied to a LUD having an out-of-range SNA-LU
+address for 2637 or 2638 CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1319
+</TD><TD>Shared session number must be 0 for this LUD when attaching it to
+a CD other than a 5494, 5594, 2661 or 6050
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1261
+</TD><TD>Transmit DFTPKTSIZE in the CD was greater than the transmit
+MAXPKTSIZE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1262
+</TD><TD>Transmit DFTPKTSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1263
+</TD><TD>Remote network address in the CD is not compatible with the
+local network address in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1271
+</TD><TD>Maximum frame size in the CD is greater than the maximum frame
+size in the ND (IDLC)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1273
+</TD><TD>Window size in the CD is greater than the window size in the ND
+(IDLC)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1275
+</TD><TD>Switched controllers cannot attach to line on the internal port
+of an NWSD.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1280
+</TD><TD>Tried to attach a SNA Passthru (SNPT) LUD with SNA passthru
+class of 03 (down) to a HOST CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1281
+</TD><TD>Tried to attach a display (DSP), printer (PRT), retail (RTL),
+or finance (FIN) type LUD with an SNA passthru class that is not
+00 (null) to a HOST CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1282
+</TD><TD>Tried to attach a DSP, PRT, RTL, or FIN type LUD with an
+SNA passthru class that is not 01 to an APPC CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1283
+</TD><TD>Tried to attach a SNPT type LUD to an APPC CD with a machine
+type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1284
+</TD><TD>Tried to attach a DSP, PRT, RTL, or FIN type LUD with SNA passthru
+class that is greater than 0 to an APPC CD with *LOCAL linktype
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1285
+</TD><TD>Can not attach any objects to System 36 created NDs.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for CRTLUD</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1301
+</TD><TD>Forward object has wrong source/sink object type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1304
+</TD><TD>Forward object attribute mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1305
+</TD><TD>Trying to attach a retail device with RCMS session flag to a CD that
+is not a 4680
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1306
+</TD><TD>Mismatch due to CD being APPN and the LUD is not, or vice versa
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1307
+</TD><TD>Forward pointer supplied to a CD having an AIC LUD with a duplicate
+LU name
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1308
+</TD><TD>Forward pointer supplied to a CD for which the LUD's SNA-LU address
+is out-of-range; e.g. for WSC controller, LUD has SNA-LU address of
+20-31, for a 5251 controller, LUD has SNA-LU address of 0, 1, or
+10-27
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1309
+</TD><TD>Forward pointer supplied to a WSC or WSCE CD, for a LUD having a
+cable address of hex 0010 to hex 0017
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1310
+</TD><TD>Forward pointer supplied to a WSC or WSCE CD having a LUD with a
+duplicate cable address and head address
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1311
+</TD><TD>Forward pointer to CD is not compatible with the RU buffer size in
+the LUD being created
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1312
+</TD><TD>No A-box LUD attached to a 3430/3422/2440 tape controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1313
+</TD><TD>More than one A-box LUD attached to a 3430/3422/2440 tape controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1316
+</TD><TD>Forward pointer supplied to a short hold mode HOST CD and the LUD
+local address is zero
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1317
+</TD><TD>No devices are allowed to attach to a "model" connection network
+controller
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1318
+</TD><TD>Forward pointer supplied to a CD for which the LUD's LU address is
+out-of-range for a 2637 or 2638 CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1319
+</TD><TD>Shared session number must be 0 for this LUD when attaching it to
+a CD other than a 5494, 5594, 2661 or 6050
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1380
+</TD><TD>Tried to attach a SNPT type LUD with SNA passthru class of 03 (down)
+to a HOST CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1381
+</TD><TD>Tried to attach a DSP, PRT, RTL,
+or FIN type LUD with an SNA passthru class that is not
+00 (null) to a HOST CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1382
+</TD><TD>Tried to attach a DSP, PRT, RTL, or FIN type LUD with an
+SNA passthru class that is not 01 to an APPC CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1383
+</TD><TD>Tried to attach a SNPT type LUD to an APPC CD with a machine
+type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1384
+</TD><TD>Tried to attach a DSP, PRT, RTL, or FIN type LUD with SNA passthru
+class that is greater than 0 to an APPC CD with *LOCAL linktype
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1385
+</TD><TD>Can not attach any objects to System 36 created NDs.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1386
+</TD><TD>Device identifying communications connection to the library manager
+is invalid.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1387
+</TD><TD>LUD identifying comm connection to library manager is not correct
+type.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1388
+</TD><TD>LUD identifying comm connection to library manager contains
+remote location that is already in use by another device.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for CRTNWID</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1701
+</TD><TD>Attached object has wrong source/sink type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1702
+</TD><TD>Attached object has an attribute mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1703
+</TD><TD>Attached object is already connected
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1704
+</TD><TD>Attempt to attach a non-NETWORK ND to the D channel of the NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1705
+</TD><TD>Attached object with wrong protocol type for frame relay NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1706
+</TD><TD>Can not attach any objects to System 36 created NDs.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for CRTCNNL</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1A01
+</TD><TD>Duplicate entry name
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for CRTAUXSV</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 1B01
+</TD><TD>Attached object has wrong source/sink type or kind
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1B02
+</TD><TD>Attached object has an attribute mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1B03
+</TD><TD>Attached object is already connected
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1B04
+</TD><TD>Can not attach any objects to System 36 created NDs.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1B05
+</TD><TD>Only Token Ring lines can attach to internal port of an NWSD.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MODND</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2101
+</TD><TD>Status change with no backward objects attached
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2103
+</TD><TD>Enable dial with no valid eligibility objects
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2104
+</TD><TD>Invalid object supplied in eligibility list (eg wrong type,
+wrong discipline, or CD not switched)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2105
+</TD><TD>ASCII translation invalid address characters
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2113
+</TD><TD>Receive DFTPKTSIZE in the CD was greater than the receive
+MAXPKTSIZE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2114
+</TD><TD>The MAXLENPIU in the CD is greater than the NETMAXPIU in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2115
+</TD><TD>NETPCL(*PSH) is specified in the CD with DFTPKTSIZE of -1; and the
+DFTPKTSIZE in the ND was neither 128 nor 256
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2116
+</TD><TD>Receive DFTPKTSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2117
+</TD><TD>Configuration is not valid for low-end hardware
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2118
+</TD><TD>Configuration is not valid.  RS530 valid for LEO using BSC, ASC or
+SDLC protocols
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2119
+</TD><TD>Configuration is not valid.  More entries in the NWID array
+than ports available
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2120
+</TD><TD>Token ring speed is not valid for the installed token ring adapter
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2121
+</TD><TD>Maximum frame size is not valid with the selected token ring speed
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2131
+</TD><TD>Forward object point is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2132
+</TD><TD>NWID interface type does not match ND interface type
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2133
+</TD><TD>NWID's interface identifier does not match the ND interface
+identifier
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2136
+</TD><TD>Channel slot value is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2137
+</TD><TD>NWID is not an ISDN NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2143
+</TD><TD>NWID's interface identifier does not match the ND interface
+identifier
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2145
+</TD><TD>Channel is not a B channel or not a switched connection
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2146
+</TD><TD>Channel slot value is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2147
+</TD><TD>NWID is not an ISDN NWID
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2148
+</TD><TD>Attempt to define a switched B channel with third party call
+control
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2155
+</TD><TD>Channel is not a B channel
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2161
+</TD><TD>Transmit DFTPKTSIZE in the CD is greater than the transmit
+MAXPKTSIZE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2162
+</TD><TD>Transmit DFTWDWSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2163
+</TD><TD>Remote network address in the CD is not compatible
+with the local network address in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2171
+</TD><TD>Maximum frame size in the CD is greater than the maximum
+frame size in the ND (IDLC)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2173
+</TD><TD>Window size in the CD is greater than the window size in the ND
+(IDLC)
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MODCD</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2201
+</TD><TD>Status change with no LUDs attached
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2202
+</TD><TD>Status change with no forward object pointer
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2203
+</TD><TD>Dial with no valid ND candidates
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2205
+</TD><TD>NDC invalid ND candidate (not switched, wrong type)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2206
+</TD><TD>ASCII translation - invalid address characters
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2209
+</TD><TD>For PEER or PU2 CDs, either the CD is APPN and the LUD is not
+or the LUD is APPN and the CD is not
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2213
+</TD><TD>Receive DFTPKTSIZE in the CD was greater than the receive MAXPKTSIZE
+in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2214
+</TD><TD>The MAXLENPIU in the CD is greater than the NETMAXPIU in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2215
+</TD><TD>NETPCL(*PSH) specified in the CD with DFTPKTSIZE of -1; and
+DFTPKTSIZE in the ND was neither 128 nor 256
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2216
+</TD><TD>Receive DFTWDWSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2217
+</TD><TD>Vary on CD is not allowed because the CD specifies migration end
+node and another CD with the same control point (CP) name is currently
+varied on
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2218
+</TD><TD>Vary on CD is not allowed because a migration end node CD with the
+same CP name is already varied on
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2219
+</TD><TD>Vary on CD is not allowed because the local and remote CP names
+cannot be the same
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2220
+</TD><TD>Vary on CD is not allowed because a network attribute broadcast is
+outstanding
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2221
+</TD><TD>Vary on CD is not allowed because a switched CD used by T2 has a
+duplicate identification key
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2222
+</TD><TD>Vary on CD is not allowed because the maximum number of parallel
+transmission groups (TGs) are already enabled
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2223
+</TD><TD>Configured TG number is not unique among CDs with the same CP name
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2224
+</TD><TD>Vary on CD is not allowed because of invalid MISR data at IPL time
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2225
+</TD><TD>Vary on CD is not allowed because of invalid MISR data at IPL time
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2226
+</TD><TD>Invalid ND candidate - the ND and CD node types are not
+compatible
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2261
+</TD><TD>Transmit DFTPKTSIZE in the CD is greater than the transmit
+MAXPKTSIZE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2262
+</TD><TD>Transmit DFTWDWSIZE in the CD is not compatible with the
+X25NETTYPE in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2263
+</TD><TD>Remote network address in the CD is not compatible with the
+local network address in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2271
+</TD><TD>Maximum frame size in the CD is greater than the maximum frame
+size in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2273
+</TD><TD>Window size in the CD is greater than the window size in the ND
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2275
+</TD><TD>Switched controller cannot specify a line in the ND candidate list
+that is attached to the internal port of an FSIOP.
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MODLUD</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2301
+</TD><TD>Status change with no forward object pointer
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2302
+</TD><TD>ASCII translation - invalid address characters
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2303
+</TD><TD>No longer used
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2305
+</TD><TD>No longer used
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2307
+</TD><TD>Change to device specific area would result in duplicate LU names
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2308
+</TD><TD>LUD's SNA-LU address is out of range
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2311
+</TD><TD>CD is not compatible with RU buffer size in LUD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2316
+</TD><TD>Forward pointer supplied to a short hold mode HOST CD and
+LUD local address OD zero
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2318
+</TD><TD>LUD's SNA-LU address is out of range for 2637 or 2638 CD
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1319
+</TD><TD>Shared session number must be 0 for this LUD when attaching it to
+a CD other than a 5494, 5594, 2661 or 6050
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MODCNNL</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2A01
+</TD><TD>Entry name not found
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2A02
+</TD><TD>Entry already exists
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MODAUXSV</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2B01
+</TD><TD>Attached object is attached to wrong port
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for REQIO</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 3401
+</TD><TD>Improper queue attributes, or attempt to do load/dump request to a
+non load/dump device, or (for call/return request) specified object
+isn't a LUD or LUD doesn't have "ok to use W-CON" bit set
+</TD></TR><TR VALIGN="TOP"><TD>Hex 3402
+</TD><TD>Object type specified in SSR does not support the synchronous
+resource manager REQIO
+</TD></TR><TR VALIGN="TOP"><TD>Hex 3403
+</TD><TD>LUD specified in SSR has invalid value of "buffer format" field
+in the device specific area for call/return REQIO
+</TD></TR><TR VALIGN="TOP"><TD>Hex 3404
+</TD><TD>Attempt to do REQIO to an INTRA LUD
+</TD></TR></TABLE>
+<DD><P><B>Error Codes for MATCNNL</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 4A01
+</TD><TD>Entry name not found
+</TD></TR></TABLE>
+<DD><P><B>Other Error Codes</B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 5307
+</TD><TD>Modify system name - change to system name would result in duplicate
+LU names in an existing PEER network
+</TD></TR><TR VALIGN="TOP"><TD>Hex 5308
+</TD><TD>Default location name conflict when changing network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 5320
+</TD><TD>X.21 short hold mode NDs varied on when attempting to change
+network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 5340
+</TD><TD>APPN CDs varied on when attempting to change network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 5360
+</TD><TD>APPN CDs varied on and X.21 short hold mode NDs varied on when
+attempting to change network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 5380
+</TD><TD>Remote location list conflict when attempting to change
+network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 53A0
+</TD><TD>Remote location list support and X.25 short hold mode NDs varied
+on when attempting to change network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 53C0
+</TD><TD>Remote location list conflict and APPN CDs varied on when attempting
+to change network attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 53D0
+</TD><TD>CD SSAP not in ND SSAP list
+</TD></TR><TR VALIGN="TOP"><TD>Hex 53E0
+</TD><TD>Remote location list conflict and APPN CDs varied on and X.21 short
+hold mode NDs varied on when attempting to change network attributes
+</TD></TR></TABLE>
+</DL>
+<I>Instructions Causing Exception</I>:
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

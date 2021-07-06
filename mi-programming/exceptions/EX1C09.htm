@@ -1,0 +1,99 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1C09 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1C09
+</B></TD><TD><P><I>Auxiliary Storage Pool Number Invalid
+</I>
+<P>
+An attempt was made to reference an auxiliary storage pool
+<font color=blue>
+and the reference was not successful for one of the following reasons:
+<UL>
+<P><LI>The auxiliary storage pool does not exist on the machine.
+<P><LI>The auxiliary storage pool identifies an independent ASP
+and there is not an existing active logical unit description for the
+independent ASP
+</UL>
+</FONT>
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of storage pool in error
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(14)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Create Independent Index (<A HREF="../instructions/CRTINX.htm">CRTINX</A>)
+<LI>Create Space <A HREF="../instructions/CRTS.htm">CRTS</A>
+<LI>Free Activation Group-Based Heap Space Storage from Mark (<A HREF="../instructions/FREHSSMK.htm">FREHSSMK</A>)
+<LI>Materialize Activation Attributes (<A HREF="../instructions/MATACTAT.htm">MATACTAT</A>)
+<LI>Materialize Activation Group Attributes (<A HREF="../instructions/MATAGPAT.htm">MATAGPAT</A>)
+<LI>Materialize Context (<A HREF="../instructions/MATCTX.htm">MATCTX</A>)
+<LI>Materialize Activation Group-Based Heap Space Attributes (<A HREF="../instructions/MATHSAT.htm">MATHSAT</A>)
+<LI>Set Activation Group-Based Heap Space Storage Mark (<A HREF="../instructions/SETHSSMK.htm">SETHSSMK</A>)
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+</body>
+
+ 
+</HTML>

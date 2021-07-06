@@ -1,0 +1,154 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> NPM_PARMLIST_ADDR Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>NPM Procedure Parameter List Address (NPM_PARMLIST_ADDR)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for NPMPARMLISTADDR is 143.
+NPM_PARMLIST_ADDR (<font color=blue>
+) :   space pointer(16) that points to the New Program Model 
+      parameter list
+</FONT>
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The address of the New Program Model parameter list
+received by the current invocation is returned.
+<P>This function cannot be used by procedures defined to be a program entry procedure.
+Otherwise, an <I> instruction stream not valid&nbsp; </I> (hex <A HREF="../exceptions/EX2A1B.htm">2A1B</A>) exception
+will be signalled during module creation.
+<font color=blue>
+<P>
+<H5><A NAME="HDRPARMLF">Bound Procedure Parameter List Format</A></H5>
+<P>
+Calls to procedures use the parameter list format shown below.
+The parameter list is required to be quadword aligned.
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Operational descriptor list address
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(16)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>16
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>10
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Machine work area
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(16)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>32
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>20
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Arguments
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(*)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>
+The <B><U>operational descriptor list address</U></B> is used to pass the
+address of an operational descriptor to the current invocation.
+If an operational descriptor is provided by the caller,
+the machine will store the address in this field as a space pointer.
+If an operational descriptor is not provided, the
+contents of this field are undefined.
+<font color=blue>
+(That is, the machines does not set this field to a special value to
+indicate the absence of an operational descriptor list address.)
+</FONT>
+The Machine Interface does not define the layout of the operational descriptor
+list, and it is the MI program's responsibility to pass an
+operational descriptor list to a procedure which expects it.
+<font color=blue>
+</FONT>
+<P>
+The <B><U>machine work area</U></B> is reserved for use by the machine.
+<font color=blue>
+</FONT>
+<P> <B><U>Arguments</U></B> is a variable length field used to pass argument
+values to the current invocation.
+Even though the actual mechanism used by the machine to pass
+argument values is not visible at the Machine Interface,
+this field is large enough to
+accommodate all passed argument values, with each argument being aligned
+on its natural boundary.
+At most 400 arguments may be passed.
+<font color=blue>
+</FONT>
+<P>
+The rules for natural alignment are shown in <A class="content" HREF="#TBLCALLTA">Table 1</A>.  For
+packed decimal arguments, the length in bytes is derived from the
+number of digits, <TT>numberofDigits</TT>, using the following
+formula&#58; <TT>((numberofDigits/2)&nbsp;+&nbsp;1)</TT>.
+For zoned decimal separate leading sign and zoned decimal separate trailing sign arguments, the byte length is one
+greater than the length in digits.
+<BR>
+<P><B><A NAME="TBLCALLTA">Table 1. Rules for natural alignment</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>Length in Bytes
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>Alignment
+</FONT></TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>length = 1             
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>byte
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>length = 2             
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>halfword
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>length = 3, 4          
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>word
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>length = 5, 6, 7, 8    
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>doubleword
+</FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="64%"><font color=blue>other lengths          
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="36%"><font color=blue>quadword
+</FONT></TD></TR></TABLE>
+</FONT>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>

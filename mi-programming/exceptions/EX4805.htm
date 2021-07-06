@@ -1,0 +1,115 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4805 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4805
+</B></TD><TD><P><I>MI Wait in Kernel Mode Terminated
+</I>
+<P>
+A condition occurred while in MI wait when the thread execution mode is
+set to kernel mode which caused the MI wait to be terminated.  The
+exception is detected after the MI wait has been entered.  The<I>
+cancel reason</I> has meaning only when the <I>termination code</I> is set to <I>invocation cancelled</I>
+(hex 0007), otherwise it will be set to binary 0.
+<P>
+The execution of the instruction is suppressed when the exception is
+signaled.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Termination code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Termination reason</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0004
+</TD><TD><P>Terminated by Terminate Instruction (TERMINST)
+</TD></TR><TR VALIGN="TOP"><TD><P>0005
+</TD><TD><P>Terminated by Terminate Process (TERMPR)
+</TD></TR><TR VALIGN="TOP"><TD><P>0006
+</TD><TD><P>Terminated by Terminate Thread (TERMTH)
+</TD></TR><TR VALIGN="TOP"><TD><P>0007
+</TD><TD><P>Invocation cancelled
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Cancel reason
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Dequeue (<A HREF="../instructions/DEQ.htm">DEQ</A>)
+<LI>Dequeue Wait (<A HREF="../instructions/DEQ.htm#deqwait">DEQWAIT</A>)
+<LI>Lock Object (<A HREF="../instructions/LOCK.htm">LOCK</A>)
+<LI>Lock Object Location (<A HREF="../instructions/LOCKOL.htm">LOCKOL</A>)
+<LI>Lock Space Location (<A HREF="../instructions/LOCKSL.htm">LOCKSL</A>)
+<LI>Lock Teraspace Storage Location (<A HREF="../instructions/LOCKTSL.htm">LOCKTSL</A>)
+<LI>Wait On Time (<A HREF="../instructions/WAITTIME.htm">WAITTIME</A>)
+</UL>
+</TD></TR></TABLE>
+
+
+ 
+</body>
+
+ 
+</HTML>

@@ -1,0 +1,522 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> LOCKOL Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Lock Object Location (LOCKOL)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03C1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Lock request template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P><I>Operand 1:</I>  Space pointer.<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for LOCKOL is 498.
+LOCKOL (
+        lock_request_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The instruction requests that the object locations identified
+in the lock request template (operand 1) be granted to the issuing
+thread.
+<P>
+The <I>lock request template</I> identified by operand
+1 must be aligned on a 16-byte boundary.  The format of
+the <I>lock request template</I> is as follows:
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of object location lock requests in template
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to lock state selection values
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Wait time-out value for instruction
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Lock request options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Lock request type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">0 =
+</TD><TD>Immediate request-If all locks cannot be immediately granted,
+signal exception.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Synchronous request-Wait until all locks can be granted.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Access state modifications
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">When the process is entering
+lock wait for synchronous request:
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">0 =
+</TD><TD>Access state should not be modified.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Access state should be modified.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">When the process is leaving lock wait:
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">0 =
+</TD><TD>Access state should not be modified.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Access state should be modified.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Time-out option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">0 =
+</TD><TD>Wait for specified time, then signal time-out exception.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Wait indefinitely.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 7-16
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Asynchronous signals processing option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 17
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">0 =
+</TD><TD>Do not allow asynchronous signal processing during Lock Object
+Location wait.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Allow asynchronous signal processing during Lock Object Location
+wait.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 18-23
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">19
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(13)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object location(s) to be locked
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Object pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This should be repeated as specified by the <I>number of object
+location lock requests
+in template</I> field above.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <I>lock state selection</I> field is located by adding the <I>offset to lock state selection values</I> above to operand 1.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Lock state selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(repeated for each object pointer in the template)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Requested lock state
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 0-4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+(1 = lock requested, 0 = lock not requested)
+<P>
+Only one state may be requested; else the <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception is signaled.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">LSRD lock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">LSRO lock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">LSUP lock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">LEAR lock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">LENR lock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 5-6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Entry active indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Entry not active- This entry is not used.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Entry active- Obtain this lock.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_3">Lock Allocation Procedure</A></H5>
+<P>
+A single Lock Object Location instruction can request the allocation of
+one or more locks on one or more object locations.  Object location
+locks are granted sequentially until all the locks requested are
+granted.
+<P>
+The <B><U>wait time-out</U></B> field establishes the maximum amount of time
+that a thread competes for the requested set of locks when the <I>lock
+request type</I> is <I>synchronous</I>.
+See
+<A class="content" HREF="../MININ.htm#HDRTIMEFMT">Standard Time Format</A> for additional information
+on the format of the <I>wait time-out</I>.
+The maximum wait time-out interval allowed is a value equal to
+(2<SUP>48</SUP> - 1) microseconds.  Any value that indicates more time
+than the maximum wait time-out causes the maximum wait time-out to be
+used.  If the <I>wait time-out</I> field is specified with a value of
+binary 0, the default wait time-out for the process is used as
+the time interval.
+<P>
+When a requested lock state cannot be immediately granted, any locks
+already granted by this Lock Object Location instruction are released,
+and the <I>lock request type</I> specified in the lock request
+template establishes the machine action.  The <B><U>lock request type</U></B>
+values are described in the following paragraphs.
+<UL>
+<P><LI> <I>Immediate request</I>- If the requested object location locks
+cannot be granted immediately, this option causes the <I> lock request not grantable&nbsp; </I> (hex <A HREF="../exceptions/EX1A02.htm">1A02</A>) exception
+to be signaled.  No object
+location locks are granted, and the lock request is canceled.
+<P><LI> <I>Synchronous request</I>- This option causes the thread
+requesting the locks to be placed in the wait state until all requested
+locks can be granted.  If the locks cannot be granted in the time
+interval established by the <I>wait time-out</I> field specified in
+the lock request template, the <I> object location lock wait time-out&nbsp; </I> (hex <A HREF="../exceptions/EX3A05.htm">3A05</A>) exception
+is signaled to the requesting thread
+at the end of the interval.  No locks are granted, and the lock request
+is canceled.
+</UL>
+<P>
+When:
+<UL COMPACT>
+<LI>
+the thread requesting the locks is the only thread contained in
+the process at the time of the lock request, and
+<LI>
+the <I>lock request type</I> is <I>synchronous</I>, and
+<LI>
+the requested locks cannot be immediately granted,
+</UL>
+the <B><U>access state
+modifications</U></B> field in the lock request template specifies whether
+the access state of the process access group is to be modified on
+entering and/or returning from the lock wait.  The parameter has no
+effect if the process instruction wait access state control attribute
+specifies that no access state modification is allowed.  If the process
+attribute value specifies that access state modification is allowed and
+the wait on event access state modification option specifies modify
+access state, the machine modifies the access state for the specified
+process access group.
+<P>
+If the thread requesting the locks belongs to a multi-threaded
+process, no access state modification is performed.
+<P>
+If the <I>lock request type</I> is <I>synchronous</I> and the
+invocation containing the Lock Object Location instruction is terminated,
+then the lock request is canceled.
+<P>Allocated object location locks are removed when the thread holding
+the locks terminates.  If a thread terminates while waiting for an
+object location lock, the lock request is canceled.
+<P>
+The <B><U>asynchronous signals processing option</U></B> controls the action
+to be taken if an asynchronous signal is pending or received while in
+Lock Object Location wait.  If an asynchronous signal that is not blocked
+or ignored is generated for the thread and the <I>asynchronous signals
+processing option</I> indicates <I>allow asynchronous signals
+processing during Lock Object Location wait</I>, the Lock Object
+Location
+wait will be terminated and an <I>asynchronous signal terminated MI wait&nbsp; </I>(hex <A HREF="../exceptions/EX4C01.htm">4C01</A>) exception is signaled.  Otherwise,
+when the <I>asynchronous signals processing option</I> indicates <I>do not allow asynchronous signals processing during Lock Object
+Location wait</I>, the thread remains in the wait until all requested
+locks can be granted or until the <I>wait time-out value for
+instruction</I> expires.
+<P>
+If any exception is identified during the instruction's execution, any
+locks already granted by the instruction are released, and the lock
+request is canceled.
+<P>
+For each object location lock, counts are kept by lock state and by
+thread.  When a lock request is granted, the appropriate <I>lock
+count</I> of each lock state specified is incremented by 1.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A02.htm">1A02 Lock Request Not Grantable </A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C06.htm">1C06 Machine Lock Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>3A Wait Time-Out
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3A05.htm">3A05 Object Location Lock Wait Time-Out </A>
+</DL>
+<DD><P>4C Signals Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4C01.htm"><A HREF="../exceptions/EX0C0B.htm">0C0B Zero Divide</A></A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

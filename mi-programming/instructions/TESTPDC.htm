@@ -1,0 +1,171 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> TESTPDC Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Test Performance Data Collection (TESTPDC)</H1>
+<P>
+
+<font color=blue>
+</FONT>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;2-3&#93;
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>TESTPDCB</B>
+1C21
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Dummy scalar
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>TESTPDCI</B>
+1821
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Dummy scalar
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>: Character(2) scalar or null.
+<P>
+<I>Operand &#91; 2-3 &#93; </I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TESTPDC is 576.
+TESTPDC (
+) :   signed binary(4) /* return_code */
+</PRE>
+<P>The return code will be set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>0
+</B></TD><TD><P>The thread is not in an active Performance Data Collector (PDC)
+trace collection.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>1
+</B></TD><TD><P>The thread is in an active Performance Data Collector (PDC)
+trace collection.
+</TD></TR></TABLE>
+<P>This built-in function is used to provide support for the branch
+and indicator forms of the TESTPDC instruction.  The user
+must specify code to test the <VAR>return code</VAR> and
+perform the desired branching or indicator setting.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+A test is performed to determine whether or not the thread is in an
+active
+Performance Data Collector (PDC) trace collection.
+<P>
+<P>
+One of the following occurs:
+<UL>
+<P><LI>
+Branch form indicated
+<UL>
+<P><LI>
+Conditional transfer of control to the instruction indicated by the
+appropriate branch target operand.
+</UL>
+<P><LI>
+Indicator form specified
+<UL>
+<P><LI>
+The leftmost byte of each of the indicator operands is assigned
+the following values:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+Hex F1-
+</TD><TD>
+If the result of the test matches the corresponding indicator option
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex F0-
+</TD><TD>
+If the result of the test does not match the corresponding
+indicator option
+</TD></TR></TABLE>
+</UL>
+</UL>
+If no branch options are specified, instruction execution
+proceeds to the next instruction.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>True - The thread is in an active Performance Data Collector (PDC)
+trace collection.
+<P><LI>False - The thread is not in an active Performance Data
+Collector (PDC) trace collection.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

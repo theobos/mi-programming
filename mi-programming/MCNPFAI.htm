@@ -1,0 +1,36 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Array Index Operations</title>
+			<link rel="stylesheet" type="text/css" href=../tstudio.css">
+</head>
+
+<body>
+<A NAME="Header_1"></A><P>
+<h1>Array Index Operations</h1>
+Single dimensioned arrays are supported.  The <A HREF="instructions/CAI.htm">CAI</A> (Compute Array
+Index) instruction can be used to reduce the subscript value of a
+multidimensional array to a single index value.  This single
+index value can be used to address a single dimensioned array.
+<P>
+Following is an example of the use of the <A HREF="instructions/CAI.htm">CAI</A> instruction.
+Assume that in a high-level language a three-dimensional array is
+declared with five elements in the first dimension, four in the
+second, and three in the third.
+<PRE>  DCL  A(5,4,3)
+</PRE>This is equivalent to a declare of a single dimension array of 60
+elements.
+<PRE>  DCL  A(60)
+</PRE>If A(I,J,K) is to be located, where I=4, J=2, and K=3, the
+instructions that would be used are:
+<PRE>  CAI  X,I,J,5   X=4+(2-1)*5 = 9
+  CAI  X,X,K,20  X=9+(3-1)*20 = 49
+</PRE><P>A reference to A(X) locates the 49th element of the array.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The operands on the Compute Array Index instruction are
+restricted to a BINARY(2) element.
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

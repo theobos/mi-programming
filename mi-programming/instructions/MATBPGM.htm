@@ -1,0 +1,3851 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATBPGM Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Bound Program (MATBPGM)</H1>
+<P>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">02C6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Materialization request template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Bound program or bound service program
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  System pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATBPGM is 109.
+MATBPGM (
+         materialization_request_template         : address
+         bound_program_or_bound_service_program   : address of system pointer
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P><B>Note: </B>The terms "heap" and "heap space" in this instruction refer to
+an "activation group-based heap space".
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+The <I>bound program or bound service program</I> identified
+by operand 2 is
+materialized according to the specifications provided by operand 1.
+<P>
+Operand 2 is a system pointer that identifies the <I>bound program
+or bound service program</I>
+to be materialized.
+If operand 2 does not refer to a program object,
+a <I> pointer addressing invalid object type&nbsp; </I> (hex <A HREF="../exceptions/EX2403.htm">2403</A>) exception
+will be signaled.
+If operand 2 refers to a program, but
+not to a bound program or bound service program, then a <I> program not eligible for operation&nbsp; </I> (hex <A HREF="../exceptions/EX220A.htm">220A</A>) exception
+will be signaled.
+<P>
+The values in the materialization relate to the current attributes of the
+materialized bound program.
+Components are the materializable parts of a bound program or
+bound service program.
+Components may not be
+available for materialization because
+they were not encapsulated during bound program creation.
+Other components may not be available for
+materialization because they contain no data.
+<P>
+This instruction does not process teraspace addresses used for its
+operands, nor used in any space pointer contained in a template.
+Any teraspace address use will cause an <I>unsupported space use&nbsp; </I>(hex <A HREF="../exceptions/EX0607.htm">0607</A>) exception to be signaled,
+whether the issuing program is teraspace capable or not.
+<P>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The bound program <I>materialization request
+template</I> takes the form of a variable length
+array of materialization requests.
+</TD></TR></TABLE>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes provided
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of materialization requests
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of materialization requests
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bound program materialization options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">General bound program materialization options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">General bound program information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Program copyright Strings
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bound service programs information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bound modules information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bound program string directory component
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bound program limits
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 7-11
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Activation group data imports
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 12
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Activation group data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 13
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 14-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Specific bound program materialization options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Specific bound program information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize if the program is a bound program
+and not a bound service program.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 1-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Specific bound service program materialization options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Signatures information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize if the program is a bound
+service program.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Exported program procedure information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize if the program is a bound
+service program.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Exported program data information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize if the program is a bound
+service program.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">35
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">Bits 4-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bound module materialization options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">General module information
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Module string directory component
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 3-10
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 11-17
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Module copyright strings
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 18
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not materialize
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Materialize
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 19-21
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 22-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bound module materialization number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_4">Description of bound program materialization request template fields</A></H5>
+<P>Each of the reserved fields must be set to binary 0s, or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Number of bytes provided
+</U></B></TD><TD><P>This is the size in bytes of the materialization request template.
+If this size does not correspond to the actual number of bytes in
+the materialization request template, then a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+This does not include any storage for returned data.  That storage is
+pointed to by the <I>receiver</I> values.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of materialization requests
+</U></B></TD><TD><P>The number of requests in the array of materialization requests is
+specified by this value.  If this number is greater than the actual
+number of materialization requests provided, then a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Materialization requests
+</U></B></TD><TD><P>This is an array of materialization requests.
+A materialization request consists of one or more bits, and an
+optional module number specified to be materialized into the
+corresponding <I>receiver</I>.
+Each materialization request consists of the following fields.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Receiver
+</U></B></TD><TD><P>This is a pointer to a space which will hold the materialized
+data.
+The space pointed to must be aligned on a 16-byte boundary,
+and must be at least 8 bytes long.  This is so that it can
+hold the <I>bytes provided</I>
+and <I>bytes available</I> field of the <I>receiver</I>.
+If the space is not at least 8 bytes long a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound program materialization options
+</U></B></TD><TD><P>This bit mapped field specifies the parts
+of the bound program object to be materialized.
+A materialization request need not specify any
+program materialization options.  If no bits are
+set, a bit must be set in the <I>bound module
+materialization options</I> field,
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will
+be signaled.
+Multiple options
+may be specified.  When multiple options are
+specified, all of the requested data will be
+materialized into one receiver.  The pieces
+requested on the materialization will be placed
+in the receiver in the order that the option bits
+are defined.
+If options are also specified on the <I>bound
+module materialization options</I> field, the
+materialized data for those options will follow
+that data materialized for the <I>bound program
+materialization options</I>.
+<P>The <I>bound program materialization options</I>
+are split into
+three distinct materialization bit sets.
+<OL TYPE=1>
+<P><LI>The <B><U>general bound program materialization options</U></B>
+contains bits that represent data that can
+be materialized for either bound programs or
+bound service programs.
+<P><LI>The <B><U>specific bound program materialization options</U></B>
+contains bits that represent data that can
+be materialized only for bound programs, and
+not for bound service programs.
+<P><LI>The <B><U>specific bound service program materialization options</U></B>
+contains bits that represent data that can be
+materialized only for bound service programs.
+</OL>
+<P>If a bit is on to materialize
+information that is not contained in the type
+of bound program being materialized, then an
+indication that the information is not
+materializable will be provided in the receiver
+header.  No exception, in this case, will be signaled.
+<P>Each of the requested pieces will be placed on a 16-byte
+boundary within the <I>receiver</I>.
+<P>The <B><U>general bound program information</U></B> field specifies that general
+information about the bound program object should be
+materialized.
+<P>The <B><U>program copyright strings</U></B> field specifies that the
+collected program copyright strings of the constituent bound modules
+should be materialized.
+<P>The <B><U>bound service programs information</U></B> field specifies that information
+about the service programs bound to the
+materialized bound program should be materialized.  These
+bound service programs are those that contain exports
+that resolve to imports in the materialized bound program.
+<P>The <B><U>bound modules information</U></B> field specifies that information
+about the modules bound into the materialized bound program
+should be materialized.
+<P>The <B><U>bound program string directory component</U></B> field specifies that the
+bound program string directory should be materialized.
+<P>The <B><U>bound program limits</U></B> field specifies that the
+current sizes and maximum values of the bound program
+components should be materialized.
+<P>The <B><U>activation group data imports</U></B> field specifies that information
+about those data imports resolving to weak activation data exports
+is be materialized.
+<P>The <B><U>activation group data exports</U></B> field specifies that information
+about those data exports promoted to the activation group is to
+be materialized.
+<P>The <B><U>specific bound program information</U></B> field specifies that
+information specific to a bound program, and not to
+a bound service program, should be materialized.
+<P>The <B><U>signatures information</U></B> field specifies that the
+bound program signatures
+should be materialized.
+<P>The <B><U>exported program procedure information</U></B> field specifies that the
+exported procedures specified during program creation
+should be materialized.
+<P>The <B><U>exported program data information</U></B> field specifies that the
+exported data specified during program creation
+instruction should be materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound module materialization options
+</U></B></TD><TD><P>
+This bit mapped field specifies the parts of
+the modules bound into the program that are to be
+materialized.  A module materialization request
+need not specify any materialization options.
+If no bits are set, a bit must be set in the <I>bound program materialization options</I> field,
+or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+Multiple options may be specified.  When multiple
+options are specified, all of the requested data
+will be materialized into one receiver.  The
+pieces requested on the module materialization
+will be placed in the receiver in the order that
+the option bits are defined.
+If options are also specified on the <I>bound
+program materialization options</I> field, the
+materialized data for those options will precede
+that data materialized for the <I>bound module
+materialization options</I>.
+<P>In addition, each of the requested pieces will be placed on a 16 byte
+boundary within the <I>receiver</I>.
+<P>The <B><U>general module information</U></B> field specifies that general
+information about the module object should be materialized.
+<P>The <B><U>module string directory component</U></B> field specifies that
+the string directory of the associated module(s)
+should be materialized.
+<P>The <B><U>module copyright strings</U></B> field specifies that the
+module copyright strings should be materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound module materialization number
+</U></B></TD><TD><P>If at least one bit of the <I>bound module
+materialization options</I> field is on, then this
+is the number of the module to materialize, from
+1 through the number of modules bound into the
+program; or 0, to materialize information about
+all modules bound into the program.
+If this number is greater than the number of modules
+bound into the program, then a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+<P>The information that is materialized is specified in
+the <I>bound module materialization options</I> field.
+<P>If no bits of the <I>bound module materialization options</I>
+field are on, then no module information is being
+materialized, and this field must be binary 0 or a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_5">Format of materialized data</A></H5>
+<P>
+<H5><A NAME="Header_6">Format of Receiver</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Materialized data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Bytes provided
+</U></B></TD><TD><P>This is the number of bytes the user is providing to hold the
+materialized data.  It must be greater than or equal to eight.
+If it is equal to eight, then no data will actually be materialized,
+and the number of bytes required to materialize the requested data will
+be placed in <I>bytes available</I>.
+If the value provided is greater than eight,
+but less than  the number of bytes
+required to hold the requested data, the data will be truncated and
+no exception will be signaled.
+Note that a value greater than eight,  but less than 16 will
+result in no data being materialized, since bytes 9-16 are reserved.
+<P>If the receiver is smaller than the size indicated by <I>bytes
+provided</I>, and the materialized data is larger than the space
+provided in <I>receiver</I>, the <I> space addressing violation&nbsp; </I> (hex <A HREF="../exceptions/EX0601.htm">0601</A>) exception
+will be signaled unless <I>receiver</I> is an automatically
+extendable space object.  If <I>receiver</I> is an automatically
+extendable space object, the space will be extended, up to its maximum
+size.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bytes available
+</U></B></TD><TD><P>If <I>bytes provided</I>
+is greater than eight, this contains the number
+of bytes that have been used for the materialization, including any
+reserved bytes or bytes used for padding.  If <I>bytes provided</I>
+is equal
+to eight, this contains the total  size of the <I>receiver</I>
+needed to hold the requested materialization.
+A value of zero is returned if there is no data to materialize.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Materialized data
+</U></B></TD><TD><P>For each bit on in the <I>bound program materialization
+options</I> and <I>bound module materialization options</I>, this
+will contain the associated data.  Each entry will be preceded  by a
+common header which identifies the type of data and the offset to the
+next entry.
+When multiple bits are on in the same request, the data
+is returned in the order defined by the <I>bound program materialization options</I> and the <I>bound module materialization options</I>.
+<P>No exception is signaled
+when the size of the <I>receiver</I>, as specified by <I>bytes
+provided</I> is not large enough to hold data for all requested <I>bound program materialization options</I> and <I>bound module materialization options</I>.
+Instead, the data is truncated and <I>bytes provided</I>
+only reflects the actual amount of data returned.  One of several
+conditions may arise, each with a different result.
+<P>If the receiver is not large enough to hold the materialization
+header, no data is returned for that <I>bound program materialization option</I> or <I>bound module materialization option</I>.
+The <I>offset to next entry</I> field in the previous materialization
+header, if one exists, is set to 0, and the <I>bytes available</I>
+field is set to reflect the amount of data actually materialized for the <I>bound program materialization options</I> or <I>bound module materialization options</I>
+that have already been processed. <I>Bytes available</I> will be set to 8, or <I>bytes provided </I>; whichever is less,
+if the <I>receiver</I>
+is not big enough to hold the first materialization header.
+<P>If the <I>receiver</I> is big enough to hold the materialization
+header, but not big enough to hold all of the data requested by the <I>bound program materialization option</I> or <I>bound module materialization option</I>,
+the <I>partial data</I> flag will
+be set in the materialization header and as much data will be returned
+for which there is room.
+For data which consists of one continuous
+stream<A class="content" HREF="#FNMMSTRP">(2)</A> the receiver will be filled
+and <I>bytes available</I> will equal <I>bytes provided</I>.
+For data which consists of an option specific
+header followed by an array of homogenous
+elements<A class="content" HREF="#FNMMARRYP">(3)</A>
+data will be returned in such a way that no partial
+option specific header or
+array element will be returned.
+If there is not enough room  to hold the entire
+option specific header, none of it will
+be returned.  If there is room for the option specific
+header, but not all of the
+entries, only those entries that will fit will be returned.  The number
+of entries in the option specific
+header will reflect the number of entries returned
+rather than the actual number of entires available in the module. <I>Bytes available</I> will reflect the actual amount of data
+returned and may not equal <I>bytes provided</I>.
+Note that because many option specific headers and entries are larger
+than the common <I>materialization header</I>, there may be more
+than one option for which partial data is returned.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_7">Format of Common Materialization Header</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to next entry
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program materialization identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound module materialization identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound module materialization number identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Entry presence
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No data present for entry
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Data present for entry
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Partial data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>All data in materialization was returned
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Partial data was returned because receiver was too small to hold
+all data for the requested option
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Valid materialization data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>The data requested in this materialization request is
+never present for the type of bound program being
+materialized.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>The data requested in this materialization request
+may be present for the type of bound program being materialized.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 3-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Offset to next entry
+</U></B></TD><TD><P>This contains the offset from the beginning of this entry to the
+beginning of the next entry.  It will contain zero if this is the
+last entry.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound program materialization identifier
+</U></B></TD><TD><P>This indicates which portion of the
+bound program is contained in this
+entry.
+It is the bit which was on in <I>bound program materialization options</I>
+that resulted in this data being materialized.
+Either no bits, or a single bit of this field will be on.
+If no bits of this field are on, then the data contained in
+this entry is indicated by the <I>bound module materialization identifier</I> field.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound module materialization identifier
+</U></B></TD><TD><P>This indicates which portion of the module,
+indicated by the <I>bound module materialization number identifier</I>
+field, is contained in this entry.  It is the bit which
+was on in the <I>bound module materialization options</I>
+field that resulted in this data being materialized.
+Either a single bit or no bit of this field will be on.
+If no bit is on, then the data contained in this entry
+is indicated by the <I>bound program materialization identifier</I> field.
+If a bit is set on, then that type of information will be
+returned in the entry.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound module materialization number identifier
+</U></B></TD><TD><P>If a bit of the <I>bound module materialization identifier</I>
+field is on, then this is the number of the module
+for which information has been materialized in this
+entry, and this field will not be 0.
+<P>If no bits of the <I>bound module materialization identifier</I>
+field are on, then this field will be 0.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Flags
+</U></B></TD><TD><P>This field specifies information about the item being materialized.
+<P>The <B><U>entry presence</U></B> field specifies whether there is data
+available for the requested item.
+Some items may not be encapsulated into the object,
+so no data will be returned when their materialization is requested.
+<P>The <B><U>partial data</U></B> field specifies that only a portion of the
+data was returned because sufficient space was not present in the <I>receiver</I>
+to hold all of the data for the requested materialization
+option.
+<P>The <B><U>valid materialization</U></B> field specifies
+whether the requested information is valid to be materialized
+for the type of bound program that is being materialized.
+For example, <I>specific bound program information</I> is not valid
+for a bound service program.  Even if data may be present
+for the type of bound program being materialized does not
+mean that it actually is.  Refer to the <I>entry present</I> field to see if it is.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="HDRVMMMGBP">Format of materialized general bound program information</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(264)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">268
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of secondary associated spaces
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">272
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">110
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">272
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">110
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Target activation group
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>Default activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>Caller's activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+2 =
+</TD><TD>Named activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+3 =
+</TD><TD>Unnamed activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+4 =
+</TD><TD>Named shared activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+5 =
+</TD><TD>Unnamed shared activation group
+</TD></TR><TR VALIGN="TOP"><TD>
+6-255
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">273
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">111
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">276
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">114
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group name
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">306
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">132
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(14)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">320
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">140
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Coded character set identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">322
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">142
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Composite language version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">324
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">144
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Composite machine version for modules
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">326
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">146
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Earliest version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">328
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">148
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Creation target version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">330
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Version on which creation occurred
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">332
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bound program identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Reserved
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Bound Program
+</TD></TR><TR VALIGN="TOP"><TD>2 =
+</TD><TD>Bound Service Program
+</TD></TR><TR VALIGN="TOP"><TD>3-255 =
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">333
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14D
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compression status
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">333
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Executable portion
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = Executable portion is not compressed
+<DD>1 = Executable portion is compressed
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">333
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Observable portion
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = Observable portion is not compressed
+<DD>1 = Observable portion is compressed
+</DL>
+<P>
+If the compression status of
+the observable portion of the program is uncompressed, it is not a
+guarantee that the observable portion exists.  The observable portion
+status should be checked to ensure that the observable
+portion exists before attempting to access the observable portion
+of the program.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">333
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">334
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Composite low optimization level
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">336
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">150
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Composite high optimization level
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">338
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">152
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Observable portion status
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">338
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">152
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Extended observability storage area exists
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = Extended observability storage area does not exist
+<DD>1 = Extended observability storage area exists
+</DL>
+<P>
+Note that a value of zero in this field just means that no
+observable data exists separate from the portion that is
+encapsulated in the executable portion of
+the program.  For more information see the Observability Provided
+and Encapsulated Observability Attributes in the materialized
+general bound program information.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">338
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">152
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program creation data existence
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = The program creation data does not exist
+<DD>1 = The program creation data does exist
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">338
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">152
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Module creation data existence
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 = </TD><TD>Some or all of the module creation data does not exist
+</TD></TR><TR VALIGN="TOP"><TD>1 = </TD><TD>All of the module creation data does exist
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">338
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">152
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 3-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">339
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">153
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program application profiling attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">339
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">153
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program procedure order profiled
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = Program is not procedure order profiled
+<DD>1 = Program is procedure order profiled
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">339
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">153
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program basic block reordering attempted
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = No modules bound in the program have been basic block reordered
+<DD>1 = Basic block reordering was attempted for
+one or more of the modules bound in the program
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">339
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">153
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program ready for application profiling collection
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL>
+<DD><P>0 = No modules bound in the program are hooked for application profiling
+<DD><P>1 = One or more of the modules bound in the program are hooked for
+application profiling
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">339
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">153
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 3-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">340
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">154
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of modules with application profiling attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">344
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">158
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Teraspace attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">344
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">158
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program contains teraspace capable modules
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = No modules bound in the program are teraspace capable
+<DD>1 = One or more modules bound in the program are teraspace capable
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">344
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">158
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure teraspace capable
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = Program entry procedure is not teraspace capable
+<DD>1 = Program entry procedure is teraspace capable
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">344
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">158
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">All modules teraspace capable
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD>0 = One or more modules in the bound program are not teraspace
+capable
+<DD>1 = All modules in the bound program are teraspace capable
+</DL>
+<font color=blue>
+</FONT><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>344
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>158
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Program automatic and static storage location
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 3-4
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<DL COMPACT>
+<DD>00 = Automatic and static storage are allocated from
+single level store
+<DD>01 = Automatic and static storage are allocated from
+teraspace
+<DD>10 = Automatic and static storage are allocated from either
+single level store or teraspace, depending upon the activation
+<DD>11 = Reserved
+</DL>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>344
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>158
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 5-7
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">345
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">159
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(167)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>This is the number of bytes materialized.  For the general bound program information
+this will always be a constant 512.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of secondary associated spaces
+</U></B></TD><TD><P>This is the number of secondary associated spaces
+currently associated with the object.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Activation group attributes
+</U></B></TD><TD><P>The <I>activation group attributes</I> specify
+characteristics of the activation group into which the
+program will be activated.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Target activation group
+</U></B></TD><TD><P>This is the <I>target activation group</I> value
+specified
+when the bound program or bound service program was created.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Activation group name
+</U></B></TD><TD><P>This is the <I>activation group name</I> specified
+when the bound program or bound service program was created.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Coded character set identifier
+</U></B></TD><TD><P>This is the CCSID value of the
+bound program or bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Composite language version
+</U></B></TD><TD><P>This is the earliest version of the operating system on
+which the languages used for the bound modules will allow
+the bound program object to be saved.  This is a
+composite<A class="content" HREF="#FNVMMCOMV">(4)</A>
+of all of the language versions of the modules bound into
+this program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Composite machine version for modules
+</U></B></TD><TD><P>This is the earliest version of the operating system on which all
+of the modules bound into the program can be re-created, assuming
+the required module creation templates are encapsulated in the
+program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Earliest version
+</U></B></TD><TD><P>This is the earliest version of the operating system for which
+the machine will allow the bound program to be saved.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Creation target version
+</U></B></TD><TD><P>This is the version of the operating system for which
+the bound program object was created.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Version on which creation occurred
+</U></B></TD><TD><P>This is the version of the operating system on which
+the bound program object was created.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound program identifier
+</U></B></TD><TD><P>This field identifies the type of bound program being
+materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Compression status
+</U></B></TD><TD><P>This field identifies whether the executable or the
+observable portions of the bound program or bound service
+program are compressed.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Composite low optimization level
+</U></B></TD><TD><P>This field reflects the lowest level of optimization
+of all the modules bound into the program.  Some modules
+of the program may have a higher optimization level than
+indicated by this field.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Composite high optimization level
+</U></B></TD><TD><P>This field reflects the highest level of optimization
+of all the modules bound into the program.  Some modules
+of the program may have a lower optimization level than
+indicated by this field.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Observable portion status
+</U></B></TD><TD><P>This field describes the status of the observability data of
+the program.  It includes the following flag fields
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Extended observability storage area exists
+</U></B></TD><TD><P>This field specifies whether the extended storage area for
+observability data exists for the program.  It is an indication of
+whether or not any observable segments exist in the program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program creation data existence
+</U></B></TD><TD><P>This field specifies whether the program creation data that was
+provided when the program was created still exists in the program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module creation data existence
+</U></B></TD><TD><P>This field specifies whether all of the module creation data that
+was provided when the modules were created still exists in the
+program.
+</TD></TR></TABLE>
+<P>In order for a program to be eligible for retranslation, the program
+creation data existence bit must be set.  If the module creation
+data existence bit is also set, this is an indication that the program
+has the required observability for retranslation.
+If the module creation data existence field is not set, the observable
+status of each of the modules can be found.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Program application profiling attributes
+</U></B></TD><TD><P>These attributes identify application profiling attributes of the program
+object.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Program procedure order profiled
+</U></B></TD><TD><P>This attribute indicates whether the bound program was created with
+a procedure order list.  Packaging order of the procedures can affect
+run time performance.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program basic block reordering attempted
+</U></B></TD><TD><P>This attribute indicates whether the bound program contains any
+modules for which basic block reordering was attempted (i.e. application profiling data
+that was collected was applied to one or more modules bound into this
+program).  The packaging order of code in the procedures within the
+modules can affect run time performance.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program ready for application profiling collection
+</U></B></TD><TD><P>This attribute indicates whether the bound program contains any
+modules that are hooked for application profiling collection
+(i.e. the modules contain hooks that enable data to be
+collected by application profiling).
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of modules with application profiling attributes
+</U></B></TD><TD><P>This is the number of modules bound into the program that are
+either hooked for application profiling data collection or have
+been basic block reordered.  To determine to which
+attributes this number applies, use the <I>program ready for
+application profiling collection</I> and the <I>program basic block reordering attempted</I> bits
+of the <I>program application profiling attributes</I>.
+They are mutually exclusive.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Teraspace attributes
+</U></B></TD><TD><P>These attributes identify teraspace attributes of the program
+object.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Program contains teraspace capable modules
+</U></B></TD><TD><P>This attribute indicates whether or not
+one or more bound modules are teraspace capable.
+If so, then a call from a procedure in that module will only be able to
+pass a teraspace address to procedures in
+other teraspace capable programs.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure teraspace capable
+</U></B></TD><TD><P>This attribute indicates whether or not
+the program entry procedure was created teraspace capable.
+If so, it may be called with parameters stored in teraspace
+and after being called will be allowed to address teraspace.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>All modules teraspace capable
+</U></B></TD><TD><P>This attribute indicates whether all
+modules in the bound program are teraspace capable.
+If so, then any procedure can be passed a teraspace address when called.
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><U><font color=blue>Automatic and static storage location
+</FONT></U></B></TD><TD><P><font color=blue>This attribute identifies where the automatic and static storage
+for the program will be allocated at run time.  If the attribute has
+a value of single level store, the automatic and static storage will
+be allocated from single level store.  A value of teraspace means
+the automatic and static storage will be in teraspace  A value of either
+indicates that the program is capable of running in single level
+store and teraspace, and the activation group into which the program
+is activated will determine from which
+type of storage the automatic and static storage are allocated.
+</FONT>
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_9">Format of materialized program copyright strings</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Version of copyright creation extension
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of copyright statements in the pool
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Copyright string pool
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>This is the number of bytes materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Version of copyright creation extension
+</U></B></TD><TD><P>This is the version of the copyrights when the module was created.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of copyright strings in the pool
+</U></B></TD><TD><P>This is the number of copyright strings that follow.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Copyright statement pool
+</U></B></TD><TD><P>This is the data for all of the copyright strings.  Each copyright
+string consists of a 4 byte length followed by the text of the string.
+The length reflects the actual length of the copyright string and does
+not include the length of the length field.  All copyright strings
+along with their lengths are placed contiguously in the buffer with
+no intervening padding.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_10">Format of the materialized bound service programs information</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of service programs bound to this program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of bound service program records
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(48)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bound service program ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(24)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program context object type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program context object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program context name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(10)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program object type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">29
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bound service program name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(10)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Referentially bound program signature
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">56
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">38
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be 16 + (N * 48) where N is the
+number of bound service programs-
+those programs that contain exports that resolve
+imports in the bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of service programs bound to this program
+</U></B></TD><TD><P>This is the number of bound service programs
+bound to the bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of bound service program records
+</U></B></TD><TD><P>This array contains one record for each
+bound service program
+bound to the bound program.
+Each record contains the following information
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Bound service program context type
+</U></B></TD><TD><P>This is the object type of the context with the
+given name.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program context subtype
+</U></B></TD><TD><P>This is the object subtype of the context with
+the given name.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program context name
+</U></B></TD><TD><P>This is the context specified during program creation
+where this bound service program
+was found when the bound program was created.
+This value could be set with all hex zeroes, in which
+case the name resolution list is used to locate the
+given bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program type
+</U></B></TD><TD><P>This is the object type of the program with the
+given name.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program subtype
+</U></B></TD><TD><P>This is the object subtype of the program with
+the given name.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program name
+</U></B></TD><TD><P>This is the name of the bound
+service program specified during program creation.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Bound service program signature
+</U></B></TD><TD><P>This is the signature of the
+bound service program that was used to match against
+the current signature of the bound program.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_11">Format of the materialized bound modules information</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of modules bound into this program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of bound module records
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(80)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bound module ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(60)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Module qualifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">46
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Module name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">76
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(20)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be 16 + (N * 80) where N is the
+number of modules bound into the bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of modules bound into this program
+</U></B></TD><TD><P>This is the number of modules
+bound into the bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of bound module records
+</U></B></TD><TD><P>This array contains one record for each
+module bound into the bound program.
+Each record contains the following information
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Module qualifier
+</U></B></TD><TD><P>This is the qualifier specified during program creation
+where this module
+was found when the bound program was created.
+The module qualifier is used to differentiate between
+two different modules of the same name.  This usually
+contains a context name.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module name
+</U></B></TD><TD><P>This is the name of the module.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_12">Format of the materialized bound program string directory component</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">String pool
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Length of the string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">CCSID of the string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be 16 + the length of the string pool.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>String pool
+</U></B></TD><TD><P>A memory area containing the strings defined for this
+program.  It can be of any length addressable by a
+UBin(4).  It contains a series of strings and lengths.
+String IDs specified in other materialized components
+can be used as indexes into this string pool.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Length of string
+</U></B></TD><TD><P>The length of the next string.  This field contains the
+length of the string only, and does not include the length
+of the either the length or the CCSID field.
+The length field of a string is not subject to alignment
+considerations.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>CCSID of string
+</U></B></TD><TD><P>The character code set identifier of this string.  This
+string is encoded in the given CCSID, which is the CCSID of
+the module object from which this string is originally
+declared.
+The CCSID field of a string is not subject to alignment
+considerations.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>String
+</U></B></TD><TD><P>Character buffer which contains one string.  Its length
+is defined by the length field.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_13">Format of the materialized bound program limits</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current size of bound program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of associated spaces
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of associated spaces
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of modules bindable into program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of modules bound into program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">36
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of service programs bindable to program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of service programs bound to program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum size of bound program string directory
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current size of bound program string directory
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">52
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum size of bound program copyright strings
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">56
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">38
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current size of bound program copyright strings
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">3C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of auxiliary storage segments
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of auxiliary storage segments
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">68
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of static storage frames
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">72
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of static storage frames
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">76
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of program procedure exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of program procedure exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">84
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">54
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of program data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">88
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">58
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of program data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">92
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum number of signatures
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current number of signatures
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">100
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Minimum amount of static storage required
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">104
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">68
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum amount of static storage required
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">108
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(148)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">256
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">100
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.  This will always
+be a constant 256.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current size of bound program
+</U></B></TD><TD><P>This is the current size,
+in machine-dependent units, of the bound program
+being materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of associated spaces
+</U></B></TD><TD><P>This is the maximum number of associated spaces
+allowed for the bound program being materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of associated spaces
+</U></B></TD><TD><P>This is the current number of associated spaces allocated
+to the bound program being materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of modules bindable into program
+</U></B></TD><TD><P>This is the maximum number of modules that can be
+bound into a bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of modules bound into program
+</U></B></TD><TD><P>This is the current number of modules bound into the
+bound program being materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of service programs bindable to program
+</U></B></TD><TD><P>This is the maximum number of bound service programs
+that can be bound to a bound program.  These
+bound service programs contain exports to which imports
+from a bound program resolve.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of service programs bound to program
+</U></B></TD><TD><P>This is the current number of bound service programs
+bound to the bound program being
+materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum size of bound program string directory
+</U></B></TD><TD><P>This is the maximum size, in bytes, of the bound
+program string directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current size of bound program string directory
+</U></B></TD><TD><P>This is the current size, in bytes, of the bound
+program string directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum size of bound program copyright strings
+</U></B></TD><TD><P>This is the maximum size, in bytes, of the
+bound program copyright strings.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current size of bound program copyright strings
+</U></B></TD><TD><P>This is the current size, in bytes, of the
+bound program copyright strings.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of auxiliary storage segments
+</U></B></TD><TD><P>This is the maximum number of auxiliary storage
+segments allowed for a bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of auxiliary storage segments
+</U></B></TD><TD><P>This is the current number of auxiliary
+storage segments in the bound program being
+materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of static storage frames
+</U></B></TD><TD><P>This is the maximum number of static storage frames
+allowed for a bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of static storage frames
+</U></B></TD><TD><P>This is the current number of static storage frames
+required by the bound program being materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of procedure exports
+</U></B></TD><TD><P>This is the maximum number of procedures that
+are allowed to be exported from a bound program.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of procedure exports
+</U></B></TD><TD><P>This is the current number of procedures exported
+from the bound program being materialized.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of data exports
+</U></B></TD><TD><P>This is the maximum number of data items that are
+allowed to be exported from a bound program.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of data exports
+</U></B></TD><TD><P>This is the current number of data items
+exported from the bound program being materialized.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum number of signatures
+</U></B></TD><TD><P>This is the maximum number of signatures allowed for
+a bound program.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Current number of signatures
+</U></B></TD><TD><P>This is the current number of signatures contained in
+the bound program being materialized.
+If the bound program being materialized is not a bound service
+program, then this value will be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Minimum amount of static storage required.
+</U></B></TD><TD><P>This is the smallest amount of static storage that is required
+for the bound program or service program.
+This measure is in bytes.
+The actual amount of
+static storage that is used may be anywhere between the minimum
+and the maximum amounts of required static storage, inclusive.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum amount of static storage required.
+</U></B></TD><TD><P>This is the largest amount of static storage that may be required
+for the bound program or service program.
+This measure is in bytes.
+The actual amount of
+static storage that is used may be anywhere between the minimum
+and the maximum amounts of required static storage, inclusive.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_14">Format of the materialized activation group data imports</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of activation group data imports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of activation group data imports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.  This will be (N+1)*16,
+where N is the number of activation group data imports contained in the bound program
+or bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of activation group data imports
+</U></B></TD><TD><P>The number of activation group data imports contained in the bound program or
+bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of activation group data imports
+</U></B></TD><TD><P>This array contains one record for each data item
+contained in the program or bound service program.
+Each record contains the following information:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>String ID
+</U></B></TD><TD><P>This is the identification used to extract the name of this
+data item from the program string directory.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_15">Format of the materialized activation group data exports</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of activation group data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of activation group data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Strength of data item
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<DL COMPACT>
+<DD><TT>0    </TT> = Reserved
+<DD><TT>1    </TT> = Export Strongly
+<DD><TT>2    </TT> = Export Weakly
+<DD><TT>3-255</TT> = Reserved
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Length of data item
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.  This will be (N+1)*16,
+where N is the number of activation group data exports contained in the bound program
+or bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of activation group data exports
+</U></B></TD><TD><P>The number of activation group data exports contained in the bound program or
+bound service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of activation group data exports
+</U></B></TD><TD><P>This array contains one record for each data item
+contained in the program or bound service program.
+Each record contains the following information:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>String ID
+</U></B></TD><TD><P>This is the identification used to extract the name of this
+data item from the program string directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Strength of data item
+</U></B></TD><TD><P>This field indicates whether the activation group export
+is exported strongly or weakly.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Length of data item
+</U></B></TD><TD><P>The size in bytes of the activation group export.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_16">Format of the materialized specific bound program information</A></H5>
+<P>Specific bound program information can only be materialized for bound programs,
+and not for bound service programs.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program entry procedure information
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Module number containing program entry procedure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure string ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Minimum parameters
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Maximum parameters
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.  This will always
+be a constant
+64.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module number containing program entry procedure
+</U></B></TD><TD><P>This is the number, in the bound modules information, of
+the module which contains the program entry procedure
+for this bound program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure string ID
+</U></B></TD><TD><P>This is the string ID for the name of this
+program entry procedure.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Minimum parameters
+</U></B></TD><TD><P>This is the minimum number of parameters that the
+program entry procedure can accept.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Maximum parameters
+</U></B></TD><TD><P>This is the maximum number of parameters that the
+program entry procedure can accept.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_17">Format of the materialized signatures information</A></H5>
+<P>Signatures information can only be materialized for bound
+service programs, and not for bound programs.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of signatures contained in the program
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of signatures
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Signature
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.  This will be
+(N+1)*16, where N is the number of signatures
+contained in the program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of signatures contained in the program
+</U></B></TD><TD><P>This is the number of signatures contained in the program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of signatures
+</U></B></TD><TD><P>This array contains one record for each signature
+contained in the program.  Each record contains the
+following information.  The first record contains the
+current signature.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Signature
+</U></B></TD><TD><P>A signature of the service program.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_18">Format of the materialized exported program procedure information</A></H5>
+<P>Exported program procedure information can only be materialized for bound
+service programs, and not for bound programs.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of exported procedures
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of program exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String ID for procedure export
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Export number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Procedure parameter mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(6)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be (N+1)*16, where N is the number of
+exported procedures.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of exported procedures
+</U></B></TD><TD><P>This is the number of procedures exported
+from the service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of program exports
+</U></B></TD><TD><P>This array contains one record for each procedure
+exported from the service program.
+Each record contains the following information:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>String ID for procedure export
+</U></B></TD><TD><P>This is the identification used to
+extract the name of this exported procedure from
+the program string directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Export number
+</U></B></TD><TD><P>This is the number of this exported procedure.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Procedure parameter mask
+</U></B></TD><TD><P>The <I>procedure parameter mask</I> indicates the
+parameter characteristics of the procedure.
+The procedure parameter mask will be binary zero if the
+program using this instruction is executing in user-state.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_19">Format of the materialized exported program data information</A></H5>
+<P>Exported program data information can only be materialized for bound
+service programs, and not for bound programs.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of exported data items
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Array of data exports
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String ID for data export
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Export number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Data item size
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be (N+1)*16, where N is the number of
+exported data items.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of exported data items
+</U></B></TD><TD><P>This is the number of data items exported
+from the service program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Array of data exports
+</U></B></TD><TD><P>This array contains one record for each data item
+exported from the service program.
+Each record contains the following information:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>String ID for data export
+</U></B></TD><TD><P>This is the identification used to
+extract the name of this exported data item from
+the program string directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Export number
+</U></B></TD><TD><P>This is the number of this exported data item.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Data item size
+</U></B></TD><TD><P>This is the size in bytes of the exported data item
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_20">Format of materialized general module information</A></H5>
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(276)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">292
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">124
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Coded character set identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>294
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>126
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data required for machine retranslation
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>294
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>126
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>All data required for machine retranslation is present
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bit 0
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>0 =
+</FONT></TD><TD><font color=blue>No
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>1 =
+</FONT></TD><TD><font color=blue>Yes
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>294
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>126
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 1-7
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>295
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>127
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Reserved
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(9)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">304
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">130
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Creation target version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">306
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">132
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Language version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">308
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">134
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Version on which creation occurred
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">310
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">136
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Earliest version
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+All versions are represented as 16 bit values mapped as follows.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 0-3  </TD><TD>Reserved (0)
+</TD></TR><TR VALIGN="TOP"><TD>Bits 4-7  </TD><TD>Version
+</TD></TR><TR VALIGN="TOP"><TD>Bits 8-11 </TD><TD>Release
+</TD></TR><TR VALIGN="TOP"><TD>Bits 12-15</TD><TD>Modification
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">312
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">138
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">328
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">148
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Number of secondary associated spaces
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">332
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">348
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved for IBM Internal Use Only.
+If used, unpredictable results may occur.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">350
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Module state
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0001 =
+</TD><TD>User state
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8000 =
+</TD><TD>System state
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0000 =
+</TD><TD>Inherit state
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">352
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">160
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compiler name
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(20)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">372
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">174
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program entry procedure
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">372
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">174
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">372
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">174
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Program entry procedure exists
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Program entry procedure does not exist in this module
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Program entry procedure exists in this module
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">372
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">174
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 1-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">376
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">178
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure dictionary ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">380
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">17C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure string ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">384
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">180
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure minimum parms
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">386
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">182
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Program entry procedure maximum parms
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">388
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">184
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Module application profiling attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">388
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">184
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Hooks for application profiling are present
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Hooks are not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Hooks are present
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">388
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">184
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Basic block reordering attempted
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Basic block reordering on the procedures in this module
+has not been attempted.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Basic block reordering on the procedures in this module
+has been attempted.  The <I>procedure basic
+block attributes</I> under the <I>procedure definitions</I>
+further identifies which procedures have been basic block reordered.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">388
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">184
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">389
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">185
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Module teraspace attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">389
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">185
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Module teraspace capable
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Module is not teraspace capable
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Module is teraspace capable
+</TD></TR></TABLE>
+<font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>389
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>185
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Module automatic and static storage location
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 1-2
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>00 =
+</FONT></TD><TD><font color=blue>Automatic and static storage are allocated from single level store
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>01 =
+</FONT></TD><TD><font color=blue>Automatic and static storage are allocated from teraspace
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>10 =
+</FONT></TD><TD><font color=blue>Automatic and static storage are allocated from either single
+level store or teraspace, depending upon the activation
+group into which the program is activated.
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>11 =
+</FONT></TD><TD><font color=blue>Reserved
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>389
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>185
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 3-7
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">390
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">186
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(122)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">512
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">200
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>This is the number of bytes materialized.  For the general module information
+this will always be a constant 512.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Coded character set identifier
+</U></B></TD><TD><P>The CCSID defines the code page of the symbols in the string
+directory.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Creation target version
+</U></B></TD><TD><P>This is the version of the operating system for which the module
+object was created.
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><U><font color=blue>Data required for machine retranslation
+</FONT></U></B></TD><TD><P><font color=blue>This indicates whether the data required for machine retranslation
+is present.  This data can be present even if the <I>encapsulated observability attributes</I> indicated the
+component is not present.
+</FONT>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Language version
+</U></B></TD><TD><P>This is the earliest version of the operating system on which
+language used will allow the module object to be saved.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Version on which creation occurred
+</U></B></TD><TD><P>This is the version of the operating system that was running on the
+system where the module object was created.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Earliest version
+</U></B></TD><TD><P>This is the earliest version of the operating system for which
+the machine will allow the module object to be saved.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Number of secondary associated spaces
+</U></B></TD><TD><P>This is the number of secondary associated spaces currently
+associated with the object.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module state
+</U></B></TD><TD><P>This is the state of the module object.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Compiler name
+</U></B></TD><TD><P>This identifies the compiler which translated the user's source
+language.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure
+</U></B></TD><TD><P>This identifies the program entry procedure if one is present in
+the module.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Program entry procedure attributes
+</U></B></TD><TD><P>This bit mapped field identifies attributes of the program entry
+procedure.
+<P>The <I>program entry procedure existence</I> field specifies
+whether a program entry procedure is present in the module being
+materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure dictionary ID
+</U></B></TD><TD><P>The dictionary ID is used as a handle to uniquely identify the
+procedure.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure string ID
+</U></B></TD><TD><P>The string ID may be used to extract the character string which is
+the procedure name from the string pool.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure minimum parms
+</U></B></TD><TD><P>This is the minimum number of parameters allowed by the program
+entry procedure.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Program entry procedure maximum parms
+</U></B></TD><TD><P>This is the maximum number of parameters allowed by the program
+entry procedure.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module application profiling attributes
+</U></B></TD><TD><P>This bit mapped field identifies the application profiling
+attributes of the module.
+<P>The <B><U>hooks for application profiling are present</U></B> field
+specifies whether the module is ready for
+application profiling data collection when it is bound into a program.
+<P>The <B><U>basic block reordering attempted</U></B>
+field specifies whether reordering of the basic blocks within the
+procedures of this module has been attempted.  To determine which
+procedures have basic blocks reordered see the <I>procedure basic
+block attributes</I> under the <I>procedure definitions</I>.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Module teraspace attributes
+</U></B></TD><TD><P>This bit mapped field identifies the teraspace attributes of the
+module.
+<P>The <B><U>module teraspace capable</U></B> field
+specifies whether or not the module is allowed to use teraspace at
+run time.
+<font color=blue>
+<P>The <B><U>module automatic and static storage location</U></B> field
+indicates where the automatic and static storage for this module
+will be allocated at run time, when the module is bound into a
+program.  The possible values are single
+level store, teraspace, or either single level store or teraspace,
+depending upon the activation group into which the program
+is activated.
+</FONT>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_21">Format of the materialized module string directory component</A></H5>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length in bytes of materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">String pool
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Length of the string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">String
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>Length in bytes of materialization
+</U></B></TD><TD><P>The number of bytes materialized.
+This will be 16 + the length of the string pool.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>String pool
+</U></B></TD><TD><P>A memory area containing the strings defined for this
+module.  It can be of any length addressable by a
+UBin(4).  It contains a series of strings and lengths.
+String IDs specified in other materialized components
+can be used as indexes into this string pool.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>Length of string
+</U></B></TD><TD><P>The length of the next string.  This field contains the
+length of the string only, and does not include the length
+of the length field, itself.
+The length field of a string is not subject to alignment
+considerations.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>String
+</U></B></TD><TD><P>Character buffer which contains one string.  Its length
+is defined by the length field.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_22">Format of the materialized module copyright strings</A></H5>
+<P>The format of the materialized module copyright strings
+is the same as for the materialized program copyright strings.
+<P>
+<H5><A NAME="Header_23">Template Value Invalid exception reason codes</A></H5>
+<P>This instruction supports setting of the optional reason code field
+in the exception data which can be retrieved when the template value
+invalid exception is signaled.  When the first byte of the reason code
+is not zero, the exception is being signaled because one of the
+materialization receivers is not valid.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00
+</TD><TD>Bound Program Materialization Template
+(pointed to by operand 1 of this instruction)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>01
+</TD><TD>Size of template is not sufficient to hold number of requests
+specified.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD>0n
+</TD><TD>nth materialization request is not valid.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>01
+</TD><TD>The <I>receiver</I> is not aligned on a 16 byte boundary.
+</TD></TR><TR VALIGN="TOP"><TD>02
+</TD><TD>The materialization request <I>bytes provided</I> is less than 8.
+</TD></TR><TR VALIGN="TOP"><TD>03
+</TD><TD>The materialization request contains no <I>materialization
+options</I>
+or invalid <I>materialization options</I>.
+<P>If the <I>length of field</I> data is 8, then no materialization
+options were specified and the <I>offset in field in bits</I> data
+will be 0.  Otherwise, an invalid option was specified and
+the provided <I>offset to field in bytes</I> and <I>offset in field
+in bits</I> data will identify the invalid materialization option.
+</TD></TR><TR VALIGN="TOP"><TD>04
+</TD><TD>The materialization request
+contains a <I>module materialization number</I> that
+is greater than the number of modules bound into the program.
+</TD></TR><TR VALIGN="TOP"><TD>05
+</TD><TD>The materialization request
+contains a non-zero <I>module materialization number</I>,
+but no <I>module materialization options</I>.
+</TD></TR><TR VALIGN="TOP"><TD>06
+</TD><TD>The materialization request contains a non-zero reserved field.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_24">Authorization Required</A></H4>
+<UL>
+<P><LI>Retrieve
+<UL>
+<P><LI>
+Operand 2
+</UL>
+<P><LI>Execute
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_25">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>
+Operand 2
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_26">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0607.htm">0607 Unsupported Space Use</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2204.htm">2204 Object Not Eligible for Operation</A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+<DD><A HREF="../exceptions/EX220A.htm">220A Program Not Eligible for Operation </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3802.htm">3802 Template Size Invalid </A>
+<DD><A HREF="../exceptions/EX3803.htm">3803 Materialization Length Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+<HR><B> Footnotes:</B>
+<P><A NAME="FNMMREFEX" >(1)</A>
+Referential extensions are data streams that are not included in the
+creation templates,
+but are pointed to by a space pointer in the template.
+This also includes the module creation template extension.
+<P><A NAME="FNMMSTRP" >(2)</A>
+The items that fall into this category are
+general bound program information, bound program limits,
+specific bound program information, specific bound service program information,
+general module information,
+bound program string directory component, module string directory component
+and module copyright strings.
+<P><A NAME="FNMMARRYP" >(3)</A>
+The items which fall into this category are
+bound service programs information, bound modules information, signatures information,
+program copyright strings,
+exported program procedure information,
+activation group data imports, activation group data exports,
+and exported program data information.
+<P><A NAME="FNVMMCOMV" >(4)</A>
+A composite version is defined to be the latest version,
+in time, of all of the versions comprising the composite.
+Given back-level compatibility, this would be the earliest
+version of the operating system on which all of the
+comprising versions would be compatible.
+
+</body>
+
+</HTML>

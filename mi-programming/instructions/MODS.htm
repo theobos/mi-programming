@@ -1,0 +1,1184 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MODS Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Modify Space Attributes (MODS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0062
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">System object
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Size or space modification template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  System pointer.
+<P>
+<I>Operand 2</I>:  Binary scalar or character(28) scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P><A NAME="mods1"></A>Built-in number for MODS1 is 28.
+MODS1 (
+       system_object  : address of system pointer
+       size           : address of signed binary(4)  OR
+                        address of unsigned binary(4)
+)
+ 
+  <B>-- OR --</B>
+ 
+<P><A NAME="mods2"></A>Built-in number for MODS2 is 29.
+MODS2 (
+       system_object                 : address of system pointer
+       space_modification_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The attributes of the space associated with the <I>system object</I> specified for operand 1 are modified with the
+attribute values specified in operand 2.
+<P>At any security level, if the thread execution state is user state
+and the object addressed by operand 1 has secondary associated spaces, an
+attempt to truncate or delete any of the associated spaces of the
+addressed object will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>If the thread execution state is user state and the
+machine security level attribute has a value of hex 40 or greater
+then
+<UL>
+<P><LI>If operand 1 addresses a program object, the
+associated spaces of the program object
+can not be modified and an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+<P><LI>If the hardware storage protection
+of the object addressed by operand 1
+is not read/write from user state, the associated spaces of the
+addressed object can not be modified and a <I>space extension/truncation&nbsp; </I>(hex <A HREF="../exceptions/EX3601.htm">3601</A>) exception is signaled.
+</UL>
+<P>
+The operand 2 <I>space modification template</I> is
+specified with one of
+two formats.  The abbreviated format, operand 2 specified as a
+binary scalar, only provides for modifying the <I>size of space</I>
+attribute.  The full format, operand 2 specified as a character
+scalar, provides for modifying the full set of space attributes.
+<P>
+When operand 2 is a binary value, it specifies the size in bytes to
+which the space size is to be modified.  The current allocation of
+the space is extended or truncated accordingly to match as closely
+as possible the specified size.  The modified space size will be
+of at least the size specified.  The actual size allocated is dependent
+upon the algorithm used within the specific implementation of the
+machine.
+<P>
+When operand 2 is a character scalar, it specifies a selection of
+space attribute values to be used to modify the attributes of the
+space.
+Associated spaces
+can be modified, created or destroyed by this instruction.
+Not all attributes can be modified for existing associated spaces, so
+some template fields
+apply only when an associated space is being created,
+i.e. when a primary associated space of fixed length size zero is
+modified or when a secondary associated space is created.
+More detail is provided below within descriptions of individual fields.
+<P>The operand 2 character scalar
+must be at least 28 bytes long and have the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Modification selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify space length attribute
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify size of space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify initial value of space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+This field must have a value of 0
+if an existing space is being modified.
+Otherwise an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify initialize space attribute
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reinitialize space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify automatically extend space attribute
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Create secondary associated space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<P>If the thread execution state is user state, this field must be 0.
+Otherwise an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+This restriction applies at all system security levels.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 8
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify hardware storage protection enforcement
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 9
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<P>If the thread execution state is user state, this field must be 0.
+Otherwise an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+This restriction applies at all system security levels.
+<P>If
+the object is not an independent index, process control space, or a
+space, this field must be 0.  Otherwise an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify expanded transfer size advisory
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 10
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Modify spreading the space object
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 11
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 12-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Indicator attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Fixed length
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Variable length
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Initialize space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Initialize
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Do not initialize
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Automatically extend space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+No
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Yes
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-14
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Hardware storage protection level
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 15-16
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+00 =
+</TD><TD>
+Reference and modify allowed for user state programs
+</TD></TR><TR VALIGN="TOP"><TD>
+01 =
+</TD><TD>
+Only reference allowed for user state programs
+</TD></TR><TR VALIGN="TOP"><TD>
+10 =
+</TD><TD>
+Invalid (undefined)
+</TD></TR><TR VALIGN="TOP"><TD>
+11 =
+</TD><TD>
+No reference or modify allowed for user state programs
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 17-20
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Always enforce hardware storage protection of this space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 21
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Enforce hardware storage protection of this space only when
+hardware storage protection is being enforced for all storage.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Enforce hardware storage protection of this space at all times.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 22-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum size of secondary associated space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>This field is ignored
+when <I>create secondary associated space</I> is 0.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Size of space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+or
+UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Initial value of space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Performance class
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+The space associated with the object is modified to
+allow proper alignment of pointers at 16-byte
+alignments within the space.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+The space associated with the object is modified to
+allow proper alignment of
+input/output buffers at 512-byte alignments within the space.
+Note that this also allows proper 16-byte alignment of pointers.
+</TD></TR></TABLE>
+The value of this field is ignored when the <I>machine chooses space alignment</I> field has a value of 1.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+There is no modification selection option for the field in
+<A HREF="CRTS.htm">CRTS</A> that corresponds to this bit.
+So, currently this bit is ignored.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Spread the space object
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+All extensions to the space object should be on one storage
+device, if possible.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+All extensions to the space object should be spread across
+multiple storage devices, if possible.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Machine chooses space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+The space alignment indicated by the <I>space alignment</I>
+field is performed.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+The machine will choose the space alignment most beneficial to
+performance, which may reduce maximum space capacity.
+When the <I>modify space alignment</I> field has a value of 1
+and this value is specified, the <I>space alignment</I> field is
+ignored, but the alignment chosen will be a multiple of 512.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-23
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+There are no modification selection options for the fields in
+<A HREF="CRTS.htm">CRTS</A> that correspond to these bits.
+So, currently these bits are ignored.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Expanded transfer size advisory
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Secondary associated space number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+<P>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P>If the thread execution state is user state, this field must be 0.
+Otherwise an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception is signaled.
+This restriction applies at all system security levels.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>modification selection</U></B>
+indicator fields select the modifications
+to be performed on the space.
+<P>
+The <B><U>modify space length attribute</U></B> modification selection field
+controls whether or not the space length attribute is to be
+modified.  When <I>yes</I> is specified, the value of the <B><U>space
+length</U></B>
+indicator is used to modify the space to the specified <I>fixed</I>
+or <I>variable</I>
+length attribute.  When <I>no</I> is specified, the <I>space
+length</I>
+indicator attribute value is ignored and the <I>space length</I>
+attribute
+is not modified.
+<P>The <I>modify space length attribute</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>modify size of space</U></B> modification selection field controls
+whether or
+not the allocation size of the space is to be modified.  When <I>yes</I> is
+specified, the current allocation of the space is extended or
+truncated accordingly to match as closely as possible the specified
+size in the <B><U>size of space</U></B> field.
+The modified size will be at least the size specified.
+The actual size allocated is dependent upon the algorithm
+used within the specific implementation of the machine.  When <I>no</I>
+is specified, the current allocation of the space is not
+modified and the <I>size of space</I> field is ignored.
+<P>
+Modification of the <I>size of space attribute</I> for a space of fixed
+length can only be performed in conjunction with modification
+of the <I>space length</I> attribute.  In this case, the <I>space
+length</I>
+attribute may be modified to the same fixed length attribute
+or to the variable length attribute.  An attempt to modify
+the <I>size of space</I> attribute for a space of fixed length without
+modification of the <I>space length</I> attribute results in the
+signaling of the <I> space extension/truncation&nbsp;</I> (hex <A HREF="../exceptions/EX3601.htm">3601</A>) exception.
+Modification
+of the <I>size of space</I> attribute for
+a space of variable length can
+always be performed separately from a modification of the <I>space
+length</I> attribute.
+<P>
+When the <I>size of space</I> attribute is to be modified, if the value
+of the <I>size of space</I>
+field is negative or specifies a size larger
+than that for the largest space that can be associated with the
+object, the <I> space extension/truncation&nbsp; </I> (hex <A HREF="../exceptions/EX3601.htm">3601</A>) exception
+is signaled.
+<P>The <I>modify size of space</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>modify initial value of space</U></B> modification selection field
+controls whether or not the <I>initial value of space</I>
+attribute is to be
+modified.  When <I>yes</I>
+is specified, the value of the <B><U>initial value of
+space</U></B> field is used to modify the corresponding attribute of this
+space.  This byte value will be used to initialize any new space
+allocations for this space due to an extension to the size of space
+attribute on the current execution of this instruction as well
+as any subsequent modifications.  When <I>no</I>
+is specified, the <I>initial
+value of space</I> field is ignored and the <I>initial value of
+space</I>
+attribute is not modified.
+<P>The <I>modify initial value of space</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>modify space alignment</U></B>
+modification selection field controls
+whether or not the <I>space alignment</I>
+and <I>machine chooses space alignment</I>
+attributes of the specified system object are to be modified.
+When <I>yes</I> is specified, the values of the <I>space alignment</I>
+and <I>machine chooses space alignment</I> fields are used
+to modify the space alignment of the specified system object.
+When <I>no</I>
+is specified, the space alignment
+attributes of the specified system object are not modified.
+<P>The <I>modify space alignment</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>modify initialize space attribute</U></B>
+modification selection field controls whether or not the <I>initialize space attribute</I> is to be modified.
+When <I>yes</I> is specified,
+the value of the <B><U>initialize space</U></B> indicator attribute
+is used to modify that attribute of the specified
+space to the specified value.
+When <I>no</I> is specified, the <I>initialize space</I> indicator attribute
+value is ignored and the <I>initialize space</I> attribute
+is not modified.
+<P>
+Changing the value of the <I>initialize space</I>
+attribute only affects
+whether or not future extensions of the space will be initialized or
+not.  That is, it is the state of this attribute at the time of
+allocation of the storage for a space that determines whether that newly
+allocated storage area will be initialized to the initial value
+specified for the space.  Modifications of this attribute subsequent to
+the allocation of storage to a space have no effect on the value of that
+previously allocated storage area.
+<P>The <I>modify initialize space attribute</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>reinitialize space</U></B>
+modification selection field controls whether the
+storage allocated to the space is to be reinitialized in its entirety.
+When <I>no</I>
+is specified, the space is not reinitialized.  When <I>yes</I> is
+specified, the space is reinitialized.  This re-initialization is
+performed after all other attribute modifications which may also have
+been specified on the instruction have been made.  Thus changes to the <I>size of the space</I>,
+the <I>initial value of the space</I>, etc. will be put into
+effect and be considered the current attributes of the space for
+purposes of the re-initialization.
+The byte value used for the re-initialization is the current initial
+value for the space.
+<P>
+Note that specifying <I>yes</I> for
+the <I>reinitialize space</I>
+modification selection
+field for a space with current attributes of
+fixed length
+size zero results in no operation, because such a space has no allocated
+storage to reinitialize.
+Also, note that re-initialization of a space will have the side effect
+of resetting
+partial damage for a space object
+containing the space
+if the space object had previously been
+marked as having partial damage.
+This only applies to space objects; i.e.
+re-initialization of an associated space does not have the side effect
+of resetting partial damage for the MI object containing it.
+<P>The <I>reinitialize space</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>modify automatically extend space</U></B> attribute modification
+selection field controls whether or not the <I>automatically
+extend space</I>
+attribute is to be modified.  When <I>yes</I>
+is specified, the value of the <B><U>automatically extend space</U></B> indicator
+attribute is used to modify that
+attribute of the specified space to the specified value.
+When <I>no</I>
+is
+specified, the <I>automatically extend space</I> indicator
+attribute value is
+ignored and the <I>automatically extend space</I>
+attribute is not modified.
+The <I>automatically extend space</I>
+attribute can only be specified as <I>yes</I>
+when the <I>space length</I> attribute for the space is already <I>variable</I> length, or
+when the <I>space length</I> attribute is being modified to <I>variable</I> length.
+Invalid specification of the <I>automatically extend space</I> attribute
+results in the
+signaling of the <I> invalid space modification&nbsp;</I> (hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>The <I>modify automatically extend space</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.
+<P>
+The <B><U>create secondary associated space</U></B>
+field indicates if a secondary
+associated space is to be created for the object.
+When this field is set to <I>yes</I>,
+most of the operand 2 template fields are used.
+However, all other <I>modification selection</I> fields are ignored,
+as are the <I>spread the space</I>,
+and <I>always enforce hardware storage protection of this space</I> fields.
+All secondary associated spaces are protected with hardware storage
+protection at all times.
+<P>
+The
+secondary associated space to be created is indicated by
+the <I>secondary
+associated space number</I> field.
+If the specified space already exists,
+or the object already has its maximum number of
+secondary associated spaces,
+the <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception
+is signalled.
+<P>
+The <B><U>modify hardware storage protection enforcement</U></B>
+selection field controls whether the <I>enforce hardware storage protection of this space at all times</I>
+attribute is to be modified.
+When <I>yes</I> is specified, the value of the <I>enforce hardware storage protection of this space at all times</I>
+field is used to control when hardware storage
+protection will be enforced for the primary associated
+space of a process control space, independent index,
+or space object that is being
+modified by this operation.
+When this attribute is selected and an existing space is being modified,
+the existing hardware storage protection level in effect for the space
+will be unchanged, but will either
+be enforced at all times, or only when
+hardware storage protection is enforced for all storage.
+<P>
+The <B><U>modify expanded transfer size advisory</U></B>
+selection field controls whether the <I>expanded transfer size advisory</I>
+attribute is to be modified.
+When <I>yes</I> is specified, the value of <B><U>expanded transfer size advisory</U></B> specifies
+the desired
+number of pages to be transferred between main store and
+auxiliary storage for implicit access state changes.
+This value is only an advisory; the machine may use a
+value of its choice for performing access state changes under
+some circumstances.
+For example, the machine may limit the transfer size to a smaller
+value than is specified.
+A value of zero is an explicit indication
+that the machine should use the
+machine default storage transfer size for this object.
+<P>
+Modification of the <I>expanded transfer size advisory</I> is only
+supported for space objects.
+Attempts to modify associated spaces of other system objects will
+cause the <I> invalid space modification&nbsp; </I> (hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception
+to be signalled.
+<P>
+The <B><U>modify spreading the space object</U></B> attribute modification
+selection field controls whether or not the <I>spread the space
+object</I> attribute is to be modified.
+When <I>yes</I> is specified and <I>spread the space
+object</I> is binary 1,
+extensions to the space object will be spread across multiple
+storage devices, if possible.  When <I>yes</I> is specified and <I>spread the space object</I> is zero, extensions
+to the space object will be contained on one storage device, if possible.
+When <I>no</I> is specified, the <I>spread the space object</I>
+field is ignored and the current attribute setting for the space object
+is unchanged. The actual storage devices used are dependent upon the
+algorithm used within the specific implementation of the
+machine. Only the new allocations of the space object are affected;
+the existing portion of the space object is not modified.
+<P>The <I>modify spreading the space object</I>
+modification selection field may not be set to <I>yes</I>
+for a packed secondary associated space.  An attempt
+to do so will result in an <I>invalid space modification&nbsp; </I>(hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception.  This field is ignored for
+a system object that is not a space object.
+<P>
+The <B><U>hardware storage protection level</U></B> field determines
+the type(s) of accesses that are allowed to the space.
+This field is only used when creating associated spaces.
+That is, it is only used when
+extending the size of a primary associated space of fixed length and size
+equal to zero, or creating secondary associated space(s).
+For all other modifications it is ignored.
+<P>
+Modification to or from the state of a space being fixed length of
+size zero can not be performed for the following objects:
+<DL>
+<DD><P>
+Class of service description
+<DD><P>
+Controller description
+<DD><P>
+Cursor
+<DD><P>
+Data space
+<DD><P>
+Logical unit description
+<DD><P>
+Mode description
+<DD><P>
+Network description
+<DD><P>
+Program
+(when attempted while in user state on a security level 40 or higher
+system).
+<DD><P>
+Space
+</DL>
+If such a modification is attempted for these objects, the <I> invalid space modification&nbsp; </I> (hex <A HREF="../exceptions/EX3602.htm">3602</A>) exception
+is signaled.
+<P>
+Specifying the <B><U>largest size of space needed</U></B>
+value allows the machine,
+under certain circumstances, to select usage of an internal storage
+allocation unit which best utilizes the internal addressing resources
+within the machine.  Note that the internal storage allocation unit
+selected can alter the maximum modification size of the associated space
+for the object.  However, the machine will always use an internal storage
+allocation unit that will allow for extension of the space to at least
+the value specified in the largest size of space needed field.  The
+maximum size to which the space can be modified is dependent upon
+specific implementations of the machine and can vary with different
+machine implementations.
+<P>
+The <B><U>secondary associated space number</U></B>
+field is used to indicate which
+secondary space is to be created or modified.  When this field is
+zero, the primary associated space of the space object is modified.
+If this field is not zero and no secondary associated spaces are
+allowed for the object, the <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+will be signalled.
+<P>
+A fixed length space of size zero is defined by the machine to have
+no internal storage allocation.  Due to this, a modification to or
+from this state is, in essence, the same as a destroy or create
+for the space associated with the specified system object.  The effect
+of modifying to this state is similar to destroying the
+associated space in that address references to the space through
+previously set pointers will result in signaling of the <I> object destroyed&nbsp;</I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception.
+When a primary associated space is destroyed by using this method, any
+secondary associated spaces for the object are also destroyed.
+To the
+contrary, modifying the space attributes from this state is similar
+to creating an associated space in that the Set Space Pointer from
+Pointer (SETSPPFP) instruction can be used to set a space pointer to the
+start of storage within the associated space and the allocated
+space storage can be used to contain space data.
+<P>
+The extension and truncation of a space is always by an
+implementation-defined multiple of 256 bytes.  This means that if, for
+example, the implementation defined multiple is 2 (or 512 bytes), any
+modification of the space size will be in increments of 512 bytes.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Object management
+<UL>
+<P><LI>
+Operand 1
+</UL>
+<P><LI>
+Execute
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+<P><LI>
+Object control
+<UL>
+<P><LI>
+Operand 1 (when operand 2 is binary)
+</UL>
+<P><LI>
+Modify
+<UL>
+<P><LI>Operand 1 (when operand 2 is character)
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+<DD><A HREF="../exceptions/EX3602.htm">3602 Invalid Space Modification</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

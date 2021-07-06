@@ -1,0 +1,237 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SEARCH Instruction </title>
+ <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Search (SEARCH)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 4
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand &#91;5-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SEARCH</B>
+1084
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Array
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Find
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Location
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SEARCHB</B>
+1C84
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Array
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Find
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Location
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SEARCHI</B>
+1884
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Array
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Find
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Location
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator targets
+</TD></TR></TABLE><BR>
+<I>Operand 1</I>:  Binary variable scalar or binary variable array.
+<P>
+<I>Operand 2</I>:  Character array or numeric array.
+<P>
+<I>Operand 3</I>:  Character variable scalar or numeric
+variable scalar.
+<P>
+<I>Operand 4</I>:  Binary scalar.
+<P>
+<I>Operand 5-6</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The portions of the <I>array</I> operand indicated by
+the <I>location</I> operand
+are searched for occurrences of the value
+indicated in the <I>find</I> operand.
+<P>
+The operation begins with the first element of the <I>array</I>
+operand and continues
+element by element, comparing those characters of each
+element (beginning with
+the character indicated in the location operand) with
+the characters of the <I>find</I>
+operand.  The <I>location</I> operand contains
+an integer value representing the
+relative location of the first character in each element to be used
+to begin the compare.
+<P>
+The integer value of the <I>location</I> operand must range from
+1 to L, where L is the
+length of the <I>array</I> operand elements; otherwise, a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+is signaled.
+A value of 1 indicates
+the leftmost character of each element.
+<P>
+The length of the <I>find</I> operand must not be so large that it
+exceeds the length of the <I>array</I> operand elements when used
+with the <I>location</I> operand value;
+otherwise, a <I>length conformance&nbsp; </I>((hex <A HREF="../exceptions/EX0C08.htm">0C08</A>)) exception is signaled.
+The array element length used is the length
+of the array scalar elements
+and not the length of the entire array element, which can be larger in
+noncontiguous arrays.
+<P>
+The <I>array</I> and <I>find</I> operands
+can be either character or numeric.
+Any numeric operands are interpreted as logical character strings.
+The compares between these operands are performed at the length
+of the <I>find</I> operand
+and function as if they were being compared in the Compare Bytes
+Left-Adjusted (<A HREF="CMPBLA.htm">CMPBLA</A>) instruction.
+<P>
+As each occurrence of the <I>find</I> value is encountered, the
+integer value of the index
+for this array element is placed in the <I>receiver</I> operand.
+If the <I>receiver</I> operand is a scalar, only the first element
+containing the <I>find</I> value is noted.
+If the <I>receiver</I> operand is an array, as many occurrences as
+there are elements within the <I>receiver</I> array are noted.
+<P>
+If the value of the index for an array element containing an
+occurrence of the <I>find</I> value is too large to be contained in the <I>receiver</I>, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+<P>
+The operation continues until no more occurrences of elements
+containing the <I>find</I> value can be noted in
+the <I>receiver</I> operand or until the <I>array</I> operand has
+been completely searched.
+When the second condition occurs, the <I>receiver</I> value is set to LB-1,
+where LB is the value of the lower
+bound index of the array.  If LB is the most negative 32-bit
+integer, then LB-1 is the most positive 32-bit integer; otherwise,
+LB-1 is 1 less than LB.
+If the <I>receiver</I> operand is an array, all its
+remaining elements are also set to LB-1.
+The <I>find</I> operand
+can be a variable length substring compound operand.
+<P>
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<P>
+The numeric value(s) of the <I>receiver</I>
+operand is either LB-1 or in the range LB through UB,
+where UB is the value of the upper bound index
+of the array.
+When the <I>receiver</I> is LB-1,
+the resultant condition is <I>zero</I>.
+When the <I>receiver</I> is in the range LB through UB, the resultant
+condition is <I>positive</I>.
+When the <I>receiver</I> is an array, the resultant
+condition is <I>zero</I>
+if all elements are LB-1; otherwise, it is <I>positive</I>.
+The resultant
+condition is unpredictable when the <I>no binary size exception</I>
+program template option is used.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C08.htm">0C08 Length Conformance</A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+</HTML>

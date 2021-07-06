@@ -1,0 +1,292 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0601 Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0601
+</B></TD><TD><P><I>Space Addressing Violation
+</I>
+<P>
+The exception indicates one of the following two conditions
+<UL>
+<P><LI>
+an attempt has been made to operate outside the current extent of a
+<font color=blue>
+space other than a teraspace.
+</FONT>
+<P><LI>
+an attempt has been made to reference an unallocated page
+within teraspace.
+</UL>
+<P><B>Note: </B>Below, IPS stands for "implicit process space".
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System object affiliated with the space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space offset reference attempted
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This value may be zero when not available.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space class
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>Primary associated space (includes space objects)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>Secondary associated space
+</TD></TR><TR VALIGN="TOP"><TD>Hex 02 =
+</TD><TD>IPS used for automatic storage
+</TD></TR><TR VALIGN="TOP"><TD>Hex 03 =
+</TD><TD>IPS used for static storage
+</TD></TR><TR VALIGN="TOP"><TD>Hex 04 =
+</TD><TD>IPS used for activation group-based heap storage
+</TD></TR><TR VALIGN="TOP"><TD>Hex 05 =
+</TD><TD>Constant space
+</TD></TR><TR VALIGN="TOP"><TD>Hex 06 =
+</TD><TD>IPS used for handle-based heap storage
+</TD></TR><TR VALIGN="TOP"><TD>Hex 07 =
+</TD><TD>Teraspace
+</TD></TR></TABLE>
+<font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>21
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>15
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Flags
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+When the <I>space class</I> indicates teraspace, this field contains
+the following bit flags.  Otherwise this field is binary 0.
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>21
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>15
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Access attempted to memory mapped file
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bit 0
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>21
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>15
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 1-7
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Secondary associated space number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This value will be zero when not available, such as when the space
+is not a secondary associated space.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This value will be zero when not available, such as when the space
+is not an implicit process space.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Activation group-based heap space identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Handle to handle-based heap space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This value will be zero when not available, such as when the space
+is not an implicit process space used by
+an activation group-based heap space or a handle-based heap space.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Address
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+The content of this field depends upon the <I>space class</I>
+as follows:
+<DL>
+<DD><P>hex 00, hex 01, hex 05:
+Null pointer value.
+<DD><P>hex 02, hex 03, hex 04, and hex 06:
+The address of the first addressable byte of the IPS.
+<DD><P>hex 07 :
+The address which incurred the address violation.
+This field contains a null pointer value when not available.
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Teraspace offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+This is the offset into teraspace at which
+the address violation occurred.
+This value is hex zeroes when not available.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">56
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">38
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+Different information is supplied for different space classes.  Fields
+which are not used for a given space class will contain zero values.
+Here is a summary of the information returned (i.e. the field values
+set) for each space class.
+<UL COMPACT>
+<P>Hex 00 (primary associated space, including space objects)
+<LI>system pointer to the object
+<LI>offset
+<LI>space class
+<P>Hex 01 (secondary associated space)
+<LI>system pointer to the object
+<LI>offset
+<LI>space class
+<LI>secondary space number
+<P>Hex 02 (auto)
+<LI>system pointer to the Process Control Space
+<LI>offset
+<LI>space class
+<LI>activation group mark
+<LI>address
+<P>Hex 03 (static)
+<LI>system pointer to the Process Control Space
+<LI>offset
+<LI>space class
+<LI>activation group mark
+<LI>address
+<P>Hex 04 (activation group-based heap storage)
+<LI>system pointer to the Process Control Space
+<LI>offset
+<LI>space class
+<LI>activation group mark
+<LI>activation group-based heap space identifier
+<LI>address
+<P>Hex 05 (constant space)
+<LI>system pointer to the object
+<LI>offset
+<LI>space class
+<P>Hex 06 (handle-based heap storage)
+<LI>system pointer to the Process Control Space that created the
+handle-based heap space
+<LI>offset
+<LI>space class
+<LI>handle to handle-based heap space
+<LI>address
+<P>Hex 07 (teraspace)
+<LI>system pointer to the Process Control Space
+<LI>space class
+<font color=blue>
+<LI>flags
+</FONT>
+<LI>address
+<LI>teraspace offset
+</UL>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+Any non-bound program instruction that uses a space pointer to provide
+addressability to data used by the instruction.  This includes operand
+basing pointers, space pointers used as operands that provide
+addressability, and space pointers in templates pointed to by an
+operand.
+<P><LI>
+Any bound program instruction that uses a space address to provide
+addressability to data used by the instruction.  This includes space
+addresses used as operands that provide addressability and space
+pointers in templates pointed to by an operand.
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

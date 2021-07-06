@@ -1,0 +1,250 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> DESMTX Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Destroy Pointer-Based Mutex (DESMTX)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03C7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mutex
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mutex destroy options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Result
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<I>Operand 2:</I>  Space pointer.
+<P>
+<I>Operand 3:</I>  Signed binary(4) variable scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for DESMTX is 162.
+DESMTX (
+        mutex                   : address
+        mutex_destroy_options   : address of unsigned binary(4) 
+                                  value
+) :   signed binary(4)  /* result */
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "mutex" in this instruction refers to a
+"pointer-based mutex".
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The <I>mutex</I> whose address is referenced by operand 1 is destroyed.
+The <I>mutex</I> is set to binary zero.  All
+threads
+currently in the mutex wait state for
+this <I>mutex</I> are removed from the
+wait state and an EDESTROYED error number result is returned to
+each waiting thread.
+The ETYPE error
+is returned when the <I>mutex</I> operand references a
+synchronization object that is not a pointer-based
+mutex.
+The ENOTSUP error is returned when an attempt is made to destroy the
+mutex using a <I>mutex</I> operand that is a copy of the
+original mutex.
+See the <A HREF="CRTMTX.htm">CRTMTX</A> instruction for additional information regarding mutex
+copies.
+<P>
+The space pointed to by operand 2 contains the <I>mutex destroy options</I>.
+<P> <I>Result</I> is used to indicate the success
+or failure of the DESMTX instruction.
+<P>
+The <I>mutex</I> must be aligned on a 16-byte boundary.
+<P>
+The <I>mutex destroy options</I> referenced by operand 2 can have the
+following values:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Mutex destroy options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Destroy mutex (this is the default option)
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>mutex destroy options</U></B> should be set to 0 in order to
+destroy a mutex.  The <I>mutex</I> will not be destroyed
+if it is locked by
+another
+thread.
+An attempt to destroy a mutex when another
+thread
+has it locked will result in an EBUSY error number result.
+<P>
+All other values for <I>mutex destroy options</I> are reserved and
+will cause an EINVAL error number result to be returned.
+<P>
+If operand 2
+in a bound program
+is a null pointer value, the default <I>mutex destroy options</I>
+are used.
+Operand 2 in non-bound programs must be a pointer to <I>mutex destroy options</I>.
+The <I>pointer does not exist&nbsp; </I>(hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception is signaled if a null pointer value
+is used for operand 2 in a non-bound program.
+<P>
+If the <I>mutex</I> is destroyed by this instruction,
+then <I>result</I> is
+set to 0.  If an error occurs, then the <I>result</I> is set to an
+error condition.
+The EINVAL error number is returned when an invalid operand is
+specified.
+The EPERM error number is returned when the address passed in operand 1
+is in teraspace and the issuing thread does not have teraspace write
+permissions to that address.
+<P>
+The <I>mutex</I> must have been previously created
+by the <A HREF="CRTMTX.htm">CRTMTX</A> instruction.
+Attempting to destroy a mutex that was not created will cause one of the <I>pointer specification</I> exceptions to occur.  Unpredictable
+results will occur if operand 1 specifies a mutex whose contents have
+been altered.
+<P>
+It is very important to destroy mutexes when they are no longer needed.
+When a mutex is created,
+system resources are allocated for the mutex.
+These resources stay in place until the mutex is destroyed, thereby
+leaving fewer mutexes available in the system for other
+threads
+to use.  In addition, performance degradation occurs as more mutexes
+are added to the system and not destroyed.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Error conditions</A></H4>
+<P>The <I>result</I> is set to one of the following:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EBUSY
+</B></TD><TD><P>3029 -  Resource busy.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EINVAL
+</B></TD><TD><P>3021 - The value specified for the argument is not correct.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ENOTSUP
+</B></TD><TD><P>3440 -  Operation not supported.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<P>Destroying a mutex which is a copy of the original mutex is not
+supported.
+</TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EPERM
+</B></TD><TD><P>3027 -  Operation not permitted.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ETYPE
+</B></TD><TD><P>3493 - Object type mismatch.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<P>A synchronization object at this address already exists that
+is not a pointer-based mutex.
+</TABLE>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

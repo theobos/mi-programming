@@ -1,0 +1,123 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 3004 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+  
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>3004
+</B></TD><TD><P><I>Invalid Journal Space
+</I>
+<P>
+The identified journal
+space was provided as input to one of the indicated instructions
+and was not in a valid position
+in the journal space list or was not eligible to participate in the
+action requested.  The exception condition is identified
+in the exception data.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Journaled space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error condition indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="60">Hex 01=
+</TD><TD>Journal sequence numbers not ascending
+</TD></TR><TR VALIGN="TOP"><TD>Hex 02=
+</TD><TD>Journal sequence numbers missing
+</TD></TR><TR VALIGN="TOP"><TD>Hex 03=
+</TD><TD>Journal space contains no journal entries
+</TD></TR><TR VALIGN="TOP"><TD>Hex 04=
+</TD><TD>Journal entry prefix
+length does not match
+</TD></TR><TR VALIGN="TOP"><TD>Hex 05=
+</TD><TD>Trying to replace large capacity journal space
+with small capacity journal space
+without requesting a reset of sequence numbers
+</TD></TR><TR VALIGN="TOP"><TD>Hex 06=
+</TD><TD>Trying to identify the journal space to be attached as a
+small capacity journal space
+even though it was created with threshold values
+larger than a small capacity journal space can reach
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 07=
+</FONT></TD><TD><font color=blue>Trying to replace large-entry journal space with small-
+entry journal space.
+</FONT>
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+   
+ 
+</body>
+
+ 
+</HTML>

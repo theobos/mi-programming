@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CMPTOPAD Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Compare To Pad (CMPTOPAD)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CMPTOPAD is 429.
+CMPTOPAD (
+          string          : address of aggregate(*)
+          pad             : signed binary(1,4,8) - rightmost byte specifies
+                                                   the pad value  OR
+                            unsigned binary(1)  OR
+                            aggregate(1)
+          string_length   : unsigned binary(4,8) value which specifies the
+                            length of the string
+) :   signed binary(4,8) value which indicates if the string is
+      lexically less than (-1), equal to (0) or greater than (1) a
+      string of equal length which would be composed entirely of the pad
+      byte value, replicated for the length of the string
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>A logical (character)
+compare is done between the storage specified by <I>string</I>
+and the <I>pad</I> byte, which is logically replicated as necessary.
+If the first byte of the <I>string</I> is less than the <I>pad</I> byte value,
+the result is -1; if the string
+byte is greater the result is 1.
+If the bytes are equal the operation continues with the next byte of
+the <I>string.</I>
+This process is repeated until an inequality
+result is returned, or
+the number of bytes specified by <I>string length</I>
+have been compared.
+If all bytes compare equal, the result is 0.
+If the <I>string length</I>
+has a value of zero, the result is 0.
+<P>
+The <I>string</I> operand
+can point to storage containing values of any data type.
+The values will be interpreted as a logical character string.
+If
+the <I>string</I> operand
+points to storage which contains pointers, any pointer tags will not
+be taken into account, since this is strictly a byte comparison.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,1369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="tstudio.css">
+<title>Create Program (QPRCRTPG) API</title>
+</head>
+<body>
+</script>
+
+<a name="Top_Of_Page"></a> 
+
+<h2>Create Program (QPRCRTPG) API</h2>
+
+<table border width="90%">
+<tr>
+<td><br>
+&nbsp;Required Parameter Group:<br>
+<br>
+<table width="100%">
+<tr>
+<td align="center" valign="top" width="10%">1</td>
+<td align="left" valign="top" width="50%">Intermediate representation of the
+program</td>
+<td align="left" valign="top" width="20%">Input</td>
+<td align="left" valign="top" width="20%">Char(*)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">2</td>
+<td align="left" valign="top">Length of intermediate representation of
+program</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Binary(4)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">3</td>
+<td align="left" valign="top">Qualified program name</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(20)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">4</td>
+<td align="left" valign="top">Program text</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(50)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">5</td>
+<td align="left" valign="top">Qualified source file name</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(20)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">6</td>
+<td align="left" valign="top">Source file member information</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(10)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">7</td>
+<td align="left" valign="top">Source file last changed date and time
+information</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(13)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">8</td>
+<td align="left" valign="top">Qualified printer file name</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(20)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">9</td>
+<td align="left" valign="top">Starting page number</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Binary(4)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">10</td>
+<td align="left" valign="top">Public authority</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(10)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">11</td>
+<td align="left" valign="top">Option template</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Char(*)</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">12</td>
+<td align="left" valign="top">Number of option template entries</td>
+<td align="left" valign="top">Input</td>
+<td align="left" valign="top">Binary(4)</td>
+</tr>
+</table>
+
+<br>
+&nbsp;Optional Parameter:<br>
+<br>
+<table width="100%">
+<tr>
+<td align="center" valign="top" width="10%">13</td>
+<td align="left" valign="top" width="50%">Error code</td>
+<td align="left" valign="top" width="20%">I/O</td>
+<td align="left" valign="top" width="20%">Char(*)</td>
+</tr>
+</table>
+
+<br>
+&nbsp;Default Public Authority: *USE<br>
+<br>
+&nbsp;Threadsafe: No<br>
+<br>
+</td>
+</tr>
+</table>
+
+<p>The Create Program (QPRCRTPG) API converts the symbolic representation of a
+machine interface (MI) program into an OPM program object. This symbolic
+representation is known as the intermediate representation of a program.</p>
+
+<p>The QPRCRTPG API creates a program object that resides in the *USER domain
+and runs in the *USER state. If you want the program object to be temporary,
+you must do one of the following:</p>
+
+<ul>
+<li>Delete the object when you no longer need it.</li>
+
+<li>Create the object in the QTEMP library, and let the system delete the
+object automatically when the job ends.</li>
+</ul>
+
+<p>You can specify program objects created with the QPRCRTPG API in CL commands
+that process objects of type *PGM. For example, you can:</p>
+
+<ul>
+<li>Save and restore program objects using the Save Object (SAVOBJ) and Restore
+Object (RSTOBJ) commands.</li>
+
+<li>Delete program objects using the Delete Program (DLTPGM) command.</li>
+
+<li>Run program objects using the Call (CALL) command.</li>
+
+<li>Rename program objects using the Rename Object (RNMOBJ) command.</li>
+
+<li>Move program objects to a different library using the Move Object (MOVOBJ)
+command.</li>
+</ul>
+
+<p><strong>Note:</strong> MI instructions that reference system-domain or
+write-protected objects fail at security levels 40 and 50. At those levels, you
+must use APIs to work with the objects.</p>
+
+<br>
+ 
+
+<h3>Authorities and Locks</h3>
+
+<dl>
+<dt><em>Program Authority</em></dt>
+
+<dd>*ALL. Required only if the program already exists and the option value
+*REPLACE is specified.</dd>
+
+<dt><em>Program Library Authority</em></dt>
+
+<dd>*CHANGE</dd>
+
+<dt><em>Printer File Authority</em></dt>
+
+<dd>*USE</dd>
+
+<dt><em>Printer File Library Authority</em></dt>
+
+<dd>*USE</dd>
+
+<dt><em>Source File Authority</em></dt>
+
+<dd>*USE</dd>
+
+<dt><em>Source File Library Authority</em></dt>
+
+<dd>*USE</dd>
+</dl>
+
+<br>
+ 
+
+<h3>Required Parameter Group</h3>
+
+<dl>
+<dt><strong>Intermediate representation of the program</strong></dt>
+
+<dd>INPUT; CHAR(*) 
+
+<p>A string containing the intermediate representation of the program to be
+processed by the QPRCRTPG API. See <a href="PGMSYNTX.htm">Program Syntax</a>.</p>
+</dd>
+
+<dt><strong>Length of intermediate representation of program</strong></dt>
+
+<dd>INPUT; BINARY(4) 
+
+<p>The size, in bytes, of the intermediate representation of the program.</p>
+</dd>
+
+<dt><strong>Qualified program name</strong></dt>
+
+<dd>INPUT; CHAR(20) 
+
+<p>The name and library of the program to be created or replaced. The first 10
+characters contain the program name, and the second 10 characters contain the
+name of the library where the program is located. The special value *CURLIB may
+be used for the library name.</p>
+</dd>
+
+<dt><strong>Program text</strong></dt>
+
+<dd>INPUT; CHAR(50) 
+
+<p>Text that briefly describes the program.</p>
+</dd>
+
+<dt><strong>Qualified source file name</strong></dt>
+
+<dd>INPUT; CHAR(20) 
+
+<p>The name and library containing the source program. The first 10 characters
+contain the source file name, and the second 10 characters contain the name of
+the library where the file is located. This places the value in the program
+object's service description. The special value *NONE may be used for the
+source file name. If you specify *NONE, no source file information is placed in
+the program object's service description. A special value, such as *LIBL, is
+not valid for the source file library.</p>
+</dd>
+
+<dt><strong>Source file member information</strong></dt>
+
+<dd>INPUT; CHAR(10) 
+
+<p>The file member containing the source program. This places the value in the
+program object's service description.</p>
+
+<p>This value must be blanks if you specify *NONE as the <strong>source file
+name</strong>.</p>
+</dd>
+
+<dt><strong>Source file last changed date and time information</strong></dt>
+
+<dd>INPUT; CHAR(13) 
+
+<p>The date and time the member of the source file was last updated. The format
+of this field is in the CYYMMDDHHMMSS format, where:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em>C</em></td>
+<td align="left" valign="top">Century, where 0 indicates years 19<em>xx</em>
+and 1 indicates years 20<em>xx</em>.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>YY</em></td>
+<td align="left" valign="top">Year</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>MM</em></td>
+<td align="left" valign="top">Month</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>DD</em></td>
+<td align="left" valign="top">Day</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>HH</em></td>
+<td align="left" valign="top">Hour</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>MM</em></td>
+<td align="left" valign="top">Minute</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>SS</em></td>
+<td align="left" valign="top">Second</td>
+</tr>
+</table>
+
+<p>This places the value in the program object's service description.</p>
+
+<p>This value must be blank if you specify *NONE for the source file name
+parameter.</p>
+</dd>
+
+<dt><strong>Qualified printer file name</strong></dt>
+
+<dd>INPUT; CHAR(20) 
+
+<p>The name and library containing the printer file used to generate listings.
+The first 10 characters contain the printer file name, and the second 10
+characters contain the name of the library where the file is located. The only
+special values supported for the library name are *LIBL and *CURLIB.</p>
+
+<p>This value is ignored if you specify *NOLIST for the generate listing option
+(see <a href="#HDR8OPTION">Values for the Option Template Parameter</a>).</p>
+</dd>
+
+<dt><strong>Starting page number</strong></dt>
+
+<dd>INPUT; BINARY(4) 
+
+<p>The first page number to be used on listings. This value should be between 1
+and 9999; otherwise, the API uses 1.</p>
+
+<p>This value is ignored if you specify *NOLIST for the generate listing option
+(see <a href="#HDR8OPTION">Values for the Option Template Parameter</a>).</p>
+</dd>
+
+<dt><strong>Public authority</strong></dt>
+
+<dd>INPUT; CHAR(10) 
+
+<p>The authority you give the users who do not have specific private
+authorities to the object, and where the user's group has no specific authority
+to the object.</p>
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em>*CHANGE</em></td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*ALL</em></td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*USE</em></td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*EXCLUDE</em></td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>The name of an authorization list</em></td>
+</tr>
+</table>
+
+<br>
+</dd>
+
+<dt><strong>Option template</strong></dt>
+
+<dd>INPUT; CHAR(*) 
+
+<p>This is an array of options. You can specify between 0 and 16 values. Each
+entry contains a CHAR(11) value as described in <a href="#HDR8OPTION">Values
+for the Option Template Parameter</a>.</p>
+</dd>
+
+<dt><strong>Number of option template entries</strong></dt>
+
+<dd>INPUT; BINARY(4) 
+
+<p>The number of option template entries.</p>
+
+<p>The value must be between 0 and 16.</p>
+</dd>
+</dl>
+
+<br>
+ 
+
+<h3>Optional Parameter</h3>
+
+<dl>
+<dt><strong>Error code</strong></dt>
+
+<dd>I/O; CHAR(*) 
+
+<p>The structure in which to return error information. For the format of the
+structure, see <a href="error.htm#hdrerrcod">Error code parameter</a>. If this
+parameter is omitted, diagnostic and escape messages are issued to the
+application.</p>
+</dd>
+</dl>
+
+<br>
+ 
+
+<h3><a name="HDR8OPTION">Values for the Option Template Parameter</a></h3>
+
+<p>When you are using the QPRCRTPG API, you can specify a value in the option
+template. Only one value per option should be specified. If you specify more
+than one, the system only uses the first one. If you specify no value for a
+given option, the system uses the default value (underlined).</p>
+
+<dl>
+<dt><strong>Create program object</strong></dt>
+
+<dd>Creates a program object. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*GEN</U></em></td>
+<td align="left" valign="top">Generates a program and places the program in the
+appropriate library.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOGEN</em></td>
+<td align="left" valign="top">No program is generated. The syntax of the
+intermediate representation of the program is checked, and if the generate
+listing option is *LIST, a listing is produced.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Replace program</strong></dt>
+
+<dd>Replaces the existing program if a program by the same name already exists
+in the specified library. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOREPLACE</U></em></td>
+<td align="left" valign="top">Does not replace an existing program by the same
+name in the specified library.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*REPLACE</em></td>
+<td align="left" valign="top">Replaces the existing program by moving it to the
+QRPLOBJ library.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Generate listing</strong></dt>
+
+<dd>Generates an output listing. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOLIST</U></em></td>
+<td align="left" valign="top">Does not generate a listing.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*LIST</em></td>
+<td align="left" valign="top">Generates a listing. 
+
+<p>You must specify the following parameters:</p>
+
+<ul>
+<li>Printer file name and library</li>
+
+<li>Starting page number</li>
+</ul>
+</td>
+</tr>
+</table>
+</dd>
+
+<dt><strong>Create cross-reference listing</strong></dt>
+
+<dd>Whether the listing is to contain a cross-reference list of variable and
+data item references. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOXREF</U></em></td>
+<td align="left" valign="top">Does not create cross-reference listing.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*XREF</em></td>
+<td align="left" valign="top">Creates a cross-reference listing of references
+to variables, labels, or both.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Create summary listing</strong></dt>
+
+<dd>Whether the listing is to contain a list of program attributes. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOATR</U></em></td>
+<td align="left" valign="top">Does not create a summary listing section.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*ATR</em></td>
+<td align="left" valign="top">Creates a summary listing section.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>User profile</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*USER</U></em></td>
+<td align="left" valign="top">The user profile of the user running the program
+is used as a source of authority when this program runs.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*ADOPT</em></td>
+<td align="left" valign="top">When the program runs, the object authority of
+both the program's owner and user are used.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*OWNER</em></td>
+<td align="left" valign="top">The system uses the user profile of the owner of
+the program as a source of authority when this program runs. Programs called by
+this program adopt this authority.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Use adopted authority</strong></dt>
+
+<dd>Whether the system uses the program-adopted authority from the calling
+programs as a source of authority when this program is running. The user must
+be authorized to create programs with adopted authority for the *ADPAUT option
+to take effect. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*ADPAUT</U></em></td>
+<td align="left" valign="top">The system uses program-adopted authority from
+the calling program.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOADPAUT</em></td>
+<td align="left" valign="top">The system does not use program-adopted authority
+from the calling program.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"></td>
+<td align="left" valign="top"></td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> Authorization to create programs which can adopt
+authority is controlled by the QUSEADPAUT system value. For more information,
+refer to the description of this system value in the
+<i>Work Management book</i>
+on the V5R1 Supplemental Manuals Web site.</p>
+</dd>
+
+<dt><strong>Constrain arrays</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*SUBSCR</U></em></td>
+<td align="left" valign="top">Constrains arrays. This requests additional
+run-time checks to ensure that references to array elements are not outside the
+bounds of the declare statement. This option causes the resulting program to
+run slower.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOSUBSCR</em></td>
+<td align="left" valign="top">Does not constrain arrays. The results of
+references to array elements outside the bounds of the declare statement are
+not defined.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*UNCON</em></td>
+<td align="left" valign="top">Allows fully unconstrained arrays. This ensures
+that references to array elements outside the bounds of the declare statement
+act as if the array element actually exists.</td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> This program attribute may be changed at run-time
+using the Override Program Attributes (<A HREF="instructions/OVRPGATR.htm">OVRPGATR</A>) MI instruction.</p>
+</dd>
+
+<dt><strong>Constrain strings</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*SUBSTR</U></em></td>
+<td align="left" valign="top">Constrains strings. This requests additional
+run-time checks to ensure that references to character strings are not outside
+the bounds of the declare statement. This option causes the resulting program
+to run slower.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOSUBSTR</em></td>
+<td align="left" valign="top">Does not constrain strings. The results of
+substring references outside the bounds of the declare statement are not
+defined.</td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> You can change this program attribute at run-time
+using the Override Program Attributes (<A HREF="instructions/OVRPGATR.htm">OVRPGATR</A>) MI instruction.</p>
+</dd>
+
+<dt><strong>Initialize static storage</strong></dt>
+
+<dd><strong>Static storage</strong> is allocated the first time a program is
+called. It remains allocated until explicitly deallocated. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*CLRPSSA</U></em></td>
+<td align="left" valign="top">Initializes static storage. This code clears the
+program static storage area (PSSA) on entry using the Call External (<A HREF="instructions/CALLX.htm">CALLX</A>) MI
+instruction.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOCLRPSSA</em></td>
+<td align="left" valign="top">Does not initialize the PSSA.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Initialize automatic storage</strong></dt>
+
+<dd>Automatic storage is allocated each time a program runs and automatically
+deallocated when no longer needed. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*CLRPASA</U></em></td>
+<td align="left" valign="top">Initializes automatic storage. This code clears
+the program automatic storage area (PASA) on entry using the Call External
+(<A HREF="instructions/CALLX.htm">CALLX</A>) MI instruction.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOCLRPASA</em></td>
+<td align="left" valign="top">Does not initialize the PASA.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Ignore decimal data errors</strong></dt>
+
+<dd>Whether errors found in decimal data result in exceptions. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOIGNDEC</U></em></td>
+<td align="left" valign="top">Does not ignore decimal data errors. 
+
+<p>When you specify *NOIGNDEC, decimal values used in numeric operations are
+checked for valid decimal digits and sign codes. If the system finds an error,
+it signals an exception.</p>
+</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*IGNDEC</em></td>
+<td align="left" valign="top">Ignores data decimal errors. 
+
+<p>When you specify *IGNDEC, decimal values used in numeric operations ensure
+they contain valid decimal digit and sign codes. However, the system treats
+digits that are not valid as zeros and signs that are not valid as positive
+signs. There is no exception signaled.</p>
+</td>
+</tr>
+</table>
+
+<p>This option applies to only a subset of the numeric operations you
+specify.</p>
+
+<p><strong>Note:</strong> In all cases, the system signals decimal data errors
+if you use data pointers to address any of the instruction's operands.</p>
+
+<p>The following list contains the MI instructions this option affects:</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="bottom">MI Instruction</th>
+<th align="left" valign="bottom">Packed Source Operands Supported</th>
+<th align="left" valign="bottom">Zoned Source Operands Supported</th>
+<th align="left" valign="bottom">Notes</th>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/ADDN.htm">ADDN</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/CMPNV.htm">CMPNV</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/CVTCN.htm">CVTCN</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">You must specify operand 3 (the numeric view to
+be used for operand 2) as a constant and no data-pointer-defined operands.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/CVTDFFP.htm">CVTDFFP</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/CVTNC.htm">CVTNC</A></td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">You must specify operand 3 (the numeric view to
+be used for operand 1) as a constant and no data-pointer-defined operands.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/CPYNV.htm">CPYNV</A></td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">You must specify no data-pointer-defined
+operands.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/DIV.htm">DIV</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/DIVREM.htm">DIVREM</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/EDIT.htm">EDIT</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">You must specify no data-pointer-defined
+operands.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/EXTRMAG.htm">EXTRMAG</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/MULT.htm">MULT</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/NEG.htm">NEG</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/REM.htm"></A>REM</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/SCALE.htm">SCALE</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><A HREF="instructions/SUBN.htm">SUBN</A></td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="left" valign="top">&nbsp;</td>
+</tr>
+</table>
+
+<p>When you specify *IGNDEC, the system may still signal the decimal data
+exception. That is, other MI instructions and instruction combinations not
+listed above may signal the decimal data exception when the system finds
+decimal data that is bad.</p>
+</dd>
+
+<dt><strong>Ignore binary data size errors</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOIGNBIN</U></em></td>
+<td align="left" valign="top">The system handles binary data size errors
+normally. When a binary size error occurs, an exception is signaled and the
+receiver contains the left-truncated result.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*IGNBIN</em></td>
+<td align="left" valign="top">The system ignores binary data size errors. This
+is used when an overflow or underflow occurs on a computation and when a
+control MI instruction has a receiver that is a binary field. The receiver
+contains the left-truncated result.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Support coincident operands</strong></dt>
+
+<dd>The system overlaps coincident operands between the source and receiver
+operands in one or more program instructions. <strong>Coincident
+operands</strong> are operands that overlap physically, in storage. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NOOVERLAP</U></em></td>
+<td align="left" valign="top">Does not support coincident operands. If you
+specify *NOOVERLAP, you guarantee that coincident operand overlap will not
+occur while running the instruction. Therefore, the system can use the receiver
+on an instruction as a work area during operations performed to produce the
+final result. Using the receiver as a work area does not use as much processor
+resource as would be required to move the final result from an internal work
+area to the receiver.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*OVERLAP</em></td>
+<td align="left" valign="top">Supports coincident operands. If you specify
+*OVERLAP, the operands on an MI instruction may overlap. Therefore, the system
+cannot use the receiver on an instruction as a work area during operations that
+produce the final result. This can require more processor resource for running
+the instruction but it ensures valid results if an overlap occurs.</td>
+</tr>
+</table>
+
+<p>The following is a list of instructions this option affects:</p>
+
+<ul>
+<li>Add logical character (<A HREF="instructions/ADDLC.htm">ADDLC</A>)</li>
+
+<li>Add numeric (<A HREF="instructions/ADDN.htm">ADDN</A>)</li>
+
+<li>And (<A HREF="instructions/AND.htm">AND</A>)</li>
+
+<li>Compute math function using one input value (<A HREF="instructions/CMF1.htm">CMF1</A>)</li>
+
+<li>Concatenate (<A HREF="instructions/CAT.htm">CAT)</A></li>
+
+<li>Convert character to numeric (<A HREF="instructions/CVTCN.htm">CVTCN</A>)</li>
+
+<li>Convert decimal form to floating-point (<A HREF="instructions/CVTDFFP.htm">CVTDFFP</A>)</li>
+
+<li>Convert external form to numeric value (<A HREF="instructions/CVTEFN.htm">CVTEFN</A>)</li>
+
+<li>Convert floating-point to decimal form (<A HREF="instructions/CVTFPDF.htm">CVTFPDF</A>)</li>
+
+<li>Convert numeric to character (<A HREF="instructions/CVTNC.htm">CVTNC</A>)</li>
+
+<li>Copy bytes left adjusted with pad (<A HREF="instructions/CPYBLAP.htm">CPYBLAP</A>)</li>
+
+<li>Copy bytes right adjusted with pad (<A HREF="instructions/CPYBRAP.htm">CPYBRAP</A>)</li>
+
+<li>Divide (<A HREF="instructions/DIV.htm">DIV</A>)</li>
+
+<li>Divide with remainder (<A HREF="instructions/DIVREM.htm">DIVREM</A>)</li>
+
+<li>Exclusive or (<A HREF="instructions/XOR.htm">XOR</A>)</li>
+
+<li>Multiply (<A HREF="instructions/MULT.htm">MULT</A>)</li>
+
+<li>Or (<A HREF="instructions/OR.htm">OR</A>)</li>
+
+<li>Remainder (<A HREF="instructions/REM.htm">REM</A>)</li>
+
+<li>Scale (<A HREF="instructions/SCALE.htm">SCALE</A>)</li>
+
+<li>Subtract logical character (<A HREF="instructions/SUBLC.htm">SUBLC</A>)</li>
+
+<li>Subtract numeric (<A HREF="instructions/SUBN.htm">SUBN</A>)</li>
+
+<li>Trim length (<A HREF="instructions/TRIML.htm">TRIML</A>)</li>
+</ul>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Allow duplicate declares</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*NODUP</U></em></td>
+<td align="left" valign="top">This does not allow a program object to be
+declared more than once. This requests that duplicate declare (DCL) statements
+be diagnosed as errors.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*DUP</em></td>
+<td align="left" valign="top">This allows a program object to be declared more
+than once. This requests that program objects declared more than once be pooled
+and not be diagnosed as errors.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Optimize</strong></dt>
+
+<dd>The values allowed are: 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*OPT</U></em></td>
+<td align="left" valign="top">This optimizes the program. In most instances,
+this produces the smallest and best running program. Occasionally, the source
+program may signal a MCH2802 escape message during processing. If this occurs,
+you should not optimize the program.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*NOOPT</em></td>
+<td align="left" valign="top">This does not optimize the program. This requests
+the normal level code optimization when you create the program.</td>
+</tr>
+</table>
+
+<br>
+<br>
+</dd>
+
+<dt><strong>Target release</strong></dt>
+
+<dd>The release of the operating system on which you intend to use the object
+being created. You can use the object on a system with the specified release or
+with any subsequent release of the operating system installed. 
+
+<p>The values allowed are:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em><U>*CURRENT</U></em></td>
+<td align="left" valign="top">The object is to be used on the release of the
+operating system currently running on your system.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>*PRV</em></td>
+<td align="left" valign="top">The object is to be used on the previous release
+with modification level 0 of the operating system.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" nowrap><em>target-release</em></td>
+<td align="left" valign="top">Specify the release in the format VxRxMx.</td>
+</tr>
+</table>
+
+</dl>
+
+<br>
+<br>
+ 
+
+<h3>Error Messages</h3>
+
+<table cellpadding="5" width="100%">
+<tr>
+<th align="left" valign="top">Message ID</th>
+<th align="left" valign="top">Error Message Text</th>
+</tr>
+
+<tr>
+<td width="15%" valign="top">CPD0078 D</td>
+<td width="85%" valign="top">Value &amp;3 for parameter not a valid name.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF2143 E</td>
+<td align="left" valign="top">Cannot allocate object &amp;1 in &amp;2 type
+*&amp;3.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF2144 E</td>
+<td align="left" valign="top">Not authorized to &amp;1 in &amp;2 type
+*&amp;3.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF2146 E</td>
+<td align="left" valign="top">Owner of object &amp;1 and object being replaced
+not the same.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF2283 E</td>
+<td align="left" valign="top">Authorization list &amp;1 does not exist.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF223B D</td>
+<td align="left" valign="top">&amp;1 in &amp;2 type *&amp;3 adopted authority
+from previous call levels was set to *NO.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF223E E</td>
+<td align="left" valign="top">Authority check for use adopted authority
+attribute failed.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3CF1 E</td>
+<td align="left" valign="top">Error code parameter not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C35 E</td>
+<td align="left" valign="top">Value &amp;3 for parameter &amp;2 not a valid
+name.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C5A E</td>
+<td align="left" valign="top">Number of option template entries is not
+valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C5B E</td>
+<td align="left" valign="top">Option template entry is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C5C E</td>
+<td align="left" valign="top">Source file name and library is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C5D E</td>
+<td align="left" valign="top">Source file member is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C5F E</td>
+<td align="left" valign="top">Internal Representation of Program (IRP) string
+length parameter is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C50 E</td>
+<td align="left" valign="top">Program &amp;1 not created. 
+
+<table cellpadding="5" width="100%">
+<tr>
+<td align="left" valign="top">CPD0078 D</td>
+<td align="left" valign="top">Value &amp;3 for parameter not a valid name.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C50 D</td>
+<td align="left" valign="top">Value &amp;1 for the IRG string length parameter
+was not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C52 D</td>
+<td align="left" valign="top">Number of option template entries is not
+valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C53 D</td>
+<td align="left" valign="top">Option template entry is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C54 D</td>
+<td align="left" valign="top">Source file name and library is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C55 D</td>
+<td align="left" valign="top">Source file member is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPD3C56 D</td>
+<td align="left" valign="top">Source file last changed date and time is not
+valid.</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C56 E</td>
+<td align="left" valign="top">Source file last changed date and time is not
+valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C60 E</td>
+<td align="left" valign="top">Program name and library is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C61 E</td>
+<td align="left" valign="top">Authority is not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C62 E</td>
+<td align="left" valign="top">Source file library specified.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C63 E</td>
+<td align="left" valign="top">Source file member specified.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C64 E</td>
+<td align="left" valign="top">Source file last changed date and time
+specified.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF3C90 E</td>
+<td align="left" valign="top">Literal value cannot be changed.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6301 E</td>
+<td align="left" valign="top">Intermediate representation of program (IRP)
+contains &amp;1 errors. Probable compiler error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6303 E</td>
+<td align="left" valign="top">Message &amp;1, &amp;2 received while running
+create program command.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6304 E</td>
+<td align="left" valign="top">Library &amp;1 not found.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6306 E</td>
+<td align="left" valign="top">Program &amp;1 in library &amp;2 already
+exists.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6307 E</td>
+<td align="left" valign="top">Program template value at offset &amp;1, bit
+&amp;2, length &amp;3 not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6308 E</td>
+<td align="left" valign="top">Not authorized to create program.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6309 E</td>
+<td align="left" valign="top">Not authorized to library &amp;1.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6455 E</td>
+<td align="left" valign="top">Member &amp;2 file &amp;1 in library &amp;3 not
+found.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6457 E</td>
+<td align="left" valign="top">Cannot allocate library &amp;1 for program
+insertion.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6551 E</td>
+<td align="left" valign="top">Work space &amp;2 cannot be extended. Probable
+compiler error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6552 E</td>
+<td align="left" valign="top">Space &amp;2 type &amp;3 subtype &amp;4 not PRM
+workspace.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6553 E</td>
+<td align="left" valign="top">PRM permanent table resolution failed. Probable
+compiler error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6554 E</td>
+<td align="left" valign="top">Type of IST object &amp;4 at offset &amp;3 not
+valid. Probable PRM error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6555 E</td>
+<td align="left" valign="top">Addressability field type not valid for IST
+number &amp;4 at offset &amp;3. Probable PRM error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6557 E</td>
+<td align="left" valign="top">Error condition for IST &amp;4 at &amp;3 of IST
+space not valid. Probable PRM error.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6560 E</td>
+<td align="left" valign="top">Operation code &amp;5 in MI instruction &amp;3 at
+offset &amp;6 not found in QPRODT.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6561 E</td>
+<td align="left" valign="top">Operand &amp;4 in &amp;3 at offset &amp;5 in
+program template not valid.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6563 E</td>
+<td align="left" valign="top">Program was too large to be created.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6564 E</td>
+<td align="left" valign="top">Machine storage limit violation.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF6565 E</td>
+<td align="left" valign="top">User profile storage limit exceeded.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CPF9872 E</td>
+<td align="left" valign="top">Program or service program &amp;1 in library
+&amp;2 ended. Reason code &amp;3.</td>
+</tr>
+</table>
+
+<br>
+<hr>
+<br>
+<h3>Program Attributes</h3>
+
+<p>The QPRCRTPG API creates programs that have the following attributes:</p>
+
+<ul>
+<li>An associated space of 480 bytes initialized to hexadecimal 00. You can use
+the QCLSPGAS API to store information in the program's associated space.</li>
+
+<li>Observability.</li>
+
+<li>A blank extended attribute.</li>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,491 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1213 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1213
+</B></TD><TD><P><I>Invalid Mapping Template
+</I>
+<P>An error was detected in a mapping template.
+The <I>data space number</I> indicates the template in the mapping
+template list that contains the error.
+This field will equal 1 for a group-by mapping template, and will
+reference the appropriate template for the per data space mapping
+templates.
+This field will contain a zero when an intermediate mapping table is
+missing.
+<P>The <I>template field number</I> indicates which field number
+is in error
+for the scalar part of the mapping template (number of bytes in mapping
+template and mapping type).
+The contents of the reserved field immediately following the mapping
+type field is ignored (only present when intermediate mapping is
+specified).
+<P>The <I>template field number</I> also indicates the field in error
+for input and output mapping tables.
+Field number equal 0 indicates the template field number of bytes in the
+mapping template, field number equal 1 indicates field designating input
+mapping type, field number equal 2 indicates field designating output
+mapping type, field number equal 3 indicates field designating number of
+fields in the input/output mapping tables, and so forth.
+Each specification in the input/output tables is considered one field
+for counting purposes.
+<P>When an intermediate mapping table is in error,
+the <I>template field number</I> will equal 0.
+The <I>offset to field in error</I> field will designate
+the offset to the
+field from the start of the intermediate mapping table.
+Offset equal 0 designates the field number of intermediate mapping
+specifications, and so forth.
+<P>Possible errors are an invalid value, a value that exceeds allowed
+range, a length that is invalid for the specified type or a type that is
+inconsistent with the type specified for the field in the data space,
+key description, or an intermediate buffer description.
+<P>The invalid mapping template exception will not be signaled when a
+data pointer fails verification.
+The normal exception associated with verifying data pointers will be
+signaled instead.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data space number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+<font color=blue>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Template field number
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>UBin(2)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(valid only for input/output mapping tables and the scalar
+part of the mapping template; number of bytes in template,
+input mapping type, output mapping type)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>Per data space mapping template (input/output mapping table and
+scalar part of template)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>Per data space mapping template (output intermediate mapping table)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 02 =
+</TD><TD>Group-by intermediate mapping table
+</TD></TR><TR VALIGN="TOP"><TD>Hex 03 =
+</TD><TD>Derived key intermediate mapping table
+</TD></TR><TR VALIGN="TOP"><TD>Hex 04 =
+</TD><TD>Output intermediate mapping table (specifications for interface
+supplied variables)
+</TD></TR><TR VALIGN="TOP"><TD>Hex 05 =
+</TD><TD>Data definition attributes
+</TD></TR><TR VALIGN="TOP"><TD>Hex 06 =
+</TD><TD>Partition mapping input/output mapping table
+</TD></TR><TR VALIGN="TOP"><TD>Hex 07 =
+</TD><TD>Partition mapping intermediate mapping
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to field in error
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(valid only for intermediate mapping table errors)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<B>Intermediate mapping table error type codes</B>
+<P>
+(these codes apply to any <I>template type</I> that includes
+intermediate mapping tables)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<UL>
+<P><LI>GENERAL ERROR CODES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0000 =
+</TD><TD>Pointer error
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0001 =
+</TD><TD>Reserved field invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0300 =
+</TD><TD>Missing Intermediate mapping table
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1000 =
+</TD><TD>Operation field error
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1012 =
+</TD><TD>Specified Operation invalid for Variable length fields
+</TD></TR><TR VALIGN="TOP"><TD>Hex 1014 =
+</TD><TD>Invalid Null Operation modifier
+</TD></TR></TABLE>
+</UL>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<UL>
+<P><LI>OPERAND 1 ERROR CODES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 8001 =
+</TD><TD>Operand 1 Reserved Area invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8004 =
+</TD><TD>Operand 1 End character invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8008 =
+</TD><TD>Operand 1 Start character invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8010 =
+</TD><TD>Operand 1 Location invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8018 =
+</TD><TD>Operand 1 pad character reference invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8020 =
+</TD><TD>Operand 1 Length invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8040 =
+</TD><TD>Operand 1 Field type invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8044 =
+</TD><TD>Operand 1 is a Split Variable length field that is not compatible
+with the specified operation
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8048 =
+</TD><TD>Operand 1's Start or End character referenced an invalid field type
+for a Substring operation
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8080 =
+</TD><TD>Operand 1 Field number invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8082 =
+</TD><TD>Operand 1's Preferred format or separator is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8088 =
+</TD><TD>Operand 1's <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8400 =
+</TD><TD>Operand 1's Array Position of the Data Pointer is invalid
+</TD></TR></TABLE>
+</UL>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<UL>
+<P><LI>OPERAND 2 ERROR CODES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 4001 =
+</TD><TD>Operand 2 Reserved Area invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4004 =
+</TD><TD>Operand 2 End character invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4008 =
+</TD><TD>Operand 2 Start character invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4010 =
+</TD><TD>Operand 2 Location invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4018 =
+</TD><TD>Operand 2 pad character reference invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4020 =
+</TD><TD>Operand 2 Length invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4022 =
+</TD><TD>Operand 2's Immediate Value or Length is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4028 =
+</TD><TD>Operand 2 XLATEMB specification is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4040 =
+</TD><TD>Operand 2 Field type invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4044 =
+</TD><TD>Operand 2 is a Split Variable length field that is not compatible
+with the specified operation
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4080 =
+</TD><TD>Operand 2 Field number invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4088 =
+</TD><TD>Operand 2's <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4100 =
+</TD><TD>Operand 2's Array Position of the Translate Table is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 4400 =
+</TD><TD>Operand 2's Array Position of the Data Pointer is invalid
+</TD></TR></TABLE>
+</UL>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<UL>
+<P><LI>RESULT ERROR CODES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 2001 =
+</TD><TD>Result Reserved area invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2002 =
+</TD><TD>Result Rounding mode invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2004 =
+</TD><TD>Result Type modifier is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2020 =
+</TD><TD>Result Length invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2040 =
+</TD><TD>Result Type invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 2088 =
+</TD><TD>Result's <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> is invalid
+</TD></TR></TABLE>
+</UL>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<UL>
+<P><LI>DATA POINTER ERRORS
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0020 =
+</TD><TD>Data Pointer length is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0040 =
+</TD><TD>Data Pointer field type is invalid
+</TD></TR></TABLE>
+</UL>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<P><B>Error types for input and output mapping templates</B>
+(these codes apply to any <I>template type</I> that includes
+input and output mapping tables)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0001 =
+</TD><TD>Field Location is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0002 =
+</TD><TD>Field Type is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0003 =
+</TD><TD>Field Length is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0004 =
+</TD><TD>Reserved area is not zero
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0005 =
+</TD><TD><A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> number references an invalid <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> number
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0006 =
+</TD><TD><A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> number references an invalid format code
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0007 =
+</TD><TD><A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> number references an invalid preferred format or separator
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0008 =
+</TD><TD>Type modifier is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0009 =
+</TD><TD>Variable Length/Type mismatch
+</TD></TR><TR VALIGN="TOP"><TD>Hex 000A =
+</TD><TD><A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> offset mismatch between mapping template <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> number
+and field table <A HREF="../MINDTCON.htm#HDRDDAT">DDAT</A> offset
+</TD></TR><TR VALIGN="TOP"><TD>Hex 000B =
+</TD><TD>Mapping Conversion is invalid
+</TD></TR><TR VALIGN="TOP"><TD>Hex 000C =
+</TD><TD>Mapping a pseudo Date/Time field that is variable length and
+the fixed allocation length is greater than zero and less than the
+maximum size of the field.
+</TD></TR></TABLE>
+<font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>12
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>C
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Result Intermediate buffer field number.
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>UBin(2)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(Valid only for intermediate mapping templates.  For any
+other template type this field will be zero.)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

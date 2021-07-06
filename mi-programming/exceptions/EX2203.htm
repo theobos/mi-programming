@@ -1,0 +1,99 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 2203 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>2203
+</B></TD><TD><P><I>Object Suspended
+</I>
+<P>
+An attempt was made to reference an object that is in suspended
+state and, with its contents truncated, is not suitable for processing.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+Instructions that reference space, queue, index,
+byte string space, journal space,
+data space, or data space index objects, except for
+the following instructions:
+<UL>
+<P><LI>All Destroy instructions
+<P><LI>Lock Object (<A HREF="../instructions/LOCK.htm">LOCK</A>)
+<P><LI>Materialize Object Lock (<A HREF="../instructions/MATOBJLK.htm">MATOBJLK</A>)
+<P><LI>Materialize Pointer (<A HREF="../instructions/MATPTR.htm">MATPTR</A>)
+<P><LI>Materialize System Object (<A HREF="../instructions/MATSOBJ.htm">MATSOBJ</A>)
+<P><LI>Resolve System Pointer (to the target object) (<A HREF="../instructions/RSLVSP.htm">RSLVSP</A>)
+<P><LI>Unlock Object (<A HREF="../instructions/UNLOCK.htm">UNLOCK</A>)
+<P><LI>Transfer Object Lock (<A HREF="../instructions/XFRLOCK.htm">XFRLOCK</A>)
+</UL></UL>
+</TD></TR></TABLE>
+
+   
+ 
+</body>
+
+ 
+</HTML>

@@ -1,0 +1,1354 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Machine Interface Introduction </title>
+			<link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body><h1>ISeries Machine Interface Introduction V5R1</h1>
+<h2>Overview</h2>
+
+<P>
+This web page contains the following:
+<UL>
+<P><LI>
+Detailed descriptions of the
+iSeries
+machine interface instruction
+fields and the formats of these fields
+<P><LI>
+A description
+of the format used in describing each instruction
+<P><LI>
+A list
+of the terms in the syntax that define the characteristics
+of the operands
+<P><LI>A discussion of some pervasive topics that apply to a wide
+range of instructions.
+</UL>
+<P>
+You should read this web page in its entirety before attempting to write
+instructions. Some typographic conventions are used:
+<UL>
+<LI>Information marked in <font color=blue>blue</font> in the documentation indicates a change from the previous release.<P>
+<LI>Instructions marked in <I>italics</I> in the index can be accessed only in bound programs.<P>
+</UL>
+<p>
+<A NAME="Header_3"></a>
+<h2>Instruction Format Conventions Used</h2>
+
+
+<P>
+The user must be aware that not every
+instruction uses every
+field described in this section.  Only the
+information pertaining to the fields that are used by
+an instruction is provided for each instruction.
+<P>
+Each instruction is formatted with
+the instruction name followed
+by its base mnemonic.
+Following this,
+for instructions supported by Non-Bound Programs (NBP),
+is
+the operation code (op code) in hexadecimal and the
+number of operands with their general meaning.
+<P>
+Example:
+<P>
+<B>ADD NUMERIC (ADDN)</B>
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1043
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Sum
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Addend 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Addend 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+This information is followed by the operands and their syntax.  See
+<A class="content" HREF="#HDRNBPOPER">"Definition Of The NBP Operand Syntax"</A>
+for a detailed discussion of the syntax of instruction operands.
+<P>
+Example:
+<P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3</I>:  Numeric scalar.
+<P>For instructions that are supported in
+Bound Programs (BP), a bound program access box is provided that
+describes the operands and return values associated with the instruction
+in bound programs.  For example:
+<P>
+<TABLE BORDER="1" WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH></TR><TR><TD>
+<PRE><P>Built-in number for ALCHSS is 111.
+ALCHSS (
+        heap_identifier            : signed binary(4) OR
+                                     unsigned binary(4) OR
+                                     null operand
+        size_of_space_allocation   : signed binary(4)
+<font color=blue>) :   space pointer(16) to a space allocation
+</FONT></PRE></TD></TR></TABLE><TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Within the bound program access box, a data type like
+signed binary(1,2,4) is
+a short hand notation for the 3 data types signed binary(1), signed binary(2),
+and signed binary(4) all being supported.
+</TD></TR></TABLE>
+<P>
+A description of the parameters for bound program
+access to the instruction is given.  See the corresponding programming
+language reference manual for details as to how this information
+should be interpreted for a given language.
+<P>
+If an operand is passed by reference, the data type of the operand is
+preceded by the word address.  If an operand is passed by value, the
+data type of the operand is not preceded by the word address.
+<font color=blue>
+A local form address, which is a type of address that
+can only refer to teraspace, can be used on any instructions that
+specify an address
+operand
+unless explicitly prohibited.
+<P>
+An address is
+the value contained in any space pointer,
+the location of a data object or
+the result of an address computation.
+</FONT></font>
+<P>
+If the built-in function has a return value, it is specified
+following the closing ') :' characters.  Not all built-in functions
+have a return value.  If the built-in function has a return value, it
+may be returned either by address or by value and will state which
+method is used.
+<P><I><B><A NAME="Header_4">Description</A>:&nbsp;</B></I>&nbsp;
+A detailed description and a functional definition of the instruction
+is given.
+<P><B>Note: </B><font color=blue>When the description refers to a space pointer or procedure pointer and
+the length of the pointer is not explicitly given, the length should
+be inferred from the context.
+A pointer's length is explicitly specified in operand and template
+definitions.</FONT>
+<P>
+When an instruction takes a template (data structure) as input
+or provides a template as output, the format of the template is
+defined as a series of fields.  Each field is given a name and an
+associated data type.  The valid data types are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bin(1)
+</B></TD><TD><P>Signed 1-byte binary (not valid if template is used by a non-bound
+program instruction).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>UBin(1)
+</B></TD><TD><P>Unsigned 1-byte binary (not valid if template is used by a non-bound
+program instruction).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Bin(2)
+</B></TD><TD><P>Signed 2-byte binary
+</TD></TR><TR VALIGN="TOP"><TD><P><B>UBin(2)
+</B></TD><TD><P>Unsigned 2-byte binary
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Bin(4)
+</B></TD><TD><P>Signed 4-byte binary
+</TD></TR><TR VALIGN="TOP"><TD><P><B>UBin(4)
+</B></TD><TD><P>Unsigned 4-byte binary
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Bin(8)
+</B></TD><TD><P>Signed 8-byte binary (not valid if template is used by a non-bound
+program instruction).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>UBin(8)
+</B></TD><TD><P>Unsigned 8-byte binary (not valid if template is used by a non-bound
+program instruction).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Bit x
+</B></TD><TD><P>A 1-bit field occupies position x.
+Bits are numbered from the highest most
+position being 0 (left-most) and the lowest most position being n
+(right-most).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Bit y-z
+</B></TD><TD><P>A series of 1-bit fields that occupy positions x through z inclusive.
+Bits are numbered from the highest most
+position being 0 (left-most) and the lowest most position being n
+(right-most).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Char(n)
+</B></TD><TD><P>Fixed length string of "n" 1-byte characters.  Char(1) is also used
+to represent 1-byte binary values.  Char(8) is used to represent
+8-byte binary.
+The character string may be redefined to be series of
+1 or more other data types.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Char(*)
+</B></TD><TD><P>Variable length string of 1-byte characters.
+The character string may be redefined to be series of
+1 or more other data types.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Float(4)
+</B></TD><TD><P>A 4-byte floating point number.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Float(8)
+</B></TD><TD><P>An 8-byte floating point number.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Data pointer
+</B></TD><TD><P>A 16-byte area that contains a data pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Instruction pointer
+</B></TD><TD><P>A 16-byte area that contains an instruction
+pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Invocation pointer
+</B></TD><TD><P>A 16-byte area that contains an invocation
+pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Label pointer
+</B></TD><TD><P>A 16-byte area that contains a label
+pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Object pointer
+</B></TD><TD><P>A 16-byte area that contains an XOM object
+pointer (must be on a 16-byte
+boundary).
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><font color=blue>Procedure pointer(16)
+</FONT>
+</B></TD><TD><P>A 16-byte area that contains a procedure
+pointer (must be on a 16-byte
+boundary).
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><font color=blue>Procedure pointer(8)
+</FONT></B></TD><TD><P><font color=blue>An 8-byte area that contains a local pointer that identifies
+an active instance of a procedure
+(not valid in a template for a non-bound program,
+and valid in a bound program template only when the program is to
+be created as teraspace capable)
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><font color=blue>Space pointer(16)
+</FONT>
+</B></TD><TD><P>A 16-byte area that contains a space
+pointer (must be on a 16-byte
+boundary).
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><font color=blue>Space pointer(8)
+</FONT></B></TD><TD><P><font color=blue>An 8-byte area that contains a local pointer to teraspace
+(not valid in a template for a non-bound program,
+and valid in a bound program template only when the program is to
+be created as teraspace capable)
+</FONT>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Suspend pointer
+</B></TD><TD><P>A 16-byte area that contains a system
+pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Synchronization pointer
+</B></TD><TD><P>A 16-byte area that contains a synchronization
+pointer (must be on a 16-byte
+boundary).
+</TD></TR><TR VALIGN="TOP"><TD><P><B>System pointer
+</B></TD><TD><P>A 16-byte area that contains a system
+pointer (must be on a 16-byte
+boundary).
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><B><font color=blue>Open pointer
+</FONT></B></TD><TD><P><font color=blue>A 16-byte area that contains a pointer with an
+unspecified type (must be on a 16-byte boundary).
+</FONT>
+</TD></TR></TABLE>
+<P>Example:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Materialization size specification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Number of bytes provided for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object identification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Object type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">9
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Object subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Object name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(30)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Performance class
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Space alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bits 1-4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Main storage pool selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Transient storage pool selection
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Block transfer on implicit access state modification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Unit number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bits 8-15
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bits 16-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Context
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P>This hypothetical template is composed of:
+<OL COMPACT TYPE=1>
+<LI>An 8-byte character string which is defined to be composed of
+2 unsigned 4-byte binary values.
+<LI>A 32-byte character string which is defined to be composed of
+three fields: a 1-byte character field, another 1-byte character field,
+and lastly a 30-byte character field.
+<LI>A 4-byte character string which is defined to be reserved for future
+use and that will contain a value of binary zeroes.
+<LI>A 4-byte character string which is defined to be composed of
+a series of bit fields: 1-bit fields are defined for positions 0, 5, 6,
+and 7; a 4-bit field is reserved in positions 1 through 4; an 8-bit
+field is defined in positions 8 through 15; and a 16-bit field
+is defined as being reserved in positions 16-31.
+<LI>A system pointer to a context object.  This pointer is on a 16-byte
+boundary with respect to the beginning of the template.  The architecture
+assumes that the template begins on a 16-byte boundary.
+<LI>The template is 64 bytes in length.
+</OL>
+<P>When a template field represents an array or repeating structure,
+the field data type will be proceeded by a "dimension" which indicates
+the number of elements in the array or the number of times the
+structure is repeated.
+<P>Example:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Array of binary numbers
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;12&#93; Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Repeating structure
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;4&#93; Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Structure field 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">49
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">31
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Structure field 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">50
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">32
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Structure field 3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">64
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">40
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Array of pointers
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;3&#93; Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">112
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">70
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Variable array 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;5&#93; Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Variable array 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;*&#93; Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P>In this example, there is:
+<OL COMPACT TYPE=1>
+<LI>Twelve occurrences of a signed 4-byte binary number.
+<LI>Four occurrences of a 4-byte structure which is composed
+of 3 fields; 2 1-byte character strings and 1 signed 2-byte binary
+number.
+<LI>Three occurrences of a 16-byte space pointer.
+<LI>Five occurrences of a variable length character string.
+Normally
+the instruction will provide additional information regarding how to
+determine the length of each occurrence.
+<LI>A variable number of occurrences of a variable length character
+string.
+Normally
+the instruction will provide additional information regarding how to
+determine the number of occurrences and the
+length of each occurrence.
+</OL>
+<P>When terms are defined or fields in a template are described, they
+are highlighted as follows&#58; <B><U>term definition</U></B>.
+When a term is referenced or a value of a field is referred to, it is
+highlighted as follows&#58;  <I>term reference</I>.
+<P>Fields in a template are generally described in the same order as
+they are defined in the template.  However, some fields are more
+appropriately described with other related fields, so they may not
+appear in exact order.
+<P><I><B><A NAME="Header_5">Limitations  (Subject to Change)</A>:&nbsp;</B></I>&nbsp;
+<P>
+These are the limits that apply to the functions performed by the
+instruction.
+These limits are subject to change.
+<P><I><B><A NAME="Header_6">Resultant Conditions</A>:&nbsp;</B></I>&nbsp;
+<P>
+These are the conditions
+that can be set at the end
+of the standard operation in order to perform
+a conditional branch or set a conditional indicator.
+<P><H4><A NAME="Header_7">Authorization Required</A></H4>
+<P>
+A list of the object
+authorization required for
+each of the operands in the instruction
+or for any objects subsequently referenced by the instruction is given.
+<P><H4><A NAME="Header_8">Lock Enforcement</A></H4>
+<P>
+Describes the specification of
+the lock states that are
+to be enforced during execution of the
+instruction.
+<P>
+The following states of enforcement can be specified for an instruction:
+<UL>
+<P><LI>
+Enforcement for materialization
+<P>
+Access to
+a system object is allowed if no other process is
+holding a locked exclusive no
+read (LENR) lock on the object.
+In general, this rule applies to instructions that access an object for
+materialization and retrieval.
+<P><LI>
+Enforcement for modification
+<P>
+Access
+to a system object is allowed if no other process is
+holding a locked exclusive
+no read (LENR), locked exclusive
+allow read (LEAR), or locked shared read only
+(LSRO) lock.  In general, this rule
+applies to instructions that
+modify or alter the contents of a system object.
+<P><LI>
+Enforcement of object control
+<P>
+Access
+is prohibited if another process is holding any lock
+on the system object.  In general,
+this rule applies to instructions that destroy or rename a system object.
+</UL>
+<P><H4><A NAME="Header_9">Error Conditions</A></H4>
+<P>For those instructions supported in bound programs that return
+a completion value, this section lists the possible values
+that can be returned.
+<P><H4><A NAME="Header_10">Exceptions</A></H4>
+<P>
+The "exceptions" sections contain a list of exceptions
+that can be caused by the instruction.
+Exceptions related to specific
+operands are indicated for each exception by the exception
+under the heading operand.  An entry under
+the word, other, indicates that the exception applies to the
+instruction but not to a particular operand.
+<P>
+<A NAME="Header_11" ></A>
+<h2>Reserved and Obsolete Fields</h2>
+
+<P><A NAME="Header_12"></A>
+
+<h3>Reserved Fields</h3>
+
+<P>Fields in an instruction template that are specified as being reserved
+must contain binary 0s on input and will usually
+contain binary 0s on output.
+In most cases, specifying a value other than zero may cause an exception
+or unpredictable results.
+<P>As the MI Architecture evolves and responds to new and changing
+requirements, it is necessary to make use of reserved
+fields to support new function.  The MI user must be aware that on
+subsequent releases
+<UL>
+<P><LI>a formerly reserved field may not return binary 0s
+<P><LI>a reserved field that was not checked for binary 0s
+may begin to have binary 0 values enforced on input
+<P><LI>a formerly reserved field may begin to accept nonzero values in
+support of a new or expanded function.
+</UL>
+<P>So, for example, if a template byte had the first six bits used,
+followed by two reserved bits, code that relies on having all the defined
+bits turned on should check the bits individually instead of comparing
+the whole byte to hex FC.
+<P><A NAME="Header_13"></A>
+<h3>Obsolete Fields</h3>
+<P>As the MI Architecture evolves and responds to new and changing
+requirements, it is necessary sometimes to remove support for an
+existing field in a template.  When this occurs, the field will remain
+in the template to provide compatibility with existing instances
+of the instruction but the field will be marked as obsolete.
+<P>Values provided
+by the MI user in obsolete fields will be ignored by the machine.
+<A NAME="HDRNBPOPER"></A>
+<h2>Definition of the NBP Operand Syntax</h2>
+
+<P>
+Syntax consists of the allowable choices for each
+instruction operand.  The following are the
+common terms used in the syntax and the meanings of those terms:
+<UL>
+<P><LI>
+<I>Numeric</I>:  Numeric
+attribute of binary, packed decimal, zoned-decimal, or floating-point
+<P><LI>
+<I>Character</I>:  character
+attribute
+<P><LI>
+<I>Scalar</I>:
+<UL>
+<P><LI>
+Scalar data object that is not an array (see note 1)
+<P><LI>
+Constant scalar object
+<P><LI>
+Immediate operand (signed or unsigned)
+<P><LI>
+Element of an array of scalars (see notes 1 and 2)
+<P><LI>
+Substring of a character scalar or a character scalar constant data
+object (see notes 1 and 3)
+</UL>
+<P><LI>
+<I>Data Pointer Defined Scalar</I>:
+<UL>
+<P><LI>
+A scalar defined by a data pointer
+<P><LI>
+Substring
+of a character scalar defined by a data pointer (see notes 1 and 3)
+</UL>
+<P><LI>
+<I>Pointer</I>:
+<UL>
+<P><LI>
+Pointer data object that is not an array
+(see note 1)
+<P><LI>
+Element of an array of pointers
+(see notes 1 and 2)
+<P><LI>
+Space pointer machine object
+</UL>
+<P><LI>
+<I>Array</I>:  An array
+of scalars or an array of pointers (see note 1)
+<P><LI>
+<I>Variable Scalar</I>:  Same
+as scalar except constant scalar objects and immediate
+operand values are excluded.
+<P><LI>
+<I>Data Pointer</I>:  A pointer
+data object that is to be used as a data pointer.
+<UL>
+<P><LI>
+If the operand is a source operand, the pointer storage
+form must contain a data
+pointer when the instruction is executed.
+<P><LI>
+If the operand is a receiver operand, a data pointer is
+constructed by the instruction in the
+specified area regardless of
+its current contents (see note 4).
+</UL>
+
+<P><font color=blue><LI><I>Open pointer</I>:
+specifies that all 16-byte
+pointer types are supported by the instruction.  When a new pointer type
+is added to the architecture, the instruction's implementation doesn't
+require any updates.
+<P>However, if an instruction lists all of the defined 16-byte pointer
+types as valid data types for an operand, that instruction's
+implementation may have to be updated when a new pointer type is defined.
+</font>
+<P><LI>
+<I>Space Pointer</I>:  A space
+pointer data object or a space pointer machine object.
+<P><LI>
+<I>Space Pointer Data Object</I>:  A pointer
+data object that is to be used as a space pointer.
+<UL>
+<P><LI>
+If the operand is a source operand, the pointer storage
+form must contain a space pointer when the
+instruction is executed.
+<P><LI>
+If
+the operand is a receiver operand, a space pointer
+is constructed by the instruction in the
+specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>System Pointer</I>:  a pointer
+data object that is to be used as a system pointer.
+<UL>
+<P><LI>
+If the operand is a source operand, the specified area must
+contain a system pointer when the instruction is executed.
+<P><LI>
+If the
+operand is a receiver operand, a system pointer is constructed by the
+instruction in the specified area regardless
+of its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Relative Instruction Number</I>:  Signed
+immediate operand.  (NBP only)
+<P><LI>
+<I>Instruction Number</I>:  Unsigned
+immediate operand.  (NBP only)
+<P><LI>
+<I>Instruction Pointer</I>:  A pointer
+data object that is to be used as an instruction pointer.  (NBP only)
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+an instruction pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, an instruction pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see notes 4 and 5).
+</UL>
+<P><LI>
+<I>Invocation Pointer</I>:  A pointer
+data object that is to be used as an invocation pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+an invocation pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, an invocation pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Procedure Pointer</I>:  A pointer
+data object that is to be used as a procedure pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+a procedure pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, a procedure pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Label Pointer</I>:  A pointer
+data object that is to be used as an label pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+a label pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, a label pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Suspend Pointer</I>:  A pointer
+data object that is to be used as an suspend pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+a suspend pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, a suspend pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Synchronization Pointer</I>:  A pointer
+data object that is to be used as an synchronization pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+a synchronization pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, a synchronization pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Object Pointer</I>:  A pointer
+data object that is to be used as an XOM object pointer.
+<UL>
+<P><LI>
+If the operand
+is a source operand, the specified area must contain
+an
+XOM
+object pointer
+when the instruction is executed.
+<P><LI>
+If the operand
+is a receiver operand, an
+XOM
+object pointer is constructed by the
+instruction in the specified area regardless of
+its current contents (see note 4).
+</UL>
+<P><LI>
+<I>Instruction Definition List Element</I>:  An entry
+in an instruction definition list that can be used
+as a branch target (NBP only).  A compound
+subscript operand form must always be used (see note 5).
+</UL>
+<P><B>Notes: </B><OL>
+<P><LI>An instruction
+operand in which the primary operand is a scalar or
+a pointer may also have an operand
+form in which an explicit base pointer is specified.
+<P>
+See
+<A class="content" HREF="MINPO.htm#HDRODTORF">ODT Object References</A>
+for more information on compound operands.
+<P><LI>A compound
+subscript operand may be used to select a specific
+element from an array of scalars or from an
+array of pointers.
+<P>
+See
+<A class="content" HREF="MINPO.htm#HDRODTORF">ODT Object References</A>
+for more information on compound
+operands.
+<P><LI>A compound
+substring operand may be used to define a substring
+of a character scalar, or a character constant
+scalar object.
+<P>
+A compound substring operand that disallows a null substring
+reference (a length value of zero) may, unless precluded by the
+particular instruction, be specified for any operand syntactically
+defined as allowing a character scalar.  A compound substring operand
+that allows a null substring reference may be specified for an
+operand syntactically defined as allowing a character scalar only
+if the instruction specifies that it is allowed.  Whether a
+compound substring operand does or does not allow a null substring
+reference is controlled through the specification of the length
+secondary operand field.
+<P>
+See
+<A class="content" HREF="MINPO.htm#HDRODTORF">ODT Object References</A>
+for more information on compound operands.
+<P><LI>
+A compound subscript operand form may be used to select an
+element from an array of pointers to act as the
+operand for an instruction.
+See
+<A class="content" HREF="MINPO.htm#HDRODTORF">ODT Object References</A>
+for more information on compound operands.
+<P><LI>
+Compound subscript forms are not allowed on branch target operands that
+are used for conditional branching.
+Selection of elements of instruction pointer arrays and
+elements of instruction definition lists may,
+however, be referenced for branch operands by
+the branch instruction.
+</OL>
+<P>
+Alternate choices of NBP operand types and the allowable
+variations within each
+choice are indicated in the syntax descriptions
+as shown in the following example.
+<P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3</I>:  Instruction
+number, branch point or instruction pointer.
+<P>
+Operand 1 must be variable
+scalar.  Operands 1 and 2 must be numeric.  Operand 3
+can be an instruction number, branch point or
+instruction pointer.
+<P>
+When a length is specified in the syntax for an NBP
+operand, character scalar
+operands must be at least the size specified.
+Any excess beyond that required by the instruction is ignored.
+<P>
+Scalar NBP operands that are operated on by instructions
+requiring 1-byte operands,
+such as pad values or indicator operands,
+can be greater than 1 byte in length; however, only the
+first byte of the character string is
+used.  The remaining bytes are ignored by the instruction.
+<A NAME="Header_15"></A>
+<h2>Names</h2>
+
+<P>The MI architecture treats names, unless explicitly stated otherwise,
+as a sequence of unencoded bytes.  That is, the machine treats each byte
+of an object name as a sequence of bits which the machine stores and
+returns without modification.
+<P>Names, being unencoded, are not associated with any Coded Character
+Set Identifier (CCSID) or any other National Language Support information
+by the machine.
+The machine does not perform (unless explicitly stated)
+any character translations on names.
+<A NAME="Header_16"></A>
+<h2>Character Constants</h2>
+<P>The character constants specified in an instruction (in the form 'X'
+where X represents a single character) are required by the machine to be
+from the EBCDIC invariant character set.  This includes the following
+characters.
+<PRE>
+'A' = hex C1     'a' = hex 81     '0' = hex F0      ':' = hex 7A
+'B' = hex C2     'b' = hex 82     '1' = hex F1      ';' = hex 5E
+'C' = hex C3     'c' = hex 83     '2' = hex F2      '?' = hex 6F
+'D' = hex C4     'd' = hex 84     '3' = hex F3
+'E' = hex C5     'e' = hex 85     '4' = hex F4
+'F' = hex C6     'f' = hex 86     '5' = hex F5
+'G' = hex C7     'g' = hex 87     '6' = hex F6
+'H' = hex C8     'h' = hex 88     '7' = hex F7
+'I' = hex C9     'i' = hex 89     '8' = hex F8
+'J' = hex D1     'j' = hex 91     '9' = hex F9
+'K' = hex D2     'k' = hex 92     '+' = hex 4E
+'L' = hex D3     'l' = hex 93     '&gt;' = hex 6E
+'M' = hex D4     'm' = hex 94     '=' = hex 7E
+'N' = hex D5     'n' = hex 95     '&lt;' = hex 4C
+'O' = hex D6     'o' = hex 96     '%' = hex 6C
+'P' = hex D7     'p' = hex 97     '@' = hex 7C
+'Q' = hex D8     'q' = hex 98     '*' = hex 5C
+'R' = hex D9     'r' = hex 99     ''' = hex 7D
+'S' = hex E2     's' = hex A2     '"' = hex 7F
+'T' = hex E3     't' = hex A3     '(' = hex 4D
+'U' = hex E4     'u' = hex A4     ')' = hex 5D
+'V' = hex E5     'v' = hex A5     ',' = hex 6B
+'W' = hex E6     'w' = hex A6     '_' = hex 6D
+'X' = hex E7     'x' = hex A7     '-' = hex 60
+'Y' = hex E8     'y' = hex A8     '.' = hex 4B
+'Z' = hex E9     'z' = hex A9     '/' = hex 61
+</PRE>
+<A NAME="HDRTIMEFMT"></A>
+<h2>Standard Time Format</h2>
+
+<P>Unless explicitly stated otherwise, the format of time values
+is a 64-bit (8-byte) unsigned binary value where bit 48 is equal to
+8 microseconds, assuming the bits are numbered from 0 to 63
+(high-order or leftmost bit, to low-order or rightmost bit).
+<P>
+0................48 49 reserved 63
+<P>
+<P>
+The time-of-day (TOD) clock
+value
+is incremented by adding a 1 in
+bit position 48 every 8 microseconds.
+This gives the clock
+value
+a granularity of 8 microseconds.
+<P>
+Bit positions 49 through 63 are used by the
+machine and have no
+defined
+meaning to the user.  Note that
+these bits (49-63) may contain
+any combination of
+binary 1's or binary 0's.
+<P>
+The machine time-of-day
+support
+guarantees that each request to read the
+time-of-day will receive a unique, monotonically increasing value.
+However, this does not mean that the values returned for different
+time-of-day requests from different threads will necessarily be in
+the same order as the requests were made.
+Each different request may experience a different latency between the
+time the request was made and the time a value was returned.
+One way to insure retrieval of time-of-day values in the
+requested
+order is to use software locks.
+All code interested in the time-of-day would obtain a lock,
+materialize the time-of-day,
+and then unlock.
+<P>
+The
+observed
+granularity of time-of-day values
+cannot be accurately predicted
+because retrieval latency depends on the design of the current
+machine implementation and the
+load on the machine at the time of the request.
+<A NAME="HDRSTORTRM"></A><p>
+<h2>Storage Terminology</h2>
+
+
+<P>The term <B><U>basic storage unit</U></B> is defined to
+mean 512 bytes of storage.  Basic storage units are commonly used
+to return the size information about MI objects.
+<P>The term <B><U>page</U></B> is defined to mean one or more <I>basic
+storage units</I> used by the machine to manage memory and DASD.  The
+number of bytes in a <I>page</I> can be determined with option hex 12
+of the Materialize Resource Machine Data (<A HREF="instructions/MATRMD.htm">MATRMD</A>) instruction.
+<P>The term <B><U>machine minimum transfer size</U></B> is defined to be the
+smallest number of bytes that may be transferred as a block to and from
+main storage.  The number of bytes in the <I>machine minimum transfer
+size</I> can be determined with option hex 9 of the Materialize Resource
+Machine Data (<A HREF="instructions/MATRMD.htm">MATRMD</A>) instruction.
+<A NAME="Header_19"></A>
+<h2>Storage Limitations</h2>
+
+<P>
+The following sub-sections describe data object size limits that are
+checked during module or program creation and storage limits that
+are checked when the program is activated or run.
+In some cases the creation-time limits are more generous than the
+run-time limits, so it's possible to create a program that will not run.
+The values in the following tables are in bytes.
+<P>
+Throughout this section, the following abbreviations are used:
+<P>
+K = 1024, M = 1048576, G = 1073741824, page = page size.
+<P>
+See <A class="content" HREF="#HDRSTORTRM">"Storage Terminology"</A> for more details on the page size.
+<P><A NAME="Header_20" ></A>
+<h3>Size limits for data objects in bound programs</h3>
+<P>
+<BR>
+<TABLE WIDTH="100%" BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" WIDTH="50%">Storage type
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="3" WIDTH="50%">Program attribute
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Not teraspace capable
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Teraspace capable
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Teraspace storage model
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Automatic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">4G-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Procedure argument block
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">4G-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">4G-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Exported
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Imported
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Literal (constant)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1page
+</TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Not mapped (based)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">16M-1K-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">4G-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">4G-1
+</TD></TR></TABLE>
+<P><A NAME="Header_21"></A>
+<h3>Size limits for data objects in non-bound programs</h3>
+<P>
+<BR>
+<TABLE WIDTH="100%" BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" WIDTH="50%">Storage type
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="50%">Program attribute
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Not teraspace capable
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Teraspace capable
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Automatic
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static (internal)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static (named external)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">64K-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">64K-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Constant
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">32K-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">32K-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Based (space pointer)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1K-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1K-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Based (PCO(Process Communications Object))
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Parameter
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1K-1 *
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1K-1 *
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="100%"><B>Note&#58; </B>
+* Assumes parameter allocated in program-managed storage.
+</TD></TR></TABLE>
+<P><A NAME="Header_22"></A>
+<h3>Machine managed storage limits</h3>
+<p>
+<BR>
+<TABLE WIDTH="100%" BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" ROWSPAN="2" WIDTH="50%">Storage type
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="50%">Program storage model
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Single Level Store
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Teraspace
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Automatic stack, initial thread
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">64M
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Automatic stack, secondary thread
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static per compilation unit (bound)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page-16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">4G-1
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static in activation group
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">2G-1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">approx. 512G
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static constants per non-bound program
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">16M-1page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Static constants per bound program
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">approx. 256G
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">approx. 256G
+</TD></TR></TABLE>
+<P><A NAME="Header_23"></A>
+<h3>Program managed storage limits</h3>
+<p>
+<BR>
+<TABLE WIDTH="100%" BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Storage type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">Maximum # bytes
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Pointer-based heap allocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">16M-1p (see ALCHSS)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Pointer-based heap
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">4G-512K (see CRTHS)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">Space object, associated space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">16M-1 page *
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="60%">PCO (Process Communications Object)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="40%">16M-1 page
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="100%"><B>Note&#58; </B>
+* This is the maximum recommended size, for best access performance.
+The absolute maximum for a space object is 16M-256 and for an
+associated space of another type of object, 16M-32, depending upon
+the alignment chosen when the space or associated space is created.
+</TD></TR></TABLE>
+<A NAME="Header_24"></A>
+<h2>Atomicity</h2>
+<P><A NAME="Header_25" ></A>
+<h3>Atomicity of MI Instructions</h3>
+<P>
+MI instructions are <B>not</B> atomic unless they explicitly state
+that they perform some function atomically.
+So, it is possible for the function performed by
+an MI instruction to be only partially completed
+from the viewpoint of a program in another
+thread, or within the same thread when an exception occurs.
+<P>
+When a program is being created,
+many hardware instructions may be generated that will perform
+one MI instruction's function at run time.
+Without the use of an
+external control mechanism such as a locking protocol,
+sequences of instructions cannot be atomic.
+Further, the set of
+hardware instructions that implement an MI instruction,
+generated when a module or program is created,
+can be changed over time to
+provide more efficient programs or to accommodate new hardware.
+Thus even those MI instructions for which the generated code appears to
+be atomic should not be assumed to be so
+unless they are specified
+as performing a function atomically.
+<P><A NAME="Header_26"></A>
+<h3>Atomicity of Storage Operations</h3>
+<P>
+A storage operation reads data from storage or
+writes data to storage.
+An MI instruction's function may use
+from zero to very many storage operations.
+An individual storage operation
+may be atomic or not.
+An atomic storage operation is performed such that it appears to be
+either complete or not yet started to all possible observers (i.e.
+all threads, whether on the same or another processor).
+On the other hand, storage operations that are not atomic may
+appear to be partially performed to some observers.
+<P>
+Atomicity can affect the use of shared storage areas.
+If a program modifies
+shared data while holding a lock that guarantees
+exclusive access
+(only one reader or writer can concurrently access the data) then
+atomicity is not an issue.
+However, if programs do
+not have exclusive access, then the atomicity of
+storage operations may be important.
+For example, a program
+running in one thread
+may periodically update a value in
+a space, which is in turn read by a program
+running in another thread.
+If the operation used to store a new value is atomic, then the
+other
+threads
+will always observe either the old value
+or the new value.
+If the operation used to store a new value is not atomic, then the
+other
+threads
+may observe the old value, the new value, or some
+composite consisting of part of the old value and part of the new value.
+<P>
+The MI makes only
+these
+guarantees regarding the atomicity of
+storage operations.
+<UL>
+<P><LI>a storage operation on a 16 byte MI pointer is atomic
+<P><LI>a storage operation that directly<A class="content" HREF="#FNDIRLP"><SUP>1</SUP></A>
+refers to a local pointer
+aligned on an 8 byte boundary is atomic
+<P><LI>a storage operation that directly<A class="content" HREF="#FNDIRLP"><SUP>1</SUP></A>
+refers to a binary data object
+aligned on a boundary that is a multiple of its length is atomic
+<P><LI>the storage update
+performed by a Compare and Swap instruction is atomic
+</UL>
+<P>
+Note that operations on character data are guaranteed to be
+atomic only when Compare and Swap is used.
+Also note that,
+even though individual storage operations on properly aligned
+binary data objects
+are atomic, MI instructions operating on such data are
+not atomic (unless their descriptions
+explicitly say that they are).
+For example, a <A HREF="instructions/CPYNV.htm">CPYNV</A> from one 4 byte binary data object to another, where
+both are aligned on 4 byte boundaries, is <B>not</B> guaranteed
+to be an atomic operation,
+even though the read of one data object and write of the other are each
+individually atomic.
+<A NAME="Header_27"></A>
+<h2>Shared Storage Access Ordering</h2>
+
+<P>
+Previous sections discussed atomicity of
+MI instructions and individual storage operations.
+For a related discussion of the ordering of multiple
+operations that access<A class="content" HREF="#FNACS"><SUP>2</SUP></A>
+<B>shared</B><A class="content" HREF="#FNSHRD"><SUP>3</SUP></A> storage,
+see
+<A class="content" HREF="MCNSYNC.htm">Storage Synchronization Concepts</A>
+<A NAME="Header_28"></A>
+<p>
+<h2>External Standards and Architectures</h2>
+
+
+<P>Some of the instructions may make
+reference to external standards and architectures.  To fully
+understand the functions performed by those instructions, it may
+be necessary to obtain a copy of the pertinent document.
+<HR><B> Footnotes:</B>
+<DL COMPACT>
+<P><DT><SUP><A NAME="FNDIRLP" >1</A></SUP></DT>
+<DD>
+Direct references do not include operations that
+reference the storage containing a data object by using another view,
+such as a reference to a
+structure that contains the data object
+or a reference to
+the address of a storage range that contains the data object.
+</DD>
+<P><DT><SUP><A NAME="FNACS" >2</A></SUP></DT>
+<DD>
+(load from or store to)
+</DD>
+<P><DT><SUP><A NAME="FNSHRD" >3</A></SUP></DT>
+<DD>
+(used by more than one thread)
+</DD>
+</DL>
+
+</noscript>
+</body>
+
+</HTML>

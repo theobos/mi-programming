@@ -1,0 +1,56 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0C08 Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0C08
+</B></TD><TD><P><I>Length Conformance
+</I>
+<P>The operand lengths or resultant value length or both do not conform
+to the rules of the instruction:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><A HREF="../instructions/CVTCH.htm">CVTCH</A>
+</TD><TD><P>The length of the operand must be less than or equal to twice the
+length of the receiver operand.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/CVTHC.htm">CVTHC</A>
+</TD><TD><P>Twice the length of the source operand must be less than or equal to
+the length of the receiver operand.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/CVTMC.htm">CVTMC</A>
+</TD><TD><P>The length of a record in the receiver was not enough to contain the
+converted form of a record from the source.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/EDIT.htm">EDIT</A>
+</TD><TD><P>The length of the resultant edited value must be equal to the length
+of the receiver operand.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/SCAN.htm">SCAN</A>
+</TD><TD><P>The length of the compare operand must not be greater than the
+length of the base string.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/SEARCH.htm">SEARCH</A>
+</TD><TD><P>The length of the find operand plus the value of the location
+operand must be less than or equal to the length of an element of the
+array operand.
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="../instructions/XLATE.htm">XLATE</A>
+</TD><TD><P>The source and receiver operands must be the same length.
+</TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Convert Character to Hex (<A HREF="../instructions/CVTCH.htm">CVTCH</A>)
+<LI>Convert Hex to Character (<A HREF="../instructions/CVTHC.htm">CVTHC</A>)
+<LI>Convert MRJE to Character (<A HREF="../instructions/CVTMC.htm">CVTMC</A>)
+<LI>Extended Character Scan (<A HREF="../instructions/ECSCAN.htm">ECSCAN</A>)
+<LI>Edit (<A HREF="../instructions/EDIT.htm">EDIT</A>)
+<LI>Edit (<A HREF="../instructions/EDIT.htm#editpd">EDITPD</A>)
+<LI>Edit (<A HREF="../instructions/EDIT.htm#lbedit">LBEDIT</A>)
+<LI>Scan (<A HREF="../instructions/SCAN.htm">SCAN</A>)
+<LI>Search (<A HREF="../instructions/SEARCH.htm">SEARCH</A>)
+<LI>Translate (<A HREF="../instructions/XLATE.htm">XLATE</A>)
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

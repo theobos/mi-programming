@@ -1,0 +1,149 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> RTX Instruction </title>
+		<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>                                       
+<H1>Return External (RTX)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">02A1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Return point
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Signed binary(2) scalar or null.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The instruction terminates execution of the
+invocation in which the
+instruction is specified.
+The automatic storage frame is deallocated.
+<P>
+A Return External instruction can be specified within an invocation's
+subinvocation, and no exception is signaled.
+<P>
+If a higher invocation exists in the invocation hierarchy,
+the instruction causes
+execution to resume in the preceding invocation in the
+thread hierarchy
+at an instruction location indirectly specified by operand 1.  If
+operand 1 is binary 0 or null,
+the next instruction following the Call External
+instruction from which control was relinquished in the preceding
+invocation in the hierarchy is given execution control.
+If the value of operand 1 is not 0, the value represents an
+index into the instruction definition list (IDL) specified
+as the return list operand in the Call External instruction,
+and the value causes control
+to be passed to the instruction referenced
+by the corresponding IDL entry.  The first IDL entry is
+referenced by a value of one.
+If operand 1 is not 0 and no return list was specified in
+the Call External instruction, or
+if the value of operand 1 exceeds the number of entries in
+the IDL, or if the value is negative, a <I> return point invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C02.htm">2C02</A>) exception
+is signaled.
+<P>
+In the initial thread of a process, if
+a higher invocation does not exist, the Return External
+instruction causes termination of the current process
+state.  If operand 1 is not 0 and is not null, the <I> return point invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C02.htm">2C02</A>) exception
+is signaled.
+<P>
+If the returning invocation has received control to process an
+event, then control is returned to
+the point where the event handler was invoked.  In this case,
+if operand 1 is not 0 and is not
+null, then a <I> return point invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C02.htm">2C02</A>) exception
+is signaled.
+<P>
+If the returning invocation has received control from the
+machine to process an exception, the <I> return instruction invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C01.htm">2C01</A>) exception
+is signaled.
+<P>
+If the returning invocation has an activation, the invocation
+count in the activation is decremented by&nbsp;1.
+<P>
+If the returning invocation currently has an invocation exit
+set, the invocation exit is not given control and is
+implicitly cleared.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C01.htm">2C01 Return Instruction Invalid</A>
+<DD><A HREF="../exceptions/EX2C02.htm">2C02 Return Point Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

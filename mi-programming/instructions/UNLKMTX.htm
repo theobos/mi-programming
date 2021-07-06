@@ -1,0 +1,160 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> UNLKMTX Instruction </title>
+		<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Unlock Pointer-Based Mutex (UNLKMTX)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03D6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mutex
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Result
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<I>Operand 2:</I>  Signed binary(4) variable scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for UNLKMTX is 158.
+UNLKMTX (
+         mutex   : address
+) :   signed binary(4)   /* result */
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "mutex" in this instruction refers to a
+"pointer-based mutex".
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The <I>mutex</I>, whose address is contained in operand 1, is released
+(unlocked).
+<P>
+The <I>mutex</I> must be aligned on a 16-byte boundary.
+<P>
+The <I>mutex</I> must have been previously created by the <A HREF="CRTMTX.htm">CRTMTX</A>
+instruction or be a copy of a mutex that was previously created by
+the <A HREF="CRTMTX.htm">CRTMTX</A>instruction, and must be currently allocated to the issuer
+by means of a successful <A HREF="LOCKMTX.htm">LOCKMTX</A>instruction.
+See the <A HREF="CRTMTX.htm">CRTMTX</A> instruction for additional information regarding mutex
+copies.
+An EPERM error number is returned if the <I>mutex</I> is not locked
+by the requesting thread.
+<P> <I>Result</I> is used to indicate the success
+or failure of the <A HREF="UNLKMTX.htm">UNLKMTX</A>instruction.  If
+a non-recursive <I>mutex</I> is unlocked by this instruction,
+then <I>result</I> is set to 0.
+If the <I>mutex</I> has been recursively locked,
+this instruction will release
+one lock and <I>result</I> is set to a negative number whose
+absolute value is the number of locks
+which still remain on the <I>mutex</I>,
+if not 0.  See the <A HREF="LOCKMTX.htm">LOCKMTX</A>instruction for additional information on
+using the recursive behavior of a mutex.
+<P>
+If an error occurs, then the <I>result</I> is set to an error
+number.
+<P>
+An EINVAL error number is returned
+if the <I>mutex</I> has not been
+initialized, or if it has been altered.
+The ETYPE error number is returned if the <I>mutex</I> operand
+references a synchronization object that is not a pointer-based mutex.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Error conditions</A></H4>
+<P>
+The <I>result</I> is set to one of the following:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EINVAL
+</B></TD><TD><P>3021 - The value specified for the argument is not correct.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EPERM
+</B></TD><TD><P>3027 -  Operation not permitted.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ETYPE
+</B></TD><TD><P>3493 - Object type mismatch.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+</B></TD><TD><P>A synchronization object at this address is not a pointer-based
+mutex.
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

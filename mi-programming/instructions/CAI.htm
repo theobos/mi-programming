@@ -1,0 +1,159 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CAI Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<h1>Compute Array Index (CAI)</h1>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 4
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1044
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Array index
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subscript A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Subscript B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Dimension
+</TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Binary(2) variable scalar.
+<P>
+<I>Operand 2</I>:  Binary(2) scalar.
+<P>
+<I>Operand 3</I>:  Binary(2) scalar.
+<P>
+<I>Operand 4</I>:  Binary(2) constant scalar object or immediate
+operand.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction provides the ability to reduce
+multidimensional
+array subscript values into a single index value which can then
+be used in referencing
+the single-dimensional arrays of the system.  This index value
+is computed by performing
+the following arithmetic operation on the indicated operands.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>Array Index =
+</I></TD><TD><P>Subscript A + ((Subscript B-1) X Dimension)
+</TD></TR></TABLE>
+The numeric value of the <I>subscript B</I> operand is decreased
+by 1 and multiplied by the numeric value of the <I>dimension</I>
+operand.  The result of this multiplication is added to the <I>subscript A</I> operand and the sum is placed in
+the <I>array index</I> operand.
+<P>
+All the operands must be binary with any implicit conversions occurring
+according to the rules of arithmetic operations documented in
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+The usual
+rules of algebra are observed concerning the subtraction, addition,
+and multiplication of operands.
+<P>
+This instruction provides for mapping multidimensional arrays
+to single-dimensional arrays.
+The elements of an array with the dimensions (d1, d2, d3, ..., dn) can be
+defined as a single-dimensional array with d1*d2*d3*...*dn
+elements.  To reference a specific element of the multidimensional
+array with subscripts (s1,s2,s3,...sn), it is necessary
+to convert the multiple subscripts to a single subscript for use in the
+single-dimensional
+array.  This single
+subscript can be computed using the following:
+<PRE>
+<PRE>
+s1+((s2-1)*d1)+(s3-1)*d1*d2)+&#46;&#46;&#46;+((sn-1)*d*d2*d3*...*dm)
+</PRE>
+</PRE>
+where m = n-1
+<P>
+The CAI instruction is used to form a single index value from two
+subscript values.  To reduce N subscript values into
+a single index value, N-1 uses of this instruction are necessary.
+<P>
+Assume that S1, S2, and S3 are three subscript values and that D1
+is the size of one dimension, D2 is the size of the second
+dimension, and the D1D2 is the product of D1 and D2.  The following
+two uses of this instruction reduce the three subscripts
+to a single subscript.
+<PRE>
+CAI INDEX, S1, S2, D1      Calculates s1+(s2-1)*d1
+CAI INDEX, INDEX, S3, D1D2 Calculates s1+(s2-1)*d1+(s3-1)*d2*d1
+</PRE>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

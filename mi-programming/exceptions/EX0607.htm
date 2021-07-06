@@ -1,0 +1,48 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0607 Exception </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+</head>
+
+<body><TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0607
+</B></TD><TD><P><I>Unsupported Space Use
+</I>
+<font color=blue>
+<P>This exception indicates one of the following conditions:
+<OL TYPE=1>
+<P><LI>
+</FONT>
+An attempt has been made to use a teraspace storage address for an operation
+which does not allow a teraspace storage address.
+For example, a teraspace storage address may have been used as a parameter
+for a call to a program which is not teraspace capable.
+<font color=blue>
+<P><LI>An attempt has been made to lock a teraspace storage address
+which is not mapped or allocated.
+</OL>
+</FONT>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Call External (<A HREF="../instructions/CALLX.htm">CALLX</A>)
+<LI>Cipher (<A HREF="../instructions/CIPHER.htm">CIPHER</A>)
+<LI>Lock Teraspace Storage Location (<A HREF="../instructions/LOCKTSL.htm">LOCKTSL</A>)
+<LI>Materialize Bound Program (<A HREF="../instructions/MATBPGM.htm">MATBPGM</A>)
+<LI>Materialize Program (<A HREF="../instructions/MATPG.htm">MATPG</A>)
+<LI>Scan With Control (<A HREF="../instructions/SCANWC.htm">SCANWC</A>)
+<LI>Scan Extended (<A HREF="../instructions/SCANX.htm">SCANX</A>)
+<LI>Set Data Pointer (<A HREF="../instructions/SETDP.htm">SETDP</A>)
+<LI>Set Data Pointer Addressability (<A HREF="../instructions/SETDPADR.htm">SETDPADR</A>)
+<LI>Store Space Pointer Offset (<A HREF="../instructions/STSPPO.htm">STSPPO.htm</A>)
+<LI>Subtrace Space Pointer For Offset (<A HREF="../instructions/SUBSPPFO.htm">SUBSPPFO</A>)
+<LI>Transfer Control (<A HREF="../instructions/XCTL.htm">XCTL</A>)
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

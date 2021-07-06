@@ -1,0 +1,953 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CVTCS Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Convert Character to SNA (CVTCS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCS</B>
+10CB
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCSB</B>
+1CCB
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>CVTCSI</B>
+18CB
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE>
+<I>Operand 1</I>:  Character variable scalar.
+<P>
+<I>Operand 2</I>:  Character(15) variable scalar.
+<P>
+<I>Operand 3</I>:  Character scalar.
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CVTCS is 135.
+CVTCS (
+       receiver          : address
+       receiver_length   : unsigned binary(4)
+       controls          : address
+       source            : address
+       source_length     : unsigned binary(4)
+       return_code       : address of signed binary(4)
+)
+</PRE>
+<P>The return_code will be set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B><TT>-1</TT>
+</B></TD><TD><P>Receiver Overrun.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><TT> 0</TT>
+</B></TD><TD><P>Source Exhausted.
+</TD></TR></TABLE>
+<P>The <VAR>receiver</VAR>, <VAR>controls</VAR> and <VAR>source</VAR>
+parameters correspond to operands 1, 2 and 3 on the
+CVTCS operation.
+<P>The <VAR>receiver_length</VAR> and <VAR>source_length</VAR>
+parameters contain the length, in bytes, of the receiver and
+source strings.  They are expected to contain values between 1
+and 32,767.
+<P>The <VAR>return_code</VAR> parameter is used to provide support for
+the branch and indicator forms of the CVTCS operation.  The user
+must specify code to process the <VAR>return_code</VAR> and perform
+the desired branching or indicator setting.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction converts the <I>source</I>
+(operand 3) from character to SNA (systems
+network architecture) format under control of the <I>controls</I>
+(operand 2) and places the result into
+the <I>receiver</I> (operand 1).
+<P>
+The <I>source</I> and <I>receiver</I> operands must both be character
+strings.  The <I>source</I> operand may not be
+specified as an immediate operand.
+<P>
+The source <I>operand</I> can be described
+by the <I>controls</I> operand
+as being one or more fixed-length data
+fields that may be separated by fixed-length gaps of characters
+to be ignored during the conversion
+operation.  Additionally, the <I>controls</I> operand specifies the
+amount of data to be processed from
+the <I>source</I> to produce a converted record
+in the <I>receiver</I>.
+This may be a
+different value than the
+length of the data fields in the <I>source</I>.  The following diagram
+shows this structure for the <I>source</I> operand.
+<P><BR>
+<B><BR><IMG SRC="images/aac010.gif" ALT="Figure AAC010 not displayed."><BR></B><BR>
+<P>
+The <I>controls</I> operand must be a character scalar
+that specifies additional
+information to be used to
+control the conversion operation.  The operand must be at
+least 15 bytes in length and has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(15)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Receiver offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Source offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Algorithm modifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Source record length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Data field length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Gap offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Gap length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Record separator character
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Prime compression character
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Unconverted source record bytes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">F
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>As input to the instruction, the <B><U>source offset</U></B>
+and <B><U>receiver offset</U></B> fields
+specify the offsets where
+the bytes of the <I>source</I> and <I>receiver</I> operands are to be
+processed.  If an offset is equal to or
+greater than the length specified for the operand, the
+offset identifies a byte beyond the end of
+the operand and a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is
+signaled.  When the <I>source offset</I>
+and the <I>receiver offset</I> field
+are output from the instruction, they specify offsets
+that indicate how much of the operation is
+complete when the instruction ends.
+<P>
+The <B><U>algorithm modifier</U></B> specifies the optional functions
+to be performed.  Any combination of
+functions can be specified as indicated by the bit meanings
+in the following chart.  At least one
+of the functions must be specified.  If all of the <I>algorithm
+modifier</I> bits are zero, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.  The <I>algorithm modifier</I>
+bit meanings are:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">Bits
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="100%">Meaning
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="100%">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not perform compression.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Perform compression.
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">1-2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="100%">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>Do not use record separators and no blank truncation.
+Do not perform data transparency conversion.
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Reserved.
+</TD></TR><TR VALIGN="TOP"><TD>10 =
+</TD><TD>Use record separators and perform blank
+truncation.  Do not perform data transparency conversion.
+</TD></TR><TR VALIGN="TOP"><TD>11 =
+</TD><TD>
+Use record separators and perform blank truncation.  Perform data
+transparency conversion.
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="100%">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not perform record spanning.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Perform record spanning.
+(allowed only when bit 1 = 1)
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">4-7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="100%">
+(Reserved)
+<BR></TD></TR></TABLE>
+<P>The <B><U>source record length</U></B> value specifies the amount of data
+from the <I>source</I> to be processed to
+produce a converted record in the <I>receiver</I>.  Specification
+of a <I>source record length</I> of zero
+results in a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+<P>
+The <B><U>data field length</U></B> value specifies the length of the data
+fields in the <I>source</I>.  Data fields
+occurring in the <I>source</I> may be separated by gaps of characters
+that are to be ignored during the
+conversion operation.  Specification of a <I>data field length</I> of
+zero indicates that the <I>source</I>
+operand is one data field.  In this case, the <I>gap length</I>
+and <I>gap
+offset</I> values have no meaning and are ignored.
+<P>
+The <B><U>gap offset</U></B> value specifies the offset to the next gap
+in the <I>source</I>.  This value is both input
+to and output from the instruction.  This is relative to
+the current byte to be processed in the <I>source</I> as located by
+the <I>source offset</I> value.  No validation
+is done for this offset.  It is
+assumed to be valid relative to the <I>source</I> operand.
+The <I>gap
+offset</I> value is ignored if the <I>data
+field length</I> is specified with a value of zero.
+<P>
+The <B><U>gap length</U></B> value specifies the amount of data that is to
+be ignored between data fields in the <I>source</I> operand during the conversion operation.  The <I>gap
+length</I> value is ignored if the <I>data field length</I> is zero.
+<P>
+The <B><U>record separator character</U></B> value specifies the character
+that precedes the converted form of
+each record in the <I>receiver</I>.  It also serves as a delimiter
+when the previous record is truncating
+trailing blanks.  The Convert SNA to Character instruction
+recognizes any value that is less than
+hex 40.  The <I>record separator</I> value is ignored if <I>do not
+use record separators</I>
+is specified in the <I>algorithm modifier</I>.
+<P>
+The <B><U>prime compression character</U></B> value specifies the character
+to be used as the prime compression
+character when performing compression of the source data to
+SNA format.  It may have any value.
+The <I>prime compression character</I>
+value is ignored if the <I>perform compression</I>
+function is not specified in the <I>algorithm modifier</I>.
+<P>
+The <B><U>unconverted source record bytes</U></B>
+value specifies the number of bytes
+remaining in the current
+source record that are yet to be converted.
+<P>
+When the <I>perform record spanning</I>
+function is specified in the <I>algorithm
+modifier</I>, the <I>unconverted source
+record bytes</I> field is both input to and output from the
+instruction.  On input, a value of hex 00
+means it is the start of a new record and the initial
+conversion step is yet to be performed.  That
+is, a <I>record separator character</I> has not yet been placed
+in the <I>receiver</I>.  On input, a nonzero
+value less than or equal to the <I>source record length</I> specifies
+the number of bytes remaining in the
+current source record that are yet to be converted into
+the <I>receiver</I>.  This value is assumed to be
+the valid count of unconverted source record bytes relative
+to the current byte to be processed in
+the <I>source</I> as located by the <I>source offset</I>
+value.  As such, it is used to
+determine the location of
+the next record boundary in the source operand.  This value
+must be less than or equal to the <I>source record length</I> value; otherwise, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.  On output
+this field is set with a value as defined above that describes
+the number of bytes of the current
+source record that have not yet been converted.
+<P>
+When the <I>perform record spanning</I> function is not specified
+in the <I>algorithm modifier</I>, the <I>unconverted
+source record bytes</I> value is ignored.
+<P>
+Only the first 15 bytes of the <I>controls</I> operand are used.  Any
+excess bytes are ignored.
+<P>
+The description of the conversion process is presented as a
+series of separately performed steps
+that may be selected in allowable combinations to accomplish
+the conversion function.  It is
+presented this way to allow for describing these functions
+separately.  However, in the actual
+execution of the instruction, these functions may be performed
+in conjunction with one another or
+separately depending upon which technique is determined to
+provide the best implementation.
+<P>
+The operation is performed either on a record-by-record basis (record
+processing) or on a nonrecord
+basis (string processing).  This is determined by the functions
+selected in the <I>algorithm modifier</I>.
+Specifying the <I>use record separators</I> and <I>perform
+blank truncation</I>
+function indicates <B><U>record processing</U></B>
+is to be performed.  If this is not specified, in which case <I>compression</I> must be specified, it
+indicates that <B><U>string processing</U></B> is to be performed.
+<P>
+The operation begins by accessing the bytes
+of the <I>source</I> operand at the
+location specified by the <I>source offset</I>.
+<P>
+When <I>record processing</I>
+is specified, the <I>source offset</I> may
+locate the start of a full or partial record.
+<P>
+When the <I>perform record spanning</I> function has not been specified
+in the <I>algorithm
+modifier</I>, the <I>source
+offset</I> is assumed to locate the start of a record.
+<P>
+When the <I>perform record spanning</I> function has been specified
+in the <I>algorithm modifier</I>, the <I>source offset</I>
+is assumed to locate a point at which processing of a possible partially
+converted record is to be
+resumed.  In this case, the <I>unconverted source record bytes</I>
+value contains the length of the
+remaining portion of the source record to be converted.  The
+conversion process in this case is
+started by completing the conversion of the current source record before
+processing the next full source record.
+<P>
+When <I>string processing</I>
+is specified, the <I>source offset</I> locates
+the start of the source string to be converted.
+<P>
+Only the bytes of the data fields in the source are accessed
+for conversion purposes.  Gaps between
+data fields are ignored causing the access of data field bytes
+to occur as if the data fields were
+contiguous.  A string of bytes accessed from the <I>source</I> for a
+length equal to the <I>source record
+length</I> is considered to be a record for the conversion operation.
+<P>
+When during the conversion process, the end of the source operation is
+encountered, the instruction
+ends with a resultant condition of <I>source exhausted</I>.
+<P>
+When <I>record processing</I>
+is specified in the <I>algorithm modifier</I>,
+this check is performed at the start
+of conversion for each record.  If the source operand does not
+contain a full record, the <I>source
+exhausted</I> condition is recognized.  The instruction is terminated
+with status in the <I>controls</I>
+operand describing the last completely converted record.  For <I>source exhausted</I>, partial conversion
+of a source record is not performed.
+<P>
+When <I>string processing</I>
+is specified in the <I>algorithm modifier</I>,
+then <I>compression</I> must be specified
+and the compression function described below defines the
+detection of <I>source exhausted</I>.
+<P>
+If the converted form of the source cannot be completely contained in the
+receiver, the instruction ends with a resultant condition
+of <I>receiver overrun</I>.  See the description of
+this condition in the
+conversion process described below to determine the status
+of the <I>controls</I> operand values and the
+converted bytes in the receiver for each case.
+<P>
+When <I>string processing</I> is specified, the bytes accessed
+from the source are converted on a string
+basis into the receiver operand at the location specified by the <I>receiver
+offset</I>.  In this case,
+the <I>compression</I> function must be specified and the conversion
+process proceeds with the compression function defined below.
+<P>
+When <I>record processing</I> is specified, the bytes accessed from
+the source are converted one record at
+a time into the receiver operand at the location specified
+by the <I>receiver offset</I> performing the
+functions specified in the <I>algorithm modifier</I> in the sequence
+defined by the following algorithm.
+<P>
+<P>
+<H5><A NAME="Header_3">The first function performed is</A></H5>
+<B><U>trailing blank truncation</U></B>
+<P>
+A truncated record is built by logically appending the record
+data to the <I>record separator</I> value
+specified in the <I>controls</I> operand and removing all blank
+characters after the last nonblank
+character in the record.  If a record has no trailing blanks,
+then no actual truncation takes
+place.  A null record, a record consisting entirely of blanks,
+will be converted as just the <I>record
+separator character</I> with no other data following it.  The
+truncated record then consists of the <I>record separator</I> character followed by the truncated record
+data, the full
+record data, or no data from the record.
+<P>
+If either the <I>data transparency conversion</I> or the <I>compression</I>
+function is specified in the <I>algorithm modifier</I>, the conversion process continues for this
+record with the next specified function.
+<P>
+If not, the conversion process for this record is completed
+by placing the truncated record into
+the <I>receiver</I>.  If the truncated record cannot be completely
+contained in the <I>receiver</I>, the
+instruction ends with a resultant condition of <I>receiver
+overrun</I>.  When the <I>perform record spanning</I> function
+is specified in the <I>algorithm modifier</I>, as much of the
+truncated record as will fit is placed into
+the <I>receiver</I> and the <I>controls</I> operand
+is updated to describe
+how much of the
+source record was
+successfully converted into the <I>receiver</I>.  When the <I>perform record spanning</I> function is
+not specified in
+the <I>algorithm modifier</I>, the <I>controls</I> operand is
+updated to describe only the last fully converted
+record in the <I>receiver</I> and the value of the remaining
+bytes in the <I>receiver</I> is unpredictable.
+<P>
+<P>
+<H5><A NAME="Header_4">The second function performed is</A></H5>
+<B><U>data transparency conversion</U></B>
+<P> <I>Data transparency conversion</I> is performed if the function
+is specified in the <I>algorithm modifier</I>.
+This provides for making the data in a record transparent
+to the Convert SNA to Character
+instruction in the area of its scanning for record separator values.
+Transparent data is built by
+preceding the data with 2 bytes of <B><U>transparency control
+information</U></B>.  The first byte has a fixed
+value of hex 35 and is referred to as the TRN (transparency)
+control character.  The second byte is
+a 1-byte hexadecimal count, a value ranging from 1 to 255
+decimal, of the number of bytes of data
+that follow and is referred to as the <B><U>TRN count</U></B>.  This
+contains the length of the data and does not
+include the TRN control information length.
+<P> <I>Transparency conversion</I>
+can be specified only in conjunction with <I>record
+processing</I> and, as such,
+is performed on the truncated form of the source
+record.  The transparent record is built by
+preceding the data that follows the <I>record separator</I>
+in the truncated record with the <I>TRN control
+information</I>.  The <I>TRN count</I>
+in this case contains the length of just the
+truncated data for the
+record and does not include the <I>record separator</I>
+character.  For the special case of a null record,
+no <I>TRN control information</I> is placed after the <I>record separator</I> character
+because there is no record data to be made transparent.
+<P>
+If the <I>compression</I> function is specified in the <I>algorithm modifier</I>, the
+conversion process
+continues for this record with the compression function.
+<P>
+If not, the conversion process for this record is
+completed by placing the transparent record into
+the receiver.  If the transparent record cannot be
+completely contained in the <I>receiver</I>, the
+instruction ends with a resultant condition of <I>receiver overrun</I>.
+<P>
+When the <I>perform record spanning</I> function is specified in the <I>algorithm modifier</I>, as much of the
+transparent record as will fit is placed into the <I>receiver</I>
+and the <I>controls</I> operand is updated to
+describe how much of the source record was successfully
+converted into the <I>receiver</I>.  The <I>TRN count</I>
+is also adjusted to describe the length of the data
+successfully converted into the <I>receiver</I>; thus,
+the transparent data for the record is not spanned out of
+the <I>receiver</I>.  The remaining bytes of the
+transparent record, if any, will be processed as a partial
+source record on the next invocation of
+the instruction and will be preceded by the appropriate <I>TRN control information</I>.  For the special
+case where only 1 to 3 bytes are available at the end of
+the <I>receiver</I>, (not enough room for the <I>record separator</I>, the transparency control, and a byte of
+data) then just the <I>record separator</I> is
+placed in the <I>receiver</I> for the record being converted.  This
+can cause up to 2 bytes of unused space at the end
+of the <I>receiver</I>.
+The value of these unused bytes is unpredictable.
+<P>
+When the <I>perform record spanning</I> function is not specified
+in the <I>algorithm modifier</I>, the <I>controls</I> operand
+is updated to describe only the last fully converted record
+in the <I>receiver</I> and the value of the
+remaining bytes in the <I>receiver</I> is unpredictable.
+<P>
+<P>
+<H5><A NAME="Header_5">The third function performed is</A></H5>
+<B><U>compression</U></B>
+<P> <I>Compression</I> is performed if the function is specified in the <I>algorithm modifier</I>.  This provides for
+reducing the size of strings of duplicate characters in the
+source data.  The source data to be
+compressed may have assumed a partially converted form at
+this point as a result of processing
+for functions specified in the <I>algorithm modifier</I>.  Compressed
+data is built by concatenating one
+or more compression strings together to describe the bytes
+that make up the converted form of the
+source data prior to the compression step.  The bytes of the
+converted source data are interrogated
+to locate the prime compression character strings (two or
+more consecutive prime compression
+characters), duplicate character strings (three or more
+duplicate nonprime characters) and
+nonduplicate character strings occurring in the <I>source</I>.
+<P>
+The character strings encountered (prime, duplicate and nonduplicate) are
+reflected in the
+compressed data by building one or more compression strings
+to describe them.  Compression strings
+are comprised of an SCB (string control byte) possibly
+followed by one or more bytes of data
+related to the character string to be described.
+<P>
+The format of an SCB and the description of the data
+that may follow it are:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">SCB
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Control
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 0-1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="40">00 =
+</TD><TD>n nonduplicate characters are between
+this SCB and the next one; where n is
+the value of the count field (1-63).
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Reserved
+</TD></TR><TR VALIGN="TOP"><TD>10 =
+</TD><TD>This SCB represents n deleted prime
+compression characters; where n is the
+value of the count field (2-63).  The
+next byte is the next SCB.
+</TD></TR><TR VALIGN="TOP"><TD>11 =
+</TD><TD>This SCB represents n deleted
+duplicate characters; where n
+is the value of the count field
+(3-63).  The next byte contains
+a specimen of the deleted characters.
+The byte following the specimen character
+contains the next SCB.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Count
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+This contains the number of
+characters that have been deleted for
+a prime or duplicate string, or the
+number of characters to the next SCB
+for a nonduplicate string.  A count
+value of zero cannot be produced.
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+When <I>record processing</I> is specified, the compression is
+performed as follows.
+<P>
+The compression function is performed on just the converted
+form of the current source record
+including the <I>record separator</I> character.  The converted
+form of the source record prior to the
+compression step may be a truncated record or a transparent
+record as described above, depending
+upon the functions selected in the algorithm modifier.  The <I>record separator</I> and <I>TRN control
+information</I> is always converted as a nonduplicate compression
+entry to provide
+for length adjustment of the <I>TRN count</I>, if necessary.
+<P>
+The conversion process for this record is completed by placing
+the compressed record into the <I>receiver</I>.  If the compressed record cannot
+be completely contained in the <I>receiver</I>, the instruction
+ends with a resultant condition of <I>receiver overrun</I>.
+<P>
+When the <I>perform record spanning</I>
+function is specified in the <I>algorithm
+modifier</I>, as much of the compressed
+record as will fit is placed
+into the <I>receiver</I> and the <I>controls</I>
+operand is updated to describe how
+much of the source record was successfully converted into the <I>receiver</I>.  The last compression entry
+placed into the <I>receiver</I> may be adjusted if necessary to a
+length that provides for filling out the <I>receiver</I>.  This length adjustment applies only to compression
+entries for nonduplicate strings.
+Compression entries for duplicate strings are placed in the <I>receiver</I> only if they fit with no
+adjustment.  For the special case where data transparency conversion is
+specified, the transparent
+data being described is not spanned out of the <I>receiver</I>.  This
+is provided for by performing length
+adjustment on the <I>TRN count</I> of a transparent record, which
+may be included in the compressed data
+so that it describes only the source data that was
+successfully converted into the <I>receiver</I>.  For
+the special case where only 2 to 5 bytes are available at the end of the <I>receiver</I>, not enough room
+for the compression entry for a nonduplicate string containing the <I>record
+separator</I> and the TRN control, and up to a 2-byte
+compression entry for some of the transparent data,
+the nonduplicate compression entry is adjusted
+to describe only the <I>record separator</I>.  By doing
+this, no more than 3
+bytes of unused space will remain in the <I>receiver</I>.  The value
+of these unused bytes is
+unpredictable.  Unconverted source record bytes, if any, will
+be processed as a partial source
+record on the next invocation of the instruction and will be
+preceded by the appropriate <I>TRN
+control information</I> when performing transparency conversion.
+<P>
+When the <I>perform record spanning</I> function is not specified
+in the <I>algorithm modifier</I>, the <I>controls</I> operand
+is updated to describe only the last fully converted record
+in the <I>receiver</I>.  The value of the
+remaining bytes in the receiver is unpredictable.
+<P>
+When <I>string processing</I> is specified, the compression is
+performed as follows.
+<P>
+The compression function is performed on the data for the
+entire <I>source</I> operand on a compression
+string basis.  In this case, the fields in the <I>controls</I>
+operand related to record processing are ignored.
+<P>
+The conversion process for the <I>source</I> operand is
+completed by placing the
+compressed data into the <I>receiver</I>.
+<P>
+When the compressed data cannot be completely contained
+in the <I>receiver</I>, the instruction ends with
+a resultant condition of <I>receiver overrun</I>.  As much of the
+compressed data as will fit is placed
+into the <I>receiver</I> and the <I>controls</I> operand
+is updated to
+describe how much of the source data was
+successfully converted into the <I>receiver</I>.  The last compression
+entry placed into the <I>receiver</I> may
+be adjusted if necessary to a length that provides for filling
+out the <I>receiver</I>.  This length
+adjustment applies only to compression entries for nonduplicate strings.
+Compression entries for
+duplicate strings are placed in the receiver only if they fit with no
+adjustment.  By doing this,
+no more than 1 byte of unused space will remain in the <I>receiver</I>.
+<P>
+When the compressed data can be completely contained in the <I>receiver</I>, the instruction ends with a
+resultant condition of <I>source exhausted</I>.  The compressed
+data is placed into the <I>receiver</I> and the <I>controls</I> operand is updated to
+indicate that all of the source data was
+successfully converted into the <I>receiver</I>.
+<P>
+At this point, either conversion of a source record has been completed or
+conversion has been
+interrupted due to detection of the <I>source exhausted</I>
+or <I>receiver overrun</I>
+conditions.  For record
+processing, if neither of the above conditions has been
+detected either during conversion of or at
+completion of conversion for the current record, the conversion process
+continues on the next
+source record with the blank truncation step described above.
+<P>
+At completion of the instruction, the <I>receiver offset</I>
+locates the byte following the
+last converted byte in the <I>receiver</I>.  The value of the
+remaining bytes in the <I>receiver</I> after the
+last converted byte are unpredictable.  The <I>source offset</I>
+locates the byte following
+the last source byte for which conversion was completed.  When the <I>perform record
+spanning</I> function is
+specified in the <I>algorithm modifier</I>, the <I>unconverted source
+record bytes</I> field specifies the length
+of the remaining source record bytes yet to be converted.  When
+the <I>perform record spanning</I> function is not
+specified in the <I>algorithm modifier</I>, the <I>unconverted source
+record bytes</I> field has no meaning and
+is not set.  The <I>gap offset</I> value indicates the offset to the
+next gap relative to the source
+offset value set for this condition.  The <I>gap offset</I> value
+has no meaning and is not set when the <I>data field length</I> is zero.
+<P>
+<H5><A NAME="Header_6">Limitations (Subject to Change)</A></H5>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+<P>
+Any form of overlap between the operands on this instruction yields
+unpredictable results in the <I>receiver</I> operand.
+<P>
+Substring operand references that allow for a null substring
+reference (a length value of zero) may not be specified for this
+instruction.
+<P>
+<H5><A NAME="Header_7">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Source exhausted - All bytes in the <I>source</I> operand have been
+converted into the <I>receiver</I> operand.
+<P><LI>Receiver overrun - An overrun condition in the <I>receiver</I>
+operand
+was detected before all of the
+bytes in the <I>source</I> operand were processed.
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Programming Notes:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+If the <I>source</I> operand does not end on a record boundary, in
+which case the last record is spanned
+out of the source, this instruction performs conversion only
+up to the start of that partial
+record.  In this case, the user of the instruction must move
+this partial record to combine it with
+the rest of the record in the source operand to provide for
+its being processed correctly upon the
+next invocation of the instruction.  If full records are provided, the
+instruction performs its
+conversions out to the end of the source operand and no
+special processing is required.
+<P>
+For the special case of a tie between the <I>source exhausted</I>
+and <I>receiver overrun</I> conditions, the <I>source exhausted</I> condition is recognized first.  That is,
+when <I>source exhausted</I> is the resultant
+condition, the receiver may also be full.  In this case,
+the <I>receiver offset</I> may
+contain a value equal to the length specified for the <I>receiver</I>, which would cause an exception to
+be detected on the next invocation of the instruction.  The
+processing performed for the <I>source
+exhausted</I> condition should provide for this case if the
+instruction is to be invoked multiple times
+with the same <I>controls</I> operand template.  When the <I>receiver
+overrun</I> condition is the resultant
+condition, the <I>source</I> will always contain data
+that can be converted.
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_8">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_9">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_10">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

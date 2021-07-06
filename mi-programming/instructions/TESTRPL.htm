@@ -1,0 +1,103 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> TESTRPL Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Test and Replace Bytes (TESTRPL)</H1>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TESTRPL is 413.
+TESTRPL (
+         source          : address of an aggregate which is the source
+                           for tested bytes and the receiver for
+                           replaced bytes
+         source_length   : is an unsigned binary(4) value which
+                           specifies the length of the source aggregate
+                           being tested and optionally modified
+         position        : address of an aggregate which provides
+                           relative position information within the
+                           replacement operand for byte values which
+                           match source values
+         replacement     : address of an aggregate which provides
+                           replacement byte values for source values
+                           which matched a position operand value
+         other_length    : unsigned binary(4) value which specifies the
+                           lengths of the relative position and
+                           replacement bytes aggregates
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Bytes in the <I>source</I>
+are tested for matching values in the <I>position</I>
+aggregate.
+If a match is found, the byte value from the same relative
+offset within the <I>replacement</I>
+aggregate, as the matching value is within
+the <I>position</I>
+aggregate, is used to change the <I>source</I> byte value.
+<P>
+The operation proceeds byte by byte from left to right until each
+byte in the <I>source</I> has been tested and optionally modified.
+<P>
+Each byte of the <I>source</I> is compared with the individual byte
+values in the <I>position</I> aggregate.
+If a byte of equal value does not exist in the <I>position</I>
+aggregate, the <I>source</I> byte value is left unchanged.
+If a byte of equal value is found in the <I>position</I> aggregate, the
+corresponding byte in the same relative location within the <I>replacement</I> aggregate
+is used to modify the original <I>source</I> value.
+If a byte value in the <I>position</I> aggregate
+is duplicated, the first occurrence (leftmost) is used.
+<P>
+If any of the other
+operands overlap with the <I>source</I> aggregate
+but do not share all of the same bytes, results of this
+operation are unpredictable.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

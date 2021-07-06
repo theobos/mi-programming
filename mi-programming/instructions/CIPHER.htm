@@ -1,0 +1,1963 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> CIPHER Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<h1>Cipher (CIPHER)</h1>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">10EF
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Space pointer data object.
+<P>
+<font color=blue>
+<I>Operand 2</I>:  Character(32, 42, 96)
+variable scalar.
+</FONT>
+<P>
+<I>Operand 3</I>:  Space pointer data object.
+<BR>
+<BR>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CIPHER is 176.
+CIPHER (<font color=blue>
+        receiver   : address of space pointer(16)</FONT>
+        controls   : address<font color=blue>
+        source     : address of space pointer(16)</FONT>
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The cipher operation specified in the <I>controls</I>
+(operand 2) is performed on the string value addressed by the <I>source</I> (operand 3).  The result is placed into the string
+addressed by the <I>receiver</I> (operand 1).
+<P>
+The <I>controls</I> operand must be a character variable scalar.  It
+specifies information to be used to control the cipher operation.
+The common header of the <I>controls</I> operand has the
+following format.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Function identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<font color=blue>
+The <I>function identifier</I> must be
+<A HREF="#hex0002"><font color=blue>hex 0002</FONT></A>,
+<A HREF="#hex0005"><font color=blue>hex 0005</FONT></A>,
+<A HREF="#hex0007"><font color=blue>hex 0007</FONT></A>,
+<A HREF="#hex0008"><font color=blue>hex 0008</FONT></A>,
+<A HREF="#hex0010"><font color=blue>hex 0010</FONT></A>,
+<A HREF="#hex0011"><font color=blue>hex 0011</FONT></A>
+</FONT>
+<font color=blue>
+<A HREF="#hex0013"><font color=blue>hex 0013,</FONT></A>
+</FONT>
+<font color=blue>
+or <A HREF="#hex0015"><font color=blue>hex 0015</A>.</FONT>
+</FONT>
+<font color=blue>
+If not, a <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+</FONT>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P><A NAME="list"></A>The <B><U>function identifier</U></B>
+specifies the cryptographic service provider
+(CSP)
+for the cipher operation.
+<font color=blue>
+It must specify
+<A HREF="#hex0002"><font color=blue>hex 0002</font></A>,
+<A HREF="#hex0005"><font color=blue>hex 0005</font></A>,
+<A HREF="#hex0007"><font color=blue>hex 0007</font></A>,
+<A HREF="#hex0008"><font color=blue>hex 0008</font></A>,
+<A HREF="#hex0010"><font color=blue>hex 0010</font></A>,
+<A HREF="#hex0011"><font color=blue>hex 0011</font></A>,
+<A HREF="#hex0013"><font color=blue>hex 0013</font></A>, or
+<A HREF="#hex0015"><font color=blue>hex 0015</font></A>.
+</FONT>
+Any other
+value causes a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+to be signaled.
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><A HREF="#hex0002">Hex 0002</A>
+</TD><TD><P>The
+Machine CSP licensed internal code
+is to be used for a one-way
+encryption operation using the ANSI (American National Standards
+Institute) DEA (Data Encryption Algorithm).
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="#hex0005">Hex 0005</A>
+</TD><TD><P>
+The Machine CSP
+licensed internal code is to be used to
+perform a one-way hash operation.
+The returned output may be a hash value or an HMAC
+(Hash Message Authentication Code) value.
+The supported hash algorithms are
+MD5 (Message Digest) and SHA-1 (Secure Hash Algorithm).
+</TD></TR><TR VALIGN="TOP"><TD><P><A HREF="#hex0007">Hex 0007</A>
+</TD><TD><P>
+The Machine CSP
+licensed internal code is to be used to
+perform a UNIX&reg; crypt(3) operation.
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue><A HREF="#hex0008"><font color=blue>Hex 0008</font></A>
+</FONT></TD><TD><P><font color=blue>
+The Machine CSP
+licensed internal code is to be used to
+perform a pseudorandom number generator operation.
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue><A HREF="#hex0010"><font color=blue>Hex 0010</font></A>
+</FONT></TD><TD><P><font color=blue>
+The Machine CSP licensed internal code
+is to be used for an encryption or decryption
+operation
+using the ANSI (American National Standards Institute) DEA (Data
+Encryption Algorithm).
+In order to use this function identifier,
+the cryptography attributes must contain
+an algorithm entry that
+specifies DES (Data Encryption Standard)
+is provided by the machine service provider.
+If no such entry exists, then <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception will be signaled.
+The cryptography attributes may be materialized through the use of the
+Materialize Machine Attributes (<A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A>) instruction and using a
+selection value of hex 01C8.
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue><A HREF="#hex0011"><font color=blue>Hex 0011</font></A>
+</FONT></TD><TD><P><font color=blue>
+The Machine CSP licensed internal code
+is to be used for an encryption or decryption
+operation
+using the ANSI (American National Standards Institute) TDEA (Triple
+Data Encryption Algorithm).
+In order to use this function identifier,
+the cryptography attributes must contain
+an algorithm entry that
+specifies TDES is provided by the machine service provider.
+If no such entry exists, then <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception will be signaled.
+The cryptography attributes may be materialized through the use of the
+Materialize Machine Attributes (<A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A>) instruction and using a
+selection value of hex 01C8.
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue><A HREF="#hex0013"><font color=blue>Hex 0013</font></A>
+</FONT></TD><TD><P><font color=blue>
+The Machine CSP licensed internal code
+is to be used for an encryption or decryption
+operation
+using an algorithm compatible with RC4&reg;.
+In order to use this function identifier,
+the cryptography attributes must contain
+an algorithm entry that
+specifies the RC4-compatible algorithm
+is provided by the machine service provider.
+If no such entry exists, then <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception will be signaled.
+The cryptography attributes may be materialized through the use of the
+Materialize Machine Attributes (<A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A>) instruction and using a
+selection value of hex 01C8.
+</FONT>
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue><A HREF="#hex0015"><font color=blue>Hex 0015</font></A>
+</FONT></TD><TD><P><font color=blue>
+The Machine CSP licensed internal code
+is to be used for an encryption or decryption
+operation
+using the Advanced Encryption Standard (AES).
+In order to use this function identifier,
+the cryptography attributes must contain
+an algorithm entry that
+specifies AES is provided by the machine service provider.
+If no such entry exists, then <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception will be signaled.
+The cryptography attributes may be materialized through the use of the
+Materialize Machine Attributes (<A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A>) instruction and using a
+selection value of hex 01C8.
+</FONT>
+</TD></TR></TABLE>
+<P>The format of the <I>controls</I> operand is dependent on
+the value of the <I>function identifier</I>.
+<P>
+<HR>
+<H4><A NAME="hex0002" HREF="#list">Function Identifier 0002</A></H4>
+<P>The following description applies only to function identifier 0002.
+<P>The <I>controls</I> operand must have the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Function identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Data length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Use cipher block chaining
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Yes
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Data padding
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Yes
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 3-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Cryptographic key
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (ignored)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Initial chaining value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Pad character
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">23
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(9)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The first character of the <I>source</I> and <I>receiver</I> strings is addressed
+by their respective operand pointers.  The <B><U>data length</U></B> field of
+the <I>controls</I> operand specifies the
+length of the input <I>source</I> data.  The
+length of data returned in the <I>receiver</I> is determined from the
+length of the <I>source</I>.  When the <I>data padding</I> field
+specifies <I>no</I>,
+the length of data returned in the <I>receiver</I> is equal to the length of
+the <I>source</I>.  When the <I>data padding</I> field
+specifies <I>yes</I>, the length
+of data returned in the <I>receiver</I>
+is not equal to the length of the <I>source</I> and is returned in the <I>data length</I> field of the <I>controls</I>
+operand.  Refer to the discussion of the <I>data padding</I> field
+for details
+on the amount of data returned in this case.
+<P>
+The <I>data length</I> field
+specifies the length of the data addressed by the <I>source</I> operand.  The <I>data length</I>
+value must be
+nonzero and less than or equal to 64 bytes.
+In addition, when the <I>data padding</I> and <I>use cipher block chaining</I>
+fields specify <I>no</I>, the <I>data length</I> must be a multiple
+of 8 bytes.
+An incorrect <I>data length</I> value results in the
+signaling of the <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+When the <I>data
+padding</I> field specifies <I>yes</I>, the length of the data placed
+into the <I>receiver</I> is returned in this field.
+<P>
+The <B><U>use cipher block chaining</U></B>
+field specifies whether or not cipher block
+chaining is to be used during the cipher
+operation.
+<P>
+When the <I>use cipher block chaining</I> field specifies <I>yes</I>,
+the first block of data from the <I>source</I>
+operand is exclusive ORed with the <I>initial chaining value</I>
+and then
+encrypted.  For subsequent blocks of data, the prior block of
+encrypted data from the <I>receiver</I> operand is exclusive ORed with
+the current data block from the <I>source</I>
+operand and the result is
+encrypted.
+<P>
+The <B><U>data padding</U></B> field
+specifies whether data padding is to be used
+during the cipher operation.  When the <I>data padding</I>
+field specifies <I>no</I>, padding is not performed.
+When the <I>data padding</I>
+field specifies <I>yes</I>, padding is performed.
+In this case, the length of data returned
+in the receiver is different from the source length and is returned
+in the <I>data length</I>
+field for both encrypt and decrypt operations.
+<P>
+When the <I>data padding</I> field specifies <I>yes</I>,
+the data from the <I>source</I> operand
+is padded out to the next multiple
+of 8 bytes; for example, a source length of 20 is padded to 24, 32
+is padded to 40, and so forth.
+The final block of <I>source</I>
+data is padded with
+zero to seven repetitions of the <I>pad character</I> until the block
+length is 7 bytes in length.  The eighth byte is then filled with a
+1-byte binary counter containing the number of pad characters used
+(a value from one to eight which includes the 1-byte counter)
+and the block is encrypted.
+<P>
+The <B><U>cryptographic key</U></B> field specifies the key to be used for the
+cipher operation.
+The <I>cryptographic key</I> is provided in an unencrypted form.
+<P>
+The <B><U>initial chaining value</U></B>
+field specifies the 8-byte value to be
+used in conjunction with cipher block chaining when the <I>use cipher
+block chaining</I> field specifies <I>yes</I>.
+When the <I>use cipher block chaining</I> field specifies <I>no</I>,
+this field is ignored.  Refer to the description of the <I>use cipher
+block
+chaining</I> field for details on how this value is used in the cipher
+operation.
+<P>
+The <B><U>pad character</U></B> field specifies the value to be used as a pad
+character when the <I>data padding</I> field
+specifies <I>yes</I>.  When the <I>data
+padding</I> field specifies <I>no</I>, this field is ignored.
+<P>
+<H5><A NAME="Header_4">Specific Properties of ANSI DEA</A></H5>
+<P>
+The encrypt
+operation is performed iteratively upon
+8-byte blocks of the <I>source</I> operand.  Each block is encrypted
+using DEA and the information specified in the <I>controls</I>
+and the resulting value is placed
+into the <I>receiver</I> at the same relative
+location as that from which the <I>source</I> data was accessed
+from the <I>source</I> operand.
+The process is repeated until the data in the <I>source</I> is exhausted.
+<P>
+The key is presented to the DEA as a 64-bit value.  The DEA uses the
+first 7 bits of each byte, for a total of 56 bits, as the key.  The
+remaining 8 bits enforce odd parity of each byte when required.  The
+DEA uses the key and the input data to calculate the output.  Given
+fixed input data, the output is unique for each unique set of 56 bits.
+<P>
+Refer to <CITE>Cryptographic Support/400 User's Guide</CITE>
+(SC41-3342) for more information
+on the DEA.
+<P>
+<HR>
+<H4><A NAME="hex0005" HREF="#list">Function Identifier 0005</A></H4>
+<P>
+The following description applies only to function identifier 0005.
+<P>The <I>controls</I> operand must be 16-byte aligned and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(96)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Function identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Hash algorithm
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>MD5
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>SHA-1
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">3
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Sequence
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>Only
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>First
+</TD></TR><TR VALIGN="TOP"><TD>Hex 02 =
+</TD><TD>Middle
+</TD></TR><TR VALIGN="TOP"><TD>Hex 03 =
+</TD><TD>Final
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Data length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Output
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>Hash
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>HMAC
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">9
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (ignored)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(7)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Hash context
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">HMAC key
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Space pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">HMAC key length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>hash algorithm</U></B> field specifies the one-way hash
+function to perform.  A hash function takes a
+variable-length input string and converts it to a fixed-length output
+string.  A one-way hash function means the function is for all
+practical purposes irreversible in that it is computationally
+infeasible to re-create the input message from the hash value or to
+find another message that will hash to the same value.
+<P><I>MD5</I> produces
+a 128-bit hash value.
+MD5 is documented in RFC 1321.
+<P><I>SHA-1</I> produces
+a 160-bit hash value.
+SHA-1 is documented in FIPS 180-1.
+<P>A hash of data may be performed in one execution of the CIPHER
+instruction or in several which allows the hash of data that does
+not lie in contiguous storage.  This is specified using the <B><U>sequence</U></B> field.  When performing the hash in one execution
+of CIPHER, the <I>sequence</I>
+field should specify <I>only</I>.  Otherwise, the first use of
+the CIPHER instruction should specify <I>first</I>, the
+last use of CIPHER should specify <I>final</I>, and any executions
+of CIPHER in between should specify <I>middle</I>.  The hash will
+be returned in the <I>receiver</I> operand when the <I>sequence</I>
+field specifies <I>only</I> or <I>final</I>.
+<P>The <B><U>data length</U></B> field specifies
+the length of the input <I>source</I> data.
+<P>The <B><U>output</U></B> field specifies the value to return in the <I>receiver</I> operand.  When <I>hash</I> is specified,
+the hash of the <I>source</I>
+string is returned in the <I>receiver</I>.  When <I>HMAC</I>
+is specified, the HMAC of the <I>source</I> string is returned in the <I>receiver</I>.  HMAC is a mechanism for message authentication
+using a one-way hash function and a secret shared key.  It is
+documented in RFC 2104.  For both <I>hash</I> and <I>HMAC</I>,
+if <I>MD5</I> is specified for the <I>hash algorithm</I>, 16
+bytes are returned in the <I>receiver</I>. If <I>SHA-1</I> is
+specified, 20 bytes are returned in
+the <I>receiver</I>.
+<P>The <B><U>hash context</U></B> space pointer points to a
+work area
+belonging to the user.
+If the <I>output</I> field specifies <I>hash</I> this work area
+must be at least 96 bytes long.  If <I>HMAC</I> is specified, it
+must be at least 160 bytes long.
+Prior to executing CIPHER with <I>only</I> or <I>first</I> specified in the <I>sequence</I> field, the work area
+should be set to binary 0s.  When executing CIPHER with <I>middle</I>
+or <I>final</I> specified in the <I>sequence</I> field, the <I>hash
+context</I> field should point to the work area that was used
+on the previous execution of CIPHER.  The user should not modify
+data returned in the work area, or unpredictable results may occur.
+<P>The <B><U>HMAC key</U></B> space pointer points to an area containing
+the secret key to be used in an
+HMAC operation.  This field is ignored when the <I>output</I> field
+specifies <I>hash</I> or if the <I>sequence</I> field specifies <I>middle</I> or <I>final</I>.
+<P>The <B><U>HMAC key length</U></B> field specifies the length of the <I>HMAC key</I>.  It is ignored when the <I>output</I> field
+specifies <I>hash</I> or if the <I>sequence</I> field specifies <I>middle</I> or <I>final</I>.
+The minimum size is 16 bytes when using the <I>MD5 hash algorithm</I>,
+and 20 bytes when using the <I>SHA-1 hash algorithm</I>.  An
+incorrect <I>HMAC key length</I> value results in the signaling of
+the <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+Keys longer than these sizes do not significantly increase the function
+strength unless the randomness of the key is considered weak.
+In accordance with the RFC, a key
+longer than 64 bytes will be hashed before it is used.
+<P>
+<HR>
+<H4><A NAME="hex0007" HREF="#list">Function Identifier 0007</A></H4>
+<P>
+The following description applies only to function identifier 0007.
+<P>The <I>controls</I> operand must be 16-byte aligned and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Function identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Salt
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(26)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The crypt(3) function is a string encryption function used on
+UNIX&reg;
+systems for password authentication.  Crypt(3) is a one-way (no
+decryption) variant of DES (Data Encryption Standard).
+<P>Crypt(3) encrypts 8 bytes of hex 00 25 times using the 8-byte
+password pointed to by the <I>source</I> operand as the key
+for the DES algorithm.  The password may be any value.
+If the password is under 8 bytes, the <I>source</I>
+operand should be padded on the right to 8 bytes with hex 00.
+<P>The <B><U>salt</U></B> value is used to modify the DES E bit-selection
+table in one of 4096 possible ways.
+Each <I>salt</I> byte must be an ASCII character, "a"-"z", "A"-"Z",
+"0"-"9", "." or "/".  An invalid <I>salt</I> value will produce a <I> template value invalid&nbsp;</I>
+(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+For a description of the DES (Data Encryption Standard)
+algorithm, including the E bit-selection table, see the Federal
+Information Processing Standard (FIPS) 46-2.
+<P>The result of the encryption operation is converted into 11 bytes
+of ASCII characters.  At the completion of the crypt(3) operation,
+the <I>receiver</I> operand will contain the salt value followed by
+the resultant ASCII characters, for a total of 13 bytes.
+<font color=blue>
+<P>
+<HR>
+<H4><A NAME="hex0008" HREF="#list"><font color=blue>Function Identifier 0008</font></A></H4>
+<P>
+The following description applies only to function identifier 0008.
+<P>The <I>controls</I> operand must be 16-byte aligned and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Controls operand
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(32)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Function identifier
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Seed request
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>No seed
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Add seed
+</FONT></TD></TR></TABLE>
+<font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue><BR></FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue><BR></FONT></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>3
+</FONT></FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>3
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Reserved (binary 0)
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Char(3)
+</FONT></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>6
+</FONT></FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>6
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Seed length
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>UBin(2)
+</FONT>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>8
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>8
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>PRN (pseudorandom number) request
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Generate real pseudorandom numbers
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Generate test pseudorandom numbers
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>9
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>9
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>PRN parity
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>No parity
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Odd parity
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>Even parity
+</FONT></TD></TR></TABLE>
+<font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue><BR></FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue><BR></FONT></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>10
+</FONT></FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>A
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Reserved (binary 0)
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Char(4)
+</FONT></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>14
+</FONT></FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>E
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Number of PRNs
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>UBin(2)
+</FONT></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>16
+</FONT></FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue><font color=blue>10
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Reserved (binary 0)
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><font color=blue>
+</FONT></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><font color=blue>Char(16)
+</FONT>
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>32
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>20
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>The Pseudorandom Number Generator is composed of
+two parts - pseudorandom number generation and seed management.
+Pseudorandom number generation is performed using the FIPS 186-1
+algorithm.  Cryptographically secure pseudorandom numbers rely on
+good seed.  The FIPS 186-1 key and seed values are obtained from
+the system seed digest.  The system automatically generates
+the system seed digest using data collected from system information,
+or by using the random number generator on the 4758 cryptographic
+coprocessor if one is available.  System-generated seed can never
+be truly random and if a 4758 cryptographic coprocessor is not
+available, a user may use this interface to add their own random
+seed to the system seed digest.  This should be done as soon as
+possible anytime the system seed digest is created.  The system
+seed digest is created during the first IPL after an install of the
+Licensed Internal Code, or if ever destroyed.
+<P>The <B><U>seed request</U></B> field indicates if user seed is being
+added to the system seed digest.  A <I>no seed</I> value indicates
+no seed data is being added on this request.  An <I>add seed</I>
+value indicates seed data is being added.  The seed data is obtained
+from the <I>source</I> operand.  Any other values will produce a <I> template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+All object authority special authority is required for an <I>add
+seed</I> request.
+If <I>add seed</I> is specified and the issuer does not have
+all object special authority, a <I>special authorization required&nbsp;
+</I>(hex <A HREF="../exceptions/EX0A04.htm">0A04</A>) exception is signalled.
+<P>The <B><U>seed length</U></B> field indicates the number of seed data
+bytes in the <I>source</I> operand.  This field is ignored for
+the <I>no seed</I> option.  If the <I>add seed</I> option is
+specified and the <I>seed length</I> is zero, no seed is added.
+<P>It is important that the seed data be unpredictable and have as
+much entropy as possible.  Entropy is the minimum number of bits
+needed to represent the information contained in some data.
+For the purpose of this instruction, entropy is a measure of the amount
+of uncertainty or unpredictability of the seed.  The system seed digest
+holds a maximum of 320 bits of entropy.  To totally refresh the
+system seed digest, you should add at least that much entropy.  Possible
+sources of seed data are coin flipping, keystroke or mouse timings,
+or a noise source such as on the 4758 cryptographic coprocessor.
+<P>The <B><U>PRN (pseudorandom numbers) request</U></B> field is
+used to request output of PRNs.
+A <I>generate real pseudorandom numbers</I>
+value indicates real pseudorandom numbers should be output.
+A <I>generate test pseudorandom numbers</I>
+value indicates test pseudorandom numbers should be output.
+Test pseudorandom numbers
+are produced using fixed FIPS 186-1 key and seed values.  The test
+pseudorandom numbers will be statistically random.
+However, the next request for test pseudorandom numbers
+will return an identical stream of pseudorandom numbers.  Any other
+values specified for the <I>PRN request</I> field
+will signal a <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+This field is ignored if the <I>number of PRNs</I> field is 0.
+<P>The <I>PRN request</I> is performed after the <I>seed
+request</I> has completed.
+<P><I>PRN request</I>s for <I>generate real pseudorandom
+numbers</I> will result in a <I>requested function not valid&nbsp;
+</I>(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception if the system seed
+digest is not fully initialized.
+<P>The <B><U>number of PRNs</U></B> field indicates the number of
+pseudorandom number bytes to return.  If 0 is specified, no
+pseudorandom numbers are produced.  Pseudorandom numbers
+are returned in the <I>receiver</I> operand.
+<P>The <B><U>PRN parity</U></B> field indicates how the parity of the
+pseudorandom numbers should be set.
+If a <I>no parity</I> value is specified, the
+pseudorandom number output is not altered.
+If an <I>odd parity</I> value is specified,
+each byte will be set to odd parity by altering the low order bit as
+needed.  If an <I>even parity</I> value is specified, each byte
+will be set to even parity by altering the low order bit as needed.
+Any other values will produce a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+<P>Reserved fields must be set to binary 0 or a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signalled.
+</FONT>
+<font color=blue>
+<P>
+<HR>
+<H4><A NAME="hex0010" HREF="#list"><font color=blue>Function Identifier 0010</font></A></H4>
+<P>
+The following description applies only to function identifier 0010.
+<P>The <I>controls</I> operand must have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Controls operand
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(42)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Function identifier
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Data length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Operation
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Encrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Decrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>MAC (Message Authentication Code)
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Mode
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>ECB (Electronic Codebook)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>CBC (Cipher Block Chaining)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>OFB (Output Feedback)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 03 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 1-bit
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 04 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 8-bit
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 05 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 64-bit
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Initialization vector
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>14
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>E
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Pad option
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>No pad
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Pad using pad character
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>Pad using pad number
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>15
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>F
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Pad character
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>16
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>10
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>MAC (Message Authentication Code) length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>17
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>11
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>18
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>12
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>26
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>1A
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(16)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>42
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2A
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>Encryption, decryption, or creation of a message authentication
+code (MAC)
+is performed as specified in the <B><U>operation</U></B> field using the DES algorithm as defined in
+FIPS PUB 46-3 Data Encryption Standard and in
+ANSI X3.92 Data Encryption Algorithm (DEA).
+DES must be enabled in the cryptographic attributes
+for an <I>encrypt</I> or <I>decrypt</I> operation
+or else a <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception is signaled.  To query the cryptographic attributes,
+use the <A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A> instruction with a selection value of hex 01C8.
+A <I>MAC</I> operation is always allowed regardless of the
+cryptographic attributes.
+<P>The <B><U>data length</U></B> field specifies the length of the input
+data pointed to by the <I>source</I> operand.
+Upon completion of the operation, the <I>data length</I> field will
+be set with the length of data returned in the <I>receiver</I>
+operand.
+When <I>CFB 1-bit</I> is specified for the <I>mode</I> field,
+the <I>data length</I> field is specified in bits, otherwise it is
+specified in bytes.
+When the <I>mode</I> is <I>ECB</I>, <I>OFB</I>, or <I>CFB
+64-bit</I> and the <I>pad option</I> is <I>no pad</I>,
+the value of the <I>data length</I>
+field must be a multiple of 8, otherwise a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be
+signaled.
+<P>The <B><U>mode</U></B> field specifies the mode of operation as defined
+in FIPS PUB 81 (also ANSI X3.106).  Valid values are <I>ECB</I>
+for Electronic Codebook; <I>CBC</I> for Cipher Block Chaining; <I>OFB</I> for Output Feedback; and <I>CFB 1-bit</I>, <I>CFB
+8-bit</I>, and <I>CFB 64-bit</I> for Cipher Feedback.  Refer to
+the standard for an explanation of these modes. <I>ECB</I> and <I>OFB</I>
+are not valid when the <I>operation</I> field specifies <I>MAC</I>.
+<P>For all <I>mode</I> values except <I>ECB</I>,
+the <B><U>initialization vector</U></B>
+(IV) will be used as part of the operation.
+Refer to FIPS PUB 81 for an explanation of its use.  The IV need not
+be secret, but it should be unique.  If not unique, it may compromise
+security.  The IV can be any binary value.
+Upon completion of the operation, an output chaining value will be
+returned in the <I>initialization vector</I> field.  This value can be
+used as the IV for the next DES operation when
+encrypting, decrypting, or MACing
+a message in multiple blocks.
+<P>Specifying a <B><U>pad option</U></B> will pad the data in the <I>source</I> operand out to the next 8 byte multiple when
+encrypting or MACing.
+When decrypting, specifying a <I>pad option</I> will
+strip the pad bytes off the end of the output data before returning
+it in the <I>receiver</I> operand.
+For example, a source length of 20 is padded to 24,
+32 is padded to 40, and so forth, when encrypting.
+The last byte of pad data
+is filled with a 1-byte binary counter containing the number of pad
+characters used (a value from 1 to 8 which includes the 1-byte counter).
+If <I>pad option</I> specifies <I>pad using pad character</I>,
+the <B><U>pad character</U></B> field is used for the preceeding
+pad characters.
+If the <I>pad option</I> specifies <I>pad using pad number</I>,
+the value of the last byte (the pad counter) is used for the preceeding
+pad characters.
+When decrypting, it is not necessary to know which
+pad method was used when the data was encrypted.  If the data was
+padded, you can specify either <I> pad using pad character</I> or <I>pad using pad number</I>.  The <I>pad option</I> is ignored
+when <I>CFB 1-bit</I> or <I>CFB 8-bit</I> is specified for <I>mode</I>.
+<P>When the <I>operation</I> field specifies <I>MAC</I>, the <B><U>MAC length</U></B> field specifies the length of the MAC to
+return in the <I>receiver operand</I>.  Otherwise, the field is
+ignored.
+When MACing, the <I>source</I> operand data is encrypted in the
+normal manner.  From the last 8 bytes of the encrypted data, the
+leftmost <I>MAC length</I> bytes are returned.
+Valid values for <I>MAC length</I> are 1 to 8.
+<P>The key for the DES
+operation is specified in
+the <B><U>key</U></B> field.
+The key can be any binary value.
+Note, only the leftmost 7 bits from each byte
+are used for the key.  The rightmost bit
+of each byte is used to enforce parity when required.
+<P>To obtain good random key and IV values, use CIPHER function
+identifier hex 0008.
+<P>Reserved fields must be set to binary 0 or a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A) exception
+will be signalled.
+</FONT>
+<font color=blue>
+<P>
+<HR>
+<H4><A NAME="hex0011" HREF="#list"><font color=blue>Function Identifier 0011</font></A></H4>
+<P>
+The following description applies only to function identifier 0011.
+<P>The <I>controls</I> operand must have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Controls operand
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(42)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Function identifier
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Data length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Operation
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Encrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Decrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>MAC (Message Authentication Code)
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Mode
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>ECB (Electronic Codebook)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>CBC (Cipher Block Chaining)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>OFB (Output Feedback)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 03 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 1-bit
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 04 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 8-bit
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 05 =
+</FONT></TD><TD><font color=blue>CFB (Cipher Feedback) 64-bit
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Initialization vector
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>14
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>E
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Pad option
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>No pad
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Pad using pad character
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>Pad using pad number
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>15
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>F
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Pad character
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>16
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>10
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>MAC (Message Authentication Code) length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>17
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>11
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key option
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>One key
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>Two keys
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 03 =
+</FONT></TD><TD><font color=blue>Three keys
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>18
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>12
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key 1
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>26
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>1A
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key 2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>34
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>22
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key 3
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(8)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>42
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2A
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>Encryption, decryption, or the creation of a message authentication
+code (MAC)
+is performed as specified in the <B><U>operation</U></B> field using the Triple DES (TDES) algorithm
+as defined in FIPS PUB 46-3 Data Encryption Standard and in
+ANSI X9.52 Triple Data Encryption Algorithm Modes of Operation (TDEA).
+<P>
+Triple DES must be enabled in the cryptographic attributes
+for an <I>encrypt</I> or <I>decrypt operation</I>
+or else a <I> requested function not valid&nbsp;</I>
+(hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception is signaled.  To query the cryptographic attributes,
+use the <A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A> instruction with a selection value of hex 01C8.
+A <I>MAC operation</I> is always allowed regardless of the
+cryptographic attributes.
+<P>The <B><U>data length</U></B> field specifies the length of the input
+data pointed to by the <I>source</I> operand.
+Upon completion of the operation, the <I>data length</I> field will
+be set with the length of data returned in the <I>receiver</I>
+operand.
+When <I>CFB 1-bit</I> is specified for the <I>mode</I> field,
+the <I>data length</I> field is specified in bits, otherwise it is
+specified in bytes.
+When the <I>mode</I> is <I>ECB</I>, <I>OFB</I>, or <I>CFB
+64-bit</I> and the <I>pad option</I> is <I>no pad</I>,
+the value of the <I>data length</I>
+field must be a multiple of 8, otherwise a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be
+signaled.
+<P>The <B><U>mode</U></B> field specifies the mode of operation as
+defined in ANSI X9.52.  Valid values are <I>ECB</I>
+for Electronic Codebook; <I>CBC</I> for Cipher Block Chaining; <I>OFB</I> for Output Feedback; and <I>CFB 1-bit</I>, <I>CFB
+8-bit</I>, and <I>CFB 64-bit</I> for Cipher Feedback.  Refer to
+the standard for an explanation of these modes. <I>ECB</I> and <I>OFB</I>
+are not valid when the <I>operation</I> field specifies <I>MAC</I>.
+<P>For all <I>mode</I> values except <I>ECB</I>,
+the <B><U>initialization vector</U></B>
+(IV) will be used as part of the operation.
+Refer to ANSI X9.52 for an explanation of its use.  The IV need not
+be secret, but it should be unique.  If not unique, it may compromise
+security.  The IV can be any binary value.
+Upon completion of the operation, an output chaining value will be
+returned in the <I>initialization vector</I> field.  This value can be
+used as the IV for the next TDES operation when
+encrypting, decrypting, or MACing
+a message in multiple blocks.
+<P>Specifying a <B><U>pad option</U></B> will pad the data in the <I>source</I> operand out to the next 8 byte multiple when
+encrypting or MACing.
+When decrypting, specifying a <B><U>pad option</U></B> will
+strip the pad bytes off the end of the output data before returning
+it in the <I>receiver</I>
+operand.
+For example, a source length of 20 is padded to 24,
+32 is padded to 40, and so forth, when encrypting.
+The last byte of pad data
+is filled with a 1-byte binary counter containing the number of pad
+characters used (a value from 1 to 8 which includes the 1-byte counter).
+If <I>pad option</I> specifies <I>pad using pad character</I>,
+the <B><U>pad character</U></B> field is used for the preceeding
+pad characters.
+If the <I>pad option</I> specifies <I>pad using pad number</I>,
+the value of the last byte (the pad counter) is used for the preceeding
+pad characters.
+When decrypting, it is not necessary to know which
+pad method was used when the data was encrypted.  If the data was
+padded, you can specify either <I> pad using pad character</I> or <I>pad using pad number</I>.  The <I>pad option</I> is ignored
+when <I>CFB 1-bit</I> or <I>CFB 8-bit</I> is specified for <I>mode</I>.
+<P>When the <I>operation</I> field specifies <I>MAC</I>, the <B><U>MAC length</U></B> field specifies the length of the MAC to
+return in the <I>receiver operand</I>.  Otherwise, the field is
+ignored.
+When MACing, the <I>source</I> operand data minus the last 8-byte
+block is encrypted using DES.  The last block is encrypted using TDES.
+From the last resulting block, the leftmost <I>MAC length</I> bytes
+are returned.
+Valid values for <I>MAC length</I> are 1 to 8.
+<P>The Triple DES key is specified in the <B><U>key 1</U></B>, <B><U>key 2</U></B>, and <B><U>key 3</U></B> fields.  If <B><U>key option</U></B>
+specifies <I>three keys</I>, all three key fields are used for the
+key.  If <I>key option</I> specifies <I>two keys</I>, <I>key 1</I>
+will be used for <I>key 3</I>.  If <I>key option</I> specifies <I>one key</I>, <I>key 1</I> will be used for <I>key 2</I> and <I>key 3</I>.
+(This last option is equivalent to
+performing a single DES operation.)
+Note, only the leftmost 7 bits from each byte
+are used for the key.  The rightmost bit
+of each byte is used to enforce parity when required.
+<P>To obtain good random key and IV values, use CIPHER function
+identifier hex 0008.
+<P>Reserved fields must be set to binary 0 or a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signalled.
+</FONT>
+<font color=blue>
+<P>
+<HR>
+<H4><A NAME="hex0013" HREF="#list"><font color=blue>Function Identifier 0013</font></A></H4>
+<P>
+The following description applies only to function identifier 0013.
+<P>The <I>controls</I> operand must be 16-byte aligned and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Controls operand
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(32)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Function identifier
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Data length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Operation
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Encrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Decrypt
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(11)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>16
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>10
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key context pointer
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Space pointer
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>32
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>20
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>Encryption or decryption
+is performed as specified in the <B><U>operation</U></B> field using an RC4&reg;-compatible algorithm.
+<P>
+RC4 must be enabled in the cryptographic attributes
+or else a <I> requested function not valid&nbsp;
+</I> (hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception is signaled.  To query the cryptographic attributes,
+use the <A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A> instruction with a selection value of hex 01C8.
+<P>The <B><U>data length</U></B> field specifies the length of the
+input data pointed to by the <I>source</I> operand.
+The encrypted or decrypted data
+is returned in the area pointed to by
+the <I>receiver</I> operand and is identical in
+length.  If data length is 0, no data is encrypted or decrypted, but the <I>key context</I> will be initialized.
+<P>The <B><U>key context pointer</U></B> field points to a 264-byte area
+belonging to the user and having the following format.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Key context
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(264)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key stream
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(256)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>256
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>100
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>258
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>102
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(6)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>264
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>108
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>The <B><U>key context</U></B> allows encryption or decryption of a message
+in multiple blocks using multiple calls to CIPHER.
+Prior to the first call to CIPHER, set the key in the <B><U>key stream</U></B> field.  The key may be any binary value and
+any length from 1 to
+16 bytes depending on the length enabled in the cryptographic
+attributes.  To query the cryptographic attributes, use the <A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A>
+instruction with a selection value of hex 01C8.
+Specify the length of the
+supplied key in the <B><U>key length</U></B> field.
+To obtain good
+random key values, use CIPHER function identifier <A HREF="#hex0008"><font color=blue>hex 0008</font></A>.
+<P>The <I>key context</I> contains the state of the encryption or
+decryption operation.  As data
+is encrypted or decrypted, the <I>key stream</I> is altered by the
+RC4-compatible algorithm.  Consequently,
+when encrypting or decrypting a message in multiple blocks, subsequent
+calls to CIPHER must pass in the identical <I>key context</I>
+returned from the previous call.
+<P>Because of the nature of the RC4-compatible algorithm, using the
+same key for more than one message will severely compromise security.
+<P>Reserved fields of the <I>key context</I>
+must be set to binary 0 or a <I>template value invalid&nbsp;
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.
+</FONT>
+<font color=blue>
+<P>
+<HR>
+<H4><A NAME="hex0015" HREF="#list"><font color=blue>Function Identifier 0015</font></A></H4>
+<P>
+The following description applies only to function identifier 0015.
+<P>The <I>controls</I> operand must be 16-byte aligned and have
+the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Controls operand
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(96)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Function identifier
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Data length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Operation
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Encrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>Decrypt
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 02 =
+</FONT></TD><TD><font color=blue>MAC (Message Authentication Code)
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>5
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Mode
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>ECB (Electronic Codebook)
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 01 =
+</FONT></TD><TD><font color=blue>CBC (Cipher Block Chaining)
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Block length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>7
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>7
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>MAC (Mesage Authentication Code) length
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>8
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>8
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Initialization vector
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(32)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>40
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>28
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(7)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>47
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>2F
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key option
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>Hex 00 =
+</FONT></TD><TD><font color=blue>Use Key schedule
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 10 =
+</FONT></TD><TD><font color=blue>Use 16-byte key
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 18 =
+</FONT></TD><TD><font color=blue>Use 24-byte key
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>Hex 20 =
+</FONT></TD><TD><font color=blue>Use 32-byte key
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>48
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>30
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key schedule
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Space pointer
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>64
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>40
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Key
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Char(32)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>96
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>60
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>Encryption, decryption, or the creation of a message authentication
+code (MAC) is performed as specified in the <B><U>operation</U></B> field using the NIST-proposed
+Advanced Encryption Standard (AES) algorithm.
+<P>
+AES must be enabled in the cryptographic attributes
+for an <I>encrypt</I> or <I>decrypt operation</I> or else a <I> requested function not valid&nbsp;</I> (hex <A HREF="../exceptions/EX1C08.htm">1C08</A>) exception is signaled.  To query the cryptographic attributes,
+use the <A HREF="MATMATR.htm"><font color=blue>MATMATR</font></A> instruction with a selection value of hex 01C8.
+A <I>MAC operation</I> is always allowed regardless of the
+cryptographic attributes.
+<P>The <B><U>data length</U></B> field specifies the length of the input
+data pointed to by the <I>source</I> operand.
+The data length can be 0 or a multiple of the <I>block length</I>,
+otherwise a <I>template value invalid&nbsp;
+ </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be signaled.  If 0, no data is
+encrypted or decrypted, but the <I>key schedule</I> will be
+calculated.
+<P>The <B><U>mode</U></B> field specifies the mode of operation as
+defined in FIPS PUB 81.  Valid values are <I>ECB</I>
+for Electronic Codebook; and <I>CBC</I> for Cipher Block Chaining.
+Refer to the standard for an explanation of these modes.  <I>CBC
+mode</I> must be specified when <I>operation</I> is <I>MAC</I>.
+<P>When <I>CBC</I> is specified,
+the <B><U>initialization vector</U></B>
+(IV) will be used as part of the operation.  The length of IV used
+is that specified in <I>block length</I>.
+Refer to ANSI X9.52 for an explanation of its use.  The IV need not
+be secret, but it should be unique.  If not unique, it may compromise
+security.  The IV can be any binary value.
+Upon completion of an
+AES CBC operation, an output chaining value will be
+returned in the <I>initialization vector</I> field.  This value
+should be used as the IV for the next AES operation when
+encrypting, decrypting, or MACing
+a message in multiple blocks.
+<P><B><U>Block length</U></B> indicates the number of bytes that are
+encrypted/decrypted at one time.
+Supported block lengths are 16, 24, and 32.
+Other lengths will produce a <I>template value invalid&nbsp; 
+</I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+<P>When the <I>operation</I> specifies <I>MAC</I>, the <B><U>MAC
+length</U></B> field specifies the length of MAC to return in the <I>receiver</I> operand.  Otherwise, the field is ignored.  When
+MACing, the <I>source</I> operand data is encrypted in the normal
+manner.  From the last <I>block length</I> bytes of encrypted data,
+the leftmost <I>MAC length</I> bytes are returned.  Valid values
+for <I>MAC length</I> are 1 to <I>block length</I>.  Other values
+will cause a <I>template value invalid&nbsp; </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+<P>The AES key is specified in the <B><U>key</U></B> field and should be
+left justified.  The length of key may be 16, 24, or 32 bytes
+as specified in the <B><U>key option</U></B> field.
+The initial step in
+an AES operation is to calculate a set of subkeys.
+The subkeys will be stored in the area pointed to by
+the <B><U>key schedule</U></B> pointer, if the pointer value is not a null
+pointer value.
+This area should be 4-byte aligned and 1088 bytes in length.  This
+allows subsequent AES operations to specify
+the <I>use key schedule</I> option
+and bypass the subkey generation step.  A <I>template value invalid&nbsp;
+ </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception will be
+signalled if <I>use key schedule</I> is specified but the <I>key
+schedule</I> pointer is null.
+<P>To obtain good random key and IV values, use CIPHER function
+identifier hex 0008.
+<P>Reserved fields must be set to binary 0 or a <I>template value invalid&nbsp;
+ </I>(hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signalled.
+</FONT>
+<P>
+<HR>
+<H4><A NAME="Header_12">Limitations (Subject to Change)</A></H4>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+<P>
+Valid results are produced for the case of the receiver and source
+operands being coincident with one another.  The source data is
+accessed first, then the result is stored in the receiver.
+<P>
+Partial overlap between the source and receiver operands may produce
+invalid results.
+<P>
+<H4><A NAME="Header_13">Authorization Required</A></H4>
+<UL>
+<font color=blue>
+<P><LI>All Object Special Authority
+<UL>
+<P><LI><I>Add seed</I> specified in the <I>seed request</I> of the <I>controls</I> operand for function identifier <A HREF="hex0008">Hex 0008</A>.
+</UL>
+</FONT>
+<font color=blue>
+</FONT>
+</UL>
+<font color=blue>
+</FONT>
+<P>
+<H4><A NAME="Header_14">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+<font color=blue>
+<DD><A HREF="../exceptions/EX0A04.htm">0A04 Special Authorization Required</A>
+</FONT>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C0F.htm">0C0F Master Key Not Defined</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C08.htm">1C08 Requested Function Not Valid</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX2E02.htm">2E02 Security Audit Journal Failure </A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>34 Source/Sink Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3403.htm">3403 Source/Sink Object State Invalid</A>
+<DD><A HREF="../exceptions/EX3404.htm">3404 Source/Sink Resource Not Available</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

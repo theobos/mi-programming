@@ -1,0 +1,85 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> NOOPS Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>No Operation and Skip (NOOPS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0001
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Skip count
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Unsigned immediate value.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction performs no function other
+than to indicate a specific number
+of bytes within the instruction stream that are to be skipped during
+encapsulation.  It consists of
+an operation code and 1 operand.  Operand 1 is an unsigned
+immediate value that contains the number
+of bytes between this instruction and the next instruction
+to be processed.  These bytes are
+skipped during the encapsulation of this program.  A value
+of zero for operand 1 indicates that no
+bytes are to be skipped between this instruction and the
+next instruction to be processed.
+<P>
+If the operand 1 skip count indicates that the next instruction
+to process is beyond the end of the
+instruction stream,
+an <I>invalid operand value range&nbsp; </I>(hex <A HREF="../exceptions/EX2A08.htm">2A08</A>) exception is signaled.
+<P>
+This instruction may be used to insert gaps in the instruction
+stream in such a manner that allows
+instructions with adjacent instruction addresses to not be
+physically adjacent.
+<P>
+This instruction may not be branched to, and is not counted
+as an instruction in the instruction stream.
+<P>
+The instruction may precede or follow any machine instruction
+except the End instruction, and any
+number of No Operation and Skip instructions may exist in succession.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+When this instruction is used in an existing
+program template, the following items
+within the template may be adversely affected:
+<UL>
+<P><LI>
+The actual
+count of instructions may be altered to be different than the count of
+instructions that is specified in the program template header.
+<P><LI>
+Object definitions
+that reference instructions may now be out of range or may
+not reference the intended instruction.
+</UL>
+</TD></TR></TABLE>
+<P>
+The actual number of bytes skipped includes the bytes containing
+the instruction plus the number of
+bytes specified by the skip count value.  The number of bytes skipped per
+template version is as follows:
+<UL>
+<P><LI>
+Version 0 = 4 plus the skip count value.
+<P><LI>
+Version 1 = 5 plus the skip count value.
+</UL>
+
+</body>
+
+</HTML>
+

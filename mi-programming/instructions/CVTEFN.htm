@@ -1,0 +1,287 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CVTEFN Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Convert External Form to Numeric Value (CVTEFN)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1087
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Numeric variable scalar or data-pointer-defined numeric
+scalar.
+<P>
+<I>Operand 2</I>:  Character scalar or data-pointer-defined
+character scalar.
+<P>
+<I>Operand 3</I>:  Character(3) scalar, null, or data-pointer-defined
+character(3) scalar.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CVTEFN is 136.
+CVTEFN (
+        receiver              : address of signed binary OR
+                                address of unsigned binary OR
+                                address of zoned decimal OR
+                                address of packed decimal
+        receiver_attributes   : address
+        source                : address
+        source_length         : address of unsigned binary(4)
+        mask                  : address
+)
+</PRE>
+<P>The <VAR>receiver_attributes</VAR> is a
+structure which describes
+the data attributes of the receiver values.  The format of
+this structure matches that of the third operand on the
+CVTCN and CVTNC operations.
+<P>The <VAR>source_length</VAR>
+parameter contains the length, in bytes, of the source string.
+It is expected to contain a value between 1
+and 32,767.
+If a value less than 1 or greater than 32,767 is specified, a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+is signaled.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction scans a character string
+for a valid decimal number in display format, removes the display
+character, and places the results in the receiver operand.  The
+operation begins by scanning the character string value
+in the source operand
+to make sure it is a valid decimal number in display format.
+<P>
+Valid types for
+the <I>receiver</I>
+are&#58; packed or zoned decimal,
+signed or unsigned binary.
+<P>
+The character string defined by <I>source</I>
+consists of the
+following optional entries:
+<UL>
+<P><LI>
+Currency symbol - This value
+is optional and, if present, must precede any sign and digit
+values.  The valid symbol is
+determined by <I>mask</I>.
+The currency
+symbol may be preceded in the field by blank (hex 40) characters.
+<P><LI>
+Sign symbol - This
+value is optional and, if present, may precede any digit
+values (a leading sign) or may follow
+the digit values (a trailing sign).  Valid signs are positive
+(hex 4E) and negative (hex 60).  The sign symbol, if it is a leading
+sign, may be preceded by blank characters.  If the sign symbol
+is a trailing sign, it must be the
+rightmost character in the field.
+Only one sign symbol is allowed.
+<P><LI>
+Decimal digits - Up to 31 decimal
+digits may be specified.  Valid decimal digits are in the range
+of hex F0 through hex
+F9 (0-9).  The first decimal digit may be preceded by blank
+characters (hex 40), but hex 40 values located to the right of
+the leftmost decimal digit are invalid.
+</UL>
+<P>
+The decimal digits
+may be divided into two parts by the decimal point symbol:  an
+integer part and a fractional part.  Digits to the left
+of the decimal point are interpreted
+as integer values.  Digits to the right are
+interpreted as a fractional values.
+If no decimal point symbol is included, the value is interpreted
+as an integer value.  The valid decimal point symbol is
+determined by <I>mask</I>.
+If the decimal point symbol precedes
+the leftmost decimal digit, the digit value is interpreted as a
+fractional value, and the leftmost decimal digit must be adjacent
+to the decimal point symbol.  If the decimal point follows
+the rightmost decimal digit, the digit value is interpreted as
+an integer value, and the rightmost
+decimal digit must be adjacent to the decimal point.
+<P>
+Decimal digits in the integer
+portion may optionally have comma symbols separating groups
+of three digits.  The leftmost group
+may contain one, two, or three decimal digits, and each
+succeeding group must be
+preceded by the comma symbol and contain
+three digits.  The comma symbol must be adjacent to a
+decimal digit on either
+side.  The valid comma symbol is determined by <I>mask</I>.
+<P>
+Decimal digits in the
+fractional portion may not be separated by commas and
+must be adjacent to one another.
+<P>
+<P>
+Examples of external formats follow.  The following symbols are used.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>$
+</TD><TD>currency symbol
+</TD></TR><TR VALIGN="TOP"><TD>&#46;
+</TD><TD>decimal point
+</TD></TR><TR VALIGN="TOP"><TD>,
+</TD><TD>comma
+</TD></TR><TR VALIGN="TOP"><TD>D
+</TD><TD>digit (hex F0-F9)
+</TD></TR><TR VALIGN="TOP"><TD>
+</TD><TD>blank (hex 40)
+</TD></TR><TR VALIGN="TOP"><TD>&#43;
+</TD><TD>positive sign
+</TD></TR><TR VALIGN="TOP"><TD>-
+</TD><TD>negative sign
+</TD></TR></TABLE>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Format
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Comments
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">$+DDDD.DD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Currency symbol, leading sign, no comma separators
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">DD,DDD-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Comma symbol, no fraction, trailing sign
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">-.DDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">No integer, leading sign
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">$DDD,DDD-
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">No fraction, comma symbol, trailing sign
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%"> $ + DD.DD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Embedded blanks before digits
+</TD></TR></TABLE>
+If the length of operand 2 is 0, a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+is signaled.
+<P> <I>Mask</I> must indicate
+a 3-byte character scalar.
+Byte 1 of the
+string indicates the
+byte value that is to be used for the currency
+symbol.  Byte 2 of the string indicates the byte value to be
+used for the comma symbol.  Byte 3 of
+the string indicates the byte value to be used for the decimal point
+symbol.
+Unpredictable results can occur if the same value is used for more
+than one symbol.
+If <I>mask</I> is null for a non-bound program,
+the currency symbol (hex 5B),
+comma (hex 6B), and decimal point (hex 4B) are used.
+<P>
+If the syntax rules are violated, a <I> conversion&nbsp; </I> ((hex <A HREF="../exceptions/EX0C01.htm">0C01</A>)) exception
+is
+signaled.  If not, a zoned decimal value is formed from
+the digits of the display format character string.  This
+number is placed in the
+receiver operand following the rules of
+a normal arithmetic conversion.
+<P>
+If a decimal to binary conversion causes a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+to be signaled, the binary value contains the correct truncated
+result only if the decimal value contains 15 or fewer
+significant nonfractional digits.
+<P>
+A data-pointer-defined <I>receiver</I>
+with 8 byte binary attributes is not supported and will cause a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+to be signaled.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C01.htm">0C01 Conversion</A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+<DD><A HREF="../exceptions/EX3202.htm">3202 Scalar Attributes Invalid</A>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

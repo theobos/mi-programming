@@ -1,0 +1,2817 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Program Object Specification</title>
+			<link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body>
+<A NAME="Top_Of_Page"></A>
+
+<p>
+<A NAME="HDRMINPO" HREF="#ToC_1"></A>
+<H1>Program Object Specification</H1>
+
+<P>
+All attributes, specifications, and ODT (object definition table)
+formats for each non-bound program object in the MI Instruction Set are
+discussed.  Charts illustrate the
+combinations of attributes and specifications.  The detailed formats for
+the ODV (ODT directory vector) and the OES (ODT entry string) are also
+specified.
+
+<H2><A NAME="Header_10">Instruction Operands</A></H2>
+<P>
+Each Non-Bound Program (NBP) instruction requires from zero to four
+operands.  Each operand may consist of one or more fields that contain
+either a null operand specification, an immediate data value, or a
+reference to an ODT object.  The size of the operand field depends on the
+version of the program template.  If the version number is 0, the size of
+the operand field is 2 bytes.  If the version number is 1, the size of
+the operand field is 3 bytes.
+<P>
+<H4><A NAME="Header_11">Null Operands</A></H4>
+<P>
+Certain instructions allow certain operands to be null.  In
+general, a null operand means that some optional function
+of the instruction is
+not to be performed or that a default action is to be performed by the
+instruction.
+Note that a null operand is not the same thing as a null pointer value.
+A null operand is an operand that is specified in the instruction
+stream as being omitted.
+The use of a null operand is detectable when the program is being
+created.
+In contrast, a null pointer value represents the condition <I>a pointer does not exist at this location</I>.
+The <A HREF="instructions/CMPPTRT.htm">CMPPTRT</A> instruction can be used to test for a null pointer value.
+Null pointer values cannot be detected until run time.
+<P>
+<H4><A NAME="Header_12">Immediate Operands</A></H4>
+<P>
+The value of this type of operand is encoded in the instruction operand.
+Immediate operands may have the following values:
+<UL>
+<P><LI>
+Signed binary-representing a binary
+value of negative 4,096 to positive 4,095.
+<P>
+
+<P><LI>
+Unsigned binary-representing
+a binary
+value of 0 to 8,191.
+<P>
+
+<P><LI>
+Byte string-representing a single byte value
+from hex 00 to hex FF.
+<P>
+
+<P><LI>
+Absolute
+instruction number-representing an instruction
+number in the range of 1 to 8,191.
+<P>
+
+<P><LI>
+Relative
+instruction number-representing a displacement
+of an instruction relative to the instruction in which the
+operand occurs.  This operand value may identify an instruction
+displacement of negative 4,096 to positive 4,095.
+<P>
+
+</UL>
+<P>
+<H4><A NAME="Header_13">ODT Object References</A></H4>
+<P>
+This type of operand contains a reference (possibly qualified)
+to an object in the ODT.  Operands that are ODT object
+references may be simple operands or compound
+operands.
+<P>
+<H5><A NAME="Header_14">Simple Operands</A></H5>
+<P>
+The value encoded in the operand
+refers to a specific object defined in the ODT.  Simple
+operands consist of a single 2-byte operand entry.
+<P>
+<H5><A NAME="Header_15">Compound Operands</A></H5>
+<P>
+A compound operand consists of a primary (2-byte) operand
+and a series of one to three secondary (2-byte)
+operands.  The primary operand is an ODT reference to a
+base object while the secondary operands
+serve as qualifiers to the base object.
+<P>
+A compound operand may have the following uses:
+<UL>
+<P><LI>
+Subscript references
+<P>
+An individual element of a data object array, a pointer array, or an
+instruction definition list may be
+referenced with a subscript compound operand.  The operand consists of a
+primary reference to the array and a secondary
+operand to specify the index value to an element of the array.
+<P><LI>
+Substring references
+<P>
+A portion of a character scalar data object may be
+referenced as an instruction operand through a substring
+compound operand.  The operand consists of a primary
+operand to reference the base string object and
+secondary references to specify the value of an
+index (position) and a value for the length of the substring.
+<P>
+The length secondary operand field can specify whether
+to allow or not allow for a null substring reference
+(a length value of zero).
+<P><LI>
+Explicit base references
+<P>
+An instruction operand may specify an explicit override for the
+base pointer for a based data object or a based addressing object.
+The operand consists of a primary operand reference to the based object
+and a secondary operand reference to the pointer on which to
+base the object for this operand.
+The override is in effect for the single operand.
+The displacement implicit in the ODT definition of
+the primary operand and the addressability contained in
+the explicit pointer are combined to provide an
+address for the operand.
+</UL>
+<P>
+The explicit base may be combined with either the
+subscript or the substring compound operands to provide
+a based subscript compound operand or a based substring
+compound operand.
+<A NAME="Header_2" HREF="#ToC_2"></A>
+<h2>General ODT Description</h2>
+<P>
+A program template is composed of a header followed by several
+components, including an instruction stream component and an object
+definition table (ODT) component.  The ODT contains the views of all
+objects referred to in the instruction stream other than those objects
+that are immediate value operands in the instructions.  The following
+objects are ODT definable:
+<UL>
+<P><LI>Data object
+<UL>
+<P><LI>Scalar data object
+<P><LI>Pointer data object
+</UL>
+<P><LI>Constant data object
+<P><LI>Entry point
+<P><LI>Branch point
+<P><LI>Instruction definition list
+<P><LI>Operand list
+<P><LI>Exception description
+</UL>
+The ODT entry consists of the ODV and the OES.
+<P><A NAME="Header_3" HREF="#ToC_3"></A>
+<h3>ODV</h3>
+<P>
+The ODV is a vector of 4-byte character string entries in a standard
+format.  An ODV entry describes an object completely or partially.  If
+the ODV entry does not completely describe the object, it must contain
+an offset into the OES where the object is described completely.
+<P>
+An ODV entry is required for each object described in the ODT.  The
+index value for a particular object ODV entry is used as an operand for
+instructions that operate on the object.  An ODT can contain 8,191
+entries in template version 0 and 65,526 entries in template version 1.
+The first entry has an index value of 1.
+<P>
+The structure of the ODV is designed to allow a complete definition of
+commonly used objects.  An object that cannot be completely described in
+an ODV entry must have an OES entry to complete its definition.
+<P>
+Each ODV entry generally consists of the following:
+<UL>
+<P><LI>Type information
+<UL>
+<P><LI>
+The first 2 bytes of each ODV entry contain information identifying
+the type and general attributes of the object.
+</UL>
+<P><LI>OES offset or attribute information
+<UL>
+<P><LI>
+The last 2 bytes of each ODV entry contain either detailed attribute
+information or an offset into the OES where the detailed attribute
+information is found.  The OES contains a 4-byte OES length entry at the
+beginning of the OES component.  This means that the minimum valid
+offset is 4 bytes.
+</UL>
+</UL>
+Object references in the MI instructions consist of instruction operands
+that contain index values into the ODV.
+<P><A NAME="Header_4" HREF="#ToC_4"></A>
+<h3>OES</h3>
+<P>
+The OES consists of a series of variable-length entries that complete an
+object's description.
+<P>
+If an OES entry exists for an object, its offset value into the OES is
+specified in the ODV entry for that object.
+<P>
+Several ODV entries for different objects with identical definitions can
+share the same OES entry.  OES entries do not exist for those objects
+that can be completely described in the ODV.
+<P>
+Each OES entry consists of the following:
+<UL>
+<P><LI>OES header
+<UL>
+<P><LI>One byte indicating which OES appendages are present.  A bit is
+included for each possible OES appendage.  A binary 0 value for the bit
+means the appendage is not present.  A binary 1 value for the bit means
+the appendage is present.
+</UL>
+<P><LI>OES header extension
+<UL>
+<P><LI>One byte indicating which OES appendages are present.  A bit is
+included for each possible OES appendage.  A binary 0 value for the bit
+means the appendage is not present.  A binary 1 value for the bit means
+the appendage is present.  The  presence of this header extension is
+indicated by a bit in the OES header.  If the header extension is
+specified it follows immediately after the OES header.
+</UL>
+<P><LI>OES appendages
+<UL>
+<P><LI>A series of variable-length fields each containing a specific
+collection of information about the object.
+</UL>
+</UL>
+The following are examples of object attributes specified
+in an OES entry.
+<UL>
+<P><LI>Object names
+<P><LI>Length/number of elements
+<P><LI>Explicit bases
+<P><LI>Explicit positions
+<P><LI>Initial values
+<P><LI>OES header extension
+</UL>
+When an OES entry is required to complete an object's description, its
+appendages must be in the same order as are the bits that indicated their
+presence in the OES header.
+<P>
+For example, assume the following OES header:
+<P>
+<B><BR><IMG src="images/aac025.gif" ALT="Figure AAC025 not displayed."><BR></B>
+<P>
+The name appendage must immediately follow the OES header, and the
+initial value appendage must immediately follow the name appendage.
+<P>
+The OES may consist of 0 to 16,776,191 bytes.  Because the OES offset
+value may be a maximum of 65,535 bytes, a means is provided to address
+an OES offset beyond this maximum.  A special object type value (binary
+1111) in the ODV denotes an object description in which:
+<UL>
+<P><LI>
+A 3-byte offset to the OES entry is specified.
+<P><LI>
+The entire object description is specified in the OES entry (ODV, the
+OES header, and OES appendages).
+</UL>
+See <A class="content" HREF="#HDROESREF">"References to OES Offsets Greater Than 64 K - 1"</A>
+for a detailed description of this format.
+<P>
+<A NAME="Header_5" HREF="#ToC_5"></A>
+<h2>ODT Entries in Detail</h3>
+<P>
+In this section, the detailed definitions for the various ODT entries
+are discussed by object type.  Each object type description contains the
+following information about its respective objects:
+<UL>
+<P><LI>
+Attribute combination charts-Summarize both the attributes of a
+given object and the valid combination of those attributes.
+<P>
+In the attribute combination charts, the following rules are used:
+<UL>
+<P><LI>
+A combination of attributes is allowed if the attributes lie on a single
+path that progresses from left to right through the diagram.  For
+example:
+<P>
+<B><BR><IMG src="images/aac026.gif" ALT="Figure AAC026 not displayed."><BR></B>
+<P>
+The attribute A can be used with B and C, B and D, B and E, or E only;
+but C cannot be used with D or E.
+<P><LI>
+Optional attributes are noted where a solid line bypasses one or more
+attributes.
+</UL>
+<P><LI>
+ODV Format-Describes the various bit settings of the 4-byte ODV
+entry relative to the specific object type.
+<P><LI>
+OES Format-Describes the various OES header bit settings relative
+to the specific object type.
+<P><LI>
+Notes-Describe any unique characteristics concerning the
+specifications of the object.
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Reserved bits are those bits not being used currently and should always
+be set to binary 0.
+</TD></TR></TABLE>
+<P>
+Combinations of attributes not defined in these specifications cause a
+create program exception-invalid ODT exception to be signaled
+when the program is created.
+<P><A NAME="Header_6" HREF="#ToC_6"></A>
+<h3>Data Object</h3>
+<P>
+Data objects provide operational and, possibly, representational
+characteristics to data in a space.  Scalar data objects and pointer
+data objects are the two basic categories of data contained in the
+space.
+<P>
+Scalar data objects provide operational and representational
+characteristics for numeric and character data contained in a space.
+<P>
+Pointer data objects provide operational characteristics for pointer
+data contained in a space.
+<P>
+The following chart shows the general characteristics of data objects.
+<P><BR>
+<B><BR><IMG src="images/aac028.gif" ALT="Figure AAC028 not displayed."><BR></B><BR>
+<P><A NAME="Header_7" HREF="#ToC_7"></A>
+<h3>Scalar Data Object</h3>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac029.gif" ALT="Figure AAC029 not displayed."><BR></B><BR>
+<P><A NAME="Header_8" HREF="#ToC_8"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0000 =
+</TD><TD>Scalar data object (Group 1)
+</TD></TR><TR VALIGN="TOP"><TD>1001 =
+</TD><TD>Scalar data object (Group 2)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present because one or more of the following is true:
+<UL>
+<P><LI>
+Object is named and external.
+<P><LI>
+Object has initial value (not system default).
+<P><LI>
+Object has based or defined addressability.
+<P><LI>
+Object has direct addressability with explicit position.
+<P><LI>
+Object is an array.
+</UL>
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-7
+</TD><TD><P>Addressability type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Direct static
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Direct automatic
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Based
+</TD></TR><TR VALIGN="TOP"><TD>011 =
+</TD><TD>Defined
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Parameter
+</TD></TR><TR VALIGN="TOP"><TD>101 =
+</TD><TD>Based on PCO (process communication object) space pointer
+</TD></TR></TABLE>
+<P>
+All others reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>8
+</TD><TD><P>Optimization of value
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Normal value (can be optimized across several instructions)
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Abnormal value (cannot be optimized for more than a single reference
+because the value may be modified in a manner not detectable
+when the program is created).
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>9-11
+</TD><TD><P>Boundary
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>None
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Multiple of 2
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Multiple of 4
+</TD></TR><TR VALIGN="TOP"><TD>011 =
+</TD><TD>Multiple of 8
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Multiple of 16
+</TD></TR></TABLE>
+<P>
+101-111 = Reserved
+<P>
+Boundary is assumed to be specified for indirectly addressed program
+objects.  A higher boundary alignment can improve performance when the
+program object is referenced.
+</TD></TR><TR VALIGN="TOP"><TD><P>12
+</TD><TD><P>System default initial value
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not use the system default initial value.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Use the system default initial value.
+<UL>
+<P><LI>
+Numeric zero value for binary, packed, zoned, or floating-point
+<P><LI>
+Blank character value (hex 40) for character strings
+</UL>
+</TD></TR></TABLE>
+<P>
+</TD></TR><TR VALIGN="TOP"><TD><P>13-15
+</TD><TD><P>Scalar type (Group 1)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Signed binary
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Floating-point
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Zoned decimal
+</TD></TR><TR VALIGN="TOP"><TD>011 =
+</TD><TD>Packed decimal
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Character string
+</TD></TR><TR VALIGN="TOP"><TD>101-111 =
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>13-15
+</TD><TD><P>Scalar type (Group 2)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Unsigned binary
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The Group 2 scalar data type bits correspond to the Group 1 scalar data
+type in that corresponding types have the same values ( e.g. Signed
+binary and Unsigned binary = 0000 ).
+</TD></TR></TABLE>
+<P>
+001-111 = Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset or scalar length
+<UL>
+<P><LI>
+If bit 4 of the ODV is 1 (OES is present), then bits 16-31 specify the
+offset to the OES entry for this object.
+<P><LI>
+If bit 4 of the ODV is 0 (OES not present), bits 16-31 represent the
+scalar length of the object as follows:
+<P>
+If signed or unsigned binary, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>Byte Length
+<PRE>
+Hex 0002 = 2
+Hex 0004 = 4
+All others reserved
+</PRE></TD></TR></TABLE>If floating-point, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bits 16-31
+</TD><TD><P>Precision in bytes
+<PRE>
+Hex 0004 = 4
+Hex 0008 = 8
+All others reserved
+</PRE></TD></TR></TABLE>If zoned or packed decimal, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-23
+</TD><TD><P>Digits (D) to the right of assumed decimal point, where 0
+&lt;&#61;D&lt;&#61;T
+</TD></TR><TR VALIGN="TOP"><TD><P>24-31
+</TD><TD><P>Total digits (T) in field, where 1 &lt;&#61;T&lt;&#61; 31
+</TD></TR></TABLE>
+If character string scalar, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>Bits 16-31
+</TD><TD><P>String length(L), where 1 &lt;&#61;L&lt;&#61; 32,767
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Strings whose length is greater than 32K are specified using the OES
+Scalar Length appendage to indicate that Extender Scalar length is the
+format in the OES Header Extension.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+</UL>
+</TD></TR></TABLE>
+<P><A NAME="Header_9" HREF="#ToC_9"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_10">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Name and external
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Object is not named and is not externally accessible.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Object is named and is externally accessible.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Scalar length present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Length is present (required).
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2
+</TD><TD><P>Array information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Array information is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Array information is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>3
+</TD><TD><P>Base present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Base is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Base is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>Position present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Position is not present (required
+if boundary is specified).
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Position is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Initial value present in OES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Initial value is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is present in OES.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>Replications present in OES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No replications in initial value.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Replications in initial value (bit 5 = 1).
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>OES Header Extension present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES Header Extension is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES Header Extension is present in OES.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_11">OES Header Extension Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Extended Scalar Length
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Extended scalar length is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Extended scalar length is present in Scalar Length appendage.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2
+</TD><TD><P>Array bounds information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Array bounds information is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Array bounds information is appended to Array appendage.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The Array Information Present bit must be set in the OES header in order
+to specify this bit.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>3-7
+</TD><TD><P>Reserved
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_12">Name Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Length (L) of name, where 1 &lt;&#61;L&lt;&#61; 32
+</TD></TR><TR VALIGN="TOP"><TD><P>2-L
+</TD><TD><P>L characters of symbolic name
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Names of external data objects must be unique.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_13">Scalar Length Appendage</A></H4>
+<P>
+If Extended Length is not specified in the OES header extension then,
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1
+</TD><TD><P>Scalar length
+<P>
+If signed or unsigned binary, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-15
+</TD><TD><P>Byte Length
+<PRE>
+Hex 0002 = 2
+Hex 0004 = 4
+All others reserved
+</PRE></TD></TR></TABLE>If zoned or packed decimal, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Byte</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Digits (D) to the right of assumed decimal point, where 0
+&lt;&#61;D&lt;&#61; T
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Total digits (T) in field, where 1 &lt;&#61;T&lt;&#61; 31
+</TD></TR></TABLE>
+If floating-point, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>Byte</B>
+</TD><TD><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>Precision
+<PRE>
+Hex 0004 = 4
+Hex 0008 = 8
+All others reserved
+</PRE></TD></TR></TABLE>If character string scalar, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>Byte</B>
+</TD><TD><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>String length (L),
+1 &lt;&#61;L&lt;&#61; 32,767
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P>
+If Extended Length is specified in the OES header extension then,
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Length (L) of long character string, where 1 &lt;&#61;L&lt;&#61;
+16,776,191, except for external strings, where 1 &lt;&#61;L&lt;&#61; 65,535.
+<P>
+On prior versions of the machine, longer external strings could be
+defined, but the apparent length when used (via data pointer reference)
+was L modulo 65,536.
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_14">Array Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Number (N) of elements in the array, where 1 &lt;&#61;N&lt;&#61;
+16,776,191
+</TD></TR><TR VALIGN="TOP"><TD><P>4-5
+</TD><TD><P>Array element offset
+<P>
+If the array element offset attribute is specified (bytes 4-5 are
+nonzero), this field specifies the offset between initial bytes of the
+elements of a defined on array.
+</TD></TR><TR VALIGN="TOP"><TD><P>6-9
+</TD><TD><P>Lower bound of array (LB),
+</TD></TR><TR VALIGN="TOP"><TD><P>10-13
+</TD><TD><P>Upper bound of array (UB),
+<P>
+The lower bound must be less than or equal to the upper bound.  The
+number of elements in the array is equal to the (UB+1-LB) which must be
+less than or equal to 16,776,191.
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The Lower and Upper bound information is only present if the Array
+Bounds bit is set in the OES extended header.  Arrays of scalar
+character data objects are only allowed for character data elements
+whose length is less than or equal to 32,767 characters.
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_15">Base Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>ODT reference for:
+<UL>
+<P><LI>
+<P><LI>
+</UL>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_16">Position Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-3
+</TD><TD>Position value for:
+<UL>
+<P><LI>
+Direct if not defaulting to next available byte or if no boundary
+defined
+<P><LI>
+Based if not 1
+<P><LI>
+Defined if not 1
+</UL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Position value is in terms of bytes with the first byte in position 1.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_17">Initial Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-L:
+</TD><TD><P>Initial value in format and length as determined by scalar type
+</TD></TR></TABLE>
+<P>
+In the initial value appendage, a noncharacter string scalar must have
+an initial value of the proper size and format (for example, 2-byte
+binary value for a 2-byte binary scalar).
+<P>
+For arrays and character strings, if the replication bit in the OES is
+binary 1, the initial value portion must consist of one or more three
+field components of the following form:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>2 bytes:
+</TD><TD><P>Number of replications of Associated Value
+</TD></TR><TR VALIGN="TOP"><TD><P>2 bytes:
+</TD><TD><P>Length (L) of Associated Value
+</TD></TR><TR VALIGN="TOP"><TD><P>L bytes:
+</TD><TD><P>Associated Value
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+When the above form is used for specifying the initial values for
+arrays,  the number in the replications field represents the number of
+array elements to be given the Associated Value.
+</TD></TR></TABLE>
+<P>
+The entire object may be initialized contiguously ignoring array element
+boundaries and byte by byte using the initial value form below.
+<P>
+If the replication bit for an array or a character string whose length
+is greater than or equal to 32K bytes is binary 0, the initial value
+appendage must have the following form:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>4 bytes:
+</TD><TD><P>Length of initial value (less than or equal to the total number of
+bytes in the array or long character string)
+</TD></TR><TR VALIGN="TOP"><TD><P>L bytes:
+</TD><TD><P>The initial value of proper size and format to specify the initial
+values for each element of the array that is to be initialized
+</TD></TR></TABLE>
+If the replication bit for a character string whose length is less than
+32K bytes is binary 0, the initial value appendage must be a byte string
+with a length equal to the object length.
+<P><B>Notes: </B><OL>
+<P><LI>
+Scalar data objects with the external attribute must be mapped (direct
+or defined on direct) onto the static space.  The names must be unique
+within the program template.
+<P><LI>
+When used for address resolution, the name of an external data object is
+implicitly padded to 32 bytes by extending on the right with blank
+characters (hex 40).
+<P><LI>
+See <A class="content" HREF="#HDRDOBJNT">"Data Object Notes"</A> for general notes
+concerning data objects.
+</OL>
+<P><A NAME="Header_18" HREF="#ToC_18"></A>
+<h3>Pointer Data Objects</h3>
+<P>
+<p>Attribute Combinations
+<P>
+<P><BR>
+<B><BR><IMG src="images/aac027.gif" ALT="Figure AAC027 not displayed."><BR></B><BR>
+<P><A NAME="Header_19" HREF="#ToC_19"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0001 =
+</TD><TD>Pointer data object
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present because the object has initial value, base, position,
+or the object is an array.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-7
+</TD><TD><P>Addressability type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Direct static
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Direct automatic
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Based
+</TD></TR><TR VALIGN="TOP"><TD>011 =
+</TD><TD>Defined
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Parameter
+</TD></TR><TR VALIGN="TOP"><TD>101 =
+</TD><TD>Based on PCO (process communication object) space pointer
+</TD></TR></TABLE>
+<P>
+All others reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>8
+</TD><TD><P>Optimization of value
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Normal value (can be optimized across several instructions)
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Abnormal value (cannot be optimized for more than a single reference
+because the value may be modified in a manner not detectable
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>9-11
+</TD><TD><P>Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>12-15
+</TD><TD><P>Pointer type (ignored unless initial value)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0001 =
+</TD><TD>Space pointer
+</TD></TR><TR VALIGN="TOP"><TD>0010 =
+</TD><TD>System pointer
+</TD></TR><TR VALIGN="TOP"><TD>0011 =
+</TD><TD>Data pointer
+</TD></TR><TR VALIGN="TOP"><TD>0100 =
+</TD><TD>Instruction pointer
+</TD></TR></TABLE>
+<P>
+All others reserved.  Other pointer types cannot have an initial value.
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset
+<UL>
+<P><LI>
+If bit 4 of the ODV contains a binary 0, no OES is present, and bits
+16-31 contain a value of binary 0.
+<P><LI>
+If bit 4 of the ODV contains a binary 1, then an OES header is present
+in the OES at the offset specified in bits 16-31.
+</UL>
+</TD></TR></TABLE>
+<P><A NAME="Header_20" HREF="#ToC_20"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_21">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Initial value appendage modifier
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Instruction pointer initial value has the basic format.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Instruction pointer initial value has the extended format.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2
+</TD><TD><P>Array information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Array information is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Array information is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>3
+</TD><TD><P>Base Present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Base is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Base is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>Position present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Position is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Position is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Initial value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Initial value not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is present.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>OES Header Extension present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES Header Extension is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES Header Extension is present in OES.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_22">OES Header Extension Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>2
+</TD><TD><P>Array bounds information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Array bounds information is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Array bounds information is appended to Array appendage.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The Array Information Present bit must be set in the OES header
+in order to specify this bit.
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>3
+</TD><TD><P>Optimization Appendage present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Optimization Appendage is not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Optimization Appendage is present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4-7
+</TD><TD><P>Reserved
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_23">Array Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Number (N) of elements in the array, where 1 &lt;&#61;N&lt;&#61;
+1,000,000
+</TD></TR><TR VALIGN="TOP"><TD><P>4-5
+</TD><TD><P>Array element offset
+<P>
+If the array element offset attribute is specified (bytes 4-5 are
+nonzero), this field specifies the offset between initial bytes of the
+pointers of a defined array.  Value must be a multiple of 16.
+</TD></TR><TR VALIGN="TOP"><TD><P>6-9
+</TD><TD><P>Lower bound of array (LB), where LB is a signed 4-byte integer,
+minimum value is -2,147,483,648.
+</TD></TR><TR VALIGN="TOP"><TD><P>10-13
+</TD><TD><P>Upper bound of array (UB), where UB is a signed 4-byte integer,
+maximum value is 2,147,483,647.
+<P>
+The lower bound must be less than or equal to the upper bound.  The
+number of elements in the array is equal to the (UB+1-LB).
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The Lower and Upper bound information is present only when the Array
+Bounds bit is set in the OES Header Extension.
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_24">Base Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>ODT reference for:
+<UL>
+<P><LI>
+Pointer data object or space pointer machine object, if based.
+<P><LI>
+Data object or pointer object if defined.  Resulting location must be a
+multiple of 16.
+</UL>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_25">Position Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-3:
+</TD><TD>Position value for:
+<UL>
+<P><LI>
+Direct if not defaulting to next available
+byte (must be a multiple of 16)
+<P><LI>
+Based if not 1
+<P><LI>
+Defined if not 1
+</UL>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_26">Initial Value Appendage</A></H4>
+<P>
+If ODV bits 12-15 indicate instruction pointer:
+<P>
+If the initial value appendage modifier equals 0, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>Instruction stream reference; indirect
+or direct reference to an instruction number
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 1-15 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 1-15 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+</TD></TR></TABLE>
+If the initial value appendage modifier equals 1, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-2:
+</TD><TD>Instruction stream reference; indirect or direct reference to an
+instruction number
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 8-23 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 8-23 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+<P>
+Bits 1-7 are reserved (binary 0).
+</TD></TR></TABLE>
+<P>
+If ODV bits 12-15 indicate data pointer:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>Number of names in name list.  One or two names may be specified as
+the initial value.
+<UL>
+<P><LI>
+If one name is specified, it must be in the name specification of the
+data object in the following format:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of names (value of 1)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Scalar data object name length (N)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Scalar data object name string,
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(N)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">
+where 1 &lt;&#61; N &lt;&#61; 32
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P><LI>
+If two names are specified, the name of a program to be searched and the
+name of the external data object are specified as follows:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of names (value of 2)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Program type (hex 02)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Program subtype
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Program name length (M)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Program name string, where
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(M)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">
+1 &lt;&#61; M &lt;&#61; 30
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Scalar data object name length (P)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Scalar data object name string
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(P)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">
+where 1 &lt;&#61; P &lt;&#61; 32
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+</UL>
+</TD></TR></TABLE>
+<P>
+If ODV bits 12-15 indicate space pointer:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1:
+</TD><TD><P>ODT number of a data object or pointer object that is direct or
+defined on direct.
+</TD></TR></TABLE>
+If ODV bits 12-15 indicate system pointer, one or two names may be
+specified as the initial value.
+<UL>
+<P><LI>
+If one name is specified, it must be the name specification of the
+object in the following format:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of names (value of 1)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object type code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object subtype code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Minimum authority code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object name length (N)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object name string, where 1 &lt;&#61; N &lt;&#61; 30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(N)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P><LI>
+If two names are specified, the entry must be a context name and an
+object name in the following format:
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of names (value of 2)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Context type code (value of hex 04)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Context subtype code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Context name length (M)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Context name string, where 1 &lt;&#61; M &lt;&#61; 30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(M)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object type code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object subtype code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Minimum authority code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object name length (P)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Object name string, where 1 &lt;&#61; P &lt;&#61; 30
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Char(P)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+</UL>
+<P>
+<P><B>Notes: </B><OL>
+<P><LI>
+The object type codes that may be specified for system pointer initial
+values are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>Code (Hex)</B>
+</TD><TD><B>Object Type</B>
+</TD></TR><TR VALIGN="TOP"><TD><B></B>
+</TD><TD><B></B>
+</TD></TR><TR VALIGN="TOP"><TD>01
+</TD><TD>Access group
+</TD></TR><TR VALIGN="TOP"><TD>02
+</TD><TD>Program
+</TD></TR><TR VALIGN="TOP"><TD>03
+</TD><TD>Module
+</TD></TR><TR VALIGN="TOP"><TD>04
+</TD><TD>Context
+</TD></TR><TR VALIGN="TOP"><TD>06
+</TD><TD>Byte string space
+</TD></TR><TR VALIGN="TOP"><TD>07
+</TD><TD>Journal space
+</TD></TR><TR VALIGN="TOP"><TD>08
+</TD><TD>User profile
+</TD></TR><TR VALIGN="TOP"><TD>09
+</TD><TD>Journal port
+</TD></TR><TR VALIGN="TOP"><TD>0A
+</TD><TD>Queue
+</TD></TR><TR VALIGN="TOP"><TD>0B
+</TD><TD>Data space
+</TD></TR><TR VALIGN="TOP"><TD>0C
+</TD><TD>Data space index
+</TD></TR><TR VALIGN="TOP"><TD>0D
+</TD><TD>Cursor
+</TD></TR><TR VALIGN="TOP"><TD>0E
+</TD><TD>Index
+</TD></TR><TR VALIGN="TOP"><TD>0F
+</TD><TD>Commit block
+</TD></TR><TR VALIGN="TOP"><TD>10
+</TD><TD>Logical unit description
+</TD></TR><TR VALIGN="TOP"><TD>11
+</TD><TD>Network description
+</TD></TR><TR VALIGN="TOP"><TD>12
+</TD><TD>Controller description
+</TD></TR><TR VALIGN="TOP"><TD>13
+</TD><TD>Dump space
+</TD></TR><TR VALIGN="TOP"><TD>14
+</TD><TD>Class-of-service description
+</TD></TR><TR VALIGN="TOP"><TD>15
+</TD><TD>Mode description
+</TD></TR><TR VALIGN="TOP"><TD>16
+</TD><TD>Network interface description
+</TD></TR><TR VALIGN="TOP"><TD>17
+</TD><TD>Connection list
+</TD></TR><TR VALIGN="TOP"><TD>18
+</TD><TD>Queue space
+</TD></TR><TR VALIGN="TOP"><TD>19
+</TD><TD>Space
+</TD></TR><TR VALIGN="TOP"><TD>1A
+</TD><TD>Process control space
+</TD></TR><TR VALIGN="TOP"><TD>1B
+</TD><TD>Authority list
+</TD></TR><TR VALIGN="TOP"><TD>1C
+</TD><TD>Dictionary
+</TD></TR><TR VALIGN="TOP"><TD>1D
+</TD><TD>Auxiliary server
+</TD></TR><TR VALIGN="TOP"><TD>1E
+</TD><TD>Byte stream file
+</TD></TR></TABLE>
+All other codes are reserved and, if specified, cause an exception to be
+signaled.
+<P><LI>
+The minimum authority codes that may be specified for system pointer
+initial values are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>Bit</B>
+</TD><TD><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><B></B>
+</TD><TD><B></B>
+</TD></TR><TR VALIGN="TOP"><TD>0
+</TD><TD>Object control
+</TD></TR><TR VALIGN="TOP"><TD>1
+</TD><TD>Object management
+</TD></TR><TR VALIGN="TOP"><TD>2
+</TD><TD>Authorized pointer
+</TD></TR><TR VALIGN="TOP"><TD>3
+</TD><TD>Space authority
+</TD></TR><TR VALIGN="TOP"><TD>4
+</TD><TD>Retrieve
+</TD></TR><TR VALIGN="TOP"><TD>5
+</TD><TD>Insert
+</TD></TR><TR VALIGN="TOP"><TD>6
+</TD><TD>Delete
+</TD></TR><TR VALIGN="TOP"><TD>7
+</TD><TD>Update
+</TD></TR><TR VALIGN="TOP"><TD>8
+</TD><TD>Ownership
+</TD></TR><TR VALIGN="TOP"><TD>9
+</TD><TD>Excluded
+</TD></TR><TR VALIGN="TOP"><TD>10
+</TD><TD>Authority list management
+</TD></TR><TR VALIGN="TOP"><TD>11
+</TD><TD>Execute
+</TD></TR><TR VALIGN="TOP"><TD>12
+</TD><TD>Alter
+</TD></TR><TR VALIGN="TOP"><TD>13
+</TD><TD>Reference
+</TD></TR><TR VALIGN="TOP"><TD>14-15
+</TD><TD>Reserved (binary 0)
+</TD></TR></TABLE>
+<P>
+A value of binary 1 indicates that the object must have the specified
+authority in order for resolution to be performed.  Zero or more
+authority bits may be specified, and if any are specified, all must be
+satisfied.
+<P>
+Reserved bits must have a value of binary 0.
+<P>
+A pointer with based addressability need not have a base specified.  If
+a base is specified, the pointer can, in turn, be based on another
+pointer.  An exception is signaled if the final pointer in the chain is
+not direct, is not defined on a direct data object, is not a parameter,
+or is not defined on a parameter.  An exception is signaled if a base
+pointer in the chain is based on a pointer that was previously specified
+in the chain of based pointers.
+<P><LI>
+A static space pointer may not be initialized to an automatic scalar
+data or pointer object.
+<P>
+The last initialized pointer data object appearing in the ODT for a
+given storage location overlays all previous pointer object initial
+values for that location.
+<P><LI>
+A pointer data object defining an array may not be initialized.  See
+<A class="content" HREF="#HDRDOBJNT">"Data Object Notes"</A>.
+<P><LI>
+When the initial value specified for a system pointer or a data pointer
+is to be used for address resolution, the name string entry is
+implicitly extended to the standard length by padding with blank
+characters (hex 40).  The standard length for system object names is 30
+bytes and for external scalar data objects is 32 bytes.
+<P><LI>
+See <A class="content" HREF="#HDRDOBJNT">"Data Object Notes"</A> for general
+notes concerning data objects.
+</OL>
+<P><H4><A NAME="HDRDOBJNT">Data Object Notes</A></H4>
+<P>
+The following notes apply to all declarations of data objects, scalars,
+and pointers.  The term <I>data object</I> applies to either scalar
+data objects or pointer data objects unless explicitly qualified.
+<P><B>Notes: </B><OL>
+<P><LI>
+Any specification of position uses position 1 as the first position in
+storage.  A position value of 0 is invalid.
+<P><LI>
+Data objects that are defined on other data objects must follow (not
+necessarily immediately) their associated bases in the ODT.  If any data
+objects in a chain of defined-on objects have an initial value, none of
+the objects in the chain can have based or parameter addressability, and
+the first object in the chain must be direct on the static or automatic
+space.  An initial value associated with a defined data object overlays
+all initial values associated with data objects that preceded it in the
+chain.  The portion of a scalar data object initial value that overlays
+any part of an initialized pointer data object is ignored.
+<P>
+If more than one data object initializes the same byte (or bytes) in a
+space, the value associated with the data object appearing last in the
+ODT overlays the others.
+<P><LI>
+For data objects with the direct mapping type but no explicit position,
+provides default position (position in
+the static or automatic allocation) ODT information.  ODT entries for
+defaulting direct objects must appear in the order desired.
+Declarations for other program objects can be interleaved with these
+defaulting direct data and pointer objects.
+<P>
+Two examples follow:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><B>These ODT entries</B>
+</TD><TD><B>Would be treated as these:</B>
+</TD></TR><TR VALIGN="TOP"><TD><B></B>
+</TD><TD><B></B>
+</TD></TR><TR VALIGN="TOP"><TD>A Char(2) Direct Static
+</TD><TD>A Char(2) Direct Static Pos(1)
+</TD></TR><TR VALIGN="TOP"><TD>B Pkd(3,3) Direct Static
+</TD><TD>B Pkd(3,3) Direct Static Pos(3)
+</TD></TR><TR VALIGN="TOP"><TD>
+</TD><TD>
+</TD></TR><TR VALIGN="TOP"><TD>D Pointer Direct Static
+</TD><TD>D Pointer Direct Static Pos(17).
+</TD></TR><TR VALIGN="TOP"><TD>
+</TD><TD>
+</TD></TR><TR VALIGN="TOP"><TD><B>These ODT entries</B>
+</TD><TD><B>Would be treated as these:</B>
+</TD></TR><TR VALIGN="TOP"><TD><B></B>
+</TD><TD><B></B>
+</TD></TR><TR VALIGN="TOP"><TD>A Char(4) Direct Static
+</TD><TD>A Char(4) Direct Static Pos(1)
+</TD></TR><TR VALIGN="TOP"><TD>B Char(4) Direct Static Pos(20)
+</TD><TD>B Char(4) Direct Static Pos(20)
+</TD></TR><TR VALIGN="TOP"><TD>C Char(4) Direct Static
+</TD><TD>C Char(4) Direct Static Pos(24)
+</TD></TR><TR VALIGN="TOP"><TD>D Char(4) Direct Static Pos(10)
+</TD><TD>D Char(4) Direct Static Pos(10)
+</TD></TR><TR VALIGN="TOP"><TD>E Char(2) Defined B
+</TD><TD>E Char(2) Direct Static Pos(20)
+</TD></TR><TR VALIGN="TOP"><TD>F Char(3) Direct Static
+</TD><TD>F Char(3) Direct Static Pos(28).
+</TD></TR></TABLE>
+</OL>
+<P>
+The default value for the position depends on whether the boundary
+attribute is specified.  Pointer objects always have a default boundary
+attribute that is a multiple of 16.
+<P>
+A boundary specification for a direct data object causes the data object
+to be located at the next available position having an offset value that
+is a multiple of the boundary specified.  If boundary is specified, a
+value may not be specified for the position attribute.  The boundary
+specification for a direct pointer object is always a multiple of 16.  A
+position specified for a direct pointer object must be a multiple of 16.
+<P>
+If neither position nor boundary is specified for a direct data object,
+the object is located at the next available position without regard to
+boundary alignment.
+<P>
+The size for the static and automatic spaces can also be defaulted if
+the size of static (automatic) storage entry in the program template is
+0.  The value used is such that the space is large enough to contain all
+data objects with defaulted and explicit direct mapping.  An exception
+is signaled if a size that is insufficient to contain defaulted and
+direct mapped data objects is specified.
+<P>
+To summarize, the rules related to positioning data objects and setting
+of the size through defaulted directed data objects are:
+<UL>
+<P><LI>
+A defined-on data object may extend beyond the end of the data object it
+is defined on.  It may not, however, extend beyond the total allocated
+space to which it maps.
+<P><LI>
+Explicit positioning of a data object may be intermixed with implicit
+positioning.  That is, for any ODT, a specification of the position for
+a data object does not preclude a succeeding data object requiring a
+default position.
+<P><LI>
+A defaulted scalar data object is assigned to the highest assigned
+position for a direct data object plus 1.  A defaulted pointer data
+object is assigned to the next available 16-byte aligned position beyond
+the highest assigned position.  It is possible, through explicit
+positioning, to create a gap in a space.  This gap is not filled in
+through default positioning of a following data object or pointer
+object.  The defaulted object follows the explicitly positioned data
+object.
+</UL>
+<P><A NAME="Header_28" HREF="#ToC_28"></A>
+<h3>Entry Point</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac030.gif" ALT="Figure AAC030 not displayed."><BR></B><BR>
+<P><A NAME="Header_29" HREF="#ToC_29"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0010 =
+</TD><TD>Entry point
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present because of entry point parameters or the instruction
+stream breakpoint
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-14
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>15
+</TD><TD><P>Scope
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Internal
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>External
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset or entry point value OES offset if OES present (bit 4=1).
+Entry point value equals the instruction number if no entry point
+parameters are listed
+</TD></TR></TABLE>
+<P><A NAME="Header_30" HREF="#ToC_30"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_31">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Instruction stream breakpoint
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Appendage not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Instruction stream breakpoint
+appendage present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>1-2
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>3
+</TD><TD><P>Parameter information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Parameter information not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Parameter information is present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4-6
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Initial value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is required
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_32">Instruction Stream Breakpoint Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1
+</TD><TD>Instruction number for instruction stream breakpoint identifies
+first instruction of half of program that is not executed in the normal
+path
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_33">Parameter Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1
+</TD><TD>ODT reference for operand list describing entry point parameters
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_34">Initial Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1
+</TD><TD>Instruction number for entry point
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_35">Notes on Entry Points</A></H4>
+<P><B>Notes: </B><OL>
+<P><LI>
+Only one external entry point may be defined.
+<P><LI>
+If no external entry point is declared, the first instruction is assumed
+to be the external entry point with no parameters.
+<P><LI>
+If external parameters are declared in a program, an external entry
+point must be declared.  If one is not declared, an ODT relational error
+exception is signaled
+when the program is created.
+<P><LI>
+An instruction stream breakpoint can only be defined with an external
+entry point.  The instruction number specified must be greater than that
+of the external entry point.
+<P><LI>
+An internal entry point and an external entry point cannot reference the
+same instruction.
+<P><LI>
+More than one internal entry point can reference the same instruction.
+<P><LI>
+An internal entry point can only reference an internal parameter list;
+likewise, an external entry point can only reference an external
+parameter list.
+</OL>
+<P><A NAME="Header_36" HREF="#ToC_36"></A>
+<h3>Branch Point</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac031.gif" ALT="Figure AAC031 not displayed."><BR></B><BR>
+<P><A NAME="Header_37" HREF="#ToC_37"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0011 =
+</TD><TD>Branch point
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is never present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-15
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>Value
+<P>
+Instruction number (N) of branch point, where 1 &lt;&#61;N&lt;&#61; 65,535.
+</TD></TR></TABLE>
+<P><A NAME="Header_38" HREF="#ToC_38"></A>
+<h3>OES Format</h3>
+<P>
+No OES is needed for branch points.
+<P><A NAME="Header_39" HREF="#ToC_39"></A>
+<h3>Instruction Definition List</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac032.gif" ALT="Figure AAC032 not displayed."><BR></B><BR>
+<P><A NAME="Header_40" HREF="#ToC_40"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0100 =
+</TD><TD>Instruction definition list
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present (always present to contain the list information)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-15
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset
+</TD></TR></TABLE>
+<P><A NAME="Header_41" HREF="#ToC_41"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_42">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Initial value appendage modifier
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Initial value instruction references have the basic format.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value instruction references have the extended format.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2-6
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Initial value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is required
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_43">Initial Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Number (N) of list elements, where
+1 &lt;&#61;N&lt;&#61; 255
+</TD></TR></TABLE>
+<P>
+If the initial value appendage modifier equals 0, the basic format:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>2-3
+</TD><TD><P>Instruction reference element 1
+</TD></TR></TABLE>
+<PRE>
+&#46;
+&#46;
+&#46;
+</PRE><TABLE CELLPADDING="3"><TR VALIGN="TOP"><TD>X-X+1
+</TD><TD>Instruction reference element N
+</TD></TR></TABLE>
+If the initial value appendage modifier equals 1, the basic format:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>2-4
+</TD><TD>Instruction reference element 1
+</TD></TR></TABLE>
+<PRE>
+&#46;
+&#46;
+&#46;
+</PRE><TABLE CELLPADDING="3"><TR VALIGN="TOP"><TD>X-X+1
+</TD><TD>Instruction reference element N
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+An instruction reference element has the following formats:
+</TD></TR></TABLE>
+<P>
+If the initial value appendage modifier equals 0, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1:
+</TD><TD><P>Instruction stream reference; indirect
+or direct reference to an instruction number
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 1-15 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 1-15 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+</TD></TR></TABLE>
+If the initial value appendage modifier equals 1, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-2:
+</TD><TD><P>Instruction stream reference; indirect or direct reference to an
+instruction number
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 8-23 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 8-23 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+Bits 1-7 are reserved (binary 0).
+</TD></TR></TABLE>
+<P><A NAME="Header_44" HREF="#ToC_44"></A>
+<h3>Operand List</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac033.gif" ALT="Figure AAC033 not displayed."><BR></B><BR>
+<P><A NAME="Header_45" HREF="#ToC_45"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0101 =
+</TD><TD>Operand list
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is always present because it contains the operand list entries.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Argument list
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Not used as argument list
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Argument list (bits 6-7 must be binary 0)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6-7
+</TD><TD><P>Parameter list (if not binary 0, bit 5 must be binary 0)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>Not parameter list
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Reserved
+</TD></TR><TR VALIGN="TOP"><TD>10 =
+</TD><TD>Internal parameter list
+</TD></TR><TR VALIGN="TOP"><TD>11 =
+</TD><TD>External parameter list
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>8
+</TD><TD><P>Length attribute
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Variable-length
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Fixed-length
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>9-15
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset
+<P>
+OES offset = OES is always present
+</TD></TR></TABLE>
+<P><A NAME="Header_46" HREF="#ToC_46"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_47">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-6
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Initial value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is required
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_48">Initial Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Number (N) of list elements, where 1 &lt;&#61;N&lt;&#61; 255
+<UL>
+<P><LI>
+For fixed-length lists (argument or parameter)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Number (N) of elements, where 1 &lt;&#61;N&lt;&#61; 255
+</TD></TR><TR VALIGN="TOP"><TD><P>2-3
+</TD><TD><P>Reserved (binary 0)
+</TD></TR></TABLE>
+<P><LI>
+For variable-length lists
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Maximum number (N) of elements that the list can contain,
+where 1 &lt;&#61;N&lt;&#61; 255
+</TD></TR><TR VALIGN="TOP"><TD><P>2-3
+</TD><TD><P>For argument lists, the initial number (M) of elements to be passed
+on a Call External or Transfer Control instruction, where 0
+&lt;&#61;M&lt;&#61; N
+<P>
+For parameter lists, the minimum number (M) of elements to be received
+on entry, where 0 &lt;&#61;M&lt;&#61; N
+</TD></TR></TABLE>
+</UL>
+</TD></TR><TR VALIGN="TOP"><TD><P>4-5
+</TD><TD><P>ODT reference 1
+<PRE>
+&#46;
+&#46;
+&#46;
+</PRE></TD></TR></TABLE><TABLE CELLPADDING="3"><TR VALIGN="TOP"><TD><P>X-X+1
+</TD><TD><P>ODT reference N
+<P>
+N elements are required.
+</TD></TR></TABLE>
+<P><B>Notes: </B><OL>
+<P><LI>
+Operand list entries must be either scalar data objects or pointer data
+objects.
+<P><LI>
+An operand list cannot be both an argument list and a parameter list.
+<P><LI>
+Argument lists referenced on Call Internal instructions must be fixed
+length.
+<P><LI>
+Parameter lists referenced by internal entry points must be fixed-length
+internal parameter lists.
+<P><LI>
+Internal parameter lists and argument lists used on internal calls can
+only be fixed-length.
+<P><LI>
+A program may have only one external parameter list.
+<P><LI>
+The same object cannot appear in more than one parameter list (internal
+or external) in a program template.
+<P><LI>
+All the ODT entries for the elements of an operand list must appear
+before the ODT entry for that operand list.
+<P><LI>
+Variable-length lists must define ODT references for every entry in the
+list.
+<P><LI>
+Objects referenced in a parameter list must have the parameter
+attribute.
+</OL>
+<P><A NAME="Header_49" HREF="#ToC_49"></A>
+<h3>Constant Data Object</h3>
+<P>
+<p>Attribute Combination
+<P><BR>
+<B><BR><IMG src="images/aac034.gif" ALT="Figure AAC034 not displayed."><BR></B><BR>
+<P><A NAME="Header_50" HREF="#ToC_50"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0110 =
+</TD><TD>Constant data object
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is not present (value in bits 8-15).
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present because the value does not fit in bits 8-15, and the
+system default initial value is not used.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No system default initial value
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Use system default initial value
+<UL>
+<P><LI>
+Numeric 0 for binary, packed, zoned, or floating-point
+<P><LI>
+Blank character value (hex 40) for character
+<P><LI>
+Hexadecimal zeros (hex 00) for bit and first two bytes of varying length
+character strings (length field)
+</UL>
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>Value in bits 8-15
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Value not in 8-15 in OES, or system default value is to be used.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Value to be propogated in each byte is in bits 8-15, and scalar type
+is character.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>8-15
+</TD><TD><P>Value specification
+<UL>
+<P><LI>
+If bit 6 is 1, then this byte contains a value to be given to each byte
+in the constant.
+<P><LI>
+If bit 6 is 0, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>8-10
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>11-15
+</TD><TD><P>Scalar type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00000 =
+</TD><TD>Binary
+</TD></TR><TR VALIGN="TOP"><TD>00001 =
+</TD><TD>Floating-point
+</TD></TR><TR VALIGN="TOP"><TD>00010 =
+</TD><TD>Zoned decimal
+</TD></TR><TR VALIGN="TOP"><TD>00011 =
+</TD><TD>Packed decimal
+</TD></TR><TR VALIGN="TOP"><TD>00100 =
+</TD><TD>Character
+</TD></TR><TR VALIGN="TOP"><TD>00101-01001 =
+</TD><TD>Reserved
+</TD></TR><TR VALIGN="TOP"><TD>01010 =
+</TD><TD>Unsigned binary
+</TD></TR><TR VALIGN="TOP"><TD>01011-01111 =
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+</UL>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset or scalar length
+<UL>
+<P><LI>
+If bit 4 of the ODV is 1 (OES is present), then bits 16-31 represent the
+offset to the OES entry for this object.
+<P><LI>
+If bit 4 of the ODV is 0 (OES is not present), bits 16-31 represent the
+scalar length of the object.
+<P>
+If signed or unsigned binary, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>Byte Length
+<PRE>
+Hex 0002 = 2
+Hex 0004 = 4
+All others reserved
+</PRE></TD></TR></TABLE><P>If floating-point, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bits 16-31:
+</TD><TD>Precision
+<PRE>
+Hex 0004 = 4
+Hex 0008 = 8
+All others reserved
+</PRE></TD></TR></TABLE><P>If zoned or packed decimal, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-23
+</TD><TD><P>Digits (D) to the right of assumed decimal point,
+where 0 &lt;&#61;D&lt;&#61;T
+</TD></TR><TR VALIGN="TOP"><TD><P>24-31
+</TD><TD><P>Total digits (T) in field, where 1 &lt;&#61;T&lt;&#61; 31
+</TD></TR></TABLE>
+<P>
+If character string scalar, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>Bits 16-31
+</TD><TD><P>String length(L), where 1 &lt;&#61;L&lt;&#61; 32,767
+</TD></TR></TABLE>
+</UL>
+</TD></TR></TABLE>
+<P><A NAME="Header_51" HREF="#ToC_51"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_52">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Length information present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Scalar length information (required if there is an OES)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2-5
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>Value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Value is present (required if there is an OES)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Replications present in OES
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No replications in initial value
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Replications in initial value (bit 6 = 1)
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_53">Length Information Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Scalar length
+<UL>
+<P><LI>
+If signed or unsigned binary, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-15
+</TD><TD><P>Byte Length
+<PRE>
+Hex 0002 = 2
+Hex 0004 = 4
+All others reserved
+</PRE></TD></TR></TABLE><P><LI>If floating-point, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>Precision
+<PRE>
+Hex 0004 = 4
+Hex 0008 = 8
+All others reserved
+</PRE></TD></TR></TABLE><P><LI>If zoned or packed decimal, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Digits (D) to the right of assumed decimal point, where 0
+&lt;&#61;D&lt;&#61; T
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Total digits (T) in field, where 1 &lt;&#61;T&lt;&#61; 31
+</TD></TR></TABLE>
+<P><LI>
+If character string scalar, then:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1:
+</TD><TD><P>String length (L) where 1 &lt;&#61;L&lt;&#61; 32,767
+</TD></TR></TABLE>
+</UL>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_54">Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-L:
+</TD><TD>Value in format and length as determined by constant data object
+scalar type.
+<UL>
+<P><LI>
+For noncharacter scalars, a value of the proper size and format is
+required; for example, a 2-byte binary value is required for a 2-byte
+binary data object.
+<P><LI>
+For character strings, if the replication attribute specified in the OES
+is binary&nbsp;1, the value must consist of components of the following
+form:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>2 bytes:
+</TD><TD><P>Number of replications of associated value
+</TD></TR><TR VALIGN="TOP"><TD><P>2 bytes:
+</TD><TD><P>Length (L) of associated value
+</TD></TR><TR VALIGN="TOP"><TD><P>L bytes:
+</TD><TD><P>Associated value
+</TD></TR></TABLE>
+<P>
+The total number of bytes specified through all replications must equal
+the length of the string (1 to 32,767).
+</UL>
+<P>
+If the replication attribute is binary 0, the value for a character
+constant view is a byte string of length equal to the object length.
+</TD></TR></TABLE>
+<P><A NAME="Header_55" HREF="#ToC_55"></A>
+<h3>Exception Descriptions</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac035.gif" ALT="Figure AAC035 not displayed."><BR></B><BR>
+<P><A NAME="Header_56" HREF="#ToC_56"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0111 =
+</TD><TD>Exception description
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES present (required for exception description)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Return exception data
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Exception data is returned
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Exception data is not returned
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6-7
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>8-9
+</TD><TD><P>Exception handler type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>00 =
+</TD><TD>External entry point
+</TD></TR><TR VALIGN="TOP"><TD>01 =
+</TD><TD>Internal entry point
+</TD></TR><TR VALIGN="TOP"><TD>10 =
+</TD><TD>Internal branch point
+</TD></TR><TR VALIGN="TOP"><TD>11 =
+</TD><TD>Reserved
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>10-12
+</TD><TD><P>Exception handling action
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>000 =
+</TD><TD>Do not handle-ignore occurrence of exception and continue
+processing.
+</TD></TR><TR VALIGN="TOP"><TD>001 =
+</TD><TD>Do not handle-continue search for another exception
+description to handle the exception.
+</TD></TR><TR VALIGN="TOP"><TD>010 =
+</TD><TD>Do not handle-continue search for an exception description by
+resignaling the exception to the immediately previous invocation.
+</TD></TR><TR VALIGN="TOP"><TD>011 =
+</TD><TD>Reserved.
+</TD></TR><TR VALIGN="TOP"><TD>100 =
+</TD><TD>Defer handling-save exception data for later exception
+handling.
+</TD></TR><TR VALIGN="TOP"><TD>101 =
+</TD><TD>Pass control to the specified exception handler.
+</TD></TR></TABLE>
+<P>
+110-111 = Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>13-15
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset (required)
+</TD></TR></TABLE>
+<P><A NAME="Header_57" HREF="#ToC_57"></A>
+<h3>OES Format</h3>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Target
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>Present (always required for exception description)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>1
+</TD><TD><P>Target appendage modifier
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Target appendage for a branch point exception handler has the basic
+format.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Target appendage for a branch point exception handler has the
+extended format.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>2-4
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Compare value
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Compare value not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Compare value present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>User data
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>User data not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>User data present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Exception identifications
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 =
+</TD><TD>List of exception identifications (always present)
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_58">Target Appendage</A></H4>
+<P>
+For external and internal entry point exception handlers the target
+appendage modifier must be 0.  The appendage has the following form:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1:
+</TD><TD>ODT reference to
+<UL>
+<P><LI>
+Pointer data object if the exception handler is an external entry point.
+This pointer data object must be either in the automatic or static
+storage of this program and must be directly referenced.
+<P><LI>
+Internal entry point if the exception handler is an internal entry
+point.
+<P><LI>
+Branch point if the exception handler is an internal branch point.
+</UL>
+</TD></TR></TABLE>
+<P>
+For branch point exception handlers the target appendage has the
+following form:
+<P>
+If the initial value appendage modifier equals 0, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1:
+</TD><TD><P>Instruction stream reference; indirect or direct reference to an
+instruction number.
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 1-15 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 1-15 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+</TD></TR></TABLE>
+If the initial value appendage modifier equals 1, the basic format is:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-2:
+</TD><TD><P>Instruction stream reference; indirect or direct reference to an
+instruction number.
+<UL>
+<P><LI>
+If bit 0 is 0, then bits 8-23 specify an indirect reference that
+contains the ODV number of a branch point that specifies the instruction
+number to be referenced.
+<P><LI>
+If bit 0 is 1, then bits 8-23 specify a direct reference that contains
+the instruction number to be referenced.
+</UL>
+Bits 1-7 are reserved (binary 0).
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_59">User Data Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Bytes 0-1
+</TD><TD>ODT reference to either
+<UL>
+<P><LI>Pointer data object
+<P><LI>Scalar data object
+</UL>
+This data object must be in either the automatic or the static storage
+of this program and must be directly referenced.
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_60">Compare Value Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Compare value length
+(maximum value of 32)
+</TD></TR><TR VALIGN="TOP"><TD><P>2-N
+</TD><TD><P>Compare value
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_61">Exception Number Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>Number (N) of exception numbers
+</TD></TR><TR VALIGN="TOP"><TD><P>2-(2n + 1)
+</TD><TD><P>N 2-byte exception numbers
+</TD></TR></TABLE>
+<P><B>Notes: </B><OL>
+<P><LI>
+A pointer or scalar data object identified by the exception description
+(external exception handler or user data) must appear before the ODT
+entry for the exception description.
+<P><LI>
+The exception descriptions are searched in the same order as they appear
+in the ODT when an exception has been signaled.  Because of this, the
+first exception description that meets the conditions of the exception
+directs subsequent execution.
+</OL>
+<P><A NAME="HDROESREF" HREF="#ToC_62"></A>
+<h3>References to OES Offsets Greater than 64 K - 1</h3>
+<P><A NAME="Header_63" HREF="#ToC_63"></A>
+<h3>ODV Format (References to OES Offset Greater than 64K -1)</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1111 =
+</TD><TD>References to OES greater than 64 K - 1 (65,535)
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4-7
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>8-31
+</TD><TD><P>OES offset (3 bytes)
+</TD></TR></TABLE>
+<P><A NAME="Header_64" HREF="#ToC_64"></A>
+<p>OES Format (Reference to OES Offset Greater Than 64 K -1)
+<P><H4><A NAME="Header_65">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-1
+</TD><TD><P>First 2 bytes of standard ODV entry for this object
+</TD></TR><TR VALIGN="TOP"><TD><P>2
+</TD><TD><P>OES header for this object
+</TD></TR><TR VALIGN="TOP"><TD><P>3-N
+</TD><TD><P>OES appendages for this object
+</TD></TR></TABLE>
+<P><A NAME="Header_66" HREF="#ToC_66"></A>
+<h3>Pointer Machine Object</h3>
+<P>
+<p>Attribute Combinations
+<P><BR>
+<B><BR><IMG src="images/aac036.gif" ALT="Figure AAC036 not displayed."><BR></B><BR>
+<P><A NAME="Header_67" HREF="#ToC_67"></A>
+<h3>ODV Format</h3>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-3
+</TD><TD><P>Object type
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1000 =
+</TD><TD>Pointer machine object
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>4
+</TD><TD><P>OES present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>OES is not present.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>OES is present because an initial value, or optimization priority is
+specified.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>5-11
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>12-15
+</TD><TD><P>Pointer type(required)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0001 =
+</TD><TD>Space pointer
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>16-31
+</TD><TD><P>OES offset
+<UL>
+<P><LI>
+If bit 4 of the ODV is 1 (OES is present), then bits 16-31 represent the
+offset to the OES entry for this object.
+<P><LI>
+If bit 4 of the ODV is 0 (OES is not present), bits 16-31 contain a
+value of binary 0.
+</UL>
+</TD></TR></TABLE>
+<P><A NAME="Header_68" HREF="#ToC_68"></A>
+<h3>OES Format</h3>
+<P><H4><A NAME="Header_69">OES Header</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bits</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0-4
+</TD><TD><P>Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P>5
+</TD><TD><P>Initial value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Initial value is not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initial value is present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>6
+</TD><TD><P>Optimization priority value present
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Priority value is not present
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Priority value is present
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>7
+</TD><TD><P>Reserved (binary 0)
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_70">Initial Value Appendage</A></H4>
+<P>
+If ODV bits 12-15 indicate space pointer:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Bytes 0-1:
+</TD><TD><P>ODT number of a data object or pointer object that is direct or
+defined on direct.
+</TD></TR></TABLE>
+<P><H4><A NAME="Header_71">Optimization Priority Appendage</A></H4>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Bytes</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0
+</TD><TD><P>Optimization priority value.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex FF =
+</TD><TD>Highest priority
+<PRE>
+&#46;
+&#46;
+&#46;
+</PRE></TD></TR><TR VALIGN="TOP"><TD>Hex 00 =
+</TD><TD>Lowest priority
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P>1-3
+</TD><TD><P>Reserved (binary 0)
+</TD></TR></TABLE>
+This attribute should be used with caution.  The beneficial effects of
+the normal machine optimizations can potentially be negated through
+incorrect prioritization of pointers relative to their influence on a
+program's performance.
+<P>
+Normally, optimizations are performed on pointers according to a
+priority established by a machine analysis of pointer usage within the
+program.  The optimization priority attribute allows a space pointer
+machine object to be given a priority attribute which overrides the
+normal prioritization of space pointer machine objects performed by the
+machine when programs are created.  Through this facility, space pointer
+machine objects can be specified as being of high optimization priority
+even though the analysis performed by the machine would determine the
+space pointer machine object to be of low usage within the program.
+Specifying a priority value indicates that the pointer is of higher
+priority than those with a lower value or those for which no value is
+specified.  A particular priority value can be specified for multiple
+pointers to indicate that they are of equal priority relative to each
+other.
+<P>
+The number of space pointer machine objects for which special
+optimizations can be done is quite low, normally 2 or 3 (maximum of 12)
+depending on the particular program.  The number of space pointer
+machine objects that can be specified in the program is limited by the
+amount of storage available for them in the internal work space
+associated with the program.
+<P>
+Space pointer machine objects are allowed in the ODV component of the
+program template only as an optimization option.  This is because of the
+additional processing overhead necessary to provide support for them
+during program creation.
+<P>
+If no priority attribute is specified, the normal prioritization of
+space pointer data objects and space pointer machine objects controls
+the optimizations performed on them.  When the priority attribute is
+specified, the effect it may have on the optimizations being performed
+is dependent upon the particular implementation of the machine.  A
+beneficial effect may only be realized for some of the pointers carrying
+the attribute due to constraints on the optimizations which can be
+performed for a particular machine.
+<P>
+Abnormal modification of space pointer machine objects is not supported.
+That is, the abnormal attribute supported for space pointer data objects
+is not allowed for space pointer machine objects.  Cases of abnormal
+pointer modification (those which can violate the addressability
+fetching optimizations performed by Create Program) can not be
+accomplished through use of a space pointer machine object.  Such cases
+must be provided for through usage of a space pointer data object which
+has been defined with the abnormal attribute.
+<P>
+The particular area of exposure for usage of space pointer machine
+objects is the case of modification of the pointer value during the
+execution of an internal exception handler.  In this case, resuming
+execution of the program after the exception handler returns may
+continue using the prior rather than the newly modified value of the
+pointer.  Other abnormal modifications which apply to usage of space
+pointer data objects do not apply to space pointer machine objects.
+This is because defined on views of and external program modification of
+space pointer machine objects is not supported.
+<p>
+<A NAME="Header_72" HREF="#ToC_72"></A>
+<h2>Operands and ODR Object References</h2>
+
+</table>
+
+<P><A NAME="Header_73" HREF="#ToC_73"></A>
+<h3>Instruction Operands</h3>
+<P>
+Each Non-Bound Program (NBP) instruction requires from zero to four
+operands.  Each operand may consist of one or more fields that contain
+either a null operand specification, an immediate data value, or a
+reference to an ODT object.  The size of the operand field depends on the
+version of the program template.  If the version number is 0, the size of
+the operand field is 2 bytes.  If the version number is 1, the size of
+the operand field is 3 bytes.
+<P><A NAME="Header_74"></A>
+<h3>Null Operands</h3>
+<P>
+Certain instructions allow certain operands to be null.  In
+general, a null operand means that some optional function
+of the instruction is
+not to be performed or that a default action is to be performed by the
+instruction.
+Note that a null operand is not the same thing as a null pointer value.
+A null operand is an operand that is specified in the instruction
+stream as being omitted.
+The use of a null operand is detectable when the program is being
+created.
+In contrast, a null pointer value represents the condition <I>a pointer does not exist at this location</I>.
+The <A HREF="instructions/CMPPTRT.htm">CMPPTRT</A> instruction can be used to test for a null pointer value.
+Null pointer values cannot be detected until run time.
+<P><A NAME="Header_75"></A>
+<h3>Immediate Operands</h3>
+<P>
+The value of this type of operand is encoded in the instruction operand.
+Immediate operands may have the following values:
+<UL>
+<P><LI>
+Signed binary-representing a binary
+value of negative 4,096 to positive 4,095.
+<P><LI>
+Unsigned binary-representing
+a binary
+value of 0 to 8,191.
+<P><LI>
+Byte string-representing a single byte value
+from hex 00 to hex FF.
+<P><LI>
+Absolute
+instruction number-representing an instruction
+number in the range of 1 to 8,191.
+<P><LI>
+Relative
+instruction number-representing a displacement
+of an instruction relative to the instruction in which the
+operand occurs.  This operand value may identify an instruction
+displacement of negative 4,096 to positive 4,095.
+</UL>
+<P><A NAME="HDRODTORF"></A>
+<b>ODT Object References</b>
+<P>
+This type of operand contains a reference (possibly qualified)
+to an object in the ODT.  Operands that are ODT object
+references may be simple operands or compound
+operands.
+<P><I><B><A NAME="Header_77">Simple Operands</A>:&nbsp;</B></I>&nbsp;
+<P>
+The value encoded in the operand
+refers to a specific object defined in the ODT.  Simple
+operands consist of a single 2-byte operand entry.
+<P><I><B><A NAME="Header_78">Compound Operands</A>:&nbsp;</B></I>&nbsp;
+<P>
+A compound operand consists of a primary (2-byte) operand
+and a series of one to three secondary (2-byte)
+operands.  The primary operand is an ODT reference to a
+base object while the secondary operands
+serve as qualifiers to the base object.
+<P>
+A compound operand may have the following uses:
+<UL>
+<P><LI>
+Subscript references
+<P>
+An individual element of a data object array, a pointer array, or an
+instruction definition list may be
+referenced with a subscript compound operand.  The operand consists of a
+primary reference to the array and a secondary
+operand to specify the index value to an element of the array.
+<P><LI>
+Substring references
+<P>
+A portion of a character scalar data object may be
+referenced as an instruction operand through a substring
+compound operand.  The operand consists of a primary
+operand to reference the base string object and
+secondary references to specify the value of an
+index (position) and a value for the length of the substring.
+<P>
+The length secondary operand field can specify whether
+to allow or not allow for a null substring reference
+(a length value of zero).
+<P><LI>
+Explicit base references
+<P>
+An instruction operand may specify an explicit override for the
+base pointer for a based data object or a based addressing object.
+The operand consists of a primary operand reference to the based object
+and a secondary operand reference to the pointer on which to
+base the object for this operand.
+The override is in effect for the single operand.
+The displacement implicit in the ODT definition of
+the primary operand and the addressability contained in
+the explicit pointer are combined to provide an
+address for the operand.
+</UL>
+<P>
+The explicit base may be combined with either the
+subscript or the substring compound operands to provide
+a based subscript compound operand or a based substring
+compound operand.
+
+</body>
+
+</HTML>

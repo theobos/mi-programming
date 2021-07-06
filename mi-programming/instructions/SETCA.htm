@@ -1,0 +1,80 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SETCA Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Set Computational Attributes (SETCA)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SETCA is 146.
+SETCA (
+       new_attributes   : unsigned binary(4) value which contains
+                          the new computational attribute values
+       selector         : unsigned binary(4) literal value; its 
+                          rightmost byte specifies the computational
+                          attributes to set
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The right-most byte of <VAR>selector</VAR> specifies the computational
+attributes
+to modify.  The format of this byte is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Bit
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Definition
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">0-3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (must be 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Exception mask
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Reserved (must be 0)
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Exception occurrence
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="75%">Rounding mode
+</TD></TR></TABLE>
+<P>All other bytes of <VAR>selector</VAR> are reserved (must be zero).
+<P>The <I>new attributes</I> operand
+contains the new values for the computational attribute
+bytes selected by <I>selector</I>.  Refer to Retrieve Computational Attributes (<A HREF="RETCA.htm">RETCA</A>)
+for more information on the structure of <I>new attributes</I>.
+If any of the reserved fields are not binary 0, a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+is signaled.
+<P><B>Note: </B>Any floating-point operations currently on the value stack will
+be computed prior to changing the computational attributes.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

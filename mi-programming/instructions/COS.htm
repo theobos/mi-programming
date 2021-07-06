@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy for Windows (vers 1st November 2003), see www.w3.org">
+    <title>
+      COS Instruction
+    </title>
+    <link rel="stylesheet" type="text/css" href="../tstudio.css">
+  </head>
+  <body>
+    <h1>
+      Cosine (COS)
+    </h1>
+    <table border width="100%">
+      <tr>
+        <th align="left">
+          Bound program access
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <pre>
+<br>
+Built-in number for COS is 400.
+COS (
+     source   : floating point(8) value
+) :   floating point(8) value which is the cosine of the 
+      source value
+</pre>
+        </td>
+      </tr>
+    </table>
+    <h5>
+      <a name="Header_2">Description</a>
+    </h5>
+    <p>
+      The cosine of the numeric value of the <i>source</i> operand, whose value is considered to be in radians, is computed and the result is returned.
+    </p>
+    <p>
+      The result is in the range:
+    </p>
+    <pre>
+-1 &lt;= COS(source) &lt;= 1
+</pre>
+    <p>
+      See <a class="content" href="../NCBCON.htm">floating point results from special values</a> for additional information.
+    </p>
+    <h4>
+      <a name="Header_3">Authorization Required</a>
+    </h4>
+    <ul>
+      <li>None
+      </li>
+    </ul>
+    <h4>
+      <a name="Header_4">Lock Enforcement</a>
+    </h4>
+    <ul>
+      <li>None
+      </li>
+    </ul>
+    <h4>
+      <a name="Header_5">Exceptions</a>
+    </h4>
+    <dl>
+      <dd>
+        <p>
+          06 Addressing
+        </p>
+        <dl compact>
+          <dd>
+            <A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+          </dd>
+        </dl>
+      </dd>
+      <dd>
+        <p>
+          0C Computation
+        </p>
+        <dl compact>
+          <dd>
+            <A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+          </dd>
+          <dd>
+            <A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+          </dd>
+          <dd>
+            <A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+          </dd>
+          <dd>
+            <A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+          </dd>
+          <dd>
+            <A HREF="../exceptions/EX0C0E.htm">0C0E Floating-Point Zero Divide</A>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </body>
+</html>

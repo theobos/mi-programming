@@ -1,0 +1,69 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> O_PARM_ADDR Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>OPM Parameter Address (OPM_PARM_ADDR)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for OPMPARMADDR is 7.
+OPM_PARM_ADDR (
+               parameter_number   : unsigned binary(4) value which 
+                                    specifies a non-bound program
+                                    parameter list entry<font color=blue>
+) :   space pointer(16) to the parameter list entry specified by</FONT>
+      parameter_number
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The entry in the non-bound program parameter
+list specified by <I>parameter number</I> is
+returned.
+<P>
+If the parameter number referenced is greater than the number of
+parameters passed to the program entry procedure, an address is returned which will
+cause a <I> parameter reference violation&nbsp; </I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception
+to be signaled when it is used.
+<P>This function can only
+be used by procedures defined to be a program entry procedure.  Otherwise,
+an <I> instruction stream not valid&nbsp; </I> (hex <A HREF="../exceptions/EX2A1B.htm">2A1B</A>) exception
+will be signaled during module creation.
+<P><B>Notes: </B><OL>
+<P><LI>The non-bound program operand passing protocol
+is "call by reference", and hence
+the OPM_PARM_ADDR built-in is architected to be returning the
+reference addresses that are passed.
+<P><LI>Faster code will be generated when the parameter number passed to
+the built-in is a literal.
+Still faster code will be generated when the parameter number passed
+to the built-in is a literal which is less than or equal to the
+<VAR>minimum number of parameters required</VAR> value associated with
+this program entry procedure.
+</OL>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>

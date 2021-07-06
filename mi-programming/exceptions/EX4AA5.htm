@@ -1,0 +1,119 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4AA5 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+
+ 
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4AA5
+</B></TD><TD><P><I>Java Virtual Machine Terminated
+</I>
+<P>
+The Java Virtual Machine (JVM) has been terminated because a Java
+program called the java.lang.System.exit method,
+because a thread required for operation of the JVM was terminated
+or because the JVM detected an unrecoverable error.
+<P>
+All secondary threads attached to the JVM have been sent terminate
+thread interrupts.  The threads will be detached from the JVM and
+then terminated as soon as the interrupt can be processed.
+<P>
+This exception is signalled only to the initial thread of the process
+and only if it is attached to the terminated JVM.
+<P>
+JVM resources are deallocated.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">JVM identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>JVM identifier</U></B> uniquely identifies the JVM in the process.
+<P> <B><U>Reason code</U></B> hex values and their meanings are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>01
+</TD><TD><P>A Java program called the java.lang.System.exit method with a zero
+status code.
+</TD></TR><TR VALIGN="TOP"><TD><P>02
+</TD><TD><P>A Java program called the java.lang.System.exit method with a non
+zero status code.
+</TD></TR><TR VALIGN="TOP"><TD><P>03
+</TD><TD><P>The JVM detected an unrecoverable error.
+</TD></TR><TR VALIGN="TOP"><TD><P>04
+</TD><TD><P>A thread has terminated which is required for operation of the JVM.
+</TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+   
+ 
+</body>
+
+ 
+</HTML>

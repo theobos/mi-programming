@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Program Syntax</title>
+ </head>
+<body>
+
+<h3><a name="HDRIIRP">Program Syntax</a></h3>
+
+<p>A program object consists of an <strong>instruction stream</strong> and an
+<strong>object definition table (ODT)</strong>. The intermediate representation
+of a program defines both of these components. It consists of one or more
+statements:</p>
+
+<img alt="Program syntax diagram" src="images/RBAFX516.gif"> 
+
+<p>Instruction statements define MI instructions placed in the instruction
+stream. Declare statements define program objects placed in the ODT. Directive
+statements:</p>
+
+<ul>
+<li>Control the formatting of the output listing.</li>
+
+<li>Define entry-point program objects.</li>
+
+<li>Define symbolic breakpoints.</li>
+
+<li>Specify the end of the program.</li>
+</ul>
+
+<p>The following sections explain how to define these statements.</p>
+
+<p><strong>Note:</strong> In the diagrams below, names that begin with an
+uppercase letter identify values specified in another diagram. Names that begin
+with a lowercase letter identify values defined in the table below the
+diagram.</p>
+
+<br>
+ <br>
+ 
+
+<h3>Label</h3>
+
+<p>The following diagram and table show the possible labels:</p>
+
+<img alt="Label statement syntax" src="images/RBAFX517.gif"> 
+
+<p>Each name specified in the label generates a branch-point program object
+corresponding to the next MI instruction.</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Label name for next instruction</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MEMCMP Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Memory Compare (MEMCMP)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MEMCMP is 17.
+MEMCMP (
+        string1         : address of aggregate(*)
+        string2         : address of aggregate(*)
+        string_length   : unsigned binary(4) value which specifies the
+                          length of string1 and string2
+) :   signed binary(4) value which indicates if string1 is lexically
+      less than (-1), equal to (0) or greater than (1) string2
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>A compare is done of the storage specified by <I>string1</I> and <I>string2</I>.  If the first byte of <I>string1</I> is less than the
+first byte of <I>string2</I>, the function returns -1; if the byte is
+greater the function returns 1.  If the bytes are equal the function
+continues with the next byte.  This process is repeated until the number
+of bytes specified by <I>string length</I> have been compared.  If all
+bytes compare equal, the function returns 0.  If the <I>string
+length</I> value is zero, the function also returns 0.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

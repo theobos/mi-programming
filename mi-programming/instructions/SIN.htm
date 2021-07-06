@@ -1,0 +1,67 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SIN Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Sine (SIN)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SIN is 398.
+SIN (
+     source   : floating point(8) value
+) :   floating point(8) value which is the sine of the 
+      source value
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The sine of
+the numeric value of the <I>source</I> operand,
+whose value is considered
+to be in radians, is computed and the result is returned.
+<P>
+The result is in the range:
+<PRE>
+-1 &lt;&#61; SIN(source) &lt;&#61; 1
+</PRE>
+<P>
+See
+<A class="content" HREF="../NCBCON.htm">floating point results from special values</A>
+for additional information.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+<DD><A HREF="../exceptions/EX0C0E.htm">0C0E Floating-Point Zero Divide</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

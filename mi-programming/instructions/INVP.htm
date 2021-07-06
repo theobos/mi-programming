@@ -1,0 +1,62 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> INVP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Invocation Pointer (INVP)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for INVP is 6.
+INVP (
+      relative_invocation   : unsigned binary(4) literal value which
+                              specifies the relative invocation
+) :   invocation pointer which references the invocation specified by 
+      relative_invocation
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The <I>relative invocation</I>
+is a literal value between 0 and scope-1 where
+scope is the procedure's scoping level.
+A value of 0 indicates
+that an invocation pointer to the currently executing procedure is to
+be returned.  A value of 1 indicates that an invocation pointer for
+the most recent invocation of the procedure identified as the
+owner of the currently executing procedure is returned.  Increasing
+values for <I>relative invocation</I>
+refer to the further static nesting
+of the currently executing procedure, where invocation pointers
+to the most recent invocations of those uplevel procedures are
+returned.
+<P>
+The invocation pointer is only valid while the procedure invocation referenced
+by it still exists.
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Restriction</TH><TR><TD>
+<P>The <I>relative invocation</I> must be 0.  Values greater than 0
+are currently not supported.
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>

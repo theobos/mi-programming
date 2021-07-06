@@ -1,0 +1,74 @@
+   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> STRNCPYNULL Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Copy Null-Terminated String Constrained (STRNCPYNULL)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for STRNCPYNULL is 13.
+STRNCPYNULL (
+             target_string                   : address of aggregate(*)
+             null_terminated_source_string   : address of aggregate(*)
+             maximum_length                  : unsigned binary(4) value
+                                               which specifies the
+                                               maximum number of bytes
+                                               to copy<font color=blue>
+) :   space pointer(16) to the target string</FONT>
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>A copy is performed from the storage specified by <I>null terminated source string</I>
+to the storage specified by <I>target string.</I>
+The copy terminates after
+a null (ie. zero) character is copied <I>or</I>
+the number of bytes specified by <I>maximum length</I>
+have been copied (which
+ever comes first).  However, if a null character is not copied,
+one will be appended to the end of the target string.  Thus,
+the maximum number of characters which may be copied is one
+more than
+the value of <I>maximum length.</I>
+It is expected that sufficient storage exists at the location
+specified by <I>target string.</I>
+<P>Undefined results can occur if the storage locations specified
+by <I>target string</I> and <I>null terminated source string</I>
+overlap.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

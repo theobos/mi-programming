@@ -1,0 +1,157 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 4AA7 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>4AA7
+</B></TD><TD><P><I>Java Stand-Alone Program Creation Error
+</I>
+<P>
+An error has occurred during creation of a stand-alone Java program.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+<font color=blue>
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Class name
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(256)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>256
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>100
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Method name
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(256)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>512
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>200
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>LICOPT specification
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(256)
+</FONT>
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">768
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">300
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">772
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">304
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>The <B><U>class name</U></B> identifies the name of the class, if any, being
+processed when the error being reported occurred.  If the full class name
+exceeds 256
+characters, the rightmost 256
+characters are provided.
+<font color=blue>
+This field is right-padded with blanks as necessary.
+</FONT>
+<P>The <B><U>method name</U></B> identifies the name and descriptor of the
+method, if any, being processed when the error being reported occurred.
+If the full method name and descriptor exceeds 256
+characters, the
+leftmost 256
+characters are provided.
+<font color=blue>
+This field is right-padded with blanks as necessary.
+</FONT>
+<P>The <B><U>LICOPT specification</U></B>, if of nonzero length, identifies an
+improperly specified Licensed Internal Code option intended for use in whole
+program optimization.
+<font color=blue>
+This field is right-padded with blanks as necessary.
+</FONT>
+<P>The <B><U>reason code</U></B> indicates the specific reason
+for the exception, and is one of the following&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Error</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>01
+</TD><TD><P>"ForbiddenClass"&#58; The <I>class name</I> was found to be
+used in the application, but is not permitted in a stand-alone Java program.
+</TD></TR><TR VALIGN="TOP"><TD><P>02
+</TD><TD><P>"ForbiddenMethod"&#58; The <I>method name</I> was found to be
+used in the application, but is not permitted in a stand-alone Java program.
+</TD></TR><TR VALIGN="TOP"><TD><P>03
+</TD><TD><P>"ClassNotFound"&#58;  The <I>class name</I> was referenced
+in the classes to be analyzed in creating the stand-alone Java program, but
+could not be located.
+</TD></TR><TR VALIGN="TOP"><TD><P>04
+</TD><TD><P>"NoRootClasses"&#58;  No classes were specified as containing
+external entry points into the stand-alone Java program.
+</TD></TR><TR VALIGN="TOP"><TD><P>05
+</TD><TD><P>"UserNativeMethod"&#58;  The <I>method name</I> was found to
+be used in the application, but is a user native method, and the <I>AllowUserNativeMethods</I> Licensed Internal Code option was not
+specified.
+</TD></TR><TR VALIGN="TOP"><TD><P>06
+</TD><TD><P>"BadlyFormedLicopt"&#58;  The <I>LICOPT specification</I>
+provided by the user contains a keyword recognized as being important to
+whole program optimization, but either the value is not in the correct form
+or the value refers to a class, method, or field that could not be located.
+<font color=blue>
+</FONT></TD></TR><TR VALIGN="TOP"><TD><P><font color=blue>07
+</FONT></TD><TD><P><font color=blue>"SecurityCheck"&#58;  An illegal manipulation of a Java program
+was detected and prevented.
+</FONT>
+</TD></TR></TABLE>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+   
+ 
+</body>
+
+ 
+</HTML>

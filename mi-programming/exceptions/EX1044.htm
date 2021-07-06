@@ -1,0 +1,153 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1044 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1044
+</B></TD><TD><P><I>Partial System Object Damage
+</I>
+<P>
+Partial
+damage to a system object has been detected.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Pointer to the damaged object
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">VLOG dump ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error class
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Auxiliary storage device indicator
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(100)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<P>
+The <B><U>error class</U></B> codes for the
+type of damage detected are
+as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0000 =
+</TD><TD>Previously marked
+damaged
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0001 =
+</TD><TD>Detected abnormal
+condition
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0002 =
+</TD><TD>Locally invalid
+device sector
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0003 =
+</TD><TD>Device failure
+</TD></TR></TABLE>
+<P>
+The <B><U>auxiliary storage device indicator</U></B>
+field is defined for <I>error classes</I>
+hex 0002 and hex 0003.  It is the
+unit number of the failing device or 0 for a main storage failure.
+<P>
+<I>Meaning and recovery:</I>
+<UL>
+<P><LI>For a user profile, partial damage occurs when internal processing
+is unable to complete due to insufficient machine storage.  When the
+system is IPLed, if there is then sufficient storage, the internal
+processing is completed and the partial damage condition is reset.
+</UL>
+<P>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+Any
+instruction that references a system object
+</UL>
+</TD></TR></TABLE>
+
+ 
+</body>
+
+ 
+</HTML>

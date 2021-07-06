@@ -1,0 +1,571 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SIGEXCP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Signal Exception (SIGEXCP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3-4
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SIGEXCP</B>
+10CA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Exception data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SIGEXCPB</B>
+1CCA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Exception data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>SIGEXCPI</B>
+18CA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Exception data
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<P>
+<I>Operand 3-4</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction
+signals a new exception or resignals an existing
+exception to the thread.
+Optionally, the instruction branches to one
+of the specified targets based on the results of the signal
+and the selected branch options in the extender field, or
+it sets indicators based on the results of the signal.
+The signal is presented starting at the invocation
+identified in the signal template.
+<P>
+The template identified by operand 1 specifies the signal option and
+starting point.
+It must be 16-byte aligned in the space with the following format.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Target invocation address
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+or
+Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Signal option
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Signal/resignal option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Signal new exception.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Resignal currently handled
+exception (valid only for an
+external exception handler).
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Invoke PDEH (process default
+exception handler) option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Invoke PDEH if no
+exception description
+found for invocation.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Do not invoke PDEH if
+no exception description
+found for invocation
+(ignore if base invocation
+entry specified).
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Exception description search control
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Exception description
+search control not present
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Exception description
+present
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 3-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">First exception description to search
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>target invocation address</U></B> pointer uniquely identifies the
+invocation to which the exception is to be signalled.
+Signalling directly to the PDEH can not be accomplished via this
+instruction.
+If the <I>target invocation address</I> pointer locates neither a valid
+invocation entry nor the base invocation entry, the <I> invalid invocation address&nbsp; </I> (hex <A HREF="../exceptions/EX1603.htm">1603</A>) exception
+is signaled.
+<P>The invocation which issued this instruction will be checked
+to ensure it has the proper authority to send an exception message
+to the target invocation.  If the authority check fails, <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+will be signaled.
+If the program associated with the invocation has defined
+an exception description to handle the
+exception, the specified action is taken; otherwise, the
+PDEH is invoked unless the <B><U>invoke PDEH
+option</U></B> bit is 1 (the exception is considered ignored).
+If the base invocation entry is addressed instead
+of an existing invocation, the PDEH will be invoked.
+<P>A change has been made to the way in which exception handlers
+are determined for bound programs.  The following description relates
+only to the invocation of exception handlers related to
+non-bound programs.
+In both instances the actions of signalling and handling have been
+broken apart.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+Exception descriptions of an invocation are searched in
+ascending ODT number sequence.  If the <B><U>exception description search control</U></B> specified <I>exception description search control not present</I>,
+the search begins with the first exception
+description defined in the ODT.  Otherwise, the <B><U>first
+exception description to search</U></B> value
+identifies the relative number of the exception
+description to be used to start the search.  The
+value must be a nonzero positive binary number determined
+by the order of definition of exception
+descriptions in the ODT.  This value is also returned
+by the Sense Exception Description (<A HREF="SNSEXCPD.htm">SNSEXCPD</A>) instruction.  A value of
+1 indicates that the first exception description in the
+invocation is to be used to begin the search.  If
+the value is greater than the number of
+exception descriptions for
+the invocation, the <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+<P>
+If an <B><U>exception ID</U></B> in an exception description corresponds
+to the signaled exception, the corresponding <B><U>compare values</U></B> are verified.  If the <I>compare value
+length</I> in the exception description is less than the <I>compare value length</I> in the signal template, the length
+of the compare value in the exception description
+is used for the match.  If the <I>compare value length</I> in
+the exception description is greater than the <I>compare
+value length</I> in the signal template, an automatic
+mismatch results.  Machine-signaled exceptions have
+a 4-byte compare value of binary 0's.
+<P>
+An exception description may monitor for an exception
+with a generic ID as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex 0000 =
+</TD><TD><P>
+Any signaled exception ID
+results in a match.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex nn00 =
+</TD><TD><P>
+Any signaled exception ID
+in class nn results
+in a match.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex nnmm =
+</TD><TD><P>
+The signaled exception ID
+must be exactly nnmm in
+order for a match to occur.
+</TD></TR></TABLE>
+<P>
+An exception description may be in one of five states, each of which
+determines an action to be taken when the match criteria
+on the exception ID and compare value are met.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><I>
+IGNORE
+</I></TD><TD><P>
+No exception handling occurs.  The Signal Exception
+instruction is assigned a
+resultant condition of ignored.
+If a corresponding branch
+or indicator setting is present, that action takes place.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+DISABLE
+</I></TD><TD><P>
+The exception description is bypassed,
+and the search for a monitor continues with the next
+exception description defined for the invocation.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+RESIGNAL
+</I></TD><TD><P>
+The search for a monitoring exception description
+is to be reinitiated at the preceding invocation.
+A resignal from the initial invocation in the thread
+results in the invocation of the process
+default exception handler.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+DEFER
+</I></TD><TD><P>
+The exception description is signaled, and
+the Signal Exception instruction is assigned the resultant
+condition of deferred.
+If a corresponding branch or indicator setting
+is present, that action takes place.
+To take future action on a deferred
+exception, the exception description must be
+synchronously tested with the Test Exception (<A HREF="TESTEXCP.htm">TESTEXCP</A>) instruction
+in the signaled invocation.
+</TD></TR><TR VALIGN="TOP"><TD><P><I>
+HANDLE
+</I></TD><TD><P>
+Control is passed to the indicated
+exception handler, which may be a branch point, an internal
+subinvocation, or an external invocation.
+</TD></TR></TABLE>
+If the exception description is in the ignore or defer state
+and if the Signal Exception instruction does not specify a branch
+or indicator condition or if it specifies branch or
+indicator conditions that are not met, then the
+instruction following the Signal Exception instruction is executed.
+<P>
+When control is given to an internal or branch point exception
+handler, all invocations up to, but not including, the
+exception handling invocation are terminated.  Any
+invocation exit programs set for the terminated invocations
+will be given control before execution proceeds in the
+signaled exception handler.
+</TD></TR></TABLE>
+<P>
+When this instruction is invoked with the <I>resignal</I>
+option, all invocations up to, but not including, the
+interrupted invocation are cancelled and the message is
+signalled to the next oldest invocation in the stack.
+This implies that the Return from Exception (<A HREF="RTNEXCP.htm">RTNEXCP</A>)
+instruction can no longer
+return to the invocation that issued the resignal request.  Any
+cancel handlers set for the cancelled invocations
+will be given control before execution proceeds in the
+signaled exception handler.
+<P>
+If a failure to invoke an external exception handler or
+an invocation exit occurs, a failure to
+invoke program event is signaled.  For each destroyed
+invocation, the invocation count in the corresponding
+activation entry (if any) is decremented by 1.
+<P>
+The template identified by operand 2 must be 16-byte
+aligned in the space.  It specifies the exception-related
+data to be passed with the exception signal.
+The format of the <I>exception data</I> is the same as that
+returned by the Retrieve
+Exception Data (<A HREF="RETEXCPD.htm">RETEXCPD</A>) instruction.  The format is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Template size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes of data to be signaled
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+(must be at least 48 bytes)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of bytes available for materialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception identification
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare value length (maximum of 32 bytes)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception specific data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Fields shown here with a plus sign (+) are ignored by the
+instruction.
+</TD></TR></TABLE>
+Operand 2 is ignored if <I>signal/resignal option</I> is <I>resignal</I>
+because the exception-related data is the
+same as for the exception currently being
+processed; however, it must be specified when
+signaling a new exception.
+<P>
+The maximum size for <I>exception specific</I> data that is to
+accompany an exception signaled by the Signal Exception instruction
+is 65,503 bytes, including the standard exception data.
+<P>The following parameters will be given the following default values:
+<DL>
+<DD><P><I>Message status</I> - log message + retain + action pending
+<DD><P><I>Initial monitor priority</I> - 64
+<DD><P><I>Interrupt class mask</I> - Message generated by Signal Exception
+instruction
+<DD><P><I>Source invocation</I> - invocation issuing SIGEXCP instruction
+</DL>
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Exception ignored.
+<P><LI>Exception deferred.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<P>
+The invocation which originated the exception must have proper
+activation group access to the target invocation.  The following
+algorithm is used to determine this access.
+<OL TYPE=1>
+<P><LI>The invocation which invoked the SIGEXCP instruction
+must have access to the invocation
+identified as the Originating Invocation.
+<P><LI>The Originating Invocation must have
+access to the invocation identified as the Source Invocation
+or to the invocation directly called by the Source invocation.
+<P><LI>The Originating Invocation must have
+access to the invocation identified as the Target Invocation or
+to the invocation directly called by the Target Invocation.
+</OL>
+<P>If any of the access checks fail then an <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+will be signaled.
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>16 Exception Management
+<DL COMPACT>
+<DD>1602 Exception State of Thread Invalid
+<DD><A HREF="../exceptions/EX1603.htm">1603 Invalid Invocation Address</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C12.htm">2C12 Activation Group Access Violation</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3802.htm">3802 Template Size Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

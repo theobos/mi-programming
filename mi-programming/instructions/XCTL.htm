@@ -1,0 +1,376 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> XCTL Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Transfer Control (XCTL)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0282
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Program to be called or call template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Argument list
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  System pointer or space pointer data object.
+<P>
+<I>Operand 2</I>:  Operand list or null.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The instruction destroys the calling invocation
+and passes control to
+either the <I>program entry procedure</I>
+of a bound program or the
+external entry point of a non-bound program.
+If operand 1 specifies a Java program or a bound service program,
+an <I> invalid operation for program&nbsp; </I> (hex <A HREF="../exceptions/EX2C15.htm">2C15</A>) exception
+is signaled.
+<P>
+Operand 1 may be specified as a system pointer which directly
+addresses the program that is to receive control or as a space pointer
+to a call template which identifies the program to receive control.
+Specifying a template allows for additional controls over how the
+specified program is to be invoked.  The format of
+the <I>call template</I> is
+the following:
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Call options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Suppress adopted user profiles
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0
+</TD><TD>= No
+</TD></TR><TR VALIGN="TOP"><TD>1
+</TD><TD>= Yes
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 1-30
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Force thread state to user state for transfer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0
+</TD><TD>= No
+</TD></TR><TR VALIGN="TOP"><TD>1
+</TD><TD>= Yes
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Program to be called
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>suppress adopted user profiles</U></B>
+option specifies whether or not the program adopted and propagated
+user profiles which may be serving as sources of authority to the
+thread are to be suppressed from supplying authority to the new
+invocation.  Specifying <I>yes</I>
+causes the propagation of adopted user
+profiles to be stopped as of the calling invocation, thereby, not
+allowing the called invocation to benefit from their authority.
+Specifying <I>no</I>
+allows the normal propagation of adopted and propagated
+user profiles to occur.
+The
+called program may adopt its owning user profile, if necessary, to
+supplement the authority available to its invocation.
+<P>The <B><U>force thread state to user state for transfer</U></B>
+option specifies whether or not
+the transfer control
+needs to be done in the current thread state
+or change the thread state to user state.
+<P>
+Operand 2 specifies an operand list that identifies the arguments
+to be passed to
+the invocation to which control is being transferred.
+Automatic objects allocated by the transferring invocation are
+destroyed as a result
+of the transfer operation and, therefore, cannot be passed as arguments.
+An <I> argument list length violation&nbsp; </I> (hex <A HREF="../exceptions/EX0802.htm">0802</A>) exception
+is signaled if the number of arguments
+passed does not correspond to the number required by the parameter
+list of the target program.
+<P>
+An <I>unsupported space use&nbsp; </I>(hex <A HREF="../exceptions/EX0607.htm">0607</A>) exception is signalled if this call would pass a parameter
+stored in teraspace to a program which is not teraspace capable.
+To be teraspace capable, a non-bound program must be created as
+teraspace capable or a bound program must be created with a teraspace
+capable program entry procedure.
+<P>If the transferring invocation has an activation,
+the invocation count is decremented by 1.
+<P>
+If the transferring invocation has received control to process an
+exception,
+or an invocation exit, the <I> return instruction invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C01.htm">2C01</A>) exception
+is signaled.
+<P>
+If the transferring invocation currently has an invocation
+exit set, the invocation exit is not given control and is
+implicitly cleared.
+<P>
+<H5><A NAME="Header_3">Common Program Call Processing</A></H5>
+<P>The details of processing differ for non-bound and bound
+programs.  The following outlines the common steps.
+<OL TYPE=1>
+<P><LI>A check is made to determine if the caller has
+authority to invoke the program and that the object
+is indeed a program object.
+The specified program must be either a bound program that contains a
+<I>program entry procedure</I> or a non-bound program.
+<P><LI>The activation group in which the program is to be
+run is located or created if it doesn't exist.
+<P><LI>If the program requires an activation entry and it is not already
+active within the appropriate activation group, it is activated.
+Bound programs always require an activation;
+non-bound programs require an activation only if they
+use static storage.
+The <VAR>invocation count</VAR> of a newly created activation is set
+to 1 while the <VAR>invocation count</VAR> of an existing activation
+is incremented by 1.
+<P><LI>The invocation created for the target program
+has the following attributes (as would be reported via
+the Materialize Invocation Attributes (<A HREF="MATINVAT">MATINVAT</A>) instruction.)
+<UL>
+<P><LI>the <I>invocation mark</I> is at least one
+higher than any previous invocation within the thread.
+The <I>invocation mark</I> value is generated from the <I>thread mark counter</I> and is unique
+within the thread.
+There is no relationship between the values of the invocation mark and
+the marks of the <I>activation</I> or <I>activation group</I>
+associated with the invocation.
+<P><LI>the <I>invocation number</I> is the same as
+the invocation number of the transferring invocation.
+<P><LI>the <I>invocation type</I> is hex 02
+to indicate a XCTL type of invocation.
+</UL>
+<P><LI>The automatic storage frame (ASF), if required, is
+allocated on a 16-byte boundary.
+<P><LI>Control is transferred to the program entry procedure
+(or external entry point) of the program.
+<P><LI>Normal flow-of-control resumes
+at the instruction following the caller of
+the program issuing the XCTL instruction.
+</OL>
+<P>The details of locating the target activation group and
+activating the program differ depending
+upon the model of the program.
+<P>
+<H5><A NAME="Header_4">Bound Program</A></H5>
+<P>A bound program is activated and run in
+an activation group specified by program attributes.
+There are two logical steps involved:
+<UL>
+<P><LI>locate the existing, or create a new activation group for the program
+<P><LI>locate an existing, or create a new activation entry
+for the program within the activation group
+</UL>
+<P>After locating the activation entry for
+the program, control is passed to the
+program entry procedure for the program.
+If required, the activation group is destroyed
+when the invocation for the program
+entry procedure is destroyed.
+<P>
+<H5><A NAME="Header_5">Non-bound Program</A></H5>
+<P>The automatic storage frame
+begins with a 64 byte header.
+If the program defines no automatic data items
+the frame consists solely of the 64-byte header,
+otherwise the automatic storage items are located
+immediately following the header.
+In prior releases of the machine, this header
+contained invocation information which is now
+available via the Materialize Invocation Attributes
+(<A HREF="MATINVAT">MATINVAT</A>) instruction.
+This header is not initialized and the contents of the header
+are not used by the machine.
+(The space is allocated merely to provide for compatibility with
+prior implementations of the machine.)
+The <I>update PASA stack</I> program attribute, supported in prior
+implementations of the machine, is no longer meaningful and is ignored,
+if specified as an attribute of the program.
+<P>
+<H4><A NAME="Header_6">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Execute
+<UL>
+<P><LI>
+Operand 1
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_7">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_8">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0607.htm">0607 Unsupported Space Use</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+<DD><A HREF="../exceptions/EX0802.htm">0802 Argument List Length Violation </A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD>1C02 Program Limitation Exceeded
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2A Program Creation
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2AB5.htm">2AB5 Observable Information Necessary For Retranslation Not Encapsulated</A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C01.htm">2C01 Return Instruction Invalid</A>
+<DD><A HREF="../exceptions/EX2C15.htm">2C15 Invalid Operation for Program</A>
+<DD><A HREF="../exceptions/EX2C1D.htm">2C1D Automatic Storage Overflow </A>
+<DD><A HREF="../exceptions/EX2C1E.htm">2C1E Activation Access Violation </A>
+<DD><A HREF="../exceptions/EX2C1F.htm">2C1F Program Signature Violation</A>
+<DD><A HREF="../exceptions/EX2C20.htm">2C20 Static Storage Overflow</A>
+<DD><A HREF="../exceptions/EX2C21.htm">2C21 Program Import Invalid</A>
+<DD><A HREF="../exceptions/EX2C22.htm">2C22 Data Reference Invalid</A>
+<DD><A HREF="../exceptions/EX2C23.htm">2C23 Imported Object Invalid</A>
+<DD><A HREF="../exceptions/EX2C24.htm">2C24 Activation Group Export Conflict</A>
+<DD><A HREF="../exceptions/EX2C25.htm">2C25 Import Not Found</A>
+<DD><A HREF="../exceptions/EX2C2A.htm">2C2A Caller Parameter Mask Does Not Match Imported Procedure Parameter Mask</A>
+<font color=blue>
+<DD><A HREF="../exceptions/EX2C2B.htm">2C2B Invalid Storage Model </A>
+</FONT>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,308 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1C02 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1C02
+</B></TD><TD><P><I>Program Limitation Exceeded
+</I>
+<P>
+The program template contained objects or instructions that
+caused at least one part
+of the encapsulated program to exceed its machine specification limit.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Instruction number
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(0 is returned in this field if the error
+code does not apply to a specific instruction)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+The error codes
+and their meanings for the Create Program instruction are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Error</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0001
+</TD><TD><P>The data needed to initialize
+static areas exceeds 65,535 bytes.
+This includes storage for IDLs
+(6 bytes for each entry in an IDL),
+the values that are the initial
+values for the static areas, and the
+logic needed to copy these initial
+values and to initialize pointers.
+</TD></TR><TR VALIGN="TOP"><TD><P>0002
+</TD><TD><P>The logic needed to initialize
+automatic areas exceeds 65,535 bytes.
+This includes the logic needed to
+copy initial values into automatic
+storage and to initialize pointers
+in automatic storage.
+</TD></TR><TR VALIGN="TOP"><TD><P>0003
+</TD><TD><P>Certain internal constants, which are
+encapsulated into the program and used
+with specific machine interface
+instructions, exceed 4,096 bytes.
+<P>
+</TD></TR><TR VALIGN="TOP"><TD><P>0004
+</TD><TD><P>The encapsulated form of an
+instruction requires that the machine
+address more data items than are
+supported on one instruction.  The
+particular instruction in error is
+identified by number in the
+exception data for this exception.
+Internal addressability is required
+for the following types of operands:
+<UL>
+<P><LI>
+Compound operands, such as those
+that specify subscripting,
+substringing, or explicit basing.
+<P><LI>
+Operands that exist in other than
+the first 4 K bytes of static or
+automatic storage.
+<P><LI>
+Operands that are parameters or based.
+<P><LI>
+Constant operands for which the
+encapsulated form exists in other
+than the first 4 K bytes of the
+internal program constant area.
+<P><LI>
+Operands for which the encapsulated
+form exists in other than the first
+4 K bytes of the internal machine
+work space needed to support
+the machine interface invocation.
+</UL>
+In certain cases, this limitation may
+apply to the instruction when the perform
+optimization option has been specified but
+would not apply when the no optimization
+option was specified.  This is due to
+algorithms
+being employed in each case.  To determine
+whether or not the limitation also applies
+when no optimization is specified, the
+program must be re-created with that option
+in effect.
+</TD></TR><TR VALIGN="TOP"><TD><P>0005
+</TD><TD><P>The constants that are built into
+the encapsulated object from the
+program template exceed 64 K bytes
+minus
+512
+bytes.  Constants defined
+in the program template, and initial
+values for automatic storage,
+exception descriptions, operand lists, and uninitialized machine
+space pointers
+are
+included in this area.
+</TD></TR><TR VALIGN="TOP"><TD><P>0006
+</TD><TD><P>The work space needed by the machine
+to support the machine interface
+invocation for this program exceeds
+65,535 bytes (see note).
+</TD></TR><TR VALIGN="TOP"><TD><P>0007
+</TD><TD><P>An instruction required more than
+the maximum amount of storage
+allowed for it in the encapsulated
+program.  The particular instruction
+in error is identified by number in
+the exception data for this
+exception:
+<UL>
+<P><LI>
+<A HREF="../instructions/CALLX.htm">Call External</A>, <A HREF="../instructions/XCTL.htm">Transfer Control</A>,
+and <A HREF="../instructions/CALLI.htm">Call Internal</A> instructions
+cannot occupy more than 4,800
+bytes of storage.  For these
+instructions, passing a large
+number of arguments or passing
+arguments with many levels
+can cause the storage
+limit to be exceeded.
+<P><LI>
+All other instructions are
+limited to a maximum of
+1,000 bytes.  For these
+instructions, an extensive amount
+of indirect basing in operand
+addressability can cause the
+storage limit to be exceeded.
+</UL>
+</TD></TR><TR VALIGN="TOP"><TD><P>0008
+</TD><TD><P>Encapsulation of the machine
+interface instructions results in a
+requirement for more than 15,789,888 bytes.
+</TD></TR><TR VALIGN="TOP"><TD><P>0009
+</TD><TD><P>The number of items that the machine
+needs to address exceeds 4,040.  One
+addressable item is needed for each of the following:
+<UL>
+<P><LI>Each parameter
+<P><LI>The external parameter list
+<P><LI>Each nonarray pointer
+<P><LI>Each 4,096 bytes of static program objects
+<P><LI>Each 4,096 bytes of automatic program objects
+<P><LI>
+Each 4,096 bytes of work space needed by the machine to support
+the machine interface invocation (see note).
+</UL>
+</TD></TR><TR VALIGN="TOP"><TD><P>000A
+</TD><TD><P>The program requires more than 16 megabytes-32 (1,024K -32)
+bytes of storage for either the ASF (automatic storage frame)
+or the SSF (static storage frame).
+</TD></TR><TR VALIGN="TOP"><TD><P>000B
+</TD><TD><P>The program requires more than
+16,777,216 bytes of storage to contain
+all data and instructions.
+</TD></TR></TABLE>
+<P>
+The error code and its meaning for the Transfer
+Control instruction is as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Error</B>
+</TD><TD><P><B></B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>Code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P>0006
+</TD><TD><P>The work space needed by the
+machine to support the machine
+interface invocation for the program
+that is given control exceeds
+65,535 bytes (see note).
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The total amount of storage allocated
+to an invocation of a program excluding storage
+allocated from the process automatic storage
+area is 65,200 bytes.
+</TD></TR></TABLE>
+<P>
+The following objects cause storage to be
+allocated in the invocation of a program:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">&nbsp;
+&nbsp;
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Object
+&nbsp;
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="98%">       Size (Bytes for Each)
+&nbsp;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Operand list
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="98%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<UL>
+<P><LI>Argument
+<P><LI>Parameter (internal)
+<P><LI>Parameter (external)
+</UL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="98%">
+<DL>
+<DD><P>2 + 6 * number of elements
+<DD><P>6 * number of elements
+<DD><P>2
+</DL>
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Exception descriptions
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="98%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">
+<UL>
+<P><LI>Fixed per entry
+<P><LI>
+Variable-length per entry
+</UL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="98%">
+<DL>
+<DD><P>(26 bytes)
+<DD><P>(1 + length of compare value
+if even; plus 1 if odd)
+</DL>
+<BR></TD></TR></TABLE>
+The storage allocated
+from the ASF is determined by the space that was allocated
+by the user for ASF use.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Transfer Control (<A HREF="../instructions/XCTL.htm">XCTL</A>)
+</UL>
+</TD></TR></TABLE>
+
+ 
+</body>
+
+ 
+</HTML>

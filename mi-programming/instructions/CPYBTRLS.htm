@@ -1,0 +1,152 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CPYBTRLS Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Copy Bits with Right Logical Shift (CPYBTRLS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">103F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Shift control
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Character
+variable scalar or numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Character scalar or numeric scalar.
+<P>
+<I>Operand 3</I>:  Character(2) scalar
+or unsigned binary(2) scalar.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction copies the bit string value
+of the <I>source</I> operand to the bit string
+defined by the <I>receiver</I> operand
+with a right logical shift of the source bit string value under
+control of the <I>shift control</I> operand.
+<P>
+The operation results in copying the shifted bit string value
+of the <I>source</I> to the bit string
+of the <I>receiver</I> while padding the <I>receiver</I> with bit values of 0 and truncating bit values of the <I>source</I> as is appropriate for the specific operation.
+<P>
+No indication is given of truncation of bit values from the shifted
+source value.  This is true whether the values truncated are
+0 or 1.
+<P>
+The operation is performed such that
+the bit string of the <I>source</I>
+is considered to be extended on the left and right by an
+unlimited number of bit string positions of value 0.  Additionally,
+a <I>receiver</I> bit string view (window) with the attributes of the <I>receiver</I> is considered to overlay this conceptual bit string
+value of the <I>source</I> starting at the leftmost bit position of
+the original <I>source</I> value.  A right logical shift of the
+conceptual bit string value of the <I>source</I> is
+then performed relative
+to the <I>receiver</I> bit string view according to the shift criteria
+specified in the <I>shift control</I> operand.
+After the shift, the bit
+string value then contained within the receiver bit string view
+is copied to the <I>receiver</I>.
+<P>
+The <I>source</I> and the <I>receiver</I> can be either
+character or numeric.  Any
+numeric operands are interpreted as logical character strings.
+Due to the operation being treated as a character string
+operation, the <I>source</I> operand may not be specified as a signed
+immediate operand.  Additionally, for a <I>source</I>
+operand specified as
+an unsigned immediate value, only a 1-byte immediate value may be
+specified.
+<P>
+The <I>shift control</I> operand may be specified
+as an immediate operand,
+as a character(2) scalar, or as a unsigned binary(2) scalar.
+It provides an unsigned binary
+value indicating the number of bit positions for which the right
+logical shift of the source bit string value is to be performed.
+A zero value specifies no shift.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,51 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> OPM_PARM_CNT Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>OPM Parameter Count (OPM_PARM_CNT)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for OPMPARMCNT is 8.
+OPM_PARM_CNT (
+) :   unsigned binary(4) value which specifies the number of 
+      non-bound program parameters passed to the program  
+      entry procedure
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The parameter count in the non-bound program
+parameter list received by the
+program entry procedure is returned.
+<P>This function can only
+be used by procedures defined to be a program entry procedure.  Otherwise,
+an <I> instruction stream not valid&nbsp; </I> (hex <A HREF="../exceptions/EX2A1B.htm">2A1B</A>) exception
+will be signaled during module creation.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>
+

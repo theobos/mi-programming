@@ -1,0 +1,254 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> INSINXEN Instruction </title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Insert Independent Index Entry (INSINXEN)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">04A3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Index
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Argument
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Option list
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE><P>
+<I>Operand 1</I>:  System pointer.
+<P><I>Operand 2</I>:  Space pointer.
+<P><I>Operand 3</I>:  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for INSINXEN is 37.
+INSINXEN (
+          index         : address of system pointer
+          argument      : address
+          option_list   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>Insert one or more new entries into the
+independent index identified by operand 1 according to the criteria
+specified in the <I>option list</I> (operand 3).
+Each entry is inserted into
+the index at the appropriate location based on the binary value of the <I>argument</I>.
+No other collating sequence is supported.  The maximum length
+allowed for the independent index entry
+is either 120 bytes or 2,000 bytes depending on how the <I>maximum
+entry length</I> attribute field was specified when the index was
+created.
+<P>The <I>argument</I> (operand 2) and
+the <I>option list</I> (operand 3) have the
+same format as the search
+argument and option list for the Find Independent
+Index Entry (<A HREF="FNDINXEN.htm">FNDINXEN</A>) instruction.
+<P>The <B><U>rule option</U></B>
+identifies the type of insert to be performed and
+has the following meaning:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Insert Type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Value (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Meaning
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Authorization
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+Insert
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+0001
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">
+Insert unique argument
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+Insert
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+Insert with replacement
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+0002
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">
+Insert argument, replacing the nonkey portion if the key is already
+in the index
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Update
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+Insert without replacement
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+0003
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">
+Insert argument only if the key is not already in the index
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+Insert
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><BR></TD></TR></TABLE>
+<P>The <I>insert rule option</I>
+is valid only for indexes not containing
+keys.  The <I>insert with replacement rule option</I>
+and the <I>insert without
+replacement rule option</I>
+are valid for indexes containing either fixed-
+or variable-length entries with keys.  The <I> duplicate key argument in index&nbsp; </I> (hex <A HREF="../exceptions/EX1801.htm">1801</A>) exception
+is signaled for the following conditions:
+<UL>
+<P><LI>If the <I>rule option</I> is <I>insert</I>
+and the argument to be inserted
+(operand 2) is already in the index
+<P><LI>If the <I>rule option</I> is <I>insert without replacement</I>
+and the key
+portion of the argument to be inserted (operand 2) is already in the
+index
+</UL>
+The <I>argument length</I>
+and <I>argument offset</I> fields are ignored, however,
+the <I>entry length</I> and <I>offset</I>
+fields must be entered for every
+entry which is to be inserted into the index.
+<P>The <B><U>occurrence count</U></B> specifies the number of arguments to be
+inserted.  This field is limited to a maximum value of 4,095.
+If this value is exceeded, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+<P>If the index was created to contain <I>both pointers and scalar data</I>,
+then
+each entry to be inserted must be 16-byte aligned.  If the index was
+created to contain <I>variable-length</I> entries,
+then the <I>entry length</I> and <I>offset fields</I>
+must be specified in the <I>option list</I> for
+each <I>argument</I> in
+the space identified by operand 2.  The <I>entry length</I>
+is the length of
+the entry to be inserted.
+<P>If the index was created to contain <I>both pointers
+and scalar data</I>,
+the <I>offset</I>
+field in the <I>option list</I> must be supplied for each entry to
+be inserted.  The <I>offset</I> is the
+number of bytes from the beginning of
+the previous entry to the beginning of the entry to be inserted.  For
+the first entry, this is the offset from the start of the space
+identified by operand 2.
+<P>The <I>return count</I>
+specifies the number of entries inserted into the
+index.  If the index was created to contain <I>scalar data only</I>,
+then any
+pointers inserted are invalidated.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>Insert or update depending on insert type
+<UL>
+<P><LI>Operand 1
+</UL>
+<P><LI>Execute
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>Materialize
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+<P><LI>Modify
+<UL>
+<P><LI>Operand 1
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>02 Access Group
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0201.htm">0201 Object Ineligible for Access Group</A>
+</DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>18 Independent Index
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1801.htm">1801 Duplicate Key Argument in Index</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+<DD><A HREF="../exceptions/EX3802.htm">3802 Template Size Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

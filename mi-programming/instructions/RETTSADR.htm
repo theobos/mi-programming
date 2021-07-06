@@ -1,0 +1,64 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> RETTSADR Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Retrieve Teraspace Address From Space Pointer (RETTSADR)</H1>
+<P>
+<font color=blue>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for RETTSADR is 623.
+RETTSADR (
+          source_pointer   : space pointer(16)
+) :   local form address
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Retrieve the teraspace address from <VAR>source pointer</VAR>.
+If <VAR>source pointer</VAR> contains
+a <VAR>null pointer value</VAR> then a <VAR>null pointer value</VAR> is
+returned.
+<P>
+If <VAR>source pointer</VAR> contains a space address that
+does not point to teraspace, then a <I>space address is not a teraspace storage address&nbsp; </I>(hex <A HREF="../exceptions/EX0609.htm">0609</A>) exception
+is signalled.
+If any exception is signalled during this operation
+the result is undefined.
+<P>
+This instruction may be specified in a program template
+only when the (bound) program is to be created as teraspace capable.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0609.htm">0609 Space Address Is Not A Teraspace Storage Address</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+</DL>
+</FONT>
+
+</body>
+
+</HTML>

@@ -1,0 +1,48 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0603 Exception </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0603
+</B></TD><TD><P><I>Range
+</I>
+<P>
+A subscript
+value in a compound operand array reference
+is outside the range defined for the array.
+A subscript value of less than 1 or greater than the number of
+elements defined by the array causes this exception.
+<P>
+A reference to a string has a position and/or length that
+exceeds the bounds of the string.
+A compound operand that defines a character string that does not
+completely fall within the bounds of the base character
+string was referenced.
+A substring with position (P) e1 and length (L) e1 does not meet the
+following constraint (n is the length of the base string):
+<DL>
+<DD><P>
+P + L - 1 &lt;&#61; n
+</DL>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+All non-bound program instructions that use an array element or a
+substring reference as an operand.  When the architecture specifies a
+pointer or scalar operand, they can be array elements.
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

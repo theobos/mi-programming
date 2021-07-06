@@ -1,0 +1,278 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> EXTRMAG Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Extract Magnitude (EXTRMAG)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand &#91;3-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAG</B>
+1052
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAGI</B>
+1852
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAGB</B>
+1C52
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR></TABLE>
+<p>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3-6</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H4><A NAME="Header_2">Short forms</A></H4>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand &#91;2-5&#93;
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAGS</B>
+1152
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAGIS</B>
+1952
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>EXTRMAGBS</B>
+1D52
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver/Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+The numeric value of the <I>source</I> operand is
+converted to its absolute value and
+placed in the numeric variable scalar <I>receiver</I> operand.
+<P>
+The absolute value is formed from the <I>source</I> operand as follows:
+<UL>
+<P><LI>
+Signed binary
+<UL>
+<P><LI>
+Extract the numeric value and form twos
+complement if the source operand is negative.
+</UL>
+<P><LI>
+Unsigned signed binary
+<UL>
+<P><LI>
+Extract the numeric value.
+</UL>
+<P><LI>
+Packed/Zoned
+<UL>
+<P><LI>
+Extract the numeric value and force
+the <I>source</I> operand's sign to positive.
+</UL>
+<P><LI>
+Floating-point
+<UL>
+<P><LI>
+Extract the
+numeric value and force the significand sign to positive.
+</UL>
+</UL>
+<P>
+The result of the operation is copied into the <I>receiver</I>
+operand according to the rules of the Copy
+Numeric Value (<A HREF="CPYNV.htm">CPYNV</A>) instruction.
+If this operand is not the same type as that used in
+performing the operation, the
+resultant value is converted to its type.
+If necessary, the resultant value is adjusted to the length of the <I>receiver</I> operand, or aligned at the
+assumed decimal point of the <I>receiver</I>
+operand, or both before being copied to it.
+Length
+adjustment and decimal point alignment are performed according
+to the rules of arithmetic operations outlined in
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+If significant digits
+are truncated on the left end of the resultant value, a <I>size</I>
+(hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>)
+exception is signaled.  An attempt to extract the magnitude of a maximum
+negative binary value to a binary scalar of the same size also
+results in a <I> size&nbsp;</I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception.
+<P>
+When the <I>source</I> floating-point operand represents
+not-a-number, the sign field of the <I>source</I> is not
+forced to positive and this value is not altered
+in the <I>receiver</I>.
+<P>
+If a decimal to binary conversion causes a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+to be signaled, the binary value contains the correct truncated
+result only if the decimal value contains 15 or fewer
+significant nonfractional digits.
+<P>
+For a fixed-point operation, if significant digits are truncated
+from the left end of the resultant
+value, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.  An attempt to extract the
+absolute value of a maximum
+negative binary value into a binary scalar
+of the same size also results in a <I> size&nbsp;</I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception.
+<P>
+For floating-point operations that involve a fixed-point
+receiver field, if nonzero digits would be
+truncated from the left end of the resultant value, an <I> invalid floating-point conversion&nbsp; </I> (hex <A HREF="../exceptions/EX0C0C.htm">0C0C</A>) exception
+is signaled.
+<P>
+For a floating-point receiver operand, if the exponent
+of the resultant value is either too large
+or too small to be represented in the <I>receiver</I>, the <I> floating-point overflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C06.htm">0C06</A>) exception
+or the <I> floating-point underflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C07.htm">0C07</A>) exception
+is signaled.
+<P>
+<P>
+<H5><A NAME="Header_4">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Positive-The algebraic value of the <I>receiver</I> operand is
+positive.
+<P><LI>Zero-The algebraic value of the <I>receiver</I> operand is
+zero.
+<P><LI>Unordered-The value assigned a floating-point <I>receiver</I> operand is NaN.
+</UL>
+<P>
+<H4><A NAME="Header_5">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_7">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+<DD><A HREF="../exceptions/EX0C0C.htm">0C0C Invalid Floating-Point Conversion</A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+</body>
+
+</HTML>

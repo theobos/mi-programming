@@ -1,0 +1,206 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title>Storage Synchronization Concepts </title>
+			<link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body>
+<h1>Storage Synchronization Concepts</h1>
+
+<P>
+This section describes some background information and considerations
+related to shared storage synchronization.
+<P>
+<P>
+<A NAME="Header_2"></A>
+<h2>Shared Storage</h2>
+
+<P>
+The instructions described in this chapter pertain to shared storage,
+which, in this context, refers to any space data
+which is accessed from two or more threads of execution.
+<P>
+Common implementations of shared storage consist of
+multiple threads using direct or indirect (pointer-based) access to
+read from and write to locations in the following types of spaces:
+<UL>
+<P><LI>Space objects
+<P><LI>Associated spaces of other types of objects
+<P><LI>Heap spaces
+<P><LI>Program static storage
+<P><LI>Teraspace
+</UL>
+<P>
+<P>
+<A NAME="Header_3"></A>
+<h2>Shared Storage Access Ordering</h2>
+<P>
+When threads share storage, there is no guarantee that shared storage
+accesses (reads/writes) performed by one thread will be observed to
+occur in a particular order by other threads, unless some form of
+explicit storage synchronization is performed by both the threads
+writing the shared storage and the threads reading the shared storage.
+<P>
+Storage synchronization is only required when two or more threads are
+attempting concurrent access to shared storage, and the semantics of
+the threads' logic dictate that some order be enforced on the shared
+storage accesses.
+When the order in which shared storage
+updates are observed is not important, no storage synchronization is
+necessary.
+A given thread will always observe its own storage updates (to
+shared or non-shared storage) in order.
+In addition, accesses to overlapping shared storage locations will
+always be observed to occur in the same order by all threads.
+<P>
+A typical scenario which requires some form of explicit data
+synchronization is when the state of one shared storage location is
+used (by convention in a program's logic) to control access to
+a second (non-overlapping) shared storage location.
+For example, consider such a situation, where one thread initializes
+some shared data (DATA) and then sets a shared flag (FLAG) to indicate
+to all other threads that the shared data has been initialized.
+<P>
+<PRE><FONT SIZE="-1">
+    Initializing Thread                     All Other Threads
+    -------------------                 ---------------------------
+         DATA = 10                      loop until FLAG has value 1
+         FLAG = 1                       use DATA
+</FONT></PRE>
+<P>
+In this case, we must enforce an order on the shared storage accesses.
+Otherwise, the initializing thread's shared storage updates could be
+observed out of order by other threads, which could allow some or
+all of the other threads to read an uninitialized value from DATA.
+The remainder of this discussion and the ensuing instructions
+describe how to enforce shared storage access ordering.
+<P>
+<P>
+<A NAME="Header_4"></A>
+<h2>Storage Synchronizing Actions</h2>
+
+<P>
+When an ordering of shared storage accesses is required,
+all threads for which an order must be enforced must take explicit
+action to synchronize the shared storage accesses.  These actions
+are called <B><U>storage synchronizing actions</U></B>.
+<P>
+When a thread performs a storage synchronizing action,
+shared storage accesses will be ordered in the sense
+that accesses appearing in the logical flow of the thread's code before
+the synchronizing action will be guaranteed to be completed, from the
+standpoint of the issuing thread, before
+those appearing in the logical flow after the synchronizing action.
+If two writes to two shared locations are separated by a synchronizing
+action, the first write is guaranteed to be available to other
+threads at or before their next synchronizing actions, and no
+later than the second write becomes available.
+If two reads from two shared locations are separated by a
+storage synchronizing action, then the second read will read a value no
+less current than the first read, providing an ordering was
+enforced by other threads when writing to the shared storage.
+<P>
+As stated above, to completely enforce shared storage access ordering
+between two or more threads, it is necessary that all threads dependent
+on the access ordering -- both readers and writers of the shared
+data -- use appropriate synchronizing actions.  It is not
+sufficient to only perform storage synchronization in threads writing
+to shared storage.
+<P>
+To continue with the example used above, to enforce access ordering
+on the shared data and flag values, we could use the <A HREF="instructions/SYNCSTG.htm">SYNCSTG</A> operation
+(a storage synchronizing operation) as
+follows:
+<P>
+<PRE><FONT SIZE="-1">
+    Initializing Thread                     All Other Threads
+    -------------------                 ---------------------------
+          DATA = 10                     loop until FLAG has value 1
+          SYNCSTG(0)                    SYNCSTG(0)
+          FLAG = 1                      use DATA
+</FONT></PRE>
+<P>
+In the initializing thread, the storage synchronizing action
+ensures that the value of FLAG is available to other threads no
+earlier than the value of DATA.
+In the other threads, the storage
+synchronizing action ensures that the value of DATA is at least
+as current as the value of FLAG.
+Without the synchronizing action between the two reads, the reading
+threads could potentially observe the updated value of FLAG but
+still not see the new value of DATA.
+Note that since the initializing thread is using <A HREF="instructions/SYNCSTG.htm">SYNCSTG</A> to
+enforce an ordering on shared storage writes, the value two (2)
+could have been specified for the <B><I>action</I></B> operand.
+Likewise, the other threads, which are simply trying to enforce an
+ordering on reads, could have used an <B><I>action</I></B> value of
+one (1).
+<P>
+In addition to the instructions described in this chapter,
+some other MI instructions also have storage synchronizing
+side effects under certain circumstances.
+The synchronizing actions associated with the following operations
+have an ordering effect on shared storage accesses equivalent to that
+achieved by the <A HREF="instructions/SYNCSTG.htm">SYNCSTG</A> operation with an action code value of zero
+(which indicates that both shared storage reads and writes are
+affected).
+The list below spans the instructions used for synchronizing thread
+execution.  When the execution of threads which are writing to shared
+storage are serialized with other threads accessing the storage using
+these synchronization mechanisms, shared storage accesses will
+be synchronized as well.  The <A HREF="instructions/SYNCSTG.htm">SYNCSTG</A> operation is useful when, for
+performance or other reasons, accesses are not completely serialized
+using these other
+mechanisms, as in the example above.
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">MI Instruction
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Synchronizing Action
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Lock Object (<A HREF="instructions/LOCK.htm">LOCK</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful acquisition of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Unlock Object (<A HREF="instructions/UNLOCK.htm">UNLOCK</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful release of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Lock Space Location (<A HREF="instructions/LOCKSL.htm">LOCKSL</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful acquisition of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Unlock Space Location (<A HREF="instructions/UNLOCKSL.htm">UNLOCKSL</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful release of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Lock Pointer-Based Mutex (<A HREF="instructions/LOCKMTX.htm">LOCKMTX</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful acquisition of the mutex.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Unlock Pointer-Based Mutex (<A HREF="instructions/UNLKMTX.htm">UNLKMTX</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful release of the mutex.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Lock Object Location (<A HREF="instructions/LOCKOL.htm">LOCKOL</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful acquisition of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Unlock Object Location (<A HREF="instructions/UNLOCKOL.htm">UNLOCKOL</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful release of the lock.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Enqueue (<A HREF="instructions/ENQ.htm">ENQ</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful completion of the enqueue.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Dequeue (<A HREF="instructions/ENQ.htm">DEQ</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful completion of the dequeue.
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Compare And Swap (<A HREF="instructions/CMPSW.htm">CMPSW</A>)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Successful update of the target (2nd operand) value.
+</TD></TR></TABLE>
+<P>
+There are other higher-level synchronization mechanisms
+that are built on top of these MI instructions which also have
+storage synchronizing effects.  See the storage synchronization
+chapter of the "ILE Concepts" manual (SC41-3606) for more details.
+<P>
+
+</body>
+
+</HTML>
+

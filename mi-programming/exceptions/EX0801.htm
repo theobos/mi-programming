@@ -1,0 +1,50 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0801 Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0801
+</B></TD><TD><P><I>Parameter Reference Violation
+</I>
+<P>
+An attempt was made to reference an internal or an external
+parameter for which no corresponding argument was passed.
+<P>
+This exception may not be signaled
+for operations which refer to the value of
+a space pointer machine object, but
+which do not attempt to reference the space data the pointer addresses.
+The following instructions may not signal this exception upon references
+to a space pointer machine object.
+<UL COMPACT>
+<LI>Add Space Pointer (<A HREF="../instructions/ADDSPP.htm">ADDSPP</A>)
+<LI>Compare Pointers for Equality (<A HREF="../instructions/CMPPTRE.htm">CMPPTRE</A>)
+<LI>Compare Space Addressability (<A HREF="../instructions/CMPSPAD.htm">CMPSPAD</A>)
+<LI>Set Space Pointer (<A HREF="../instructions/SETSPP.htm">SETSPP</A>)
+<LI>Set Space Pointer with Displacement (<A HREF="../instructions/SETSPPD.htm">SETSPPD</A>)
+<LI>Set Space Pointer from Pointer (<A HREF="../instructions/SETSPPFP.htm">SETSPPFP</A>)
+<LI>Subtract Space Pointer Offset (<A HREF="../instructions/SUBSPP.htm">SUBSPP</A>)
+<LI>Subtract Space Pointers For Offset (<A HREF="../instructions/SUBSPPFO.htm">SUBSPPFO</A>)
+</UL>
+See the particular instruction description for more detail.
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+Any non-bound program instruction that references a parameter
+operand
+<P><LI>
+Any bound program instruction that uses a space pointer value to
+reference storage
+</UL>
+</TD></TR></TABLE>
+</body>
+</HTML>

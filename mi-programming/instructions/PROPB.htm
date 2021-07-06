@@ -1,0 +1,69 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> PROPB Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Propagate Byte (PROPB)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for PROPB is 10.
+PROPB (
+       target_string       : address of aggregate(*)
+       source_byte         : signed binary(4) - rightmost byte specifies
+                                                the source byte value  OR
+                             unsigned binary(1)  OR
+                             aggregate(1)
+       propagation_count   : unsigned binary value which specifies the
+                             number of times the value specified by
+                             source byte should be propagated<font color=blue>
+) :   space pointer(16) to the target string
+</FONT>
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>The byte value specified by <I>source byte</I> is copied into the
+storage specified by <I>target string</I>.  <I>Propagation count</I>
+specifies the number of bytes of storage into which this value is stored.
+It is assumed sufficient storage exists at the location specified by <I>target string</I>.
+<P>If the value of <I>progagation count</I> is 0, no storage is
+altered.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

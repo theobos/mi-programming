@@ -1,0 +1,315 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 2204 Exception </title>
+
+             
+			 
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,exceptions,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>2204
+</B></TD><TD><P><I>Object Not Eligible for Operation
+</I>
+<P>
+An attempt to reference an object was unsuccessful because the object
+was not eligible for the operation requested for one of the following
+reasons:
+<UL>
+<P><LI>
+An object that cannot be duplicated was specified on a Create Duplicate
+Object instruction.
+<P><LI>
+A data space or data space index was activated when a Suspend
+instruction or a load/dump operation was attempted.
+<P><LI>
+An index that can contain pointers was referenced by a Suspend Object
+instruction or was referenced for a load/dump operation.
+<P><LI>
+An attempt was made to activate a cursor that is already activated to
+this process or is activated to another process.
+<P><LI>
+A temporary object was referenced on a Transfer Ownership instruction.
+<P><LI>
+A temporary object was referenced on a Transfer Primary Group
+instruction.
+<P><LI>
+An attempt was made to replace a program through a load operation.
+<P><LI>
+An attempt was made to materialize cursor statistics when the cursor was
+not active for this process.
+<P><LI>
+The receiving data space for a Copy Data Space Entries instruction is
+active under more than one cursor.
+<P><LI>
+An attempt was made to modify (through the Modify Data Space Index
+Attributes instruction) a data space index when the current attributes
+of the data space index were incompatible with the attempted
+modification.
+<P><LI>
+An attempt was made to retrieve (through the Retrieve Data Space Entry
+instruction) a data space entry when the cursor position is the result
+of group-by processing.
+<P><LI>
+An attempt was made to set a cursor (by a Set Cursor or a Retrieve
+Sequential Data Space Entries instruction) in an event handler while the
+cursor is waiting for a lock for another Set Cursor instruction.  This
+can happen when an event is handled during a data base entry lock wait.
+<P><LI>
+The source or receiver cursor has had a set cursor operation or another
+operation performed on it that left the cursor set to a data space entry
+after the cursor was activated and before a Copy Data Space Entries
+instruction was issued.
+<P><LI>
+An attempt was made to apply journal changes to an object for which
+journaling is not supported.
+<P><LI>
+An attempt was made to apply journal changes to a data space that had a
+cursor active over it.
+<P><LI>
+An attempt was made to attach a new Journal space to a remote
+journal port without first attaching a matching journal space
+to the local journal port associated with this remote port.
+<P><LI>
+An attempt was made to start journaling for an object to a journal
+port which is not allowed to have objects journaled to it.
+<P><LI>
+An attempt was made to reset the journal entry sequence number
+of the first entry on a journal space attached to a remote journal
+port.
+<P><LI>
+An attempt was made to attach more than one journal space to a remote
+journal port.
+<P><LI>
+An attempt was made to change the journal entry prefix lengths for
+a remote journal port.
+<P><LI>
+An attempt was made to change the discard transient entries value for
+a default or remote journal port.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+for a default or remote journal port.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+so as to start preventing deposits
+for a journal port which is already preventing deposits.
+<P><LI>
+An attempt was made to change the prevent journal entry deposits value
+so as to cease preventing deposits
+for a journal port which has already ceased preventing deposits.
+<P><LI>
+An attempt was made to specify user specific data to be included in
+the initial entry deposited on a journal space attached to a remote
+journal port.
+<P><LI>
+An attempt was made to create a remote journal receiving environment
+for a default journal port, or for a journal port that has more
+than one journal space attached to it, or for a journal port that
+is not a remote journal port.
+<P><LI>
+An attempt was made to add a remote journal sending environment
+for a default journal port or for a journal port that has more
+than one journal space attached to it.
+<font color=blue>
+<P><LI>
+An attempt was made to begin journaling of a dataspace that supports
+a maximum record length of 3.5GB to a journal port that does not
+support a maximum journal entry length greater than 15MB.
+</FONT>
+<font color=blue>
+<P><LI>
+An attempt was made to journal a queue that was created with the<I>
+contains pointers and scalar data</I> attribute.
+<P><LI>
+An attempt was made to journal a space object whose subtype is not
+supported by journaling.
+</FONT>
+<P><LI>
+An attempt was made to insert a user profile or a temporary object into
+an authority list on the Modify Authority List instruction.
+<P><LI>
+An attempt was made to use the Modify Program instruction to compress or
+decompress a part of a program object that either does exist or is
+already in the requested format.
+<P><LI>
+An attempt was made to use the Modify Program instruction to compress a
+program that either was created before version 1 release 3, or has been
+modified outside of machine control.
+<P><LI>
+An attempt was made to use the Test System Object instruction
+on an object having an object type that is not supported by the
+instruction.
+<P><LI>
+An attempt was made to use the Test System Object instruction
+on a module object or a program object that has not been converted
+to version 3 release 6 format.
+<P><LI>
+An attempt was made to use the Set Space Pointer From Pointer instruction
+to set a space pointer from a system pointer pointing to a
+XOM object.
+</UL>
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Object causing exception
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Ensure Object (ENSOBJ)
+<LI>Materialize Authorized Objects (<A HREF="../instructions/MATAUOBJ.htm">MATAUOBJ</A>)
+<LI>Materialize Bound Program (MATBPGM)
+<LI>Set Access State (<A HREF="../instructions/SETACST.htm">SETACST</A>)
+<LI>Set Space Pointer From Pointer (SETSPPFP)
+<LI>Test Temporary Object (TESTTOBJ)
+</UL>
+</TD></TR></TABLE>
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+ 
+</HTML>

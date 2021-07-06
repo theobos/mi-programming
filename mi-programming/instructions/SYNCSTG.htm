@@ -1,0 +1,107 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SYNCSTG Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Synchronize Shared Storage Accesses (SYNCSTG)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03E5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Action
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<I>Operand 1</I>:  Character (4) constant or unsigned binary (4)
+constant.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for SYNCSTG is 617.
+SYNCSTG (
+         action   : unsigned binary (4) literal
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Enforces an ordering on shared storage
+accesses performed by the issuing thread.
+In this discussion, shared storage accesses are reads and
+writes from/to storage shared among multiple threads.  The
+threads may be associated with the same or different processes.
+<P>
+The <I>action</I> field specifies what type of shared storage accesses
+(reads, writes, or both) are to be ordered.
+<P>
+<UL>
+<P><LI>
+0 = both reads and writes to shared storage performed by
+this thread will be ordered.
+<P><LI>
+1 = only reads from shared storage performed by this
+thread will be ordered.
+<P><LI>
+2 = only writes to shared storage performed by this
+thread will be ordered.
+</UL>
+<P>
+The affected shared storage accesses will be ordered in the sense
+that accesses appearing in the logical flow of the source code before
+the SYNCSTG will be guaranteed to be completed from the standpoint of
+the issuing thread before
+those appearing in the logical flow after the SYNCSTG.
+For instance, if two reads from two shared locations are separated by a
+SYNCSTG(0), then the second access will read
+a value no less current than the first access.
+If two writes to two shared locations are separated by a SYNCSTG(0),
+then the first write will be available
+before the second write.
+<P>
+To completely enforce shared storage access ordering between two
+or more threads, it is necessary that all threads dependent
+on the access ordering -- both readers and writers of the shared data --
+use appropriate SYNCSTG operations or some other
+synchronization mechanism such as locks, mutexes,
+semaphores, or data queues (this list is not intended to be
+exhaustive).
+<P>
+This instruction is only guaranteed to affect the ordering of shared
+storage accesses, and is necessary only when the
+accesses are to different shared storage locations
+and the semantics of the program depend on the ordering of
+the shared accesses between two or more threads.
+In addition, this instruction is only necessary in cases where
+other synchronization mechanisms (locks, mutexes, etc) are not
+being used to serialize access to the shared storage locations.
+<P>
+This instruction may have an associated performance penalty, so
+it is recommended that SYNCSTG be used conservatively when possible.
+<P>
+<P>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>
+None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+
+
+</body>
+
+</HTML>

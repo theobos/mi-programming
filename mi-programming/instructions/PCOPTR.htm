@@ -1,0 +1,55 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> PCOPTR Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>PCO Pointer (PCOPTR)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for PCOPTR is 144.
+PCOPTR (<font color=blue>
+) :   space pointer(16) to the PCO associated with the 
+      activation
+</FONT>
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+A space pointer
+<font color=blue>
+is returned,
+</FONT>
+which points to the first byte of the
+PCO (process communication object)
+for the process which owns the
+program activation associated with the current invocation.
+If the current invocation is a client executing in
+a shared activation group then the pointer returned
+refers to an object owned by a process other than the
+current process.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<UL>
+<P><LI>None
+</UL>
+
+</body>
+
+</HTML>

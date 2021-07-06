@@ -1,0 +1,337 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title>UNLCKTSL Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Unlock Teraspace Storage Location (UNLCKTSL)</H1>
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Op Code (Hex)
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Operand 1
+</FONT></TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>03D5
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue>Unlock request template
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><font color=blue><BR></FONT></TD></TR></TABLE>
+<P>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for UNLCKTSL is 622.
+UNLCKTSL (
+          unlock_request_template   : address of aggregate
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The thread scoped locks specified in the <I>unlock template</I> (operand 1) are
+unlocked.
+UNLCKTSL can unlock any location locked by the <A HREF="LOCKTSL.htm">LOCKTSL</A> or <A HREF="LOCKSL.htm">LOCKSL</A>
+instruction.
+A maximum of 4093 locations can be unlocked with one
+UNLCKTSL instruction.
+<P>
+Any teraspace storage location(s) specified within the template must
+either be mapped or allocated, otherwise an <I> invalid unlock request&nbsp;</I> (hex <A HREF="../exceptions/EX1A03.htm">1A03</A>) exception is signaled.
+<P>
+A location specified within the template which is not
+a teraspace storage location (i.e. is a single level store location)
+need not exist
+when this instruction is issued.
+<P>
+If a teraspace storage location lock cannot be unlocked because
+the thread does not hold the indicated lock,
+an <I> invalid unlock request&nbsp; </I> (hex <A HREF="../exceptions/EX1A03.htm">1A03</A>) exception
+is signaled.
+<P>
+The lock request template
+identified by operand 1 must be aligned on a 16-byte boundary or an <I> boundary alignment&nbsp; </I> (hex <A HREF="../exceptions/EX0602.htm">0602</A>) exception
+is signaled.
+<P>
+The format of operand 1 is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Number of unlock requests in template
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>UBin(4)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>4
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Offset to lock state selection values
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>UBin(2)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>6
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Char(26)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>32
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>20
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Location(s) to be unlocked
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>&#91;*&#93; Space pointer
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+(repeated as specified by <I>number of
+unlock requests
+in template</I> above)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>The <I>unlock options</I> is located by adding the <I>offset
+to lock state selection values</I> above to operand 1.
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2"><font color=blue>Offset
+</FONT></TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><font color=blue><BR></FONT></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Dec
+</FONT></TH><TH ALIGN="RIGHT" VALIGN="TOP"><font color=blue>Hex
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Field Name
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Data Type and Length
+</FONT></TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>Unlock options
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>&#91;*&#93; Char(1)
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+(repeated for each unlock request)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Lock state to unlock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bits 0-4
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+(1 = unlock requested, 0 = unlock not requested)
+Only one state may be requested.
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>LSRD lock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Bit 0
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>LSRO lock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Bit 1
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>LSUP lock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Bit 2
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>LEAR lock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Bit 3
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>LENR lock
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><font color=blue>Bit 4
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Lock count option
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bit 5
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>0 =
+</FONT></TD><TD><font color=blue>Lock count reduced by 1
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>1 =
+</FONT></TD><TD><font color=blue>All locks are unlocked.
+(The lock count is set to 0).
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Reserved (binary 0)
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bit 6
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>0
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Entry active indicator
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>Bit 7
+</FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><font color=blue>0 =
+</FONT></TD><TD><font color=blue>Entry not active.  This entry is not used.
+</FONT></TD></TR><TR VALIGN="TOP"><TD><font color=blue>1 =
+</FONT></TD><TD><font color=blue>Entry active.  Lock is to be unlocked.
+</FONT></TD></TR></TABLE>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><font color=blue><BR></FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><font color=blue><BR></FONT></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="RIGHT" VALIGN="TOP"><font color=blue>*
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>--- End ---
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP"><font color=blue>
+</FONT></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><font color=blue>
+</FONT></TD></TR></TABLE>
+<P>
+This instruction can request the deallocation of
+one or more lock states on one or more locations.  The
+locks are deallocated sequentially until all specified locks
+are deallocated.
+When a lock is deallocated, the lock count is either reduced
+by 1 or set to 0 for the specified state.  This option is
+specified by the <B><U> lock count option</U></B>.
+<P>
+Specific locks can be unlocked only if they are held
+by the thread issuing the Unlock Teraspace Storage Location instruction.
+If a space location lock cannot be unlocked because
+the thread does not hold the indicated lock, or if the
+address is a teraspace storage address which is not mapped or allocated,
+then exception data is saved but processing of the
+instruction continues.  After all
+requested unlocks have been processed,
+an <I> invalid unlock request&nbsp; </I> (hex <A HREF="../exceptions/EX1A03.htm">1A03</A>) exception
+is
+signaled if any location lock was not unlocked.
+<P>
+No locks are unlocked if a template value is invalid.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A03.htm">1A03 Invalid Unlock Request</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C06.htm">1C06 Machine Lock Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+<DD><A HREF="../exceptions/EX220B.htm">220B Object Not Available</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+</FONT>
+
+</body>
+
+</HTML>

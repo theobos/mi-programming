@@ -1,0 +1,142 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 1E04 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>1E04
+</B></TD><TD><P><I>DBGINT Error
+</I>
+<P>
+The Debug Interpreter
+has detected an error.
+The instruction and error are identified
+in the information passed (described below).
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Erroneous D-Code instruction
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(40)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">40
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">D-Code instruction index
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">44
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Error field
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>erroneous D-Code instruction</U></B> is formatted as
+a hexadecimal string.
+Each hexadecimal digit represents 4 bits.  D-Code instructions occupy
+twenty bytes.
+<P>
+The <B><U>D-Code instruction index</U></B> is the
+index of the erroneous D-Code
+instruction in the D-Code instruction array.  It is the value of the
+program counter (PC) register when the Debug Interpreter
+issued this exception.
+<P>
+The table below associates <B><U>error field</U></B> codes
+with corresponding errors.
+<BR>
+<P><B><A NAME="TBLMSCFLD">Table 1. Error Field</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">Code
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Error Field
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Explanation
+</TH></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">None
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">No field is in error
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Mark Pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">The Mark Pointer is invalid.
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Storage class
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">The storage class is invalid.
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Results space
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">The results space is not large enough.
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Stack error
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">A stack entry is in error.
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Register
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">A register in the directory is invalid.
+</TD></TR><TR>
+<TD ALIGN="CENTER" VALIGN="TOP" WIDTH="17%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="33%">Conversion specified
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">The conversion specified is invalid.
+</TD></TR><TR>
+</TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+</UL>
+</TD></TR></TABLE>
+
+ 
+</body>
+
+ 
+</HTML>

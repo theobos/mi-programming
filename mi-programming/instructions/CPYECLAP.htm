@@ -1,0 +1,361 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CPYECLAP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Copy Extended Characters Left-Adjusted With Pad (CPYECLAP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1053
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Pad
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Data-pointer-defined character scalar.
+<P>
+<I>Operand 2</I>:  Data-pointer-defined character scalar.
+<P>
+<I>Operand 3</I>:  Character(3) scalar or null.
+<BR>
+<BR>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CPYECLAP is 412.
+CPYECLAP (
+          receiver_pointer   : address of data pointer
+          source_pointer     : address of data pointer
+          pad                : address OR
+                               null operand
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The extended character string
+value of the <I>source</I> operand is copied to the <I>receiver</I> operand.
+<P>
+The operation is performed at the
+length of the <I>receiver</I> operand.
+If the <I>source</I> operand is shorter than the <I>receiver</I>,
+the <I>source</I> operand
+is copied
+to the leftmost bytes of the <I>receiver</I>
+and the excess bytes of the <I>receiver</I> are
+assigned the appropriate value from the <I>pad</I> operand.
+<P>
+The <I>pad</I> operand, operand 3, is three bytes
+in length and has the
+following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Pad operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Single byte pad value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Double byte pad value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">3
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+If the <B><U>pad operand</U></B>
+is more than three bytes in length, only its leftmost
+three bytes are used.
+Specifying a null <I>pad operand</I>
+results in default pad values of hex 40,
+for single byte, and hex 4040, for double byte, being used.
+The <B><U>single byte pad value</U></B>
+and the first byte of the <B><U>double byte pad
+value</U></B> cannot be either a
+shift out control character (SO = hex 0E) value or a shift
+in control character (SI = hex 0F)
+value.  Specification of such an invalid
+value results in the signaling of the <I> scalar value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception.
+<P>
+Operands 1 and 2 must be specified as data pointers which define
+either a simple (single byte) character data field or
+one of the
+extended (double byte) character data fields.
+<P>
+Support for usage of a data pointer defining an extended character
+scalar value is limited to this
+instruction.  Usage
+of such a data pointer defined value on any other instruction is not
+supported and results in the signaling of the <I> scalar type invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3201.htm">3201</A>) exception.
+<P>
+For more information on support for extended character data fields,
+refer to the
+Set Data Pointer Attributes (<A HREF="SETDPAT.htm">SETDPAT</A>) and Materialize Pointer (<A HREF="MATPTR.htm">MATPTR</A>)
+instructions.
+<P>
+Four data types are supported for data pointer definition of
+extended (double byte)
+character fields,
+OPEN, EITHER, ONLYNS and ONLYS.  Except for ONLYNS, the
+double byte character data must be
+surrounded by a
+shift out control character (SO = hex 0E) and a shift
+in control character (SI = hex 0F).
+<UL>
+<P><LI>
+The ONLYNS field only contains
+double byte data with no SO, SI delimiters
+surrounding it.
+<P><LI>
+The ONLYS field can only contain
+double byte character data within a
+SO..SI pair.
+<P><LI>
+The EITHER field can consist of double byte character or single byte
+character data but only one type at a time.  If double byte
+character data is present it must be surrounded by an SO..SI pair.
+<P><LI>
+The OPEN field can consist of a mixture of double byte character and
+single byte character data.  If double byte character data is present
+it must be surrounded by an SO..SI pair.
+</UL>
+<P>
+Specifying an extended character value which violates the
+above restrictions results in the signaling of the <I> invalid extended character data&nbsp;</I> (hex <A HREF="../exceptions/EX0C12.htm">0C12</A>) exception.
+<P>
+The valid copy operations which can be specified on this instruction
+are the following:
+<BR>
+<P><B><A NAME="Table_1">Table 1. Valid copy operations for CPYECLAP</A></B><BR>
+<TABLE BORDER>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Op1 1
+</TH></TR><TR><TH ALIGN="LEFT" VALIGN="TOP">Op 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP">Onlyns
+</TH><TH ALIGN="LEFT" VALIGN="TOP">Onlys
+</TH><TH ALIGN="LEFT" VALIGN="TOP">Open
+</TH><TH ALIGN="LEFT" VALIGN="TOP">Either
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Onlyns
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Onlys
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Open
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">no
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">no
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">no
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Either
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">no
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">no
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">yes
+</TD></TR></TABLE>
+<P>
+Specifying a copy operation other than the valid operations defined
+above results in the signaling of the <I> invalid extended character operation&nbsp;</I> (hex <A HREF="../exceptions/EX0C13.htm">0C13</A>) exception.
+<P>
+When the copy operation is for a source of type ONLYNS
+(no SO/SI delimiters) being copied to
+a receiver which is not ONLYNS, SO and SI delimiters are implicitly
+added around the source value as part of the copy operation.
+<P>
+When the source value is longer than can be contained in the receiver,
+truncation is necessary and the
+following truncation rules apply:
+<OL TYPE=1>
+<P><LI>
+Truncation is on the right (like simple character copy operations).
+<P><LI>
+When the string to be truncated is a single byte character string,
+or an extended character string when the receiver is ONLYNS,
+bytes beyond those that fit into the receiver are truncated with
+no further processing needed.
+<P><LI>
+When the string to be truncated is an extended character string
+and the receiver is not ONLYNS,
+the bytes that fall at the end of the receiver are truncated as
+follows:
+<OL TYPE=a>
+<P><LI>
+When the last byte that would fit in the receiver is the first byte
+of an extended character,
+that byte is truncated and replaced with
+an SI character.
+<P><LI>
+When the last byte that would fit in the receiver is the second byte
+of an extended character, both bytes of that extended character are
+truncated and replaced with
+a SI character followed by a <I>single byte pad value</I>.
+This type of truncation can only occur when converting to an OPEN field.
+</OL>
+</OL>
+<P>
+When the source value is shorter than that which can be
+contained in the receiver,
+padding is necessary.  One of three types of padding is
+performed:
+<OL TYPE=1>
+<P><LI>Double byte (DB) -
+the source value is padded on the right
+with <I>double byte pad values</I> out to
+the length of the receiver.
+<P><LI>Double byte concatenated with a SI value (DB||SI) -
+the source double byte
+value is padded on the right with <I>double byte pad values</I> out
+to the second to last byte of the receiver and an SI delimiter is placed
+in the last byte of the receiver.
+<P><LI>Single byte (SB) -
+the source value is padded on the right
+with <I>single byte pad values</I> out to
+the length of the receiver.
+</OL>
+<P>The type of padding performed is determined by the type of operands
+involved in the operation:
+<OL TYPE=1>
+<P><LI>
+If the
+receiver
+is ONLYNS, DB padding is performed.
+<P><LI>
+If the receiver is ONLYS, DB||SI padding will be performed.
+<P><LI>
+If the receiver is EITHER and the source contained a double byte
+value, DB||SI padding is performed.
+<P><LI>
+If the receiver is EITHER and the source contained a single byte
+value, SB padding is performed.
+<P><LI>
+If the receiver is
+OPEN,
+SB padding is performed.
+</OL>
+<P>The above padding rules cover all the operand combinations which
+are allowed on the instruction.  A complete understanding of the operand
+combinations allowed (prior diagram), and the values which can be
+contained in the different operand types is necessary to appreciate
+that these rules do cover all the valid combinations.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0604.htm">0604 External Data Object Not Found</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C12.htm">0C12 Invalid Extended Character Data</A>
+<DD><A HREF="../exceptions/EX0C13.htm">0C13 Invalid Extended Character Operation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

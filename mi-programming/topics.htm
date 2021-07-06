@@ -1,0 +1,629 @@
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<!-- #BeginEditable "doctitle" -->
+<title> ISeries Machine Interface - Instructions by Topic </title>
+
+            <META HTTP-EQUIV="Title" CONTENT="iSeries Machine Interface">
+			<META NAME="Description" CONTENT="iSeries Machine Interface">
+<META NAME="Keywords" CONTENT="MI architecture, machine interface,iSeries,400,instructions">
+			<META NAME="Author" CONTENT="hellie@us.ibm.com">
+			<META NAME="Security" CONTENT="Public">
+			<META NAME="Industries" CONTENT="Not Industry Specific">
+			<META NAME="Document number" CONTENT="21665303">
+			<META NAME="Directory" CONTENT="Technical Studio/mi">
+			<META NAME="Contact" CONTENT="hellie@us.ibm.com">
+			<META NAME="Country Page" CONTENT="US">
+			<META NAME="Language Code" CONTENT="EN">
+			<META NAME="Owner" CONTENT="Diane Hellie">
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+
+<!-- #EndEditable --> 
+<!-- BEGIN HEADER -->
+
+
+</head>
+
+<body TOPMARGIN=2 LEFTMARGIN=2 MARGINWIDTH=2 MARGINHEIGHT=2>
+<!-- BEGIN HEADER -->
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function redirect(select) {
+  var page = select.options[select.selectedIndex].value
+  if (page!="#") document.location.href = page
+}
+
+
+// end the hiding comment --> 
+</script> 
+
+<body bgcolor="#ffffff" marginheight="2" marginwidth="2" topmargin="2" leftmargin="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="">
+  <tr>
+    <td width="150"  class="tbgc"><a href="http://www.ibm.com/home/"><img src="http://www.ibm.com/i/v10/m/en/mast_logo.gif" border="0" alt="IBM" width="150" height="47"/></a></td>
+<td width="310" class="tbg"><span class="country">&nbsp;</span><a href="#main"><img src="//www.ibm.com/i/c.gif" border="0" width="310" height="1" alt="Skip to main content"/></a></td>
+    <td width="100%" class="tbgc" align="right" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <form method="get" action="http://www.ibm.com/Search"><input type="hidden" name="v" value="11"/><input type="hidden" name="lang" value=""/><input type="hidden" name="cc" value=""/>
+        <tr><td colspan="4"><img src="http://www.ibm.com/i/c.gif" border="0" width="1" height="12" alt="" /></td></tr>
+        <tr valign="middle">
+          <td><font face="Verdana, sans-serif" size="-1"><input type="text" value="" name="q" size="15" class="input" maxlength="100"/></font></td>
+          <td><img src="http://www.ibm.com/i/c.gif" border="0" width="5" height="1" alt="" /></td>
+          <td width="64"><input type="image" src="//www.ibm.com/i/v11/m/en/search.gif" width="64" height="23" border="0" value="Search" name="Search" alt="Search button"/></td>
+          <td valign="top"><img src="http://www.ibm.com/i/c.gif" border="0" width="40" height="1" alt="" /></td>
+        </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" height="21" class="hbg">&nbsp;</td>
+    <td colspan="2" height="21" valign="top" class="bbg">
+      &nbsp;&nbsp;&nbsp;
+      <a class="mainlink"  href="http://www.ibm.com/home/">Home</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/products/">Products</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/support/">Support &amp; downloads</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a class="mainlink" href="http://www.ibm.com/account/">My account</a>
+    </td>
+  </tr>
+</table>
+
+<!-- END HEADER -->
+<!-- BEGIN LEFT NAVIGATION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="150" class="dbg">
+      <table width="150" border="0" cellspacing="0" cellpadding="4">
+        <tr><td height="21" class="bbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/rt_arrow.gif" border="0" width="7" height="5" alt="" /><span class="divider">&nbsp;</span><a class="mainlink" href="http://www.ibm.com/planetwide/select/">Select a country</a></td></tr>
+        <tr><td height="21" class="mbg" colspan="2"><img src="http://www.ibm.com/i/v11/icons/ra_cl.gif" border="0" width="7" height="5" alt=""/><span class="divider">&nbsp;</span><a class="parent" href="http://www.ibm.com/eserver/iseries/tstudio/index.htm ">Technical Studio Home</a></td></tr>
+        <tr><th class="mbg" colspan="2" align="left"><a href="index.htm" class="nav">Machine Interface</a></th></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="inst.htm" class="nav">Instructions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="MININ.htm" class="nav">Introduction</a></td></tr>
+        <tr><td class="hil" colspan="2" align="left"><a href="topics.htm" class="nav">Topics</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="excp.htm" class="nav">Exceptions</a></td></tr>
+        <tr><td class="mbg" colspan="2" align="left"><a href="concepts.htm" class="nav">Concepts</a></td></tr>
+      </table>
+      <br />&nbsp;
+    </td>
+    <td width="100%"><a name="main"></a>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10"><img src="http://www.ibm.com/i/c.gif" width="10" height="1" alt=""/></td>
+          <td width="100%">
+
+<!-- END LEFT NAVIGATION -->
+<!-- BEGIN CONTENT -->
+<p><br>
+
+<h1>ISeries Machine Interface - Instructions by Topic</h1>
+
+<p>Within each topic, the instructions are listed in alphabetical order.
+
+
+<table><tr>
+<td valign=top>
+<ul><li><A class="content" HREF="#minin">MI Introduction</a>
+<li><A class="content" HREF="concepts.htm">MI Concepts</a>
+<li><A class="content" HREF="#mincb">Computation and Branching</a>
+<li><A class="content" HREF="#minncb">Bound Program Computation and Branching</a>
+<li><A class="content" HREF="#mindt">Date/Time/Timestamp</a>
+<li><A class="content" HREF="#minpi">Pointer/name Resolution</a>
+<li><A class="content" HREF="#minsa">Space Addressing</a>
+<li><A class="content" HREF="#minsm">Space Management</a>
+<li><A class="content" HREF="#minhm">Heap Management</a>
+<li><A class="content" HREF="#minpg">Program Management</a>
+<li><A class="content" HREF="#minpe">Program Execution</a>
+<li><A class="content" HREF="#minpc">Program Creation Control</a>
+<li><A class="content" HREF="#minii">Independent Index</a>
+<li><A class="content" HREF="#minqm">Queue Management</a>
+<li><A class="content" HREF="#minlm">Object Lock Management</a>
+<li><A class="content" HREF="#minmtx">Mutex Management</a>
+<li><A class="content" HREF="#minsync">Shared Storage Synchronization</a>
+</ul></td>
+<td valign=top><ul>
+
+<li><A class="content" HREF="#minxm">Exception Management</a>
+<li><A class="content" HREF="#minqs">Queue Space Management</a>
+<li><A class="content" HREF="#mincm">Context Management</a>
+<li><A class="content" HREF="#minau">Authorization Management</a>
+<li><A class="content" HREF="#minpm">Process and Thread Management</a>
+<li><A class="content" HREF="#minrm">Storage and Resource Management</a>
+<li><A class="content" HREF="#minds">Dump Space Management</a>
+<li><A class="content" HREF="#minjo">Journal Management</a>
+<li><A class="content" HREF="#minmo">Machine Observation</a>
+<li><A class="content" HREF="#minsf">Machine Interface Support Functions</a>
+<li><A class="content" HREF="excp.htm">Exceptions</a>
+<li><A class="content" HREF="MINPO.htm">Program Object Specifications</a>
+</ul></td>
+</table>
+<p>
+<A NAME="minin"></a>
+<h2>Introduction</h2>
+
+
+<menu>
+<p><li><A class="content" HREF="MININ.htm">MI Introduction</a>	
+</menu>
+<A NAME="mincb"></a>
+<h2>Computation and Branching</h2>
+
+<menu>
+<p><li><A class="content" HREF="MCNPFAO.htm">Arithmetic Operations</a>
+<li><A class="content" HREF="MCNPFAI.htm">Array Index Operations</a>
+<li><A class="content" HREF="MCNPFBO.htm">Boolean Operations</a>
+<li><A class="content" HREF="ADDLC.htm">Add Logical Character (ADDLC)</A>
+<li><A class="content" HREF="ADDN.htm">Add Numeric (ADDN)</A>
+<li><A class="content" HREF="AND.htm">And (AND)</A>
+<li><A class="content" HREF="B.htm">Branch (B)</A>
+<li><A class="content" HREF="CIPHER.htm">Cipher (CIPHER)</A>
+<li><A class="content" HREF="CLRBTS.htm">Clear Bit in String (CLRBTS)</A>
+<li><A class="content" HREF="CMPBLA.htm">Compare Bytes Left-Adjusted (CMPBLA)</A>
+<li><A class="content" HREF="CMPBLAP.htm">Compare Bytes Left-Adjusted with Pad (CMPBLAP)</A>
+<li><A class="content" HREF="CMPBRA.htm">Compare Bytes Right-Adjusted (CMPBRA)</A>
+<li><A class="content" HREF="CMPBRAP.htm">Compare Bytes Right-Adjusted with Pad (CMPBRAP)</A>
+<li><A class="content" HREF="CMPNV.htm">Compare Numeric Value (CMPNV)</A>
+<li><A class="content" HREF="CMPSW.htm">Compare and Swap (CMPSW)</A>
+<li><A class="content" HREF="CPRDATA.htm">Compress Data (CPRDATA)</A>
+<li><A class="content" HREF="CAI.htm">Compute Array Index (CAI)</A>
+<li><A class="content" HREF="CMF1.htm">Compute Math Function Using One Input Value (CMF1)</A>
+<li><A class="content" HREF="CMF2.htm">Compute Math Function Using Two Input Values (CMF2)</A>
+<li><A class="content" HREF="CAT.htm">Concatenate (CAT)</A>
+<li><A class="content" HREF="CVTBC.htm">Convert BSC to Character (CVTBC)</A>
+<li><A class="content" HREF="CVTCB.htm">Convert Character to BSC (CVTCB)</A>
+<li><A class="content" HREF="CVTCH.htm">Convert Character to Hex (CVTCH)</A>
+<li><A class="content" HREF="CVTCM.htm">Convert Character to MRJE (CVTCM)</A>
+<li><A class="content" HREF="CVTCN.htm">Convert Character to Numeric (CVTCN)</A>
+<li><A class="content" HREF="CVTCS.htm">Convert Character to SNA (CVTCS)</A>
+<li><A class="content" HREF="CVTDFFP.htm">Convert Decimal Form to Floating-Point (CVTDFFP)</A>
+<li><A class="content" HREF="CVTEFN.htm">Convert External Form to Numeric Value (CVTEFN)</A>
+<li><A class="content" HREF="CVTFPDF.htm">Convert Floating-Point to Decimal Form (CVTFPDF)</A>
+<li><A class="content" HREF="CVTHC.htm">Convert Hex to Character (CVTHC)</A>
+<li><A class="content" HREF="CVTMC.htm">Convert MRJE to Character (CVTMC)</A>
+<li><A class="content" HREF="CVTNC.htm">Convert Numeric to Character (CVTNC)</A>
+<li><A class="content" HREF="CVTSC.htm">Convert SNA to Character (CVTSC)</A>
+<li><A class="content" HREF="CPYBTA.htm">Copy Bits Arithmetic (CPYBTA)</A>
+<li><A class="content" HREF="CPYBTL.htm">Copy Bits Logical (CPYBTL)</A>
+<li><A class="content" HREF="CPYBTLLS.htm">Copy Bits with Left Logical Shift (CPYBTLLS)</A>
+<li><A class="content" HREF="CPYBTRAS.htm">Copy Bits with Right Arithmetic Shift (CPYBTRAS)</A>
+<li><A class="content" HREF="CPYBTRLS.htm">Copy Bits with Right Logical Shift (CPYBTRLS)</A>
+<li><A class="content" HREF="CPYBLA.htm">Copy Bytes Left-Adjusted (CPYBLA)</A>
+<li><A class="content" HREF="CPYBLAP.htm">Copy Bytes Left-Adjusted with Pad (CPYBLAP)</A>
+<li><A class="content" HREF="CPYBOLA.htm">Copy Bytes Overlap Left-Adjusted (CPYBOLA)</A>
+<li><A class="content" HREF="CPYBOLAP.htm">Copy Bytes Overlap Left-Adjusted with Pad (CPYBOLAP)</A>
+<li><A class="content" HREF="CPYBREP.htm">Copy Bytes Repeatedly (CPYBREP)</A>
+<li><A class="content" HREF="CPYBRA.htm">Copy Bytes Right-Adjusted (CPYBRA)</A>
+<li><A class="content" HREF="CPYBRAP.htm">Copy Bytes Right-Adjusted with Pad (CPYBRAP)</A>
+<li><A class="content" HREF="CPYBBTA.htm">Copy Bytes to Bits Arithmetic (CPYBBTA)</A>
+<li><A class="content" HREF="CPYBBTL.htm">Copy Bytes to Bits Logical (CPYBBTL)</A>
+<li><A class="content" HREF="CPYECLAP.htm">Copy Extended Characters Left-Adjusted With Pad (CPYECLAP)</A>
+<li><A class="content" HREF="CPYHEXNN.htm">Copy Hex Digit Numeric to Numeric (CPYHEXNN)</A>
+<li><A class="content" HREF="CPYHEXNZ.htm">Copy Hex Digit Numeric to Zone (CPYHEXNZ)</A>
+<li><A class="content" HREF="CPYHEXZN.htm">Copy Hex Digit Zone To Numeric (CPYHEXZN)</A>
+<li><A class="content" HREF="CPYHEXZZ.htm">Copy Hex Digit Zone To Zone (CPYHEXZZ)</A>
+<li><A class="content" HREF="CPYNV.htm">Copy Numeric Value (CPYNV)</A>
+<li><A class="content" HREF="DCPDATA.htm">Decompress Data (DCPDATA)</A>
+<li><A class="content" HREF="DIV.htm">Divide (DIV)</A>
+<li><A class="content" HREF="DIVREM.htm">Divide with Remainder (DIVREM)</A>
+<li><A class="content" HREF="EDIT.htm">Edit (EDIT)</A>
+<li><A class="content" HREF="EXCHBY.htm">Exchange Bytes (EXCHBY)</A>
+<li><A class="content" HREF="XOR.htm">Exclusive Or (XOR)</A>
+<li><A class="content" HREF="ECSCAN.htm">Extended Character Scan (ECSCAN)</A>
+<li><A class="content" HREF="EXTREXP.htm">Extract Exponent (EXTREXP)</A>
+<li><A class="content" HREF="EXTRMAG.htm">Extract Magnitude (EXTRMAG)</A>
+<li><A class="content" HREF="MULT.htm">Multiply (MULT)</A>
+<li><A class="content" HREF="NEG.htm">Negate (NEG)</A>
+<li><A class="content" HREF="NOT.htm">Not (NOT)</A>
+<li><A class="content" HREF="OR.htm">Or (OR)</A>
+<li><A class="content" HREF="REM.htm">Remainder (REM)</A>
+<li><A class="content" HREF="SCALE.htm">Scale (SCALE)</A>
+<li><A class="content" HREF="SCAN.htm">Scan (SCAN)</A>
+<li><A class="content" HREF="SCANWC.htm">Scan with Control (SCANWC)</A>
+<li><A class="content" HREF="SEARCH.htm">Search (SEARCH)</A>
+<li><A class="content" HREF="SETBTS.htm">Set Bit in String (SETBTS)</A>
+<li><A class="content" HREF="SETIP.htm">Set Instruction Pointer (SETIP)</A>
+<li><A class="content" HREF="SSCA.htm">Store and Set Computational Attributes (SSCA)</A>
+<li><A class="content" HREF="SUBLC.htm">Subtract Logical Character (SUBLC)</A>
+<li><A class="content" HREF="SUBN.htm">Subtract Numeric (SUBN)</A>
+<li><A class="content" HREF="TSTRPLC.htm">Test and Replace Characters (TSTRPLC)</A>
+<li><A class="content" HREF="TSTBTS.htm">Test Bit in String (TSTBTS)</A>
+<li><A class="content" HREF="TSTBUM.htm">Test Bits Under Mask (TSTBUM)</A>
+<li><A class="content" HREF="XLATE.htm">Translate (XLATE)</A>
+<li><A class="content" HREF="XLATEMB.htm">Translate Multiple Bytes (XLATEMB)</A>
+<li><A class="content" HREF="XLATEWT.htm">Translate with Table (XLATEWT)</A>
+<li><A class="content" HREF="XLATWTDS.htm">Translate with Table and DBCS Skip (XLATWTDS)</A>
+<li><A class="content" HREF="TRIML.htm">Trim Length (TRIML)</A>
+<li><A class="content" HREF="VERIFY.htm">Verify (VERIFY)</A>
+</menu>
+<A NAME="minncb"></a>
+<h2>Bound Program Computation and Branching Built-in Functions</h2>
+
+<menu>
+<p><li><A class="content" HREF="NCBCON.htm">Floating point results from special values</A>
+<li><A class="content" HREF="ANDCSTR.htm">And Complemented String (ANDCSTR)</A>
+<li><A class="content" HREF="ANDSTR.htm">AND String (ANDSTR)</A>
+<li><A class="content" HREF="ACOS.htm">Arc Cosine (ACOS)</A>
+<li><A class="content" HREF="ASIN.htm">Arc Sine (ASIN)</A>
+<li><A class="content" HREF="ATAN.htm">Arc Tangent (ATAN)</A>
+<li><A class="content" HREF="ATANH.htm">Arc Tangent Hyperbolic (ATANH)</A>
+<li><A class="content" HREF="SLENNUL.htm">Compute Length of Null-Terminated String (STRLENNULL)</A>
+<li><A class="content" HREF="SCMPNUL.htm">Compare Null-Terminated Strings (STRCMPNULL)</A>
+<li><A class="content" HREF="SNCMPNUL.htm">Compare Null-Terminated Strings Constrained (SRNCMPNULL)</A>
+<li><A class="content" HREF="CMPTOPAD.htm">Compare To Pad (CMPTOPAD)</A>
+<li><A class="content" HREF="COMSTR.htm">Complement String (COMSTR)</A>			
+<li><A class="content" HREF="COS.htm">Cosine (COS)</A>
+<li><A class="content" HREF="COSH.htm">Cosine Hyperbolic (COSH)</A>
+<li><A class="content" HREF="COT.htm">Cotangent (COT)</A>
+<li><A class="content" HREF="CPYBYTES.htm">Copy Bytes (CPYBYTES)</A>
+<li><A class="content" HREF="CPYBO.htm">Copy Bytes Overlapping (CPYBO)</A>
+<li><A class="content" HREF="SCNULL.htm">Copy Null-Terminated String (STRCPYNULL)</A>
+<li><A class="content" HREF="SNCNULL.htm">Copy Null-Terminated String Constrained (STRNCPYNULL)</A>
+<li><A class="content" HREF="SNCNULLP.htm">Copy Null-Terminated String Constrained, Null Padded (STRNCPYNULLPAD)</A>
+<li><A class="content" HREF="EEXP.htm">Exponential Function of E (EEXP)</A>
+<li><A class="content" HREF="FINDBYTE.htm">Find Byte (FINDBYTE)</A>
+<li><A class="content" HREF="MEMCHR.htm">Find Character Constrained (MEMCHR)</A>
+<li><A class="content" HREF="SCHRNUL.htm">Find Character in Null-Terminated String (STRCHRNULL)</A>
+<li><A class="content" HREF="LN.htm">Logarithm Base E (Natural Logarithm) (LN)</A>
+<li><A class="content" HREF="MEMCMP.htm">Memory Compare (MEMCMP)</A>
+<li><A class="content" HREF="MEMCPY.htm">Memory Copy (MEMCPY)</A>
+<li><A class="content" HREF="MEMMOVE.htm">Memory Move (MEMMOVE)</A>
+<li><A class="content" HREF="ORSTR.htm">OR String (ORSTR)</A>
+<li><A class="content" HREF="PROPB.htm">Propagate Byte (PROPB)</A>
+<li><A class="content" HREF="RETCA.htm">Retrieve Computational Attributes (RETCA)</A>
+<li><A class="content" HREF="SCANX.htm">Scan Extended (SCANX)</A>
+<li><A class="content" HREF="SETCA.htm">Set Computational Attributes (SETCA)</A>
+<li><A class="content" HREF="SIN.htm">Sine (SIN)</A>
+<li><A class="content" HREF="SINH.htm">Sine Hyperbolic (SINH)</A>
+<li><A class="content" HREF="TAN.htm">Tangent (TAN)</A>
+<li><A class="content" HREF="TANH.htm">Tangent Hyperbolic (TANH)</A>
+<li><A class="content" HREF="TESTRPL.htm">Test and Replace Bytes (TESTRPL)</A>
+<li><A class="content" HREF="TESTSUBS.htm">Test Subset (TESTSUBSET)</A>
+<li><A class="content" HREF="XLATEB.htm">Translate Bytes (XLATEB)</A>
+<li><A class="content" HREF="XLATEB1.htm">Translate Bytes One Byte at a Time (XLATEB1)</A>
+<li><A class="content" HREF="XORSTR.htm">XOR (Exclusive Or) String (XORSTR)</A>
+<li><A class="content" HREF="POWER.htm">X To The Y Power (POWER)</A>
+
+</menu>
+<A NAME="mindt"></a>
+<h2>Date/Time/Timestamp Instructions</h2>
+
+
+<menu>
+<p><li><A class="content" HREF="MINDTCON.htm">Date/Time Concepts</A>
+<li><A class="content" HREF="CDD.htm">Compute Date Duration (CDD)</A>
+<li><A class="content" HREF="CTD.htm">Compute Time Duration (CTD)</A>
+<li><A class="content" HREF="CTSD.htm">Compute Timestamp Duration (CTSD)</A>
+<li><A class="content" HREF="CVTD.htm">Convert Date (CVTD)</A>
+<li><A class="content" HREF="CVTT.htm">Convert Time (CVTT)</A>
+<li><A class="content" HREF="CVTTS.htm">Convert Timestamp (CVTTS)</A>
+<li><A class="content" HREF="DECD.htm">Decrement Date (DECD)</A>
+<li><A class="content" HREF="DECT.htm">Decrement Time (DECT)</A>
+<li><A class="content" HREF="DECTS.htm">Decrement Timestamp (DECTS)</A>
+<li><A class="content" HREF="INCD.htm">Increment Date (INCD)</A>
+<li><A class="content" HREF="INCT.htm">Increment Time (INCT)</A>
+<li><A class="content" HREF="INCTS.htm">Increment Timestamp (INCTS)</A>
+</menu>
+<A NAME="minpi"></a>
+<h2>Pointer/name resolution</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="CMPPTRA.htm">Compare Pointer for Object Addressability (CMPPTRA)</A>
+<li><A class="content" HREF="CMPPSPAD.htm">Compare Pointer for Space Addressability (CMPPSPAD)</A>
+<li><A class="content" HREF="CMPPTRE.htm">Compare Pointers for Equality (CMPPTRE)</A>
+<li><A class="content" HREF="CMPPTRT.htm">Compare Pointer Type (CMPPTRT)</A>
+<li><A class="content" HREF="CPYBWP.htm">Copy Bytes with Pointers (CPYBWP)</A>
+<li><A class="content" HREF="MATPTR.htm">Materialize Pointer (MATPTR)</A>
+<li><A class="content" HREF="MATPTRIF.htm">Materialize Pointer Information (MATPTRIF)</A>
+<li><A class="content" HREF="MATPTRL.htm">Materialize Pointer Locations (MATPTRL)</A>
+<li><A class="content" HREF="RSLVDP.htm">Resolve Data Pointer (RSLVDP)</A>
+<li><A class="content" HREF="RSLVSP.htm">Resolve System Pointer (RSLVSP)</A>
+<li><A class="content" HREF="RETTSADR.htm">Retrieve Teraspace Address from Space Pointer (RETTSADR)</a>
+<li><A class="content" HREF="SETOBPFP.htm">Set Object Pointer from Pointer (SETOBPFP)</A>
+<li><A class="content" HREF="SETSPPFP.htm">Set Space Pointer from Pointer (SETSPPFP)</A>
+<li><A class="content" HREF="SETSPFP.htm">Set System Pointer from Pointer (SETSPFP)</A>
+<li><A class="content" HREF="TESTPTR.htm">Test Pointer (TESTPTR)</A>
+</menu>
+
+<A NAME="minsa"></a>
+<h2>Space addressing</h2>
+
+<menu>
+<p><li><A class="content" HREF="ADDSPP.htm">Add Space Pointer (ADDSPP)</A>
+<li><A class="content" HREF="CMPSPAD.htm">Compare Space Addressability (CMPSPAD)</A>
+<li><A class="content" HREF="SETDP.htm">Set Data Pointer (SETDP)</A>
+<li><A class="content" HREF="SETDPADR.htm">Set Data Pointer Addressability (SETDPADR)</A>
+<li><A class="content" HREF="SETDPAT.htm">Set Data Pointer Attributes (SETDPAT)</A>
+<li><A class="content" HREF="SETSPP.htm">Set Space Pointer (SETSPP)</A>
+<li><A class="content" HREF="SETSPPO.htm">Set Space Pointer Offset (SETSPPO)</A>
+<li><A class="content" HREF="SETSPPD.htm">Set Space Pointer with Displacement (SETSPPD)</A>
+<li><A class="content" HREF="STSPPO.htm">Store Space Pointer Offset (STSPPO)</A>
+<li><A class="content" HREF="SUBSPP.htm">Subtract Space Pointer Offset (SUBSPP)</A>
+<li><A class="content" HREF="SUBSPPFO.htm">Subtract Space Pointers For Offset (SUBSPPFO)</A>
+</menu>
+<A NAME="minsm"></a>
+<h2>Space Management</h2>
+
+
+<menu>
+<p>
+<li><A class="content" HREF="CRTS.htm">Create Space (CRTS)</A>
+<li><A class="content" HREF="DESS.htm">Destroy Space (DESS)</A>
+<li><A class="content" HREF="MATS.htm">Materialize Space Attributes (MATS)</A>
+<li><A class="content" HREF="MODS.htm">Modify Space Attributes (MODS)</A>
+</menu>
+<A NAME="minhm"></a>
+<h2>Heap Management</h2>
+
+<menu>
+<p><li><A class="content" HREF="ALCHSS.htm">Allocate Activation Group-Based Heap Space Storage (ALCHSS)</A>
+<li><A class="content" HREF="CRTHS.htm">Create Activation Group-Based Heap Space (CRTHS)</A>
+<li><A class="content" HREF="DESHS.htm">Destroy Activation Group-Based Heap Space (DESHS)</A>
+<li><A class="content" HREF="FREHSS.htm">Free Activation Group-Based Heap Space Storage (FREHSS)</A>
+<li><A class="content" HREF="FREHSSMK.htm">Free Activation Group-Based Heap Space Storage From Mark (FREHSSMK)</A>
+<li><A class="content" HREF="MATHSAT.htm">Materialize Activation Group-Based Heap Space Attributes (MATHSAT)</A>
+<li><A class="content" HREF="REALCHSS.htm">Reallocate Activation Group-Based Heap Space Storage	 (REALCHSS)</A>
+<li><A class="content" HREF="SETHSSMK.htm">Set Activation Group-Based Heap Space Storage Mark (SETHSSMK)</A>
+</menu>
+<A NAME="minpg"></a>
+<h2>Program Management</h2>
+
+
+<menu>
+<p>
+<li><A class="content" HREF="MATBPGM.htm">Materialize Bound Program (MATBPGM)</A>
+<li><A class="content" HREF="MATPG.htm">Materialize Program (MATPG)</A>
+<li><A class="content" HREF="MATPGMNM.htm">Materialize Program Name (MATPGMNM)</A>
+</menu>
+<A NAME="minpe"></a>
+<h2>Program Execution</h2>
+
+<menu>
+<p><li><A class="content" HREF="ACTBPGM.htm">Activate Bound Program (ACTBPGM)</A>
+<li><A class="content" HREF="ACTPG.htm">Activate Program (ACTPG)</A>
+<li><A class="content" HREF="CALLX.htm">Call External (CALLX)</A>
+<li><A class="content" HREF="CALLI.htm">Call Internal (CALLI)</A>
+<li><A class="content" HREF="CLRIEXIT.htm">Clear Invocation Exit (CLRIEXIT)</A>
+<li><A class="content" HREF="CLRINVF.htm">Clear Invocation Flags (CLRINVF)</A>
+<li><A class="content" HREF="DEACTPG.htm">Deactivate Program (DEACTPG)</A>
+<li><A class="content" HREF="END.htm">End (END)</A>
+<li><A class="content" HREF="FNDRINVN.htm">Find Relative Invocation Number (FNDRINVN)</A>
+<li><A class="content" HREF="INVP.htm">Invocation Pointer (INVP)</A>
+<li><A class="content" HREF="MATACTAT.htm">Materialize Activation Attributes (MATACTAT)</A>
+<li><A class="content" HREF="MATACTEX.htm">Materialize Activation Export (MATACTEX)</A>
+<li><A class="content" HREF="MATAGPAT.htm">Materialize Activation Group Attributes (MATAGPAT)</A>
+<li><A class="content" HREF="MATINV.htm">Materialize Invocation (MATINV)</A>
+<li><A class="content" HREF="MATINVAT.htm">Materialize Invocation Attributes (MATINVAT)</A>
+<li><A class="content" HREF="MATINVE.htm">Materialize Invocation Entry (MATINVE)</A>
+<li><A class="content" HREF="MATINVS.htm">Materialize Invocation Stack (MATINVS)</A>
+<li><A class="content" HREF="MODASA.htm">Modify Automatic Storage Allocation (MODASA)</A>
+<li><A class="content" HREF="NPMPARM.htm">NPM Procedure Parameter List Address (NPM_PARMLIST_ADDR)</A>
+<li><A class="content" HREF="OPARMADR.htm">OPM Parameter Address (OPM_PARM_ADDR)</A>
+<li><A class="content" HREF="OPARMCNT.htm">OPM Parameter Count (OPM_PARM_CNT)</A>
+<li><A class="content" HREF="RINZSTAT.htm">Reinitialize Static Storage (RINZSTAT)</A>
+<li><A class="content" HREF="RETINVF.htm">Retrieve Invocation Flags (RETINVF)</A>
+<li><A class="content" HREF="RTX.htm">Return External (RTX)</A>
+<li><A class="content" HREF="SETALLEN.htm">Set Argument List Length (SETALLEN)</A>
+<li><A class="content" HREF="SETIEXIT.htm">Set Invocation Exit (SETIEXIT)</A>
+<li><A class="content" HREF="SETINVF.htm">Set Invocation Flags (SETINVF)</A>
+<li><A class="content" HREF="STPLLEN.htm">Store Parameter List Length (STPLLEN)</A>
+<li><A class="content" HREF="XCTL.htm">Transfer Control (XCTL)</A>
+</menu>
+<A NAME="minpc"></a>
+<h2>Program creation control</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="NOOP.htm">No Operation (NOOP)</A>
+<li><A class="content" HREF="NOOPS.htm">No Operation and Skip (NOOPS)</A>
+<li><A class="content" HREF="OVRPGATR.htm">Override Program Attributes (OVRPGATR)</A>
+</menu>
+<A NAME="minii"></a>
+<h2>Independent Index</h2>
+
+<menu>
+<p><li><A class="content" HREF="CRTINX.htm">Create Independent Index (CRTINX)</A>
+<li><A class="content" HREF="DESINX.htm">Destroy Independent Index (DESINX)</A>
+<li><A class="content" HREF="FNDINXEN.htm">Find Independent Index Entry (FNDINXEN)</A>
+<li><A class="content" HREF="INSINXEN.htm">Insert Independent Index Entry (INSINXEN)</A>
+<li><A class="content" HREF="MATINXAT.htm">Materialize Independent Index Attributes (MATINXAT)</A>
+<li><A class="content" HREF="MODINX.htm">Modify Independent Index (MODINX)</A>
+<li><A class="content" HREF="RMVINXEN.htm">Remove Independent Index Entry (RMVINXEN)</A>
+</menu>
+<A NAME="minqm"></a>
+<h2>Queue Management</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="DEQ.htm">Dequeue (DEQ)</A>
+<li><A class="content" HREF="ENQ.htm">Enqueue (ENQ)</A>
+<li><A class="content" HREF="MATQAT.htm">Materialize Queue Attributes (MATQAT)</A>
+<li><A class="content" HREF="MATQMSG.htm">Materialize Queue Messages (MATQMSG)</A>
+</menu>
+<A NAME="minlm"></a>
+<h2>Object Lock Management</h2>
+<menu>
+<p><li><A class="content" HREF="LOCK.htm">Lock Object (LOCK)</A>
+<li><A class="content" HREF="LOCKOL.htm">Lock Object Location (LOCKOL)</A>
+<li><A class="content" HREF="LOCKSL.htm">Lock Space Location (LOCKSL)</A>
+<li><A class="content" HREF="LOCKTSL.htm">Lock Teraspace Storage Location (LOCKTSL)</a>
+<li><A class="content" HREF="MATAOL.htm">Materialize Allocated Object Locks (MATAOL)</A>
+<li><A class="content" HREF="MATDRECL.htm">Materialize Data Space Record Locks (MATDRECL)</A>
+<li><A class="content" HREF="MATOBJLK.htm">Materialize Object Locks (MATOBJLK)</A>
+<li><A class="content" HREF="MATPRLK.htm">Materialize Process Locks (MATPRLK)</A>
+<li><A class="content" HREF="MATPRECL.htm">Materialize Process Record Locks (MATPRECL)</A>
+<li><A class="content" HREF="MATSELLK.htm">Materialize Selected Locks (MATSELLK)</A>
+<li><A class="content" HREF="XFRLOCK.htm">Transfer Object Lock (XFRLOCK)</A>
+<li><A class="content" HREF="UNLOCK.htm">Unlock Object (UNLOCK)</A>
+<li><A class="content" HREF="UNLOCKOL.htm">Unlock Object Location (UNLOCKOL)</A>
+<li><A class="content" HREF="UNLOCKSL.htm">Unlock Space Location (UNLOCKSL)</A>
+<li><A class="content" HREF="UNLCKTSL.htm">Unlock Teraspace Storage Location (UNLCKTSL)</a>
+</menu>
+<A NAME="minmtx"></a>
+<h2>Mutex Instructions</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="CRTMTX.htm">Create Pointer-Based Mutex (CRTMTX)</A>
+<li><A class="content" HREF="DESMTX.htm">Destroy Pointer-Based Mutex (DESMTX)</A>
+<li><A class="content" HREF="LOCKMTX.htm">Lock Pointer-Based Mutex (LOCKMTX)</A>
+<li><A class="content" HREF="MATMTX.htm">Materialize Mutex (MATMTX)</A>
+<li><A class="content" HREF="MATPRMTX.htm">Materialize Process Mutex Locks (MATPRMTX)</A>
+<li><A class="content" HREF="UNLKMTX.htm">Unlock Pointer-Based Mutex (UNLKMTX)</A>
+</menu>
+
+<A NAME="minsync"></a>
+<h2>Shared Storage Synchronization</h2>
+
+<menu>
+<p><li><A class="content" HREF="MCNSYNC.htm">Shared Storage Synchronization Concepts</a>
+<li><A class="content" HREF="SYNCSTG.htm">Synchronize Shared Storage Accesses (SYNCSTG)</a>
+</menu>
+<A NAME="minxm"></a>
+<h2>Exception Management</h2>
+
+
+<menu>
+<p><li><A class="content" HREF="INITEHCA.htm">Initialize Exception Handler Control Actions (INITEHCA)</A>
+<li><A class="content" HREF="MATEXCPD.htm">Materialize Exception Description (MATEXCPD)</A>
+<li><A class="content" HREF="MODEXCPD.htm">Modify Exception Description (MODEXCPD)</A>
+<li><A class="content" HREF="RETEXCPD.htm">Retrieve Exception Data (RETEXCPD)</A>
+<li><A class="content" HREF="RTNEXCP.htm">Return From Exception (RTNEXCP)</A>
+<li><A class="content" HREF="SNSEXCPD.htm">Sense Exception Description (SNSEXCPD)</A>
+<li><A class="content" HREF="SIGEXCP.htm">Signal Exception (SIGEXCP)</A>
+<li><A class="content" HREF="TESTEXCP.htm">Test Exception (TESTEXCP)</A>
+</menu>
+
+<A NAME="minqs"></a>
+<h2>Queue Space Management</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="MATPRMSG.htm">Materialize Process Message (MATPRMSG)</A>
+</menu>
+<A NAME="mincm"></a>
+<h2>Context Management</h2>
+
+
+<menu>
+<p>
+<li><A class="content" HREF="MATCTX.htm">Materialize Context (MATCTX)</A>
+</menu>
+
+<A NAME="minau"></a>
+<h2>Authorization Management</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="MATAU.htm">Materialize Authority (MATAU)</A>
+<li><A class="content" HREF="MATAL.htm">Materialize Authority List (MATAL)</A>
+<li><A class="content" HREF="MATAUOBJ.htm">Materialize Authorized Objects (MATAUOBJ)</A>
+<li><A class="content" HREF="MATAUU.htm">Materialize Authorized Users (MATAUU)</A>
+<li><A class="content" HREF="MATUP.htm">Materialize User Profile (MATUP)</A>
+<li><A class="content" HREF="MATUPID.htm">Materialize User Profile Pointers from ID (MATUPID)</A>
+<li><A class="content" HREF="MODINVAU.htm">Modify Invocation Authority Attributes (MODINVAU)</A>
+<li><A class="content" HREF="TESTAU.htm">Test Authority (TESTAU)</A>
+<li><A class="content" HREF="TESTEAU.htm">Test Extended Authorities (TESTEAU)</A>
+<li><A class="content" HREF="TESTULA.htm">Test User List Authority (TESTULA)</A>
+</menu>
+<A NAME="minpm"></a>
+<h2>Process and Thread Management</h2>
+
+
+<menu>
+<li><A class="content" HREF="MATPRAGP.htm">Materialize Process Activation Groups (MATPRAGP)</A>
+<li><A class="content" HREF="MATPRATR.htm">Materialize Process Attributes (MATPRATR)</A>
+<li><A class="content" HREF="PCOPTR.htm">PCO Pointer (PCOPTR)</A>
+<li><A class="content" HREF="PCOPTR2.htm">Return PCO Pointer (PCOPTR2)</A>
+<li><A class="content" HREF="TESTINTR.htm">Test Pending Interrupts (TESTINTR)</A>
+<li><A class="content" HREF="WAITTIME.htm">Wait On Time (WAITTIME)</A>
+</menu>
+<A NAME="minrm"></a>
+<h2>Storage and Resource Management</h2>
+
+
+<menu>
+<p>
+<li><A class="content" HREF="ENSOBJ.htm">Ensure Object (ENSOBJ)</A>
+<li><A class="content" HREF="MATAGAT.htm">Materialize Access Group Attributes (MATAGAT)</A>
+<li><A class="content" HREF="MATRMD.htm">Materialize Resource Management Data (MATRMD)</A>
+<li><A class="content" HREF="SETACST.htm">Set Access State (SETACST)</A>
+<li><A class="content" HREF="YIELD.htm">Yield (YIELD)</A>
+</menu>
+
+<A NAME="minds"></a>
+<h2>Dump Space Management</h2>
+
+<menu>
+<p>
+<li><A class="content" HREF="MATDMPS.htm">Materialize Dump Space (MATDMPS)</A>
+</menu>
+<A NAME="minjo"></a>
+<h2>Journal Management</h2>
+
+<menu>
+<li><A class="content" HREF="MATJPAT.htm">Materialize Journal Port Attributes (MATJPAT)</A>
+<li><A class="content" HREF="MATJSAT.htm">Materialize Journal Space Attributes (MATJSAT)</A>
+</menu>
+
+<A NAME="minmo"></a>
+<h2>Machine Observation</h2>
+
+<menu>
+
+<p>
+<li><A class="content" HREF="MATINAT.htm">Materialize Instruction Attributes (MATINAT)</A>
+<li><A class="content" HREF="MATSOBJ.htm">Materialize System Object (MATSOBJ)</A>
+<li><A class="content" HREF="TESTPDC.htm">Test Performance Data Collection (TESTPDC)</A>
+<li><A class="content" HREF="TESTTOBJ.htm">Test Temporary Object (TESTTOBJ)</A>
+</menu>
+<A NAME="minsf"></a>
+<h2>Machine Interface Support Functions</h2>
+
+
+<menu>
+<p>
+<li><A class="content" HREF="GENUUID.htm">Generate Universal Unique Identifier (GENUUID)</A>
+<li><A class="content" HREF="MATMATR.htm">Materialize Machine Attributes (MATMATR)</A>
+<li><A class="content" HREF="MATMDATA.htm">Materialize Machine Data (MATMDATA)</A>
+</menu>
+
+
+
+<br>&nbsp;              
+<!-- END CONTENT -->
+<!-- BEGIN FOOTER -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td><img src="http://www.ibm.com/i/c.gif" width="1" height="1" alt=""/></td></tr>
+  <tr valign="top">
+    <td height="21" class="bbg">
+      &nbsp;&nbsp;<a href="http://www.ibm.com/ibm/" class="mainlink">About IBM</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/privacy/" class="mainlink">Privacy</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/legal/" class="mainlink">Legal</a>
+      <span class="divider">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <a href="http://www.ibm.com/contact/" class="mainlink">Contact</a>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript" language="JavaScript1.2" src="http://www.ibm.com/common/stats/stats.js"></script>
+<noscript>
+  <img src="http://i.ihost.com/i/c.gif" width="1" height="1" alt="" border="0" />
+</noscript>
+</body>
+
+<!--  END FOOTER -->
+</HTML>
+
+
+

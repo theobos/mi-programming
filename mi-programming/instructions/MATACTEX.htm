@@ -1,0 +1,179 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATACTEX Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Activation Export (MATACTEX)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATACTEX is 460.
+MATACTEX (
+          activation_mark   : unsigned binary(4)
+          ident_type        : unsigned binary(4)
+          number            : unsigned binary(4)
+          name              : address
+<font color=blue>          pointer           : address of procedure pointer(16) OR
+                              address of space pointer(16)</FONT>
+          export_type       : address of unsigned binary(4)
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>This instruction returns the address of an export identified
+by name or export identifier
+from a specified program activation.
+The type of the export item, either data or procedure, is also returned.
+If the item is not found, an indicator is
+returned via the <I>export type</I> operand; no exception is signaled
+in this case.
+<P>
+Operands are as follows,
+<UL>
+<P><LI><I>activation mark</I> (input) specifies the activation mark
+of a bound service program.  If the specified program activation does not exist
+then a <I> program activation not found&nbsp; </I> (hex <A HREF="../exceptions/EX2C16.htm">2C16</A>) exception
+is signaled.
+If the <I>activation mark</I> does not correspond
+to a bound service program then an <I> invalid operation for program&nbsp; </I> (hex <A HREF="../exceptions/EX2C15.htm">2C15</A>) exception
+is signaled.
+<P><LI><I>ident type</I> (input) specifies how the export is identified.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>0 = </TD><TD><P>reserved
+</TD></TR><TR VALIGN="TOP"><TD><P>1 = </TD><TD><P>by export ID.  The item is identified by export identifier
+(or export ID.)
+The <I>number</I> operand specifies the export ID of the item.
+An export ID is the ordinal position, starting from 1, of the item in
+the bound service program's export list.
+</TD></TR><TR VALIGN="TOP"><TD WIDTH="30"><P>2 = </TD><TD><P>by name.  The item is identified by name.
+The <I>name</I> operand provides the symbolic name of the
+item.  The length of the name is specified by the <I>number</I>
+operand.
+</TD></TR><TR VALIGN="TOP"><TD><P>&gt;2 = </TD><TD><P>reserved
+</TD></TR></TABLE>
+<P>Use of a reserved value causes a <I> scalar value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3203.htm">3203</A>) exception
+to be signaled.
+<P><LI><I>number</I> (input) specifies either the export ID
+or length of the character
+string which supplies the name.
+<P><LI><I>name</I> (input) specifies the character string name.
+This operand is
+ignored if <I>ident type</I> is not
+2, but must always be specified.
+<P><LI><I>pointer</I> (<I>address</I> in, <I>value</I> out)
+specifies either a procedure pointer or space pointer
+to the exported item.
+If the requested export does not
+exist, 16 bytes of storage
+at the location indicated by this operand are
+set to binary 0.
+<P><LI><I>export type</I> (<I>address</I> in, <I>value</I> out)
+identifies the type of export,
+<DL COMPACT>
+<DD>0 = item not found
+<DD>1 = procedure export
+<DD>2 = data export
+<DD>3 = inaccessible data export
+</DL>
+If the item was not found the <I>pointer</I>
+is also set to binary 0.
+</UL>
+<P>The thread must have <I>execute</I> authority
+to the program specified
+by the <I>activation mark</I> in order to obtain
+the address of an exported item.
+In addition,
+a user state program may only materialize data exports from activations
+within the same activation group.  An attempt to materialize
+a data export from another activation group will result in a
+value of 3 for <I>export type</I> and
+binary 0 being returned in the <I>pointer</I> operand.
+A system state program may materialize data exports from any
+activation.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>Execute
+<UL>
+<P><LI>Program specified by <I>activation mark</I>.
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C15.htm">2C15 Invalid Operation for Program</A>
+<DD><A HREF="../exceptions/EX2C16.htm">2C16 Program Activation Not Found </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

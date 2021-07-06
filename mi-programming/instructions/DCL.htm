@@ -1,0 +1,2801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>DCL (Declare data object)</title>
+  <link rel="stylesheet" type="text/css" href="../tstudio.css">
+ </head>
+<body>
+<h1>Declare data object (DCL)</h1>
+ 
+
+<h3>Declare Statement</h3>
+
+<p>Declare statements define program data objects. All the declare statements
+in a program build the object definition table (ODT).</p>
+
+<p>You cannot specifically declare branch and entry-point program objects.
+However, you can declare branch-point program objects using labels. You can
+also declare entry-point program objects using the entry directive
+statement.</p>
+
+<p>The types of declare statements follow:</p>
+
+<ul>
+<li><a href="#scalardataobject">Scalar Data Object Declare Statement</a></li>
+
+<li><a href="#pointerdataobject">Pointer Data Object Declare Statement</a></li>
+
+<li><a href="#spacepointermachineobject">Space Pointer Machine Object Declare Statement</a></li>
+
+<li><a href="#operandlist">Operand List Declare Statement</a></li>
+
+<li><a href="#instructiondefinitionlist">Instruction Definition List Declare Statement</a></li>
+
+<li><a href="#exceptiondescription">Exception Description Declare Statement</a></li>
+
+<li><a href="#spaceobject">Space Object Declare Statement</a></li>
+
+<li><a href="#constantobject">Constant Object Declare Statement</a></li>
+</ul>
+
+<br>
+ <br>
+ 
+
+<h3><a name="scalardataobject">Scalar-Data-Object Declare Statement</a></h3>
+
+<p>The following diagram and table show the scalar-data-object declare
+statement:</p>
+
+<img src="images/RBAFX518.gif" alt="Scalar-Data-Object Declare Statement"> 
+
+<p>Only certain combinations of attributes are allowed based on the data
+object's addressability. The table below shows these combinations.</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="bottom">Address-ability</th>
+<th align="left" valign="bottom">Array Attribute</th>
+<th align="left" valign="bottom">Array Element Offset</th>
+<th align="left" valign="bottom">Position</th>
+<th align="left" valign="bottom">Boundary</th>
+<th align="left" valign="bottom">Initial Value</th>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">STAT</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">AUTO</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">DEF</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">DIR</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BAS</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BASPCO</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PARM</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+</table>
+
+<br>
+ <br>
+<h3>Object Name</h3>
+
+<p>The following diagram and table show the possible object names:</p>
+
+<img alt="Object Name syntax" src="images/RBAFX535.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Program object name to be declared</td>
+</tr>
+</table>
+
+<br>
+ <br>
+<h3>Array Attribute</h3>
+
+<p>The following diagram and table show the possible array attributes:</p>
+
+<img alt="Array Attribute syntax" src="images/RBAFX520.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 16&nbsp;776&nbsp;191</td>
+<td align="left" valign="top">Dimension of the data object with an implied
+lower bound of 1.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">-2&nbsp;147&nbsp;483&nbsp;648 to
+2&nbsp;147&nbsp;483&nbsp;647</td>
+<td align="left" valign="top">Lower bound of the array.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer3</td>
+<td align="left" valign="top">integer2 to 2&nbsp;147&nbsp;483&nbsp;647</td>
+<td align="left" valign="top">Upper bound of the array. The dimension
+(integer3&nbsp;-&nbsp;integer2) cannot exceed 16&nbsp;776&nbsp;191.</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Example</h3>
+
+<p>The following declare statements each define an array of 50 elements. The
+elements of ARRAY1 are numbered 1 to 50. The elements of ARRAY2 are numbered 0
+to 49. Each element of the array is a BIN(2) field. The addressability of the
+arrays is static.</p>
+
+<pre>
+DCL DD ARRAY1(50) BIN(2);
+DCL DD ARRAY2(0:49) BIN(2);
+</pre>
+
+<br>
+ <br>
+ 
+
+<h3>Scalar Type</h3>
+
+<p>The following diagram and tables show the possible data types of scalar
+items:</p>
+
+<img alt="Scalar Type syntax" src="images/RBAFX521.gif"> 
+
+<p>If you specify no value, the system uses BIN(2).</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">CHAR</td>
+<td align="left" valign="top">Scalar type is a character string.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BIN</td>
+<td align="left" valign="top">Scalar type is binary.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">UNSGND</td>
+<td align="left" valign="top">Scalar type is unsigned binary. If you do not
+specify this value, the scalar type is signed binary.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PKD</td>
+<td align="left" valign="top">Scalar type is packed decimal.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">ZND</td>
+<td align="left" valign="top">Scalar type is zoned decimal.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">FLT</td>
+<td align="left" valign="top">Scalar type is floating-point.</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">See description.</td>
+<td align="left" valign="top">Length in bytes of the character data object. If
+the data object is an array, the range is 1 to 32&nbsp;767. Otherwise, the
+range is 1 to 16&nbsp;776&nbsp;191.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">2 or 4</td>
+<td align="left" valign="top">Length in bytes of the binary data object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer3</td>
+<td align="left" valign="top">1 to 31</td>
+<td align="left" valign="top">Total digits in the data object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer4</td>
+<td align="left" valign="top">0 to integer3</td>
+<td align="left" valign="top">Number of digits to the right of the assumed
+decimal point in the data object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer5</td>
+<td align="left" valign="top">4 or 8</td>
+<td align="left" valign="top">Precision in bytes of the data object.</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Addressability</h3>
+
+<p>The following diagram and tables show the possible addressabilities:</p>
+
+<img alt="Addressability syntax" src="images/RBAFX522.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">STAT</td>
+<td align="left" valign="top">Addressability type is direct static.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">AUTO</td>
+<td align="left" valign="top">Addressability type is direct automatic.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DIR</td>
+<td align="left" valign="top">Addressability type is defined. See <a href=
+"#HDR8SPCOBJ">Using Space Objects</a> for more information.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DEF</td>
+<td align="left" valign="top">Addressability type is direct on the previous
+space.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BAS</td>
+<td align="left" valign="top">Addressability type is based.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*</td>
+<td align="left" valign="top">Object does not have explicit basing object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BASPCO</td>
+<td align="left" valign="top">Addressability type is based on process
+communication object space pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PARM</td>
+<td align="left" valign="top">Addressability type is a parameter.</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Space object name</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Scalar data object name or pointer data object
+name</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name3</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Pointer data object name or space pointer object
+name</td>
+</tr>
+</table>
+
+<p>If you specify no value, the system uses STAT.</p>
+
+<br>
+<br>
+<h3>Scope</h3>
+
+<p><strong>Scope</strong> refers to the ability to export a variable so that
+other programs can access it. The following diagram and table show the possible
+scopes:</p>
+
+<img alt="Scope syntax" src="images/RBAFX523.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">INT</td>
+<td align="left" valign="top">Data object is not externally accessible</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">EXT</td>
+<td align="left" valign="top">Data object is externally accessible</td>
+</tr>
+</table>
+
+<p>If you specify no value, the system uses INT.</p>
+
+<br>
+<br>
+<h3>Boundary</h3>
+
+<p>The following diagram and table show the possible boundaries:</p>
+
+<img alt="Boundary syntax" src="images/RBAFX524.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1, 2, 4, 8, 16</td>
+<td align="left" valign="top">Data object boundary</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Position</h3>
+
+<p>The following diagram and table show the possible positions:</p>
+
+<img alt="Position syntax" src="images/RBAFX525.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 16&nbsp;776&nbsp;191</td>
+<td align="left" valign="top">Data object position</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Example</h3>
+
+<p>The following declare statements show how POS can be used along with DEF to
+access the same storage space in different ways:</p>
+
+<pre>
+DCL DD DATETIME CHAR(12);
+DCL DD DATE CHAR(6) DEF(DATETIME);
+DCL DD TIME CHAR(6) DEF(DATETIME) POS(7);
+</pre>
+
+<p>DATETIME represents a 12 character time and date stamp. The first 6
+characters contain the date and the second 6 characters contain the time.</p>
+
+<br>
+<br>
+<h3>Array Element Offset</h3>
+
+<p>The following diagram and table show the possible array element offsets:</p>
+
+<img alt="Array Element Offset syntax" src="images/RBAFX526.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 32767</td>
+<td align="left" valign="top">Array element offset</td>
+</tr>
+</table>
+
+<br>
+ <br>
+<h3>Example</h3>
+
+<p>The following example shows AEO used in conjunction with DEF and POS:</p>
+
+<pre>
+DCL DD X CHAR(16);
+DCL DD LFT(4) BIN(2) DEF(X) AEO(4) POS(1);
+DCL DD RGT(4) BIN(2) DEF(X) AEO(4) POS(3);
+</pre>
+
+<p>Both LFT and RGT redefine the storage declared by X. Because the size of
+each array element is smaller than the array element offset, there are 2-byte
+gaps between each array element:</p>
+
+<img alt="An illustration of the concept described in the preceding paragraph" src="images/RBAFX527.gif"><br>
+<br>
+ 
+
+<h3>Optimization</h3>
+
+<p><strong>Optimization</strong> determines whether or not an item can be moved
+to a register and stored there over time. The following diagram shows the
+possible optimization:</p>
+
+<img alt="Optimization syntax" src="images/RBAFX528.gif"> 
+
+<p>This value indicates that the data object contains an abnormal value. You
+cannot optimize the value for more than a single reference because the value
+may be changed in a manner that the QPRCRTPG API cannot detect.</p>
+
+<br>
+<br>
+<h3>Initial Value</h3>
+
+<p>The following diagram and table show each possible initial value:</p>
+
+<img alt="Initial Value syntax" src="images/RBAFX529.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 16&nbsp;776&nbsp;191</td>
+<td align="left" valign="top">Position of elements in a character string</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">-2&nbsp;147&nbsp;483&nbsp;648 to
+2&nbsp;147&nbsp;483&nbsp;647</td>
+<td align="left" valign="top">Position of elements in an array</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">1 to 16&nbsp;776&nbsp;191</td>
+<td align="left" valign="top">Replication factor in a character string or
+array</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer3</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Initial value for signed and unsigned binary data
+objects</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Initial value for character string data
+objects</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">packed1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Initial value for packed decimal data
+objects</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">zoned1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Initial value for zoned decimal data objects</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">float1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Initial value for floating-point data
+objects</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Example</h3>
+
+<p>The following declare statement declares and initializes a 10-element
+array:</p>
+
+<pre>
+DCL DD IV(10) BIN(2) STAT INIT((1)10,*(2)(2)11,*(4)(3)12,*(7)(4)13);
+</pre>
+
+<p>There are four initial value elements. The following table describes this
+function:</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="bottom">Initial Value Element</th>
+<th align="left" valign="bottom">Result</th>
+<th align="left" valign="bottom">Position</th>
+<th align="left" valign="bottom">Replication Factor</th>
+<th align="left" valign="bottom">Initial value</th>
+</tr>
+
+<tr>
+<td align="left" valign="top" width="20%">(1)10</td>
+<td align="left" valign="top" width="20%">IV(1)=10</td>
+<td align="left" valign="top" width="20%">1 (default)</td>
+<td align="left" valign="top" width="20%">1</td>
+<td align="left" valign="top" width="20%">10</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*(2)(2)11</td>
+<td align="left" valign="top">
+<pre>
+IV(2)=11
+IV(3)=11
+</pre>
+</td>
+<td align="left" valign="top">2</td>
+<td align="left" valign="top">2</td>
+<td align="left" valign="top">11</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*(4)(3)12</td>
+<td align="left" valign="top">
+<pre>
+IV(4)=12
+IV(5)=12
+IV(6)=12
+</pre>
+</td>
+<td align="left" valign="top">4</td>
+<td align="left" valign="top">3</td>
+<td align="left" valign="top">12</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*(7)(4)13</td>
+<td align="left" valign="top">
+<pre>
+IV(7)=13
+IV(8)=13
+IV(9)=13
+IV(10)=13
+</pre>
+</td>
+<td align="left" valign="top">7</td>
+<td align="left" valign="top">4</td>
+<td align="left" valign="top">13</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3><a name="pointerdataobject">Pointer-Data-Object Declare Statement</a></h3>
+
+<p>The following diagram and table show the pointer-data-object declare
+statement:</p>
+
+<img alt="Pointer-Data-Object Declare Statement syntax" src="images/RBAFX530.gif"> 
+
+<p>The system only allows certain combinations of attributes based on the data
+object's addressability. These combinations are listed as follows:</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="bottom">Address-ability</th>
+<th align="left" valign="bottom">Array Attribute</th>
+<th align="left" valign="bottom">Array Element Offset Attribute</th>
+<th align="left" valign="bottom">Position Attribute</th>
+<th align="left" valign="bottom">Initial Value Attribute</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">STAT</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">AUTO</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">DEF</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" rowspan="2">DIR</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">X</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BAS</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BASPCO</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PARM</td>
+<td align="center" valign="top">X</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+<td align="center" valign="top">&nbsp;</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Pointer Type</h3>
+
+<p>The following diagram and table show the possible pointer types:</p>
+
+<img alt="Pointer Type syntax" src="images/RBAFX531.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">PTR</td>
+<td align="left" valign="top">Pointer type is not specified.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">INSPTR</td>
+<td align="left" valign="top">Pointer type is the instruction pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">SPCPTR</td>
+<td align="left" valign="top">Pointer type is the space pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DTAPTR</td>
+<td align="left" valign="top">Pointer type is the data pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">SYSPTR</td>
+<td align="left" valign="top">Pointer type is the system pointer.</td>
+</tr>
+</table>
+
+<p>If you specify an initial value, you must specify INSPTR, SPCPTR, DTAPTR or
+SYSPTR.</p>
+
+<br>
+<h3>Array Attribute</h3>
+
+<p>The following diagram and table show the possible array attributes:</p>
+
+<img alt="Array Attribute syntax" src="images/RBAFX532.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 1&nbsp;000&nbsp;000</td>
+<td align="left" valign="top">Dimension of the data object with an implied
+lower bound of 1.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">-2&nbsp;147&nbsp;483&nbsp;648 to
+2&nbsp;147&nbsp;483&nbsp;647</td>
+<td align="left" valign="top">Lower bound of the array.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer3</td>
+<td align="left" valign="top">integer2 to 2&nbsp;147&nbsp;483&nbsp;647</td>
+<td align="left" valign="top">Upper bound of the array. The dimension
+(integer3&nbsp;-&nbsp;integer2) should not exceed 1&nbsp;000&nbsp;000.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<h3>Addressability</h3>
+
+<p>The following diagram and tables show the possible addressabilities:</p>
+
+<img alt="Addressability syntax" src="images/RBAFX533.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">STAT</td>
+<td align="left" valign="top">Addressability type is direct static.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">AUTO</td>
+<td align="left" valign="top">Addressability type is direct automatic.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DIR</td>
+<td align="left" valign="top">Addressability type is defined. See <a href=
+"#HDR8SPCOBJ">Using Space Objects</a> for more information.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DEF</td>
+<td align="left" valign="top">Addressability type is defined.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BAS</td>
+<td align="left" valign="top">Addressability type is based.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*</td>
+<td align="left" valign="top">Object does not have explicit basing object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BASPCO</td>
+<td align="left" valign="top">Addressability type is based on the process
+communication object space pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PARM</td>
+<td align="left" valign="top">Addressability type is parameter.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Space object name</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Scalar data object name or the pointer data
+object name</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name3</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Pointer data object name or the space pointer
+machine object name</td>
+</tr>
+</table>
+
+<br>
+ <br>
+<h3>Position</h3>
+
+<p>The following diagram and table show the possible positions:</p>
+
+<img alt="Position syntax" src="images/RBAFX525.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 16&nbsp;776&nbsp;191</td>
+<td align="left" valign="top">Data object position</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Array Element Offset Value</h3>
+
+<p>The following diagram and table show the possible array element offset
+values:</p>
+
+<img alt="Array Element Offset Value syntax" src="images/RBAFX526.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 32&nbsp;767</td>
+<td align="left" valign="top">Array element offset</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Optimization</h3>
+
+<p>The following diagram shows the possible optimizations:</p>
+
+<img alt="Optimization syntax" src="images/RBAFX528.gif"> 
+
+<p>This value indicates that the data object contains an abnormal value. The
+system cannot optimize a value for more than a single reference because the
+value may be changed in a manner the QPRCRTPG API cannot find.</p>
+
+<br>
+ 
+
+<h3>Initial Value</h3>
+
+<p>The following diagram shows each possible initial value:</p>
+
+<img alt="Initial Value syntax" src="images/RBAFX534.gif"> 
+
+<p>An initial value can only be specified if a pointer-type value other than
+PTR is specified. The syntax of the initial value is based on the pointer-type
+value that was used.</p>
+
+<br>
+<h3>Instruction Pointer Initial Value</h3>
+
+<p>The following diagram and table show the possible initial value for the
+instruction pointer:</p>
+
+<img alt="Instruction Pointer Initial Value syntax" src="images/RBAFX535.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Label name</td>
+</tr>
+</table>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<p>The following statement declares and initializes an instruction pointer:</p>
+
+<pre>
+LABELI:
+
+  :
+  :
+
+  DCL INSPTR INSTRUCTION_PTR INIT(LABELI);
+</pre>
+
+<br>
+ 
+
+<h3>Space Pointer Initial Value</h3>
+
+<p>The following diagram and table show the initial value for the space
+pointer:</p>
+
+<img alt="Space Pointer Initial Value syntax" src="images/RBAFX535.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Scalar data object name or pointer data object
+name</td>
+</tr>
+</table>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<p>The following statement declares and initializes a space pointer:</p>
+
+<pre>
+DCL PTR ANY_POINTER;
+DCL SPCPTR SPACE_PTR INIT(ANY_POINTER);
+</pre>
+
+<p>The pointer SPACE_PTR is initialized to point to the space location
+containing ANY_POINTER. It does <em>not</em> contain the value of
+ANY_POINTER.</p>
+
+<br>
+ 
+
+<h3>Data Pointer Initial Value</h3>
+
+<p>The following diagram and table show the initial value for the data
+pointer:</p>
+
+<img alt="Data Pointer Initial Value syntax" src="images/RBAFX536.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">32 bytes</td>
+<td align="left" valign="top">External data object name</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string2</td>
+<td align="left" valign="top">30 bytes</td>
+<td align="left" valign="top">Program containing external data object</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">0 to 255</td>
+<td align="left" valign="top">Subtype of program</td>
+</tr>
+</table>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<p>The following statement declares and initializes a data pointer:</p>
+
+<pre>
+DCL DTAPTR DVALUE INIT("DBINARY",PGM("DPGM"));
+</pre>
+
+<p>The pointer DTAPTR refers to the externally defined program object DBINARY
+contained in program DPGM.</p>
+
+<br>
+<h3>System Pointer Initial Value</h3>
+
+<p>The following diagram and tables show the initial value for the system
+pointer:</p>
+
+<img alt="System Pointer Initial Value syntax" src="images/RBAFX537.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">1 to 30 bytes</td>
+<td align="left" valign="top">System object</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string2</td>
+<td align="left" valign="top">1 to 30 bytes</td>
+<td align="left" valign="top">Context where the system object is located</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">0 to 255</td>
+<td align="left" valign="top">Subtype of the context</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">See table below.</td>
+<td align="left" valign="top">Symbolic type of the system object</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">0 to 255</td>
+<td align="left" valign="top">Subtype of the system object</td>
+</tr>
+</table>
+
+<p>The following system object types are supported:</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Type</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top"><strong>PGM</strong></td>
+<td align="left" valign="top">Program</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><strong>CTX</strong></td>
+<td align="left" valign="top">Context</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><strong>Q</strong></td>
+<td align="left" valign="top">Queue</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><strong>SPC</strong></td>
+<td align="left" valign="top">Space</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><strong>PCS</strong></td>
+<td align="left" valign="top">Process control space</td>
+</tr>
+</table>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<p>The following statement declares and initializes a system pointer:</p>
+
+<pre>
+DCL SYSPTR SYSTEM_PTR INIT("MYPGM",CTX("PGMLIB"),TYPE(PGM));
+
+</pre>
+
+<p>The pointer SYSTEM_PTR refers to the *PGM object MYPGM in the PGMLIB
+library.</p>
+
+<br>
+<h3><a name="spacepointermachineobject">Space-Pointer-Machine-Object Declare Statement</a></h3>
+
+<p>The following diagram and table show the space-pointer-machine-object
+declare statement:</p>
+
+<img alt="Space-Pointer-Machine-Object Declare Statement syntax" src="images/RBAFX538.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">0 to 255</td>
+<td align="left" valign="top">Optimization priority value, where 255 is the
+highest priority</td>
+</tr>
+</table>
+
+<p>The iSeries system provides two types of pointers that can access data:</p>
+
+<ul>
+<li>Space Pointers (SPCPTR)</li>
+
+<li>Machine Space Pointers (MSPPTR) 
+
+<p>The MSPPTR has the following restrictions:</p>
+
+<ul>
+<li>It cannot be passed as a parameter</li>
+
+<li>It cannot be part of a structure (SPC)</li>
+
+<li>It cannot be based (BAS(on_some_pointer)) pointer</li>
+
+<li>It is logically only automatic (AUTO) in storage scope</li>
+</ul>
+</li>
+</ul>
+
+<p>Because the MSPPTR has the above restrictions, the translator often assigns
+the MSPPTR to a hardware register for the life of the entire program unit. What
+this means is that loads may be eliminated from the generated code.</p>
+
+<br>
+ 
+
+<h3><a name="operandlist">Operand-List Declare Statement</a></h3>
+
+<p>The following diagram and tables show the operand-list declare
+statement:</p>
+
+<img alt="Operand-List Declare Statement syntax" src="images/RBAFX539.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">ARG</td>
+<td align="left" valign="top">Defines the argument list</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PARM</td>
+<td align="left" valign="top">Defines the parameter list</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">INT</td>
+<td align="left" valign="top">An internal parameter list</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">EXT</td>
+<td align="left" valign="top">An external parameter list</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Scalar data object or a pointer data object name.
+Up to 255 names can be specified.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">0 to 255</td>
+<td align="left" valign="top">Minimum number of elements that the list can
+contain. This implicitly defines a variable-length operand list. If you do not
+specify the operand list, the system defines a fixed-length operand list. Up to
+255 names can be specified.</td>
+</tr>
+</table>
+
+<br>
+ <br>
+ 
+
+<h3>Example</h3>
+
+<p>The following statements declare both argument and parameter operand lists
+along with the associated argument and parameter data objects:</p>
+
+<pre>
+DCL DD ARG1 BIN(2);
+DCL DD ARG2 CHAR(3);
+DCL OL ARGUMENT_LIST (ARG1, ARG2) ARG;
+
+DCL DD PARM1 BIN(2) PARM;
+DCL DD PARM2 CHAR(3) PARM;
+DCL OL PARAMETER_LIST (PARM1, PARM2) PARM EXT;
+</pre>
+
+<p>A parameter operand list that refers to the data objects has parameter
+(PARM) addressability.</p>
+
+<br>
+ 
+
+<h3><a name="instructiondefinitionlist">Instruction-Definition-List Declare Statement</a></h3>
+
+<p>The following diagram and table show the instruction-definition-list declare
+statement:</p>
+
+<img alt="Instruction-Definition-List Declare Statement syntax" src="images/RBAFX540.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Label name. Up to 255 names can be
+specified.</td>
+</tr>
+</table>
+
+<br>
+ <br>
+<h3>Example</h3>
+
+<p>The following statements declare and use an instruction definition list:</p>
+
+<pre>
+LABEL1:
+
+  :
+  :
+
+  DCL IDL INSTRUCTION_LIST (LABEL1,LABEL2,LABEL3);
+
+  :
+  :
+
+LABEL2:
+  B INSTRUCTION_LIST(3); /* Branch to LABEL3 */
+
+  :
+  :
+
+LABEL3:
+</pre>
+
+<br>
+ 
+
+<h3><a name="exceptiondescription">Exception-Description Declare Statement</a></h3>
+
+<p>The following diagram and tables show the exception-description declare
+statement:</p>
+
+<img alt="Exception-Description Declare Statement syntax" src="images/RBAFX541.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">INT</td>
+<td align="left" valign="top">Exception handler type is the internal entry
+point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BP</td>
+<td align="left" valign="top">Exception handler type is the internal branch
+point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">EXT</td>
+<td align="left" valign="top">Exception handler type is the external entry
+point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">IGN</td>
+<td align="left" valign="top">Exception handling action ignores any exceptions
+and continues processing.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">IMD</td>
+<td align="left" valign="top">Exception handling action passes control to the
+specified exception handler. This is the default.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">SKP</td>
+<td align="left" valign="top">Exception handling action is to continue to
+search for another exception description to handle the exception.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">RSG</td>
+<td align="left" valign="top">Exception handling action continues to search for
+an exception description by signaling the exception again to the previous
+call.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">DFR</td>
+<td align="left" valign="top">Exception handling action postpones handling and
+saves exception data for later exception handling.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">0 to 65535</td>
+<td align="left" valign="top">Exception identifier</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Name of the label for branch point exception
+handlers, name of the entry point for the internal exception handlers, and the
+name of the system pointer for the external exception handlers</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">1 to 32 bytes</td>
+<td align="left" valign="top">Compare value</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3><a name="spaceobject">Space-Object Declare Statement</a></h3>
+
+<p>The following diagram and tables show the space-object declare
+statement:</p>
+
+<img alt="Space-Object Declare Statement syntax" src="images/RBAFX542.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">BAS</td>
+<td align="left" valign="top">Addressability type is based.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*</td>
+<td align="left" valign="top">Object does not have explicit basing object.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BASPCO</td>
+<td align="left" valign="top">Addressability type is based on process
+communication object space pointer.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Basing pointer name for the space</td>
+</tr>
+</table>
+
+<p>For information on using space objects, refer to <a href="#HDR8SPCOBJ">Using
+Space Objects</a>.</p>
+
+<br>
+ 
+
+<h3><a name="constantobject">Constant-Object Declare Statement</a></h3>
+
+<p>The following diagram and tables show the constant-object declare
+statement:</p>
+
+<img alt="Constant-Object Declare Statement syntax" src="images/RBAFX543.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">CHAR</td>
+<td align="left" valign="top">Scalar type is character string.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BIN</td>
+<td align="left" valign="top">Scalar type is binary.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">UNSGND</td>
+<td align="left" valign="top">Scalar type is unsigned binary.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">PKD</td>
+<td align="left" valign="top">Scalar type is packed decimal.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">ZND</td>
+<td align="left" valign="top">Scalar type is zoned decimal.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">FLT</td>
+<td align="left" valign="top">Scalar type is floating-point.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 32&nbsp;767</td>
+<td align="left" valign="top">Length in bytes of the character data object</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer2</td>
+<td align="left" valign="top">2 or 4</td>
+<td align="left" valign="top">Length in bytes of the binary data object</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer3</td>
+<td align="left" valign="top">1 to 31</td>
+<td align="left" valign="top">Number of decimal digits</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer4</td>
+<td align="left" valign="top">0 to integer3</td>
+<td align="left" valign="top">Number of fractional digits</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer5</td>
+<td align="left" valign="top">4 or 8</td>
+<td align="left" valign="top">Number of bytes in floating-point constant</td>
+</tr>
+</table>
+
+<p>If you do not specify a scalar type, the system uses BIN(2).</p>
+
+<br>
+<h3>Instruction Statement</h3>
+
+<p>An instruction statement defines an MI instruction. The instruction stream
+used to create the program is made up of all the instruction statements in the
+intermediate representation of the program.</p>
+
+<img alt="Instruction Statement syntax" src="images/RBAFX544.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">See description.</td>
+<td align="left" valign="top">Opcode for this instruction, as defined in the 
+<a href="http://publib.boulder.ibm.com/pubs/html/as400/v5r1/ic2924/tstudio/tech_ref/mi/index.htm">iSeries 
+Machine Interface Instructions</a>.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">S, R, B, I</td>
+<td align="left" valign="top">This is the form of the instruction.<br>
+<br>
+ 
+
+<table cellpadding="5">
+<tr>
+<td align="left" valign="top"><em>S</em></td>
+<td align="left" valign="top">Short</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>R</em></td>
+<td align="left" valign="top">Round</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>B</em></td>
+<td align="left" valign="top">Branch</td>
+</tr>
+
+<tr>
+<td align="left" valign="top"><em>I</em></td>
+<td align="left" valign="top">Indicator</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<p>For the semantic meanings and the syntax restrictions (number and types of
+operands, optional forms, and so on) for individual MI instructions, see the 
+<a href="http://publib.boulder.ibm.com/pubs/html/as400/v5r1/ic2924/tstudio/tech_ref/mi/index.htm">iSeries 
+Machine Interface Instructions</a>.</p>
+
+<p>Following the abbreviated instruction name, you can specify the optional
+forms of certain MI instructions using a string of characters enclosed in
+parentheses. The following is an example of some of the various combinations
+possible for a single MI instruction, ADD NUMERIC:</p>
+
+<pre>
+ADDN      A,B,C;               Add numeric (A=B+C)
+ADDN(S)   A,B;                 Add numeric short (A=A+B)
+ADDN(SR)  A,B;                 Add numeric short and round (A=A+B)
+ADDN(SB)  A,B/POS(X),NEG(Y);   Add numeric short and branch  (A=A+B,
+                               branch to X if A&gt;0, branch to Y if A&lt;0)
+ADDN(RI)  A,B,C/POS(I),NEG(J); Add numeric round and indicator (A=B+C;
+                               I='on' if A&gt;0; j='on' if A&lt;0 )
+
+</pre>
+
+<p>Also note that the order of characters in the optional form string is not
+significant. Thus, all of the following instructions are both valid and
+equivalent:</p>
+
+<pre>
+ADDN(SRB)A,B/POS(X);     Add numeric short, round and branch
+ADDN(SBR)A,B/POS(X);     Add numeric short, round and branch
+ADDN(RSB)A,B/POS(X);     Add numeric short, round and branch
+</pre>
+
+<br>
+ 
+
+<h3>Operand</h3>
+
+<p>The following diagram and table show the possible operands:</p>
+
+<img alt="Operand syntax" src="images/RBAFX545.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Numeric binary scalar operand</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Character scalar operand</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">packed1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Numeric packed decimal scalar operand</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">zoned1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Numeric zoned decimal scalar operand</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">float1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Numeric floating-point scalar operand (4 or 8
+bytes)</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*</td>
+<td align="left" valign="top">&nbsp;</td>
+<td align="left" valign="top">Null operand</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Variable Operand</h3>
+
+<p>The following diagram and table show the possible variable operands:</p>
+
+<img alt="Variable Operand syntax" src="images/RBAFX546.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Data object name to be used as a primary
+operand.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Pointer data object to be used as the basing
+pointer.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">Index1</td>
+<td align="left" valign="top">See description.</td>
+<td align="left" valign="top">Subscript or substring start position. The range
+for array subscripts is between the lower bound of the array and the upper
+bound of the array. The range for substrings is between 1 and
+16&nbsp;776&nbsp;191.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">Index2</td>
+<td align="left" valign="top">1 to 32&nbsp;767</td>
+<td align="left" valign="top">Length of the substring.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">Index3</td>
+<td align="left" valign="top">0 to 32&nbsp;767</td>
+<td align="left" valign="top">Length of the substring (zero allowed).</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Relative Branch Target</h3>
+
+<p>The following diagram and table show the possible relative branch
+targets:</p>
+
+<img alt="Relative Branch Target syntax" src="images/RBAFX547.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">1 to 4095</td>
+<td align="left" valign="top">Branch target instruction number
+<em>relative</em> to the current instruction. You must label the target (named
+or null label).</td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> You cannot use blanks between either the '</p>
+
+<pre>
+=+
+</pre>
+
+<p>' symbol set and integer1 or the '</p>
+
+<pre>
+=-
+</pre>
+
+<p>' symbol set and integer1. However, a blank must precede the symbol
+sets.<br>
+<br>
+<br>
+</p>
+
+<h5>Example</h5>
+
+<p>The following instructions illustrate the use of relative branch
+targets:</p>
+
+<pre>
+  CPYNV X,0;
+  CMPBLA(B) A,'1'/EQ( =+2);
+  CPYNV X,1;
+: CPYNV Y,X;        /* Destination of relative branch */
+</pre>
+
+<p><strong>Note:</strong> A null label is placed in the destination instruction
+of the relative branch.</p>
+
+<br>
+<h3>Target</h3>
+
+<p>The following diagram and table show the possible targets:</p>
+
+<img alt="Target syntax" src="images/RBAFX548.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">See keyword table.</td>
+<td align="left" valign="top">Keyword for branch or indicator forms. You can
+use an N before keywords to negate the condition except for IGN and DFR. See
+"Resultant Conditions", under each MI instruction for the valid values.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Label name, instruction pointer name, or
+instruction definition list name for the branch form. The name of character
+variable is for the indicator form.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">Index1</td>
+<td align="left" valign="top">1 to 255</td>
+<td align="left" valign="top">Instruction definition list index. You can only
+specify this value when name2 is the name of an instruction definition
+list.</td>
+</tr>
+</table>
+
+<p>The following table shows the branch and indicator keywords:</p>
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top" colspan="2">Group 1</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">HI MXD NOR POS TR ZC</td>
+<td align="left" valign="top">High Mixed Normalized Positive Truncated record
+Zero and carry</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" colspan="2">Group 2</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">CR DEN IGN LO NEG NTZNTC RO</td>
+<td align="left" valign="top">Complete record Denormalized Exception ignored
+Low Negative Not-zero and no carry Receiver overrun</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" colspan="2">Group 3</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">AUTH DFR DQ EQ INF SE SGN ZER ZNTC</td>
+<td align="left" valign="top">Authorized Exception postponed Dequeued Equal
+Infinity Source all used Signaled Zero Zero and no carry</td>
+</tr>
+
+<tr>
+<td align="left" valign="top" colspan="2">Group 4</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">EC NAN NTZC UNEQ UNOR</td>
+<td align="left" valign="top">Escape code encountered Not a number (NaN)
+Not-zero and carry Unequal Unordered</td>
+</tr>
+</table>
+
+<p>By adding N to the beginning of the appropriate keyword you can form a not
+condition. For example, the code for "not equal" is NEQ.</p>
+
+<p>All conditions coded on a particular instruction must be mutually exclusive.
+All conditions within a group are equivalent, and therefore, only one may be
+specified. For example, POS (positive) and HI (high) cannot be coded on the
+same instruction.</p>
+
+<p>The not form of a condition is satisfied by any condition from another
+group. For example, NEQ (not equal) is satisfied by HI (high), LO (low), or
+UNOR (unordered). Therefore, you cannot specify NEQ with any of the other
+three. However, you can use NEQ and EQ (or any other keyword in group 3)
+together because they are mutually exclusive.</p>
+
+<br>
+<h3>Index</h3>
+
+<p>The following diagram and table show the possible indexes:</p>
+
+<img alt="Index syntax" src="images/RBAFX549.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">See description below.</td>
+<td align="left" valign="top">Binary variable to use as the index</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">See description below.</td>
+<td align="left" valign="top">Integer value to use as the index</td>
+</tr>
+</table>
+
+<p>An index is a numeric value that qualifies an array or substring reference.
+The context in which the index is used determines the range. For more
+information, refer to the preceding tables.</p>
+
+<br>
+ 
+
+<h3>Directive Statements</h3>
+
+<p>The directive statements are as follows:</p>
+
+<ul>
+<li>Title Directive Statement</li>
+
+<li>Space Directive Statement</li>
+
+<li>Eject Directive Statement</li>
+
+<li>Break Directive Statement</li>
+
+<li>Entry Directive Statement</li>
+
+<li>Reset Directive Statement</li>
+
+<li>Program End Directive Statement</li>
+</ul>
+
+<br>
+ 
+
+<h3>Title Directive Statement</h3>
+
+<p>The title directive statement causes a heading to appear on the listings.
+Only one title directive statement may be specified in a program. The following
+diagram and table show the title directive statement:</p>
+
+<img alt="Title Directive Statement syntax" src="images/RBAFX580.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Text of the title</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Space Directive Statement</h3>
+
+<p>The space directive statement causes a blank line to appear in the listing.
+The following diagram and table show the space directive statement:</p>
+
+<img alt="Space Directive Statement syntax" src="images/RBAFX581.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">integer1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Number of lines to skip</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Eject Directive Statement</h3>
+
+<p>The eject directive statement causes the next line to appear on a new page.
+The following diagram shows the eject directive statement:</p>
+
+<img alt="Eject Directive Statement syntax" src="images/RBAFX582.gif"><br>
+ 
+
+<h3>Break Directive Statement</h3>
+
+<p>The break directive statement allows symbolic breakpoints to be defined. The
+following diagram and table show the break directive statement:</p>
+
+<img alt="Break Directive Statement syntax" src="images/RBAFX583.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Breakpoint name</td>
+</tr>
+</table>
+
+<br>
+<br>
+ 
+
+<h3>Entry Directive Statement</h3>
+
+<p>The following diagram and tables show the entry directive statement:</p>
+
+<img alt="Entry Directive Statement syntax" src="images/RBAFX584.gif"> 
+
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Keyword</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">INT</td>
+<td align="left" valign="top">Internal entry point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">EXT</td>
+<td align="left" valign="top">External entry point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">BRK</td>
+<td align="left" valign="top">Symbolic breakpoint is associated with the entry
+point.</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">*</td>
+<td align="left" valign="top">Entry point defined has no name or is associated
+with the next MI instruction.</td>
+</tr>
+</table>
+
+<br>
+<br>
+<table border width="80%">
+<tr>
+<th align="left" valign="top">Constant</th>
+<th align="left" valign="top">Range</th>
+<th align="left" valign="top">Description</th>
+</tr>
+
+<tr>
+<td align="left" valign="top">name1</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Entry point name being defined</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">name2</td>
+<td align="left" valign="top">Any</td>
+<td align="left" valign="top">Parameter list name for this entry point</td>
+</tr>
+
+<tr>
+<td align="left" valign="top">string1</td>
+<td align="left" valign="top">1-10 bytes</td>
+<td align="left" valign="top">Breakpoint name</td>
+</tr>
+</table>
+
+<p>The default scope is internal (INT).</p>
+
+<p>The entry statement defines entry point program objects. The next
+instruction number is associated with this entry point. The entry statement is
+to be the definition point for this object, so the ODT number assigned to this
+object is the next available ODT number.</p>
+
+<br>
+ 
+
+<h3>Reset Directive Statement</h3>
+
+<p>The following diagram shows the reset directive statement:</p>
+
+<img alt="Reset Directive Statement syntax" src="images/RBAFX585.gif"> 
+
+<p>The specified name is a previously declared space object. The reset
+statement causes subsequent data object declarations containing the DIR
+attribute to use the specified space object. The system maintains next byte
+counts for each space object; these counts are not affected by the reset
+statement. For more information, see <a href="#HDR8SPCOBJ">Using Space
+Objects</a>.</p>
+
+<br>
+<h3>Program End Directive Statement</h3>
+
+<p>The following diagram shows the program end directive statement:</p>
+
+<img alt="Program End Directive Statement syntax" src="images/RBAFX586.gif"> 
+
+<p>This must be the last statement in the program. To ensure comments and
+strings end before processing the PEND statement, use the following
+statement:</p>
+
+<pre>
+/*'/*'/*"/*"*/; PEND;;;
+</pre>
+
+<hr>
+<h2>Coding Techniques</h2>
+
+<p>This section contains additional information for coding the intermediate
+representation of a program.</p>
+
+<br>
+<h3>Using Declare Statements</h3>
+
+<p>Use the following guidelines when using declare statements:</p>
+
+<ul>
+<li>A declare statement for data objects defined on another data object must
+occur after the declare statement for the data object on which it is defined. 
+
+<p><strong>Example</strong>: The following sets of declare statements are
+valid:</p>
+
+<pre>
+DCL DD A CHAR(5);
+DCL DD B CHAR(1) DEF(A);
+
+
+DCL DD A CHAR(5);
+DCL DD X BIN(2);
+DCL PTR P1 AUTO;
+DCL DD B CHAR(1) DEF(A);
+</pre>
+
+<p><strong>Example</strong>: The following declare statements are not valid
+because B is defined on A but is declared before A:</p>
+
+<pre>
+DCL DD B CHAR(1) DEF(A);
+DCL DD A CHAR(5);
+</pre>
+
+<p>This restriction also applies when there is a chain of dependencies.</p>
+
+<p><strong>Example</strong>: In the figure below, B is defined on A and C is
+defined on B:</p>
+
+<pre>
+DCL DD A CHAR(5);
+DCL DD B CHAR(3) DEF(A);
+DCL DD C CHAR(1) DEF(B);
+</pre>
+
+<p>If any object in a chain of definitions, as shown in the previous examples,
+has an initial value specified, then the following restrictions apply:</p>
+
+<ul>
+<li>No object in that chain can have the BAS (based) addressability
+attribute.</li>
+
+<li>The highest level data object in the chain must be either static or
+automatic.</li>
+
+<li>When you initialize the same area twice, the system uses the last
+value.</li>
+</ul>
+
+<p><strong>Example</strong>: The following declare statements are valid
+because:</p>
+
+<ul>
+<li>The BAS addressability attribute is not used.</li>
+
+<li>Data object A (implicitly) has the static addressability attribute. 
+
+<pre>
+DCL DD A CHAR(5);
+DCL DD B CHAR(3) DEF(A) INIT(C'YES');
+DCL DD C CHAR(1) DEF(B);
+</pre>
+</li>
+</ul>
+</li>
+
+<li>All declare statements for the objects that make up the elements of an
+operand list must precede the declare statement for the operand list.</li>
+
+<li>When a declare statement for an exception description refers to a system
+pointer, the declare statement for the system pointer must precede the DCL for
+the exception description.</li>
+</ul>
+
+<br>
+ 
+
+<h3><a name="HDR8SPCOBJ">Using Space Objects</a></h3>
+
+<p>Space objects, when used in conjunction with program objects declared with
+the DIR attribute, provide a convenient way of declaring structures.</p>
+
+<p><strong>Note:</strong> Space objects, as used here, do not refer to OS/400
+space objects.</p>
+
+<p>When you declare a space object, a scalar data object with a scalar type of
+CHAR(32767) is created. This object contains the structure to be defined.
+Associated with this object is a "next byte" count. This value is initially 1
+and represents the position where the next structure element will be
+placed.</p>
+
+<br>
+ 
+
+<h3>Example: Simple Space Objects</h3>
+
+<p>After you declare a space object, you can declare one or more scalar or
+pointer data objects with an addressability attribute of DIR. As a result, the
+system automatically declares each object with the DEF and POS attributes. The
+name associated with the DEF attribute is the most recently declared space
+object. The value associated with the POS attribute is the space object's next
+byte count. After you declare the object, the system sets the next byte count
+associated with the space object to the next available position within the
+structure.</p>
+
+<p>The group of declare statements on the left is equivalent to the group on
+the right:</p>
+
+<pre>
+DCL SPC X BAS(PTR);        DCL DD X CHAR(32767) BAS(PTR);
+DCL DD A CHAR(2) DIR;      DCL DD A CHAR(2) DEF(X) POS(1);
+DCL DD B ZND(5,2) DIR;     DCL DD B ZND(5,2) DEF(X) POS(3);
+DCL DD C FLT(4) DIR;       DCL DD C FLT(4) DEF(X) POS(8);
+</pre>
+
+<br>
+ 
+
+<h3>Example: Explicit Position Values</h3>
+
+<p>Data objects declared with DIR may also have an explicit POS value. The
+object is defined on the appropriate space object and uses the specified POS
+value. However, the next byte count is changed only if the POS value causes the
+count to increase.</p>
+
+<p>The group of declare statements on the left is equivalent to the group on
+the right:</p>
+
+<pre>
+DCL SPC X BAS(PTR);             DCL DD X CHAR(32767) BAS(PTR);
+DCL DD A CHAR(4) DIR;           DCL DD A CHAR(4) DEF(X) POS(1);
+DCL DD B CHAR(4) POS(20) DIR;   DCL DD B CHAR(4) DEF(X) POS(20);
+DCL DD C CHAR(4) DIR;           DCL DD C CHAR(4) DEF(X) POS(24);
+DCL DD D CHAR(4) POS(10) DIR;   DCL DD D CHAR(4) DEF(X) POS(10);
+DCL DD E CHAR(4) DIR;           DCL DD E CHAR(4) DEF(X) POS(28);
+</pre>
+
+<br>
+ 
+
+<h3>Example: Explicit Boundary Alignment</h3>
+
+<p>When you declare objects with an explicit boundary other than 1, the object
+is positioned on the next available byte with that boundary. The position of
+any data object with the direct attribute is the next available byte in the
+space if no boundary or position is specified. The position of any pointer
+object with the direct attribute is the next available byte in the space if no
+position is specified. Space objects are assumed to begin on a 16-byte
+boundary. You must ensure this condition exists at run-time.</p>
+
+<p>The group of declare statements on the left is equivalent to the group on
+the right:</p>
+
+<pre>
+DCL SPC X BAS(PTR);           DCL DD X CHAR(32767) BAS(PTR);
+DCL DD A CHAR(1) DIR;         DCL DD A CHAR(1) DEF(X) POS(1);
+DCL DD B FLT(4) DIR; BDRY(4); DCL DD B FLT(4) DEF(X) POS(5);
+DCL PTR C DIR; POS(17);       DCL PTR C DEF(X) POS(17);
+</pre>
+
+<br>
+ 
+
+<h3>Example: Reset Directive Statement</h3>
+
+<p>You can use the reset directive statement to change the name of the space
+object to be used by subsequent declare statements.</p>
+
+<p>The group of declare statements on the left is equivalent to the group on
+the right:</p>
+
+<pre>
+DCL SPCPTR PTR1;           DCL SPCPTR PTR1;
+DCL SPCPTR PTR2;           DCL SPCPTR PTR2;
+
+DCL SPC X BAS(PTR1);       DCL DD X CHAR(32767) BAS(PTR1);
+DCL DD A CHAR(2) DIR;      DCL DD A CHAR(2) DEF(X) POS(1);
+DCL DD B ZND(5,2) DIR;     DCL DD B ZND(5,2) DEF(X) POS(3);
+
+DCL SPC Y BAS(PTR2);       DCL DD Y CHAR(32767) BAS(PTR2);
+DCL DD C CHAR(5) DIR;      DCL DD C CHAR(5) DEF(Y) POS(1);
+DCL DD D CHAR(7) DIR;      DCL DD D CHAR(7) DEF(Y) POS(6);
+
+RESET X;
+DCL DD E CHAR(3) DIR;      DCL DD E CHAR(3) DEF(X) POS(8);
+</pre>
+
+<br>
+ 
+
+<h3>Constants</h3>
+
+<p>This section describes the syntax of constant values.</p>
+
+<br>
+<h3>Integer</h3>
+
+<p>Integers define signed and unsigned binary scalar data values. The two forms
+of integers are decimal and hexadecimal. The decimal form is a sequence of
+digits optionally preceded by a sign. The hexadecimal form is a string of
+hexadecimal digits delimited with apostrophes and preceded by an H. Neither
+form may exceed the 4-byte limit on binary numbers. When the value of the
+integer is between -4095 and +8191, the QPRCRTPG API converts the integer to an
+immediate operand where it can.</p>
+
+<br>
+<h5>Example</h5>
+
+<pre>
++123
+-1
+54788
+
+H'0F0D'
+H'0123'
+H'5E2D1AB4'
+</pre>
+
+<br>
+ 
+
+<h3>String</h3>
+
+<p>Strings define scalar character string data values. The three types of
+string constants are character form, hexadecimal form, and Hollerith form.</p>
+
+<p>The character form is a delimited string optionally preceded by a C.
+Apostrophes or double quotation marks may be used for this form. The
+hexadecimal form is a delimited string of hexadecimal digits preceded by an X.
+The Hollerith form is a string of bytes preceded by the count of the number of
+bytes in the string. The syntax is:</p>
+
+<pre>
+&lt; count | string &gt;
+</pre>
+
+<p>The count in the preceding syntax is the number of characters in the string.
+The QPRCRTPG API ensures that the string contains the right number of
+characters by checking for the</p>
+
+<pre>
+&gt;
+</pre>
+
+<p>character. No blanks are allowed between</p>
+
+<pre>
+&lt;
+</pre>
+
+<p>and</p>
+
+<pre>
+&gt;
+</pre>
+
+<p>unless they are part of the string. The QPRCRTPG API simply flags the
+constant as in error if the right corner bracket does not appear in the correct
+position.<br>
+<br>
+<br>
+</p>
+
+<h5>Example</h5>
+
+<p>The following groups of strings are equivalent:</p>
+
+<pre>
+'ABCDE'
+C'ABCDE'
+X'C1C2C3C4C5'
+&lt;5|ABCDE&gt;
+
+'TE''ST'
+"TE'ST"
+X'E3C57DE2E3'
+&lt;5|TE'ST&gt;
+
+'/*'
+X'615C'
+&lt;2|/*&gt;
+</pre>
+
+<br>
+ 
+
+<h3>Packed</h3>
+
+<p>Packed constants define packed decimal scalar data values. Packed constants
+are a string of decimal digits delimited with apostrophes. They can have an
+embedded decimal point and can be preceded by a sign. P must precede the
+delimited string. Packed constants have a maximum of 31 significant digits.</p>
+
+<p><strong>Note:</strong> You must specify at least one numeric digit.</p>
+
+<br>
+<h5>Example</h5>
+
+<br>
+<pre>
+P'+123.456'
+P'1'
+P'-1'
+P'-123.345345345345'
+P'+.00000000000001'
+</pre>
+
+<br>
+ 
+
+<h3>Zoned</h3>
+
+<p>Zoned constants define zoned decimal scalar data values. The external
+representation of zoned constants is the same as that for packed constants
+except that the preceding character is a Z.</p>
+
+<p><strong>Note:</strong> You must specify at least one numeric digit.</p>
+
+<br>
+<h5>Example</h5>
+
+<pre>
+Z'+123.456'
+Z'1'
+Z'-1'
+Z'-123.345345345345'
+Z'+.00000000000001'
+</pre>
+
+<br>
+ 
+
+<h3>Floating-Point Constants</h3>
+
+<p>Floating-point constants define floating-point scalar data values. You must
+specify whether the constant is a 4-byte (short floating-point) or an 8-byte
+(long floating-point) value.</p>
+
+<p>There are two ways to represent floating-point values. First, you can
+specify floating-point constants as a delimited string of decimal digits
+possibly with an embedded decimal point and optionally preceded by a sign. An F
+for short floating-point values or an E for long floating-point values must
+precede the delimited string. An E in the string determines the start of the
+base 10 exponent. You specify the exponent as signed.</p>
+
+<p>Second, you can specify floating-point constants as a string of hexadecimal
+digits. The delimited string must be preceded by an XF for short floating-point
+values or an XE for long floating-point values.</p>
+
+<p><strong>Note:</strong> You must specify at least one numeric digit.</p>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<br>
+<pre>
+<strong>Short Floating-Point    Long Floating-Point
+Values                  Values
+</strong>
+
+F'0'                    E'0'
+F'+12'                  E'+12'
+F'-12.21'               E'-12.21'
+F'12.34E2'              E'12.34E2'
+F'+3.2345678E-02'       E'+3.2345678E-02'
+
+XF'449A4000'            XE'46CE6F37FFBE8722'
+XF'40490FD0'            XE'400921F9F01B866E'
+</pre>
+
+<p>Several special values are allowed:</p>
+
+<pre>
+<strong>Short Floating-Point   Long Floating-Point
+Values                 Values
+</strong>
+
+F'MNAN'                E'MNAN'     Masked Not A Number
+F'UNAN'                E'UNAN'     Unmasked Not A Number
+F'+INF'                E'+INF'     Plus Infinity
+F'-INF'                E'-INF'     Minus Infinity
+</pre>
+
+<br>
+<p><strong>Note:</strong> You must use floating-point constants to initialize
+floating-point data objects.</p>
+
+<br>
+ 
+
+<h3>Name</h3>
+
+<p>Names specified in the intermediate representation of a program are a
+sequence of characters of up to 48 characters in length. You cannot use the
+following characters as the first character of the name:</p>
+
+<pre>
+blank /,;():&lt;+'%-0123456789
+</pre>
+
+<p>You cannot use the following characters in subsequent characters of the
+name:</p>
+
+<pre>
+blank /,;():&lt;+'%
+</pre>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<br>
+<pre>
+.NAME
+NAME
+THIS_IS_A_NAME
+THIS_IS_A_NAME_2
+&amp;NAME
+!NAME
+?NAME
+.0001
+</pre>
+
+<p><strong>Note:</strong> Symbols that begin with a period (.) are not inserted
+into the program's symbol table and may not be referred to by the OS/400 debug
+function.</p>
+
+<br>
+<h3>Comments</h3>
+
+<p>Comments, in the intermediate representation of a program, may appear
+anywhere in the text. Comments are treated as blanks so they are significant in
+finding tokens. Comments are a string of characters starting with</p>
+
+<pre>
+/*
+</pre>
+
+<p>and ending with</p>
+
+<pre>
+*/
+</pre>
+
+<p>. If a comment occurs immediately following a semicolon, it prints as a
+separate line (or a multiple line as required) on the listing. If a comment is
+embedded in a statement, then it appears as a part of that statement, such as a
+remark.<br>
+<br>
+<br>
+</p>
+
+<h5>Example</h5>
+
+<p>The following statements are equivalent:</p>
+
+<pre>
+CPYBLA A,B;
+CPYBLA A, /* C-&gt; */ B ;
+CPYBLA A,B;  /* B is based on C */
+</pre>
+
+<br>
+ 
+
+<h3>Blanks</h3>
+
+<p>You can use strings of blanks of any length in the intermediate
+representation of a program. Blanks act as delimiters in finding tokens and in
+some places are necessary as in separating the opcode and operand in an
+instruction statement.</p>
+
+<br>
+ 
+
+<h5>Example</h5>
+
+<p>The following statements are equivalent:</p>
+
+<pre>
+ADDN A,B,C;
+ADDN        A    ,     B             , C            ;
+</pre>
+
+</body>
+</html>
+

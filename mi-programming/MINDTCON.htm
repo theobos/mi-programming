@@ -1,0 +1,1853 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> Date/Time Information </title>
+  <link rel="stylesheet" type="text/css" href="./tstudio.css">
+</head>
+
+<body>
+<A NAME="Header_1"></A>
+<h1>Date, Time, and Timestamp Concepts</h1>
+<h2>External Data Formats</h2>
+<P>For support of date, time, and timestamp, the external data
+format that is used is a character string.  Associated
+with this character string will be a <B><U>data definitional attribute
+list</U></B>
+(DDAT) that describes all the attributes of the string.
+<P>The attributes that are associated with the
+character string are as follows:
+<UL>
+<P><LI>Calendar table.
+<P><LI>Era table.
+<P><LI>Format code.
+<P><LI>Date separator type.
+<P><LI>Time separator type.
+<P><LI>Time zone.
+<P><LI>Month definition.
+<P><LI>Year definition.
+<P><LI>Century.
+</UL>
+<A NAME="Header_2"></A>
+<h2>Concepts</h2>
+
+<h3>Data Definitions</h3>
+<TABLE width="443" cellpadding="0" cellspacing="0" border="0">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>DATE
+</TD><TD><P><B><I>Date data type.</I></B> The internal format is a 4 byte binary
+value.  The DDAT number must reference a DDAT with an internal DATE
+format code or be set to zero which implies internal format.  The
+internal format is fixed length, trailing blanks are NOT allowed.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIME
+</TD><TD><P><B><I>Time data type.</I></B> The internal format is six numbers
+packed into a three byte value.  There is no sign nibble.  The DDAT
+number must reference a DDAT with an internal TIME format code or be
+set to zero which implies internal format.  The internal format is fixed
+length, trailing blanks are NOT allowed.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIMESTAMP
+</TD><TD><P><B><I>Timestamp data type.</I></B> The internal format of a Timestamp
+is a ten byte composite value.  The composite is two numbers: one for
+date and time respectfully.  The date and time numbers have the same
+encoding as the date and time data types, with an exception to the time
+number.  The time number has an additional 3 bytes for a six packed
+digit microsecond value.  The DDAT number must reference a DDAT with an
+internal Timestamp format code or be set to zero which implies internal
+format.  The internal format is fixed length, trailing blanks are NOT
+allowed.
+</TD></TR><TR VALIGN="TOP"><TD><P>PseudoDATE
+</TD><TD><P><B><I>Character data type with a DDAT referenced.</I></B> The DDAT
+number must reference a DDAT with a valid date format code.  The
+character string format must match one of the supported formats,
+trailing blanks are allowed.  The length is the number of bytes of the
+character string which can include trailing blanks.
+</TD></TR><TR VALIGN="TOP"><TD><P>PseudoPackedDATE
+</TD><TD><P><B><I>Packed data type with a DDAT referenced.</I></B> The DDAT
+number must reference a DDAT with a valid packed
+date format code.  The packed value must be positive and match one
+of the supported packed date formats.
+</TD></TR><TR VALIGN="TOP"><TD><P>PseudoZonedDATE
+</TD><TD><P><B><I>Zoned data type with a DDAT referenced.</I></B> The DDAT
+number must reference a DDAT with a valid zoned
+date format code.  The zoned decimal
+value must be positive and match one
+of the supported zoned date formats.
+</TD></TR><TR VALIGN="TOP"><TD><P>PseudoTIME
+</TD><TD><P><B><I>Character data type with a DDAT referenced.</I></B> The DDAT
+number must reference a DDAT with a valid time format code.  The
+character string format must match one of the supported formats,
+trailing blanks are allowed.  The length is the number of bytes of the
+character string which can include trailing blanks.
+</TD></TR><TR VALIGN="TOP"><TD><P>PseudoTIMESTAMP
+</TD><TD><P><B><I>Character data type with a DDAT referenced.</I></B> The DDAT
+number must reference a DDAT with a valid timestamp format code.  The
+character string format must match one of the supported formats,
+trailing blanks are allowed.  The length is the number of bytes of the
+character string which can include trailing blanks.
+</TD></TR><TR VALIGN="TOP"><TD><P>DATE DURATION
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 8,0.  The DDAT number is set to reference a DDAT with a
+valid date duration format code.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIME DURATION
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 6,0.  The DDAT number must reference a DDAT with a valid
+time duration format code.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIMESTAMP DURATION
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 20,6.  The DDAT number must reference a DDAT with a
+valid timestamp duration format code.
+</TD></TR><TR VALIGN="TOP"><TD><P>DATE LABEL DURATIONS
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 15,0.  The DDAT number must reference a DDAT with a
+valid date label duration format code.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIME LABEL DURATIONS
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 15,0.  The DDAT number must reference a DDAT with a
+valid time label duration format code.
+</TD></TR><TR VALIGN="TOP"><TD><P>TIMESTAMP LABEL DURATIONS
+</TD><TD><P><B><I>Packed decimal data type with a DDAT referenced.</I></B> The
+length must be 15,0.  The DDAT number must reference a DDAT with a
+valid timestamp label duration format code.
+</TD></TR></TABLE>
+<P><A NAME="Header_4" HREF="#ToC_4"></A>
+<p><h3>Data Conversion</h3>
+<P>The following table describes the possible conversions for date/time
+data.
+<BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Source Operand
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Result Operand
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">DATE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">DATE, PseudoDATE,
+PseudoPackedDATE, or PseudoZonedDATE
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIME
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIME or PseudoTIME
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIMESTAMP
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIMESTAMP or PseudoTIMESTAMP
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">PseudoDATE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">DATE or PseudoDATE
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">PseudoPackedDATE or PseudoZonedDATE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">DATE
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">PseudoTIME
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIME or PseudoTIME
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">PseudoTIMESTAMP
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">TIMESTAMP or PseudoTIMESTAMP
+</TD></TR></TABLE>
+<P><A NAME="Header_5" HREF="#ToC_5"></A>
+<p><h3>Arithmetic</h3>
+<P>For all Date/Time arithmetic, Increment, Decrement, and Compute,
+there must be at least one non-zero DDAT number specified between
+operand 1, operand 2, and the result.
+<P>DDATs are equivalent when both DDAT numbers are 0 or both DDAT
+numbers are non-zero and the DDATs they reference are byte for byte
+identical.
+<P>End of month adjustment can only be specified in conjunction with
+Date and Timestamp arithmetic that involves the incrementing and
+decrementing of Dates or Timestamps.
+<P>When end of month adjustment is specified, there must be at least
+one non-internal format specified for operand 1, operand 2, or the
+result.  When end of month adjustment is not specified all durations
+must reference a DDAT that specifies a year and month definition other
+than zero.
+<P><A NAME="HDRDDAT" HREF="#ToC_6"></A>
+<p>
+<h3>Data Definitional Attribute Template</h3>
+<P>The following describes the Data Definitional Attribute Template
+(DDAT).
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Data definitional attribute template (optional)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;*&#93; Char(112-N)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">
+(repeated for each operand/field that requires a template, one template
+can be used by multiple operands/fields that have the same attributes)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">DDAT length (ignored)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Format code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Separator definition
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Date separator type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Time separator type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Time zone definition
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Hour zone
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Minute zone
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Duration definitions
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">10
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Month definition
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Year definition
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Century definition
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">14
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Current century
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="30%">Century division
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3" WIDTH="15%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">22
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Calendar table offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(6)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Era table template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(50-n)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Calendar table template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(18-n)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P>The following table describes the operand type and DDAT field
+associations.
+<BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Operand Type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Format Code
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Date Separator
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Time Separator
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Time Zone
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Month Definition
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Year Definition
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Century
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Era Table
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">Calendar Table
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Pseudo Date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Pseudo Packed Date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Pseudo Zoned Date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Pseudo Time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Pseudo Timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Date Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Time Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Timestamp Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Year Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Month Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Day Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">EMA
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Hour Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Minute Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Second Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="1%">Microsecond Label Duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">REQ
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="11%">INV
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="10" WIDTH="100%"><B>Note&#58; </B>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>REQ
+</B></TD><TD><P>The DDAT field is required and the value must be non-zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>INV
+</B></TD><TD><P>The DDAT field is invalid and the value must be zero.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>EMA
+</B></TD><TD><P>The DDAT field is required to have a zero value for end of
+month adjustment arithmetic.  Otherwise the field value is required to
+be non-zero.
+</TD></TR></TABLE>
+<P>The <B><U>DDAT length</U></B> is the length of the DDAT in bytes.
+This field is ignored by the instruction.
+</TD></TR></TABLE>
+<P>The following table describes the <B><U>format code</U></B>.
+The formats are use to
+define the representation or interpretation of data across the MI.
+They also imply the length of the data, some of the minimum lengths
+can only be utilized when a null date or time separator has been
+specified.
+<BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Format Type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Format Code
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Minimum Input Length
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Maximum Input Length
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Minimum Output Length
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Maximum Output Length
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">USA date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0001
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">USA time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0002
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">ISO date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0003
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">ISO time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0004
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">EUR date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0005
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">EUR time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0006
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">JIS date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0007
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">JIS time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0008
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">SAA timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0009
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">16
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">26
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4/n #
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4/n #
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3/n #
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3/n #
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10/n #
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10/n #
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration YEAR
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MONTH
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration DAY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration HOUR
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0010
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MINUTE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0011
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration SECOND
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0012
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MICROSECOND
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0013
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">15,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Date duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0014
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Time duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0015
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Timestamp duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0016
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">20,6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">20,6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">20,6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">20,6
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0017
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0018
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0019
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*HHMMSS
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System clock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDDhhmmss
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0020
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0021
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">n
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0022
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0023
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0024
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CMMDDYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0025
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CDDMMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0026
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CYYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0027
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0028
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0029
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">9,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMM(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMM(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0030
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0031
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0032
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0033
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CMMDDYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0034
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CDDMMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0035
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CYYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0036
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0037
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0038
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0039
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">8,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMM(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">4,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMM(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">6,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">5,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">7,0
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6" WIDTH="100%"><B>Note&#58; </B>
+<UL>
+<P><LI>'n' - Any number which is greater than minimum length.
+<P><LI>'F' - Reference the format description for
+this value.
+<P><LI>'#' - Date, time, and timestamp data types the length is fixed 4, 3,
+and 10 respectfully.  For the character data type the length is
+variable.
+</UL>
+</TD></TR></TABLE>
+<P>The following table defines which
+data types are supported by a <I>format code</I> and which formats
+will be used when trying to determine the format of an <I>unknown</I> date, time, or timestamp value.
+<BR>
+<TABLE  BORDER="1">
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Format Type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Format Code
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Preferred Format
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Search List
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Supported data type
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">USA date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0001
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">USA time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0002
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">ISO date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0003
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">ISO time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0004
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">EUR date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0005
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">EUR time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0006
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">JIS date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0007
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">JIS time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0008
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">SAA timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0009
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character,Date
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character,Time
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System internal timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character,Timestamp
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration YEAR
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MONTH
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration DAY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 000F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration HOUR
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0010
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MINUTE
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0011
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration SECOND
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0012
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Labeled duration MICROSECOND
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0013
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Date duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0014
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Time duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0015
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">Timestamp duration
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0016
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0017
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0018
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0019
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*HHMMSS
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">System clock
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDDhhmmss
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Y
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 001F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown time
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0020
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*Unknown timestamp
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0021
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Character
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0022
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0023
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0024
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CMMDDYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0025
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CDDMMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0026
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CYYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0027
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0028
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0029
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMM(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMM(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYYYY(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 002F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD(packed)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0030
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Packed
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0031
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0032
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0033
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CMMDDYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0034
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CDDMMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0035
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*CYYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0036
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMDDYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0037
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*DDMMYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0038
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMMDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 0039
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYMM(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYMM(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*MMYYYY(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYDDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003E
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="38%">*YYYYDDD(zoned)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">Hex 003F
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="13%">N
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="25%">Zoned
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="100%"><B>Note&#58; </B>
+<UL>
+<P><LI>'Y' - Allowed.
+<P><LI>'N' - Not allowed.
+<P><LI>No Value - Not applicable.
+</UL>
+<P>
+The <B><U>preferred format</U></B> column lists the format codes that
+can be suggested as the first format to try when attempting to
+determine the format of an unknown date, time, or
+timestamp value.
+<P>
+The <B><U>search list</U></B> column lists the format codes and their
+associated format that will be used when trying to determine
+the format of an unknown date, time, or timestamp value.
+Only those formats marked as <I>allowed</I> in the <I>search list</I> will be used when trying to
+determine the format of an unknown date, time, or
+timestamp value; none of the other formats are used in this
+process.
+</TD></TR></TABLE>
+<P>
+The following are the descriptions of the formats,
+D represents days, M represents months, Y represents years,
+C represents century,
+h represents hours, m represents minutes, s represents seconds and u
+represents microseconds.
+<UL>
+<P><LI>USA
+<UL>
+<P><LI>Date - MM/DD/YYYY, character string.
+<P><LI>Time - hh&#58;mm AM or PM, character string.  00&#58;00
+AM or 12&#58;00 AM is midnight.  12&#58;00 PM is noon.  Between
+'hh&#58;mm' and 'AM' or 'PM' only one blank is allowed.
+</UL>
+<P><LI>ISO
+<UL>
+<P><LI>Date - YYYY-MM-DD, character string.
+<P><LI>Time - hh.mm.ss, character string.
+</UL>
+<P><LI>EUR
+<UL>
+<P><LI>Date - DD.MM.YYYY, character string.
+<P><LI>Time - hh.mm.ss, character string.
+</UL>
+<P><LI>JIS
+<UL>
+<P><LI>Date - YYYY-MM-DD, character string.
+<P><LI>Time - hh&#58;mm&#58;ss, character string.
+</UL>
+<P><LI>SAA timestamp
+<UL>
+<P><LI>Timestamp - YYYY-MM-DD-hh.mm.ss.uuuuuu, character string.  Leading
+zeros may be omitted from the month, day, and hour part of the timestamp,
+and microseconds may be truncated or entirely omitted, (.10 = .100000).
+</UL>
+<P><LI>System internal format
+<UL>
+<P><LI>Date - 4 byte binary Scaliger number
+<P><LI>Time - 3 byte value with each byte containing two packed decimal
+digits having the encoding of hhmmss.
+<P><LI>Timestamp - 10 byte composite number, the first part being a 4 byte
+internal date and the second part being a 3 byte internal time, plus
+microseconds, a 3 byte value with each byte containing two packed
+decimal digits having the encoding of uuuuuu.
+</UL>
+<P><LI>Labeled durations
+<UL>
+<P><LI>They are a 15,0 packed decimal data value.  The keywords; YEARS,
+MONTHS, DAYS, HOURS, MINUTES, SECONDS, and MICROSECONDS, or the
+singular form of the keywords; YEAR, MONTH, DAY, HOUR, MINUTE, SECOND,
+and MICROSECOND, are not part of the data.
+</UL>
+<P><LI>Date duration
+<UL>
+<P><LI>Packed decimal (8,0) number having the encoding of YYYYMMDD, where
+YYYY has the range 0 - 9999, MM has the range 0 - 99, and DD has the
+range 0 - 99.
+</UL>
+<P><LI>Time duration
+<UL>
+<P><LI>Packed decimal (6,0) number having the encoding of hhmmss, where hh
+has the range 0 - 99, mm has the range 0 - 99, and ss has the range 0 -
+99.
+</UL>
+<P><LI>Timestamp duration
+<UL>
+<P><LI>Packed decimal (20,6) number having the encoding of
+YYYYMMDDhhmmssuuuuuu, where in addition to date and time, uuuuuu has
+the range 0 - 999999.
+</UL>
+<P><LI>*MMDDYY
+<UL>
+<P><LI>Date - MMDDYY, character string
+</UL>
+<P><LI>*DDMMYY
+<UL>
+<P><LI>Date - DDMMYY, character string
+</UL>
+<P><LI>*YYMMDD
+<UL>
+<P><LI>Date - YYMMDD, character string
+</UL>
+<P><LI>*YYDDD
+<UL>
+<P><LI>Date - YYDDD, character string
+</UL>
+<P><LI>*HHMMSS
+<UL>
+<P><LI>Time - hhmmss, character string
+</UL>
+<P><LI>System clock
+<UL>
+<P><LI>It is an 8 byte bit clock, which is used as a timestamp.
+</UL>
+<P><LI>*YYYYDDD
+<UL>
+<P><LI>Date - YYYYDDD, seven character string.  Used on the DATE scalar
+function.
+</UL>
+<P><LI>*YYYYMMDDhhmmss
+<UL>
+<P><LI>Timestamp - YYYYMMDDhhmmss fourteen character string.
+</UL>
+<P><LI>*Unknown
+<UL>
+<P><LI>Used to reference unique SAA formats.  This format is used only when
+the format is NOT known.  This format tries to find a matching format.
+The formats that will be scanned for are; USA, ISO, EUR, JIS, dates and
+times, *YYYYDDD (date), SAA timestamp, and *YYYYMMDDhhmmss timestamp.
+When a valid match is not found either a data, format or value,
+exception will be signalled.
+</UL>
+<P><LI>Packed MMDDYY, YYMMDD, DDMMYY
+<UL>
+<P><LI>Date with MMDDYY, YYMMDD, or DDMMYY format -  positive packed value
+</UL>
+<P><LI>Packed MMDDYYYY, YYYYMMDD, DDMMYYYY
+<UL>
+<P><LI>Date with MMDDYYYY, YYYYMMDD, or DDMMYYYY format - positive
+packed value
+</UL>
+<P><LI>Packed YYMM or MMYY
+<UL>
+<P><LI>Date with YYMM or MMYY format -  positive packed value.  Date
+is assumed to be the first day of the specified month.
+</UL>
+<P><LI>Packed YYYYMM or MMYYYY
+<UL>
+<P><LI>Date with MMYYYY or YYYYMM format -  positive packed value.  Date
+is assumed to be the first day of the specified month.
+</UL>
+<P><LI>Packed YYDDD, YYYYDDD
+<UL>
+<P><LI>Date with YYDDD or YYYYDDD format - positive packed value
+</UL>
+<P><LI>Packed CMMDDYY, CYYMMDD, CDDMMYY
+<UL>
+<P><LI>Date with CMMDDYY, CYYMMDD, or CDDMMYY format - positive
+packed value.  The 'C' represents the century guard digit.
+The supported century guard digit values are 0 through 9.
+A century
+guard digit of 0 will place the specified year in the 1900-1999 range,
+a guard digit value of 1 will place the specified year in the 2000-2099
+range,
+a guard digit value of 2 will place the specified year in the 2100-2199
+range, etc.
+</UL>
+<P><LI>Zoned MMDDYY, YYMMDD, DDMMYY
+<UL>
+<P><LI>Date with MMDDYY, YYMMDD, or DDMMYY format -  positive zoned value
+</UL>
+<P><LI>Zoned MMDDYYYY, YYYYMMDD, DDMMYYYY
+<UL>
+<P><LI>Date with MMDDYYYY, YYYYMMDD, or DDMMYYYY format - positive
+zoned value
+</UL>
+<P><LI>Zoned YYMM or MMYY
+<UL>
+<P><LI>Date with YYMM or MMYY format -  positive zoned value.  Date
+is assumed to be the first day of the specified month.
+</UL>
+<P><LI>Zoned YYYYMM or MMYYYY
+<UL>
+<P><LI>Date with YYYYMM or MMYYYY format -  positive zoned value.  Date
+is assumed to be the first day of the specified month.
+</UL>
+<P><LI>Zoned YYDDD, YYYYDDD
+<UL>
+<P><LI>Date with YYDDD or YYYYDDD format - positive zoned value
+</UL>
+<P><LI>Zoned CMMDDYY, CYYMMDD, CDDMMYY
+<UL>
+<P><LI>Date with CMMDDYY, CYYMMDD, or CDDMMYY format - positive
+zoned value.  The 'C' represents the century guard digit.
+The supported century guard digit values are 0 through 9.
+A century
+guard digit of 0 will place the specified year in the 1900-1999 range,
+a guard digit value of 1 will place the specified year in the 2000-2099
+range,
+a guard digit value of 2 will place the specified year in the 2100-2199
+range, etc.
+</UL>
+</UL>
+<P>The following describes the <B><U>separator definitions</U></B>
+for date and time.  The <B><U>separator type</U></B>
+is a one character field that contains the separator
+value, for example, :, ., /, or -.  When the format has an implied
+separator, the implied separator is used.  For example: for an ISO date,
+the implied separator is '-'.  When the format does not have an implied
+separator, the implied separator is null.  For example, the format
+*YYMMDD has an implied separator of null.  A null separator means the
+units of time, year, month, day, etc..., are concatenated together.  A
+implied separator is specified by using the value of hex 00.  A null
+separator is specified by using the value of hex FF.  A null
+separator is invalid for the SAA formats, USA, ISO, etc...  Any other
+separator value overrides the implied value for the format code.
+<P>The following describes the <B><U>time zone definition</U></B>.
+The <B><U>hour zone</U></B> value is
+0 to 24.  GMT zone is 0.  The zone to the east of zone 0 is zone 1.  The
+zone to the east of zone 1 is zone 2, and so on.  The value 24
+specifies that the time is to be stored as local time and that the
+concept of time zones should be ignored.  The value of 24 is required
+for storage purposes.  For example, when inserting a time field into a
+database data space the hour zone value must be 24.  A value other than
+24 can be used for retrieval purposes.
+<P>The <B><U>minute zone</U></B>
+value is 0 to 60.  GMT zone is 0.  The zone to the
+west of zone 0 is zone 1.  The zone to the west of zone 1 is zone 2, and
+so on.  The value 60 specifies that the time is to be stored as local
+time and that the concept of time zones should be ignored.  The value
+of 60 is required for storage purposes.  For example, when inserting a
+time field into a database data space the minute zone value must be 60.
+A value other than 60 can be used for retrieval purposes.
+<P>The <B><U>month definition</U></B>
+is an integer number of days.  For example 30,
+would specify that each month used in a duration would have a constant
+value of 30 days.  A value of zero specifies that the calendar
+definition of the month should be used.
+<P>The <B><U>year definition</U></B>
+is an integer number of days.  For example 365,
+would specify that each year used in a duration would have a constant
+value of 365 days.  A value of zero specifies that the calendar
+definition of the year should be used.
+<P>When end of month adjustment arithmetic is being performed, the <I>month definition</I>
+and <I>year definition</I> must have zero values.  When no end of month
+adjustment arithmetic is being performed, the <I>month definition</I>
+and <I>year
+definition</I> must have non-zero values.  Otherwise a <I> template value invalid&nbsp; </I> (hex 3801) exception
+will be signaled.
+<P>The <B><U>century definition</U></B>
+is used to define the century when a two digit
+year is specified for a date.  The definition is two numbers, one for <B><U>current century</U></B> and the other is for the <B><U>century
+division</U></B> year.
+The <I>current century</I> is a century number.
+The <I>century division</I> is a year number.
+The valid values for the <I>current century</I> are 00 - 99
+followed by a 00 suffix.
+The valid values for the <I>century
+division</I>
+are 00 - 99.  The century
+division
+is included in the current century.  For example, a current century of
+1900
+and a century division of 50 would result in two
+digit
+years 00
+-
+49 having the values 2000 - 2049 and 50 - 99 having values 1950 -
+1999.
+If the specified format has a century guard digit or a four digit
+year then the <I>current century</I> field value is ignored.
+<P>The <B><U>calendar table offset</U></B>
+is the number of bytes from the start of
+the DDAT to the start of the calendar table (described below).
+<P><A NAME="Header_7" HREF="#ToC_7"></A>
+<p><h3>Era table</h3>
+<P>The <B><U>era table</U></B>
+immediately follows the fixed portion of the DDAT.
+<P>The following describes the era table data.
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of table elements
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Era element
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;*&#93; Char(48)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Origin date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Era name
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">38
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">26
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(12)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P>The <I>era table</I>
+is a list of elements that state what era should be
+used across the time line.  The start of usage of a particular era is
+specified by the origin date.  The end of usage of a particular era is
+terminated by the next table element.  The last table element era is
+used until the end of the time line.  The origin date is specified in
+the internal format.  The era name is a character field.  The maximum
+number of table entries allowed is 256.
+<P>The SAA <I>era table</I> has one entry.  The SAA origin date is
+January 1, 0001, Gregorian for the start of the time line.  The
+internal format would
+be 1721426.
+The SAA name is AD, anno Domini.
+<P>The SAA <I>era table</I>
+can have only one element and that element must
+have an effective date that falls in the time line specified in the
+SAA <I>calendar table</I>.
+<P><A NAME="Header_8" HREF="#ToC_8"></A>
+<p><h3>Calendar Table</h3>
+<P>The following describes the <B><U>calendar table</U></B> data.
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2" WIDTH="10%">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12" WIDTH="90%"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Number of table elements
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">Calendar change element
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">&#91;*&#93; Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Effective date
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Calendar type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="40%">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4" WIDTH="20%">Char(10)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP" WIDTH="5%">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="10%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="50%">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="5%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5" WIDTH="25%">
+<BR></TD></TR></TABLE>
+<P>The <I>calendar table</I>
+is a list of elements that state what calendar
+type/algorithm should be used across the time line.  The start of usage
+of a particular calendar is specified by the effective date.  The
+effective date is specified using the internal format.  This first
+table element represents the beginning of the time line.  The end of
+usage of a particular calendar is terminated by the next table element.
+The last table element calendar must be null to indicate the end of
+the time line.  The maximum number of table entries allowed is 256.
+<P>The SAA <I>calendar table</I> has 2 entries.  The first entry has a
+calendar type of Gregorian.  The effective date is January 1, 0001,
+Gregorian for the start of the time line.  The internal format would be
+1721426.
+The second entry has a calendar type of null.  The effective
+date is January 1, 10000, Gregorian for the end of the time line.  The
+internal format would be 5373485.
+<P>Multiple calendar table entries are only valid with DDATs specifying
+the internal date <I>format code</I>.
+The rest of <I>format codes</I> can only have
+two entries in the calendar table.  The second entry must have a NULL <I>calendar type</I>.
+<P>The following describes the encoding of the <B><U>calendar types</U></B>.
+<BR>
+<TABLE >
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Calendar type
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Calendar type value
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Null
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Hex 0000
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Gregorian
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Hex 0001
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Julian
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="50%">Hex 0002
+</TD></TR></TABLE>
+
+</body>
+</HTML>

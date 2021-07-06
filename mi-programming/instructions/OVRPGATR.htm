@@ -1,0 +1,160 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> OVRPGATR Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Override Program Attributes (OVRPGATR)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0006
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute identification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute modifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE><P>
+<I>Operand 1</I>:  Unsigned immediate value.
+<P>
+<I>Operand 2</I>:  Unsigned immediate value.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This program creation control instruction allows
+one of a set of program
+attributes specified below to be overridden.  The overridden program
+attribute is in effect until it is changed by another OVRPGATR
+instruction.
+The initial program attributes are set to the ones specified when
+the program is created.
+These same initial program attributes are the
+ones that are materialized when a Materialize Program
+(<A HREF="MATPG.htm">MATPG</A>) is done.  That is, the
+OVRPGATR instruction has no effect on the materialized attributes.
+<P>
+The OVRPGATR instruction consists of
+an operation code and two operands.
+Operand 1 is an unsigned
+immediate value that contains a representation of which program
+attribute is to be overridden.
+Operand 2 is an unsigned
+immediate value that contains a representation of how the program
+attribute is to be overridden.
+<P>
+This instruction may not be branched to, and is not counted
+as an instruction in the instruction stream.
+<P>
+The instruction may precede or follow any machine instruction.
+<P>
+The program attributes defined by operand 1 is overridden according to
+the following selection values:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute Identification
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Attribute Description
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Array constrainment attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Constrain array references
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not constrain array references
+</TD></TR><TR VALIGN="TOP"><TD>3 = </TD><TD>Fully unconstrain array references
+</TD></TR><TR VALIGN="TOP"><TD>
+4 =
+</TD><TD>
+Terminate override of
+array constrainment attributes
+and resume use of
+the attributes specified in the program template
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">String constrainment attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Constrain string references
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not constrain string references
+</TD></TR><TR VALIGN="TOP"><TD>
+3 =
+</TD><TD>
+Terminate override of
+string constrainment attribute
+and resume use of
+the attribute specified in the program template
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Suppress binary size exception attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Suppress binary size exceptions
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not suppress binary size exceptions
+</TD></TR><TR VALIGN="TOP"><TD>
+3 =
+</TD><TD>
+Terminate override of
+suppression of binary size exception attribute
+and resume use of
+the attribute specified in the program template
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Suppress decimal data exception attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Suppress decimal data exceptions
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not suppress decimal data exceptions
+</TD></TR><TR VALIGN="TOP"><TD>
+3 =
+</TD><TD>
+Terminate override of
+suppression of decimal data exception attribute
+and resume use of
+the attribute specified in the program template
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Copy Bytes with Pointers (CPYBWP) alignment data check attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Constrain CPYBWP to require like alignment of
+operands (default)
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not constrain CPYBWP to require like
+alignment of operands
+</TD></TR></TABLE>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="80%">Compare Pointer for Space Addressibility
+(CMPPSPAD) null pointer tolerance attribute
+<P>
+Allowed values for operand 2:
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>1 = </TD><TD>Signal pointer does not exist exceptions for operands
+1 and 2 (default)
+</TD></TR><TR VALIGN="TOP"><TD>2 = </TD><TD>Do not signal pointer does not exist exceptions for
+operands 1 and 2
+</TD></TR></TABLE>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

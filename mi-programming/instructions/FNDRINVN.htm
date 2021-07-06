@@ -1,0 +1,616 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> FNDRINVN Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Find Relative Invocation Number (FNDRINVN)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0543
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Relative invocation number
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Search range
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Search criterion template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1:</I>  Signed binary(4) variable scalar.
+<P>
+<I>Operand 2:</I>  Character(48) scalar or null.
+<P>
+<I>Operand 3:</I>  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for FNDRINVN is 124.
+FNDRINVN (
+          relative_invocation_number   : address of signed binary(4)
+          search_range                 : address OR
+                                         null operand
+          search_criterion_template    : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The invocations identified by operand 2 are searched in the order
+specified by operand 2 until an invocation is found which satisfies the
+search criterion specified in the operand 3 template.  The identity of
+the first invocation (in search order) to satisfy the search criterion
+is returned in operand 1.  If no invocation in the specified range
+satisfies the search criterion, then either an exception is signaled,
+or a value of zero is returned in operand 1, depending on the modifiers
+specified in the operand 3 template.
+<P>
+Operand 1 is returned as a signed binary(4) value identifying
+the first invocation found that satisfies the specified search
+criterion.  It is specified relative to the starting invocation
+identified by operand 2.  A positive number indicates a
+displacement in the direction of newer invocations, while a negative
+number
+indicates a displacement in the direction of older invocations.  A zero
+value can either
+indicate that no invocation in the specified range matched the
+specified criterion, or the starting invocation satisfied the
+specified criterion, depending on the modifiers
+specified in the operand 3 template.
+Operand 1 is not modified in the event that
+the instruction terminates with an exception.
+<P>
+Note that a modifier in the operand 3 template determines if the
+starting invocation identified by operand 2 is to be skipped.  If the
+starting invocation is specified to be
+skipped during the search then a result of zero
+in operand 1 indicates failure to find an invocation that
+satisfies the criterion.  If the starting invocation is specified not
+to be skipped,
+then a result of zero indicates the starting invocation has satisfied
+the specified criterion.  If the starting invocation is specified not
+to be skipped and no invocation is found
+that satisfies the search criterion, an exception will be signaled.
+<P>
+Operand 2 identifies the starting invocation and the range of the
+search.  If operand 2 is specified as a null operand, then operand 2 is
+assumed to identify a range starting with the current invocation and
+proceeding through all existing older invocations.
+<P>
+Operand 3 is a space pointer to a template that identifies the
+search criterion and search modifiers for the find operation.
+<P>
+<H5><A NAME="Header_3">Operand 2</A></H5>
+<P>
+The value specified by operand 2 identifies the range of
+invocations to be searched.  This operand can be null (which indicates
+the range which starts with the current invocation and proceeds through
+all existing older invocations), or it can contain either an invocation
+pointer to an invocation or a null pointer (which indicates a range
+starting with the current invocation).
+<P>
+Operand 2 has the following format:
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Starting invocation offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Originating invocation offset (ignored)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation range
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Starting invocation pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+If a non-null pointer is specified for <I>starting invocation
+pointer</I>, then operand 2 must be 16-byte aligned in the
+space.
+<P>
+<H6><A NAME="Header_4">Terminology</A></H6>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B><U>
+Requesting invocation
+</U></B></TD><TD><P>
+The invocation executing the FNDRINVN instruction.  Note
+that, in many cases, this invocation belongs to a system or language
+run-time procedure/program, and the instruction is actually being
+executed on behalf of another procedure or program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B><U>
+Starting invocation
+</U></B></TD><TD><P>
+The invocation which serves as the starting point for the search.
+</TD></TR></TABLE>
+<P>
+<H6><A NAME="Header_5">Field descriptions</A></H6>
+<P>
+<DL>
+<P><DT>
+Starting invocation offset
+<DD>
+A signed numerical value indicating an invocation relative to the
+invocation located by the <I>starting invocation pointer</I>.  A
+value of zero denotes the invocation addressed by the <I>starting
+invocation pointer</I>, with increasingly positive numbers denoting
+increasingly later invocations in the stack, and increasingly negative
+numbers denoting increasingly earlier invocations in the stack.
+<P>
+If the <I>starting invocation pointer</I> is valid or null, but the
+invocation identified by this offset does not exist in the stack, an <I> invocation offset outside range of current stack&nbsp; </I> (hex <A HREF="../exceptions/EX2C1A.htm">2C1A</A>) exception
+will be signaled.
+<P><DT>
+Originating invocation offset
+<DD>
+This field is used by other instructions but is ignored by
+FNDRINVN.
+<P><DT>
+Invocation range
+<DD> <I>Invocation range</I> is a signed numerical value which specifies
+the direction of the search and the maximum number of invocations to be
+examined.  The magnitude of <I>invocation range</I> specifies the
+maximum number of invocations to be searched <I>exclusive</I> of
+the starting invocation.  It is not an error if this magnitude is
+greater than the number of existing invocations in the specified
+direction.  If the sign of <I>invocation range</I> is positive (and
+non-zero), the search is performed in the direction of newer
+invocations, while if the sign is negative, the search is performed in
+the direction of older invocations.
+<P>
+Note that the <I>bypass starting invocation</I> modifier in
+operand 3 affects how the starting invocation is treated.  If
+this modifier is binary 0, then the starting invocation is the first
+invocation examined.  If <I>invocation range</I> is zero in this case
+then <I>only</I> the starting invocation is examined.  If, on the
+other hand, <I>bypass starting invocation</I> is binary 1, then the
+starting invocation <I>does not</I> participate in the search, and,
+if <I>invocation range</I> is zero, no invocations are searched and a
+value of zero is returned for operand 1.
+<P><DT>
+Starting invocation pointer
+<DD>
+An invocation pointer to an invocation.  If null, then the current
+invocation is indicated.  If not null, then operand 2 must be
+16-byte aligned in the space.
+<P>
+If the pointer identifies an invocation in another thread, a <I> process object access invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C11.htm">2C11</A>) exception
+will be signaled.  If the
+invocation identified by this pointer does not exist in the stack, an <I> object destroyed&nbsp; </I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception
+will be signaled.
+</DL>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Usage note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+In cases where <I>starting invocation pointer</I> is null,
+operand 2 may be a constant.
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_6">Operand 3</A></H5>
+<P>
+The <I>search criterion template</I> identified by operand 3
+must be aligned on a 16-byte boundary.  The template is a 32-byte value
+with the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Search option
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Search modifiers
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bypass starting invocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>
+The starting invocation identified by operand 2 is the first
+invocation tested.  An <I> invocation not found&nbsp; </I> (hex <A HREF="../exceptions/EX1E02.htm">1E02</A>) exception
+is
+signaled if the search criterion is not satisfied.
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>
+The starting invocation identified by operand 2 is skipped
+and no exception is signaled if the search criterion is not satisfied.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Compare for mismatch
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>
+The instruction identifies the first invocation (in specified search
+order) which <I>matches</I> the specified search criterion
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>
+The instruction identifies the first invocation (in specified search
+order) which <I>does not match</I> the specified search criterion
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-31
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Search argument
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<DL>
+<P><DT>
+Search option
+<DD>
+Specifies the invocation attribute to be examined:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+1
+</B></TD><TD><P>
+Routine type.  <I>Search argument</I> is a one-byte routine type,
+left aligned.  Allowed <I>search argument</I> values are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+Hex 01 =
+</TD><TD>
+Non-Bound Program
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 02 =
+</TD><TD>
+Bound Program Entry Procedure (PEP)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 03 =
+</TD><TD>
+Bound Program Procedure
+<P><B>Note: </B>Bound program procedures are contained within bound programs,
+bound service programs, and Java programs.
+All discussion of bound program procedure semantics also
+apply to Java program procedures.
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+2
+</B></TD><TD><P>
+Invocation type.  <I>Search argument</I> is a one-byte invocation
+type, left aligned.  Allowed <I>search argument</I> values are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+Hex 01 =
+</TD><TD>
+Call external
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 02 =
+</TD><TD>
+Transfer control
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 03 =
+</TD><TD>
+Event handler
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 04 =
+</TD><TD>
+External exception handler (for non-bound program)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 05 =
+</TD><TD>
+Initial program in process problem state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 06 =
+</TD><TD>
+Initial program in process initiation state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 07 =
+</TD><TD>
+Initial program in process termination state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 08 =
+</TD><TD>
+Invocation exit (for non-bound program)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 09 =
+</TD><TD>
+Return or return/XCTL trap handler
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0A =
+</TD><TD>
+Call program
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0B =
+</TD><TD>
+Cancel handler (bound program only)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0C =
+</TD><TD>
+Exception handler (bound program only)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0D =
+</TD><TD>
+Call bound procedure/call with procedure pointer
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0E =
+</TD><TD>
+Process Default Exception Handler
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+3
+</B></TD><TD><P>
+Invocation status.  <I>Search argument</I> consists of two four-byte
+fields, left aligned.  The invocation status of each examined
+invocation is <TT>AND</TT>ed with the first field and then compared
+to the second field.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+4
+</B></TD><TD><P>
+Invocation mark.  <I>Search argument</I> is a four-byte invocation
+mark, left aligned.  If the search is in the direction of older
+invocations, the result identifies the first invocation found with an
+invocation mark less than or equal to the search argument.  If the
+search is in the direction of newer invocations, the result identifies
+the first invocation found with an invocation mark greater than or
+equal to the search argument.  If <I>invocation range</I> is zero,
+then the search is satisfied only if the invocation mark of the <I>starting invocation</I> exactly matches the search argument,
+and this can occur only if <I>bypass starting invocation</I> is
+binary 0.
+<P>
+For this option <I>compare for mismatch</I> is ignored.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+5
+</B></TD><TD><P>
+Activation mark.  <I>Search argument</I> is a four-byte activation
+mark, left aligned.  The activation mark of the program or module
+activation corresponding to each examined invocation is compared to <I>search argument</I>.  Invocations with no activation (ie, the
+invocations of non-bound
+reentrant programs, and the invocation stack base
+entry) are considered to have an activation mark of binary 0.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+6
+</B></TD><TD><P>
+Activation group mark.  <I>Search argument</I> is a four-byte
+activation group mark, left aligned.  The activation group mark of each
+examined invocation is compared to <I>search argument</I>.
+The activation group mark of each examined invocation is determined
+from the activation associated with the invocation.
+(Each activation belongs to a single activation group.)
+However,
+<UL COMPACT>
+<LI>if no activation exists for the invocation, or
+<LI>if an activation exists and it belongs to
+an shared activation group owned by another process
+</UL>
+then,
+the activation group mark for the examined invocation is taken to be,
+<DL>
+<DD><P>1 for a system-state invocation
+<DD><P>2 for a user-state invocation
+</DL>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+7
+</B></TD><TD><P>
+Program pointer.  <I>Search argument</I> is a system pointer to a
+program.  The program corresponding to each examined invocation is
+compared to the program identified by the pointer.
+</TD></TR></TABLE>
+<P><DT>
+Bypass starting invocation
+<DD>
+If <I>bypass starting invocation</I> is binary 0, then the starting
+invocation specified by operand 2 is the first invocation
+examined.  In this case, if the <I>invocation range</I> of
+operand 2 is exhausted without satisfying the search criterion
+then a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled, with the <I>search argument</I> field of operand 3 identified as the
+erroneous field.
+<P>
+If <I>bypass starting invocation</I> is binary 1, then the starting
+invocation specified by operand 2 is skipped, and a failure
+to satisfy the search criterion is indicated by returning a binary
+0 value in operand 1.
+<P><DT>
+Compare for mismatch
+<DD>
+If <I>compare for mismatch</I> is binary 0,
+then the search criterion is
+satisfied when an invocation is found whose attribute
+<I>matches</I> the <I>search argument</I>.
+If <I>compare for mismatch</I> is binary 1, however, then the search
+criterion is satisfied when an invocation is found whose attribute
+<I>does not match</I> the <I>search argument</I>.
+<P><DT>
+Search argument
+<DD>
+A value of between one and 16 bytes as described above.  Unused bytes
+are ignored.
+</DL>
+<P>
+<H4><A NAME="Header_7">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_8">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_9">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>16 Exception Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1603.htm">1603 Invalid Invocation Address</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>1E Machine Observation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1E02.htm">1E02 Invocation Not Found</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C11.htm">2C11 Process Object Access Invalid </A>
+<DD><A HREF="../exceptions/EX2C1A.htm">2C1A Invocation Offset Outside Range of Current Stack</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,392 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> RTNEXCP Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Return From Exception (RTNEXCP)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03E1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Return target
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+An internal exception handler
+subinvocation or an external exception handler
+invocation is terminated, and control is passed to
+the specified instruction in the specified invocation.
+All intervening invocations are marked as cancelled, down to, but not
+including, the invocation that is being returned to.  When each of these
+invocations are returned to, their return handlers
+and invocation exit
+(I-exit) routines/cancel handlers will be found and run.
+<P><B>Note: </B>This instruction is not allowed from a bound program
+invocation.
+<P>
+The template identified by operand 1 must be 16-byte aligned in the
+space.  It specifies the target invocation and target
+instruction in the invocation where control is to be passed.
+The format of operand 1 is as follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation address/offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space pointer
+or
+Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Action
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 0-4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Use offset option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Use invocation address as a pointer value
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Use invocation address as an offset value
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Unstack option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+The action performed is
+determined by the setting
+of the following action
+code (bit 7).
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+If the exception handler is
+an internal exception handler,
+resume execution with the
+instruction that follows the
+RTNEXCP instruction and
+terminate the internal
+exception handler subinvocation.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Action code
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Re-execute the instruction
+that caused the exception.
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Resume execution with the
+instruction that follows the
+instruction that caused the
+exception or resume execution
+with the instruction that
+follows the instruction that
+invoked the invocation.
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">19
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>invocation address/offset</U></B> field
+is a space/invocation pointer that
+identifies the invocation to which control will be passed.
+<P>
+The target <I>invocation address</I> field can also be
+an offset value from the current requesting invocation
+to the invocation to be searched.  This is done by setting the <B><U>use
+offset option</U></B> field
+that follows the <I>invocation address</I> field to 1.
+If the <I>invocation offset</I> value locates the invocation stack
+base entry, the <I> invocation offset outside range of current stack&nbsp; </I> (hex <A HREF="../exceptions/EX2C1A.htm">2C1A</A>) exception
+is signaled.
+If the <I>invocation offset</I>
+value is a positive number (which represents
+newer invocations on the stack) a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+The current instruction in an invocation is the one that caused another
+invocation to be created.
+<P>
+The <B><U>unstack option</U></B> is only valid when issued in an internal
+exception handler subinvocation and is ignored for an
+external exception handler invocation.  This option will cause
+the internal exception handler subinvocation to be terminated and
+control will resume at the instruction immediately following the
+RTNEXCP instruction.  In effect, this option will cause the current
+subinvocation to be unstacked.
+<P>
+<P>If the <B><U>action code</U></B>
+is 0, then the current instruction of the addressed
+invocation is reexecuted, if it is allowed.  If the <I>action code</I>
+is 1,
+execution resumes with the instruction following the
+current instruction of the addressed invocation, if it is allowed.
+If it is not, a <I> retry/resume invalid&nbsp; </I> (hex <A HREF="../exceptions/EX1604.htm">1604</A>) exception
+will be signaled.
+<P>For an <B><U>action code</U></B> of 0 the <B><U>invocation
+address/offset</U></B> field must identify the invocation which enabled
+the current exception handler.  Otherwise a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signalled.
+<P>
+The Return From Exception instruction may be issued only
+from the initial
+invocation of an external exception handling sequence
+or from an invocation that has an active internal exception handler.
+<P>
+If the instruction is issued from an invocation that is not an external
+exception handler and has no internal exception
+handler subinvocations, the <I> return instruction invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C01.htm">2C01</A>) exception
+is signaled.
+<P>
+The following table shows the actions performed by the
+Return From Exception instruction:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">Invocation
+Issuing
+Instruction
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">Addressing
+Own
+Invocation/Option
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">Addressing
+Higher
+Invocation/Option
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Not handling exception
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Error (see note 1)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Error (see note 1)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Handling internal exception(s)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Allowed (see note 2)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Allowed (see note 3)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Handling external exception(s)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Error (see note 1)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Allowed (see note 3)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Handling external exception(s) and internal exception(s)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Allowed (see note 2)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="29%">
+Allowed (see note 3)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><BR></TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_3">Notes&#58;</A></H5>
+<OL TYPE=1>
+<P><LI>
+A <I> return instruction invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C01.htm">2C01</A>) exception
+is signaled.  If
+there are no more
+internal exception handler subinvocations active
+and this invocation is not an external exception handler,
+the instruction may not be issued.
+<P><LI>
+The
+current internal exception handler subinvocation is terminated.
+<P><LI>
+All
+invocations after the addressed invocation are
+terminated and execution proceeds within the
+addressed invocation.  Any invocation exit programs set
+for the terminated invocations will be
+given control before execution proceeds within the
+addressed invocation.
+This option is only allowed when the action code specified is a 1.
+</OL>
+Whenever an invocation is terminated, the invocation
+count in the corresponding activation entry
+(if any) is decremented by 1.
+<P>
+An <I>action code</I> of 1 specifies completion of an
+instruction rather than execution
+of the following instruction if the current
+instruction in the addressed invocation signaled a <I> size&nbsp;</I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception or a <I>floating-point inexact result&nbsp; </I>(hex <A HREF="../exceptions/EX0C0D.htm">0C0D</A>) exception.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The previous condition does not apply if any of the above
+exceptions were explicitly signaled by a Signal Exception
+(<A HREF="SIGEXCP.htm">SIGEXCP</A>) instruction.
+</TD></TR></TABLE>
+A Return From Exception instruction cannot be used or
+recognized in conjunction
+with a branch point internal exception handler.
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>16 Exception Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1603.htm">1603 Invalid Invocation Address</A>
+<DD><A HREF="../exceptions/EX1604.htm">1604 Retry/Resume Invalid </A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C01.htm">2C01 Return Instruction Invalid</A>
+<DD><A HREF="../exceptions/EX2C12.htm">2C12 Activation Group Access Violation</A>
+<DD><A HREF="../exceptions/EX2C1A.htm">2C1A Invocation Offset Outside Range of Current Stack</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

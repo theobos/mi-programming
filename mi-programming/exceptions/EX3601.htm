@@ -1,0 +1,116 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 3601 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+ 
+
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>3601
+</B></TD><TD><P><I>Space Extension/Truncation
+</I>
+<P>
+One of the following invalid attempts to modify the size
+of the space occurred:
+<UL>
+<P><LI>
+Truncate
+the space to a negative size.
+<P><LI>
+Extend or
+truncate a fixed size space.
+<P><LI>
+Extend a
+space beyond the space allowed in the referenced object.
+<P>
+<P><LI>
+An operation which required an automatic extension of a space
+occurred when the extended space would not fit in the access group
+which contained it.
+<P>
+<P><LI>
+Extend or truncate a space that has a hardware storage protection level
+of 01 or greater while running in user state.
+</UL>
+For information on the maximum size space
+allowed for a particular object,
+refer to the <CITE>Limitations</CITE> topic within the definition of
+the create instruction for that type of object.
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Space
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P>
+<I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>Any instruction which has an operand which references bytes of data
+in a space.
+<P>Any instruction which references bytes of data within a space object
+can cause an automatic extension of the space if the space has the
+attribute of being automatically extendible.
+</UL>
+</TD></TR></TABLE>
+
+  
+ 
+</body>
+
+ 
+</HTML>

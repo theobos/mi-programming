@@ -1,0 +1,537 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> LOCKMTX Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Lock Pointer-Based Mutex (LOCKMTX)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03D3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Mutex
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Lock request template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Result
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE><P>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<I>Operand 2:</I>  Space pointer.
+<P>
+<I>Operand 3:</I>  Signed binary(4) variable scalar.<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for LOCKMTX is 157.
+LOCKMTX (
+         mutex                   : address
+         lock_request_template   : address
+) :   signed binary(4)   /* result */
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "mutex" in this instruction refers to a
+"pointer-based mutex".
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The <I>mutex</I>, whose address is contained in operand 1, is allocated
+exclusively to the issuing
+thread.
+Mutual exclusion is achieved between the
+thread
+with the allocated mutex lock and all other
+threads
+attempting to acquire the same mutex lock.  If the mutex lock is
+successful, LOCKMTX returns with the issuing
+thread
+as its holder.
+<P>
+The <I>mutex</I> must have been previously created by the <A HREF=CRTMTX.htm">CRTMTX</A>
+instruction or be a copy of a mutex that was previously created by
+the <A HREF=CRTMTX.htm">CRTMTX</A> instruction prior to attempting to lock the mutex.
+See the <A HREF=CRTMTX.htm">CRTMTX</A> instruction for additional information regarding mutex
+copies.
+<P>
+The <I>lock request template</I> whose address is passed in operand 2
+is used to determine if and for how long the issuer will wait for the <I>mutex</I> to become available in the event
+the <I>mutex</I> is already locked.  The
+lock options are used to place the issuer into the mutex wait state.
+If an invalid option is specified, an EINVAL error number is
+returned.
+If operand 2
+in a bound program
+is a null pointer value, the default <I>lock request template</I>
+is used (the binary 0 value is the default
+action).
+Operand 2 in non-bound programs must be a pointer to a <I>lock request template</I>.
+The <I>pointer does not exist&nbsp; </I>(hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception is signaled if a null pointer value
+is used for operand 2 in a non-bound program.
+If the mutex lock can be immediately allocated to the issuer,
+then the <I>lock request template</I> is ignored.
+<P> <I>Result</I> is used to indicate the success
+or failure of the LOCKMTX instruction.
+If the <I>mutex</I> is locked by this
+instruction, then <I>result</I> is set to 0.  If an error occurs, then
+the <I>result</I> is set to an error condition.
+<P>
+Mutexes can have either non-recursive or recursive behavior, which is
+specified at the time of creation.  See the <A HREF=CRTMTX.htm">CRTMTX</A> instruction for more
+information on mutex creation.  A non-recursive mutex can only be locked
+once by a thread.  Additional attempts to lock the same non-recursive
+mutex by a thread, will cause the EDEADLK error number to be returned.
+If a mutex was created as a recursive mutex then LOCKMTX can be used to
+recursively lock the mutex.  The machine keeps track of the number of
+recursive locks for the mutex and requires that the thread use the
+Unlock Pointer-Based Mutex (<A HREF=UNLKMTX.htm">UNLKMTX</A>) instruction the same number of
+times to unlock the mutex before the mutex can be locked by a different
+thread.  The maximum number of recursive locks is 32,767.  The ERECURSE
+error number is returned if the maximum number of recursive locks
+is exceeded.
+<P>
+The <I>mutex</I> must be aligned on a 16-byte boundary.
+<P>
+The format of the <I>lock request template</I> follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Time-out option
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Lock options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (must be 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Wait time-out format
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">
+0 =
+</TD><TD>
+Time-out value is specified in seconds/microseconds
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Time-out value is specified as a 64-bit binary value
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">MPL (multiprogramming level) control during wait
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">
+0 =
+</TD><TD>
+Remain in the current MPL set
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Do not remain in the current MPL set
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Asynchronous signals processing option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="30">
+0 =
+</TD><TD>
+Do not allow asynchronous signal processing during mutex wait
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Allow asynchronous signal processing during mutex wait
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Wait type
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+0 =
+</TD><TD>
+Normal wait
+</TD></TR><TR VALIGN="TOP"><TD>
+1 =
+</TD><TD>
+Restricted wait
+</TD></TR></TABLE>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 5-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(6)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Wait time-out value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Seconds
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Microseconds
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>time-out option</U></B> describes the action taken when LOCKMTX
+cannot allocate the <I>mutex</I> to the issuer immediately.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="60"><P>
+Hex 00 =
+</TD><TD><P>
+Wait indefinitely for the mutex.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 01 =
+</TD><TD><P>
+Wait for the mutex for the specified amount of time.  If the mutex
+still cannot be obtained, the EAGAIN error number is returned.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 02 =
+</TD><TD><P>
+Return immediately with an EBUSY error number.
+</TD></TR></TABLE>
+<P>
+All other values for <I>time-out option</I> are reserved.
+<P>
+The <B><U>lock options</U></B> describes the action taken
+when LOCKMTX causes the issuer to be put into a mutex wait state.
+<P>
+The <B><U>wait time-out format</U></B> option determines the format of the <I>wait time-out value</I>.  If the <I>wait time-out format</I> is
+specified as 0, then the <B><U>wait time-out value</U></B> consists of two
+4-byte fields, specifying the number of seconds and the number of
+microseconds to wait for the <I>mutex</I> if it
+cannot be locked immediately.
+If the <I>wait time-out format</I> is specified as 1, then the <I>wait time-out value</I> consists of a single 8-byte field.
+See
+<A class="content" HREF="../MININ.htm#HDRTIMEFMT">Standard Time Format</A> for additional information
+on the format of
+the <I>wait time-out value</I> if <I>wait time-out format</I> is
+specified as 1.
+<P>
+The <B><U>MPL control during wait</U></B> option controls whether the
+thread
+is removed from the current MPL (multiprogramming level) set or
+remains in the current MPL set when the
+thread
+enters a mutex wait.  When entering a mutex wait state, the
+thread
+will normally remain in the current MPL set
+for an implementation-defined period which will not exceed 2
+seconds.  If the mutex wait has not been satisfied by the end of this
+period,
+the
+thread
+is automatically removed from the current MPL set.  The automatic
+removal does not change or affect the total wait time specified on the
+LOCKMTX instruction.  If the <I>MPL control during wait</I> option
+specifies do not remain in current MPL set (value of 1), then the
+thread
+will leave the MPL set
+immediately.
+<P>
+The <B><U>asynchronous signals processing option</U></B> controls the action
+to be taken if an asynchronous signal is pending or received while in a
+mutex wait.  If an asynchronous signal that is not blocked or ignored
+is generated for the
+thread
+and the <I>asynchronous signals processing option</I> indicates <I>allow asynchronous signal processing during mutex wait</I>, the
+mutex wait is terminated and the result set to EINTR.  Otherwise,
+when the <I>asynchronous signals processing option</I> indicates <I>do not allow asynchronous signal processing during mutex wait</I>,
+the
+thread
+remains in the wait until the <I>mutex</I> is allocated
+exclusively to the
+thread
+or until the <I>wait time-out value</I> expires.
+<P>
+The <B><U>wait type</U></B> option is used by kernel-mode programs or
+procedures to specify what type of wait to perform.  The <I>wait
+type</I> field is ignored when the thread execution mode is not
+kernel-mode.
+<P>
+The <B><U>wait time-out value</U></B> establishes the maximum amount of time
+that the issuer waits for the requested <I>mutex</I>
+when the mutex lock cannot
+be immediately obtained and the <I>time-out option</I> is set to <I>wait for a specified period of time</I> (hex 01).  The format of
+this field differs depending on which value is specified by the <I>wait
+time-out format</I>.  If the <I>wait time-out format</I> is 0, then
+the <I>wait time-out value</I> consists of two 4-byte values,
+specifying the number of <B><U>seconds</U></B> and the number of <B><U>microseconds</U></B> to wait for the <I>mutex</I>.
+If the <I>wait time-out
+format</I> is 1, then the <I>wait time-out value</I> is a 64-bit
+unsigned binary value, with the bits being numbered from 0 to 63, and
+bit 48 is equal to 8 microseconds.
+See
+<A class="content" HREF="../MININ.htm#HDRTIMEFMT">Standard Time Format</A> for additional information
+on the format of
+the <I>wait time-out value</I> if <I>wait time-out format</I> is
+specified as 1.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Regardless of the format used for the <I>wait time-out value</I>, the timer is
+architected to be updated once every 8 microseconds.  Increased
+granularity of the time-out period cannot be assumed by specifying <I>wait time-out format</I> as 0 rather than as 1.
+</TD></TR></TABLE>
+The maximum time-out value allowed is a value equal to
+(2<SUP>4</SUP><SUP>8</SUP> -  1) microseconds.
+Any value that indicates more time than the maximum time-out value
+causes the maximum time-out value to be used.
+If the <I>wait time-out value</I> is binary 0, then the process
+default wait time-out value is used.
+This field is only applicable if the <I>time-out option</I> is set
+to hex 01.  If the <I>time-out option</I> is not set to hex 01, this
+field is ignored.
+<P>
+If a mutex is destroyed while another
+thread
+has a pending request to lock the <I>mutex</I>,
+an EDESTROYED error number is
+returned to the waiting
+thread.
+The ETYPE error number is returned if the <I>mutex</I> operand
+references a synchronization object that is not a pointer-based mutex.
+<P>
+The <I>keep valid option</I> on the Create Mutex (<A HREF=CRTMTX.htm">CRTMTX</A>)
+instruction specifies
+whether the <I>mutex</I> is to remain valid
+when a thread is terminated while
+holding the lock on the <I>mutex</I>.
+The <I>keep valid option</I> must be
+set to hex 01 if a mutex should be remain valid after thread
+termination.  The mutex is considered to be in
+a pending state when it
+is kept valid after thread termination.  The next thread to lock a
+pending mutex will revalidate the mutex, but will receive an EUNKNOWN
+error number to indicate that the resource protected by this mutex may
+need special handling.  Appropriate action is left up to the MI user's
+discretion.  Specifying hex 00 for the <I>keep valid option</I> will
+result in the locked mutex being destroyed during thread termination.
+Threads waiting on the destroyed mutex will receive an EOWNERTERM error
+number.
+<P>
+If the space where a mutex resides is destroyed or corrupted, the system
+may detect this condition and attempt to clean up the mutex resource.
+This cleanup action will cause any
+thread
+waiting on the mutex to awaken with a return value of EINVAL.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Error conditions</A></H4>
+<P>
+The <I>result</I> is set to one of the following:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EAGAIN
+</B></TD><TD><P>3406 -  Operation would have caused the process to be suspended.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EBUSY
+</B></TD><TD><P>3029 -  Resource busy.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ECANCEL
+</B></TD><TD><P>3456 - Operation canceled.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EDEADLK
+</B></TD><TD><P>3459 -  Resource deadlock avoided.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EDESTROYED
+</B></TD><TD><P>3463 - The synchronization object was destroyed, or the object no longer exists.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EINTR
+</B></TD><TD><P>3407 -  Interrupted function call.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EINVAL
+</B></TD><TD><P>3021 - The value specified for the argument is not correct.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EOWNERTERM
+</B></TD><TD><P>3462 -  The synchronization object no longer exists because the owner is no longer running.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ERECURSE
+</B></TD><TD><P>3419 - Recursive attempt rejected.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+</B></TD><TD><P>Recursion limit exceeded for a recursive mutex.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ETERM
+</B></TD><TD><P>3464 -  Operation terminated.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>ETYPE
+</B></TD><TD><P>3493 - Object type mismatch.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+</B></TD><TD><P>A synchronization object at this address is not a pointer-based
+mutex.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>EUNKNOWN
+</B></TD><TD><P>3474 -  Unknown system state.
+</TD></TR></TABLE>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+</B></TD><TD><P>Owner of mutex was previously terminated leaving the mutex in a
+pending state.  EUNKNOWN is returned to the first locker following this
+scenario. See <A HREF=CRTMTX.htm">CRTMTX</A> for additional information.
+</TD></TR></TABLE>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

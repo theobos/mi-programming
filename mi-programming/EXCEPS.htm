@@ -1,0 +1,337 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> Exception Information</title>
+			<link rel="stylesheet" type="text/css" href="tstudio.css">
+</head>
+
+<body>
+<a name="HDREXCEPS"></a>
+<h1>Exception Specifications</h1>
+
+<P>
+Exception generation is the only facility for synchronously
+communicating error conditions that are a direct result of
+instruction processing.  Machine exceptions identify error conditions
+that require processing before the next sequential instruction is
+executed.  Instructions that cause a particular exception may not
+function identically before execution is stopped; however, each
+instruction produces consistent results.  These results ensure machine
+integrity and reliability.  The results are inherent in a particular
+exception definition or in the detailed instruction definition.
+<P>
+The user can monitor any number of exceptions.  There are three basic
+techniques for the user to handle an exception:
+<UL>
+<P><LI>One technique is to
+provide detailed handling specified by a program defined exception
+description object.
+<P><LI>
+The second technique is to provide a default
+exception handler for the process.  This exception handler is invoked
+whenever an invocation fails to handle an exception.
+<P><LI>
+The third
+technique is to accept the machine default of process termination by not
+providing an appropriate exception handling mechanism.
+</UL>
+<P>A few points should be kept in mind when reading the individual
+exception descriptions.
+<A NAME="SPTMINEXLS"><I>(Ref #1.)</I></A>
+<UL>
+<P><LI>When an exception description states that <I>any instruction</I>
+which meets some defined criteria can signal the exception, this may not
+include instructions that suppress the signaling of exceptions and
+return error condition values instead.
+<P><LI>All exceptions can be signaled by the Signal Exception (<A HREF="instructions/SIGEXCP.htm">SIGEXCP</A>)
+instruction
+even though the exception description does not list the instruction
+as being one of the instructions that can cause the exception.
+<P><LI>When an instruction operand is a template (or points to a template),
+any error conditions described for operands may also apply if the same
+condition occurs within the template.
+<P><LI>For operands that are operand lists, if the exception can occur for
+any of the elements of the operand list, the exception will apply to
+the operand.
+<P><LI>The term <I>pointer operand</I> includes scalar operands defined
+by a data pointer.
+<P><LI>The program creation exceptions (hex 2Axx) are only signaled when
+a program or module object is created.  They are not signaled during the
+execution of the resulting program object.  Thus, monitoring for
+hex 2Axx exceptions in any program (other than programs that contain
+program and module creation instructions) will be nonproductive.
+<P>The program creation exceptions will not be listed in the <I>exception</I> section of most instructions.  All instructions,
+contained in a program or module, may cause the program or module
+creation instructions to signal a hex 2Axx exception.
+</UL>
+<P>When a process is created, a process default exception handler
+(PDEH) program can be specified.  In this case, if the user does not
+handle an exception, the machine will call the specified PDEH program.
+The interface to the PDEH program is a single space pointer which
+points to a template that contains information about the specific
+exception that was not handled.  The format of the PDEH template
+is:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Pointer to target invocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Pointer to source invocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">PDEH reason code
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+Reason codes hex 00-7F are for use by the MI user.
+Reason codes hex 80-FF are for use by the machine.
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>Hex 80 </TD><TD><P>The machine has an unhandled exception for which it can find no
+other way to handle it.  Either the machine found no enabled exception
+monitor or it did find monitor(s) in a bound program
+but none of the specified handlers
+handled the exception.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 81
+</TD><TD><P>A
+monitor in a bound program
+was found that is ignoring an inquiry exception
+message, but a reply message needs to be sent for it.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex 90
+</TD><TD><P>Indicate to PDEH that this exception ID implies it should be
+delivered to the automated removable media exit routine.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex FA
+</TD><TD><P>The program or procedure which was running in the invocation
+to which the message was sent was deleted at the time that exception
+management attempted to deliver the exception.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex FB
+</TD><TD><P>The monitor for the exception specified an internal procedure as
+the handler but the internal procedure was already busy handling
+another exception.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex FC
+</TD><TD><P>An invocation exit program tried to resignal an exception from a
+monitor.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex FD
+</TD><TD><P>The machine found a monitor for the exception which identified an
+external exception handler but the external exception handler could
+not be found or the exception handler was found but could not be
+run for some reason.
+</TD></TR><TR VALIGN="TOP"><TD><P>Hex FE
+</TD><TD><P>The machine found an exception that resignalled or percolated off
+of the invocation stack.
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">33
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Target routine type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<DL COMPACT>
+<DD>Hex 01 = Non-Bound Program
+<DD>Hex 02 = Bound Program or Bound Service Program
+</DL>
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">34
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">22
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(14)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(32)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">50
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Message identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(7)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">87
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">57
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">88
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">58
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception class mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception message reference key
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">100
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">64
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">102
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">66
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Compare data length
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">104
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">68
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Signal class
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">105
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">69
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Current priority
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">106
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Severity
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">108
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">112
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">70
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length of exception specific data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">116
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">74
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Machine dependent data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(10)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">126
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">7E
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">127
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">7F
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">128
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">80
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Target suspend pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Suspend pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">144
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">90
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception specific data
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(48)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">192
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<p>
+
+<A NAME="Header_2"></A>
+<h2>Machine Interface Exception Data</h2>
+<P>
+Exception data is communicated across the machine interface through a
+Retrieve Exception Data (<A HREF="instructions/RETEXCPD.htm">RETEXCPD</A>) instruction.
+Certain information is available
+for all exceptions when an appropriate exception description has been
+defined by the user.  That information includes the following:
+<UL>
+<P><LI>
+Exception identification-This is a 2-byte hexadecimal field formed
+by concatenating to the high-order 1-byte exception group number a
+low-order 1-byte exception subtype number.  The format of the exception
+identification is as follows:
+<B><BR><IMG SRC="images/aac024.gif" ALT="Figure AAC024 Exception Identification not displayed."><BR></B>
+<P><LI>
+Compare value length
+<P><LI>
+Compare value (machine signaled have a compare value of hex 00000000
+with a length of 4)
+<P><LI>
+Exception-specific data
+<P><LI>
+Signaling program invocation address
+<P><LI>
+Signaled program invocation address
+<P><LI>
+Signaling program instruction address
+<P><LI>
+Signaled program instruction address
+<P><LI>
+Machine-dependent data identifying the component that generated the
+exception
+</UL>
+
+</body>
+
+</HTML>
+

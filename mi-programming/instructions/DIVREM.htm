@@ -1,0 +1,404 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> DIVREM Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Divide with Remainder (DIVREM)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 4
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand &#91;5-7&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREM</B>
+1074
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREMR</B>
+1274
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREMI</B>
+1874
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREMIR</B>
+1A74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREMB</B>
+1C74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>DIVREMBR</B>
+1E74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Quotient
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3</I>:  Numeric scalar.
+<P>
+<I>Operand 4</I>:  Numeric variable scalar.
+<P>
+<I>Operand 5-7</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMS</B>
+1174
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMSR</B>
+1374
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMIS</B>
+1974
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMISR</B>
+1B74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMBS</B>
+1D74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DIVREMBSR</B>
+1F74
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Quotient/Dividend
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Divisor
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Remainder
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Numeric variable scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar.
+<P>
+<I>Operand 3</I>:  Numeric variable scalar.
+<P>
+<I>Operand 4-6</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The <I>quotient</I> is the result of dividing the <I>dividend</I> by
+the <I>divisor.</I>
+The <I>remainder</I> is the <I>dividend</I> minus the product of the <I>divisor</I> and <I>quotient.</I>
+<P>
+Operands can have packed or zoned decimal,
+signed or unsigned binary type.
+<P>
+Source operands are the <I>dividend</I> and <I>divisor.</I>
+The receiver
+operands are the <I>quotient</I> and <I>remainder.</I>
+<P>
+If operands are not of the same type, source operands are converted
+according to the following rules:
+<OL TYPE=1>
+<P><LI>If any one of the operands has zoned or packed decimal
+type, source operands are converted to packed decimal.
+<P><LI>Otherwise, the binary operands are converted to a like type.
+Note: unsigned binary(2) scalars are logically treated as signed
+binary(4) scalars.
+</OL>
+<P>
+Source operands are divided according to their type.  Packed decimal
+operands are divided using packed decimal division.  Unsigned binary
+division is used with unsigned source operands.  Signed binary operands
+are divided using two's complement binary division.
+<P>
+Better performance can be obtained if all operands have the same type.
+Signed and unsigned binary division execute faster than packed decimal
+division.
+<P>
+The operands must be numeric with any implicit
+conversions occurring according to
+the rules for arithmetic operations as outlined
+in
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+<P>
+Floating-point is not supported for this instruction.
+<P>
+If the <I>divisor</I> operand has a numeric value of 0,
+a <I> zero divide&nbsp; </I> (hex <A HREF="../exceptions/EX0C0B.htm">0C0B</A>) exception
+is signaled.  If the <I>dividend</I> operand has a value of 0, the
+result of the division is
+a zero value <I>quotient</I> and <I>remainder.</I>
+<P>
+For a decimal operation, the precision of the result of the divide
+operation is determined by the number of fractional digit positions
+specified for the <I>quotient.</I>  In other words, the divide
+operation
+will be performed so as to calculate a resultant quotient of the
+same precision as that specified for the <I>quotient</I> operand.  If
+necessary, internal alignment of the assumed decimal point for
+the <I>dividend</I> and <I>divisor</I> operands
+is performed to ensure the correct
+precision for the resultant quotient value.  These internal alignments
+are not subject to detection of the decimal point alignment
+exception.  An internal quotient value will be calculated for any
+combination of decimal attributes which may be specified for the
+instruction's operands.  However, the assignment of the result to the <I>quotient</I> operand is subject to detection of the <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+thereby limiting the assignment to, at most, the rightmost 31 digits
+of the calculated result.
+<P>
+If the <I>dividend</I> operand is shorter
+than the <I>divisor</I> operand,
+it is logically adjusted to the length of the <I>divisor</I> operand.
+<P>
+The division operation is performed according to the rules of algebra.
+Unsigned binary is treated as a positive number for the algebra.
+The quotient result of the operation is copied
+into the <I>quotient</I> operand.
+If this operand is not the same type as that used in performing
+the operation,
+the resultant value is converted to its type.  If necessary,
+the resultant value is adjusted to the length of the <I>quotient</I>
+operand, aligned at the assumed decimal point of the <I>quotient</I>
+operand, or both
+before being copied to it.
+Length adjustment and decimal point
+alignment are
+performed according to the rules of arithmetic operations as
+outlined in
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+If significant digits are truncated on the left end of the
+resultant value,
+a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+<P>
+After the quotient numeric value has been determined, the
+numeric value of the <I>remainder</I> operand is calculated as follows:
+<PRE>
+Remainder = Dividend - (Quotient*Divisor)
+</PRE>
+If the optional round form of this instruction is being used,
+the rounding applies
+to the <I>quotient</I> but not the <I>remainder.</I>
+The quotient value
+used to calculate
+the remainder is the resultant value of the division.  The
+resultant value of
+the calculation is copied into the <I>remainder</I> operand.
+The sign of the remainder is the same as that of the <I>dividend</I>
+operand unless
+the remainder has a value of 0, in which case its sign is
+positive.
+If the <I>remainder</I> operand is not the same type as that used in
+performing the operation,
+the resultant value is converted to its type.  If necessary,
+the resultant value
+is adjusted to the length of the <I>remainder</I> operand, aligned
+at the assumed
+decimal point of the <I>remainder</I> operand, or both before being
+copied to it.
+Length
+adjustment and decimal point alignment are performed according
+to the rules
+of arithmetic operations as outlined in the
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+If significant digits are truncated
+off the left end of the resultant value, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+<P>
+If a decimal to binary conversion causes a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+to be
+signaled (in programs that request size exceptions to be signaled),
+the binary value contains the correct truncated result only if the
+decimal value contains 15 or fewer significant nonfractional digits.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<P>
+The algebraic value of the numeric
+scalar quotient is
+<UL>
+<P><LI>Positive
+<P><LI>Negative
+<P><LI>Zero
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+<DD><A HREF="../exceptions/EX0C0B.htm">0C0B Zero Divide</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

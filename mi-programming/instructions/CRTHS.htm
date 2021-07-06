@@ -1,0 +1,477 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CRTHS Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body><H1>Create Activation Group-Based Heap Space (CRTHS)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">03B2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Heap identifier
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Creation template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Binary(4) variable scalar.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<BR>
+<BR>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for CRTHS is 112.
+CRTHS (
+       heap_identifier     : address of signed binary(4) OR
+                             address of unsigned binary(4)
+       creation_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P><B>Note: </B>The term "heap space" in this instruction refers to an
+"activation group-based heap space".
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+A heap space is created with the attributes supplied in the heap space <I>creation template</I> specified by operand 2.  The heap space
+identifier used to perform allocations and marks against the heap space
+is returned in operand 1.
+<P>
+The <I>heap identifier</I> returned in operand 1 represents the heap
+space.  This identifier is used for the
+Allocate Activation Group-Based Heap Space Storage (<A HREF="ALCHSS.htm">ALCHSS</A>),
+Destroy Activation Group-Based Heap Space (<A HREF="DESHS.htm">DESHS</A>),
+Set Activation Group-Based Heap Space Storage Mark (<A HREF="SETHSSMK.htm">SETHSSMK</A>) and
+Materialize Activation Group-Based Heap Space Attributes (<A HREF="MATHSAT.htm">MATHSAT</A>)
+instructions.
+<P>
+The heap space <I>creation template</I> identified by operand 2 must
+be 16-byte aligned in the space.   Operand 2 is not modified by the
+instruction.
+<P>
+The following is the format of the heap space <I>creation
+template</I>:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Maximum single allocation
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Minimum boundary alignment
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Creation size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Extension size
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">UBin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">24
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">18
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Domain/Storage protection
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 0000 =
+</TD><TD>System should chose the domain
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0001 =
+</TD><TD>The heap space domain should be "User"
+</TD></TR><TR VALIGN="TOP"><TD>Hex 8000 =
+</TD><TD>The heap space domain should be "System"
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Heap space creation options
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(6)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Allocation strategy
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Normal allocation strategy
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Force process space creation on each allocate
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Heap space mark
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Allow heap space mark
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Prevent heap space mark
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Block transfer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Transfer the minimum storage
+transfer size for this object
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Transfer the machine default
+storage transfer size for this object
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Process access group member
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not create the heap space in the PAG
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Create the heap space in the PAG
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Allocation initialization
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not initialize allocations
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Initialize allocations
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Overwrite freed allocations
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not overwrite freed allocations
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Overwrite freed allocations
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">26
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1A
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 6-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">27
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1B
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Allocation value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">28
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Freed value
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">29
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1D
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(64)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">96
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">60
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>maximum single allocation</U></B> of any single allocation from the
+heap space is useful for controlling the use of the heap space and may
+also improve performance for some cases when the machine can optimize
+access based on this attribute.  The minimum value that can be specified
+is 0 bytes, and the maximum value that can be specified is
+(16M - 1 page) bytes.  To determine the current page size use
+the <A HREF="MATRMD.htm">MATRMD</A> instruction.
+If zero is specified, the default value of
+(16M - 1 page) bytes
+is
+used.  Values outside the range indicated will cause a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+<P>
+The <B><U>minimum boundary alignment</U></B> associated with any allocation
+from the heap space can be specified in the template as an advisory
+value.  This value is expressed in terms of byte alignment.  The machine
+will use the specified value to choose an actual alignment which is
+deemed closest to a machine-required alignment value.  This allows
+changing machine requirements to be met without changing the advisory
+value.  Storing valid pointers in heap space allocations will be
+supported for all advisory values, so the smallest effective alignment
+value is 16 byte alignment.
+<P>
+The <B><U>creation size</U></B> of the heap space can be specified in the
+template.  If zero is specified, the system computes a default value.
+The minimum value that can be specified is 1 page (in bytes).
+The maximum value
+that can be specified is (16M - 1 page) bytes.
+To determine the current page size use the <A HREF="MATRMD.htm">MATRMD</A> instruction.
+The value specified is
+rounded up to a storage unit boundary.  Values outside the range
+indicated cause a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+This is an advisory value only.  The machine may decide to override the
+value specified based on system resource constraints.
+<P>
+The <B><U>extension size</U></B> of the heap space can be specified in the
+template.  If zero is specified, the system computes a default value.
+The minimum value that can be specified is 1 page (in bytes).
+The maximum value
+that can be specified is (16M - 1 page) bytes.
+To determine the current page size use the <A HREF="MATRMD.htm">MATRMD</A> instruction.
+The value specified is
+rounded up to a storage unit boundary.  Values outside the range
+indicated cause a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception.
+This is an advisory value only.  The machine may decide to override the
+value specified based on system resource constraints.
+<P>
+The <B><U>domain/storage protection</U></B> field in the template allows the
+user of this instruction to override the domain for the heap space that
+would otherwise be chosen by the machine.  The <I>domain/storage
+protection</I> attribute can be used to restrict access to the contents
+of the heap space by user state programs.  It is possible to limit the
+access of the heap space by user state programs into 1 of two levels:
+<UL>
+<P><LI>
+No storage references (all storage references, modifying or
+non-modifying yield an <I> object domain or hardware storage protection violation&nbsp;</I> (hex <A HREF="../exceptions/EX4401.htm">4401</A>) exception).
+This is <I>system</I>.
+<P><LI>
+Full access (both modifying and non-modifying storage references are
+allowed).  This is <I>user</I>.
+</UL>
+<P>
+Only a system state program can specify a heap space to be created with
+a domain of <I>system</I>.  If a user state program attempts to
+specify the <I>domain/storage protection</I> as <I>system</I>, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+will be signaled.  Any value other than the ones listed will cause a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+to be signaled.
+<P>
+The <I>normal allocation strategy</I> as defined by the machine will
+be used unless the <I>force process space creation on each allocation</I>
+attribute is indicated.  This option should only be used in unusual
+situations, such as when necessary for debug of application problems
+caused by references outside an allocation.
+<P>
+The <B><U>heap space mark</U></B> attribute can be used to prevent the use of
+the
+Set Activation Group-Based Heap Space Storage Mark (<A HREF="SETHSSMK.htm">SETHSSMK</A>) and
+Free Activation Group-Based Heap Space Storage from Mark(<A HREF="FREHSSMK.htm">FREHSSMK</A>)
+instructions on a heap space.
+<P> <B><U>Block transfer</U></B> on a heap space is used to increase the
+performance of a heap space based on prior knowledge of the program
+creating the heap space on how that heap space will be used.  This
+attribute is used only when the heap space is not a member of a process
+access group (PAG).
+<P>
+A heap space can be created as a process access group (PAG) member of
+the process associated with the current thread,
+if specified by the <B><U>process access group member</U></B> field.
+It is possible for the PAG to
+overflow at which point any requested heap space creations or extensions
+will not reside in the PAG.  Thus the specification to have the heap
+space as a member of the PAG is only an advisory which the machine may
+decide to override.
+<P>
+The <B><U>allocation initialization</U></B> field in the template allows the
+user of this instruction to specify that all storage allocations from
+the heap space being created will be <I>initialized</I> to the <B><U>allocation value</U></B> supplied in the template.  If the user chooses <I>not to initialize</I> heap space storage allocations, the initial
+value of heap space storage allocations is unpredictable but will not
+expose data produced by a different user profile.
+<P>
+The <B><U>overwrite freed allocations</U></B> field in the template allows
+the user of this instruction to specify that all heap space storage
+allocations upon being freed <I>will be overwritten</I> with the <B><U>freed value</U></B> supplied in the template.  If the user chooses <I>not to overwrite</I> heap space storage allocations when freed, the
+contents of the freed allocations will be unaltered.
+<P>
+A default heap space (heap identifier value of 0) is automatically
+available in each activation group, without issuing a
+Create Activation Group-Based Heap Space (CRTHS)
+instruction.  The default heap space is created on the first allocation
+request of the default heap space.  See
+Allocate Activation Group-Based Heap Space Storage (<a HREF="ALCHSS.htm">ALCHSS</A>)
+for a description of the default heap space.
+<P>
+A heap space is scoped to an activation group, thus the maximum life of
+a heap space is the life of the activation group in which the heap space
+was created.  A heap space can only be destroyed from within the
+activation group in which it was created.
+<P>
+<P>
+<H5><A NAME="Header_3">Limitations (Subject to Change)</A></H5>
+<P>
+The following are limits that apply to the functions performed by this
+instruction.
+<P>
+The amount of heap space storage that can be allocated for a single heap
+space is 4G-512K bytes.  Due to fragmentation a heap space may grow to
+4GB-512KB without having 4GB-512KB of outstanding heap space storage
+allocations.
+<P>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+<DD><A HREF="../exceptions/EX1C04.htm">1C04 Object Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+<!--  END FOOTER -->
+</HTML>

@@ -1,0 +1,116 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> 0C09 Exception </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>0C09
+</B></TD><TD><P><I>Floating-Point Invalid Operand
+</I>
+<P>A floating-point invalid operand condition is caused by one of the
+following conditions:
+<UL>
+<P><LI>A source operand is an unmasked NaN.
+<P><LI>Addition of infinities of different signs and subtraction of
+infinities of the same sign.
+<P><LI>Multiplication of zero times infinity.
+<P><LI>Division of zero by zero or infinity by infinity.
+<P><LI>Computing the sine, cosine, or tangent function for infinity.
+<P><LI>Computing the arc tangent, exponential, logarithm, square root, or
+power function for infinity when in projective infinity mode.
+<P><LI>Floating-point values compared unordered and no branch or indicator
+options are specified for the unordered, negation of unordered, equal,
+or negation of equal conditions on compare numeric value.
+<P><LI>An unordered resultant condition occurred on a computational
+instruction because the result was NaN, and branch or indicator
+conditions are specified but unordered, negation of unordered, zero, or
+negation of zero conditions are not specified.
+</UL>
+<P>
+<I>Information Passed:</I>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Exception type
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD WIDTH="60">Hex 00 =
+</TD><TD>Invalid arithmetic operation or operand is unmasked NaN.
+</TD></TR><TR VALIGN="TOP"><TD>Hex 01 =
+</TD><TD>Invalid branch or indicator conditions.
+</TD></TR></TABLE>
+<P>Hex 02 through hex FF are reserved.
+</TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(31)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<I>Instructions Causing Exception:</I>
+<UL COMPACT>
+<LI>Arc Cosine (<A HREF="../instructions/ACOS.htm">ACOS</A>)
+<LI>Add Numeric (<A HREF="../instructions/ADDN.htm">ADDN</A>)
+<LI>Arc Sine (<A HREF="../instructions/ASIN.htm">ASIN</A>)
+<LI>Arc Tangent (<A HREF="../instructions/ATAN.htm">ATAN</A>)
+<LI>Arc Tangent Hyperbolic (<A HREF="../instructions/ATANH.htm">ATANH</A>)
+<LI>Compute Math Function Using One Input Value (<A HREF="../instructions/CMF1.htm">CMF1</A>)
+<LI>Compute Math Function Using Two Input Values (<A HREF="../instructions/CMF2.htm">CMF2</A>)
+<LI>Compare Numeric Value (<A HREF="../instructions/CMPNV.htm">CMPNV</A>)
+<LI>Cosine (<A HREF="../instructions/COS.htm">COS</A>)
+<LI>Cosine Hyperbolic (<A HREF="../instructions/COSH.htm">COSH</A>)
+<LI>Cotangent (<A HREF="../instructions/COT.htm">COT</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm">CPYNV</A>)
+<LI>Convert Character to Numeric (<A HREF="../instructions/CVTCN.htm">CVTCN</A>)
+<LI>Convert Numeric to Character (<A HREF="../instructions/CVTNC.htm">CVTNC</A>)
+<LI>Divide (<A HREF="../instructions/DIV.htm">DIV</A>)
+<LI>Exponential Function of E (<A HREF="../instructions/EEXP.htm">EEXP</A>)
+<LI>Extract Magnitude (<A HREF="../instructions/EXTRMAG.htm">EXTRMAG</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm#lbcpynv">LBCPYNV</A>)
+<LI>Copy Numeric Value (<A HREF="../instructions/CPYNV.htm#lbcpynvr">LBCPYNVR</A>)
+<LI>Logarithm Base E (<A HREF="../instructions/LN.htm">LN</A>)
+<LI>Multiply (<A HREF="../instructions/MULT.htm">MULT</A>)
+<LI>Negate (<A HREF="../instructions/NEG.htm">NEG</A>)
+<LI>X to the Y Power (<A HREF="../instructions/POWER.htm">POWER</A>)
+<LI>Scale (<A HREF="../instructions/SCALE.htm">SCALE</A>)
+<LI>Sine (<A HREF="../instructions/SIN.htm">SIN</A>)
+<LI>Sine Hyperbolic (<A HREF="../instructions/SINH.htm">SINH</A>)
+<LI>Subtract Numeric (<A HREF="../instructions/SUBN.htm">SUBN</A>)
+<LI>Tangent (<A HREF="../instructions/TAN.htm">TAN</A>)
+<LI>Tangent Hyperbolic (<A HREF="../instructions/TANH.htm">TANH</A>)
+</UL>
+</TD></TR></TABLE>
+
+</body>
+
+</HTML>

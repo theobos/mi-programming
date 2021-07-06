@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy for Windows (vers 1st November 2003), see www.w3.org">
+    <title>
+      ISeries Machine Interface
+    </title>
+    <base target="content">
+    <link rel="stylesheet" type="text/css" href="tstudio.css">
+  </head>
+  <body>
+    <table border="0" width="100%">
+      <tr>
+        <td nowrap>
+          <b>ISeries Machine</b><br>
+          <b>Interface Instructions</b><br>
+          <b>V5R1</b><br>
+          <br>
+          <a class="inst" href="MININ.htm">Introduction</a><br>
+          <a class="inst" href="PGMSYNTX.htm">Program syntax</a><br>
+          <a class="inst" href="QPRCRTPG.htm">Compiler</a><br>
+          <a class="inst" href="MINPO.htm">Program Oject Specification</a><br>
+          <a class="inst" href="instructions/EDIT.htm#editmasksyntax">Edit mask syntax</a><br>
+          <a class="inst" href="excp.htm">Exceptions</a><br>
+          <HR>
+          <a class="inst" href="instructions/DCL.htm">DCL - Declare data object</a>
+          <hr>
+          <a class="boundinst" href="instructions/ACOS.htm">ACOS - Arc Cosine</a><br>
+          <a class="inst" href="instructions/ACTBPGM.htm">ACTBPGM - Activate Bound Program</a><br>
+          <a class="inst" href="instructions/ACTPG.htm">ACTPG - Activate Program</a><br>
+          <a class="inst" href="instructions/ADDLC.htm">ADDLC - Add Logical Character</a><br>
+          <a class="inst" href="instructions/ADDN.htm">ADDN - Add Numeric</a><br>
+          <a class="inst" href="instructions/ADDSPP.htm">ADDSPP - Add Space Pointer</a><br>
+          <a class="inst" href="instructions/ALCHSS.htm">ALCHSS - Allocate Activation Group-Based Heap Space Storage</a><br>
+          <a class="inst" href="instructions/AND.htm">AND - And</a><br>
+          <a class="boundinst" href="instructions/ANDCSTR.htm">ANDCSTR - And Complemented String</a><br>
+          <a class="boundinst" href="instructions/ANDSTR.htm">ANDSTR - AND String</a><br>
+          <a class="boundinst" href="instructions/ASIN.htm">ASIN - Arc Sine</a><br>
+          <a class="boundinst" href="instructions/ATAN.htm">ATAN - Arc Tangent</a><br>
+          <a class="boundinst" href="instructions/ATANH.htm">ATANH - Arc Tangent Hyperbolic</a><br>
+          <a class="inst" href="instructions/B.htm">B - Branch</a><br>
+          <a class="inst" href="instructions/CAI.htm">CAI - Compute Array Index</a><br>
+          <a class="inst" href="instructions/CALLI.htm">CALLI - Call Internal</a><br>
+          <a class="inst" href="instructions/CALLX.htm">CALLX - Call External</a><br>
+          <a class="inst" href="instructions/CAT.htm">CAT - Concatenate</a><br>
+          <a class="inst" href="instructions/CDD.htm">CDD - Compute Date Duration</a><br>
+          <a class="inst" href="instructions/CIPHER.htm">CIPHER - Cipher</a><br>
+          <a class="inst" href="instructions/CLRBTS.htm">CLRBTS - Clear Bit in String</a><br>
+          <a class="inst" href="instructions/CLRIEXIT.htm">CLRIEXIT - Clear Invocation Exit</a><br>
+          <a class="boundinst" href="instructions/CLRINVF.htm">CLRINVF - Clear Invocation Flags</a><br>
+          <a class="inst" href="instructions/CMF1.htm">CMF1 - Compute Math Function Using One Input Value (1)</a><br>
+          <a class="inst" href="instructions/CMF2.htm">CMF2 - Compute Math Function Using Two Input Values (2)</a><br>
+          <a class="inst" href="instructions/CMPBLA.htm">CMPBLA - Compare Bytes Left-Adjusted</a><br>
+          <a class="inst" href="instructions/CMPBLAP.htm">CMPBLAP - Compare Bytes Left-Adjusted with Pad</a><br>
+          <a class="inst" href="instructions/CMPBRA.htm">CMPBRA - Compare Bytes Right-Adjusted</a><br>
+          <a class="inst" href="instructions/CMPBRAP.htm">CMPBRAP - Compare Bytes Right-Adjusted with Pad</a><br>
+          <a class="inst" href="instructions/CMPNV.htm">CMPNV - Compare Numeric Value</a><br>
+          <a class="inst" href="instructions/CMPPSPAD.htm">CMPPSPAD - Compare Pointer for Space Addressability</a><br>
+          <a class="inst" href="instructions/CMPPTRA.htm">CMPPTRA - Compare Pointer for Object Addressability</a><br>
+          <a class="inst" href="instructions/CMPPTRE.htm">CMPPTRE - Compare Pointers for Equality</a><br>
+          <a class="inst" href="instructions/CMPPTRT.htm">CMPPTRT - Compare Pointer Type</a><br>
+          <a class="inst" href="instructions/CMPSPAD.htm">CMPSPAD - Compare Space Addressability</a><br>
+          <a class="inst" href="instructions/CMPSW.htm">CMPSW - Compare and Swap</a><br>
+          <a class="boundinst" href="instructions/CMPSW.htm#cmpswp">CMPSWP - Compare and Swap</a><br>
+          <a class="boundinst" href="instructions/CMPTOPAD.htm">CMPTOPAD - Compare To Pad</a><br>
+          <a class="boundinst" href="instructions/COMSTR.htm">COMSTR - Complement String</a><br>
+          <a class="boundinst" href="instructions/COS.htm">COS - Cosine</a><br>
+          <a class="boundinst" href="instructions/COSH.htm">COSH - Cosine Hyperbolic</a><br>
+          <a class="boundinst" href="instructions/COT.htm">COT - Cotangent</a><br>
+          <a class="inst" href="instructions/CPRDATA.htm">CPRDATA - Compress Data</a><br>
+          <a class="inst" href="instructions/CPYBBTA.htm">CPYBBTA - Copy Bytes to Bits Arithmetic</a><br>
+          <a class="inst" href="instructions/CPYBBTL.htm">CPYBBTL - Copy Bytes to Bits Logical</a><br>
+          <a class="inst" href="instructions/CPYBLA.htm">CPYBLA - Copy Bytes Left-Adjusted</a><br>
+          <a class="inst" href="instructions/CPYBLAP.htm">CPYBLAP - Copy Bytes Left-Adjusted with Pad</a><br>
+          <a class="boundinst" href="instructions/CPYBO.htm">CPYBO - Copy Bytes Overlapping</a><br>
+          <a class="inst" href="instructions/CPYBOLA.htm">CPYBOLA - Copy Bytes Overlap Left-Adjusted</a><br>
+          <a class="inst" href="instructions/CPYBOLAP.htm">CPYBOLAP - Copy Bytes Overlap Left-Adjusted with Pad</a><br>
+          <a class="inst" href="instructions/CPYBRA.htm">CPYBRA - Copy Bytes Right-Adjusted</a><br>
+          <a class="inst" href="instructions/CPYBRAP.htm">CPYBRAP - Copy Bytes Right-Adjusted with Pad</a><br>
+          <a class="inst" href="instructions/CPYBREP.htm">CPYBREP - Copy Bytes Repeatedly</a><br>
+          <a class="inst" href="instructions/CPYBTA.htm">CPYBTA - Copy Bits Arithmetic</a><br>
+          <a class="inst" href="instructions/CPYBTL.htm">CPYBTL - Copy Bits Logical</a><br>
+          <a class="inst" href="instructions/CPYBTLLS.htm">CPYBTLLS - Copy Bits with Left Logical Shift</a><br>
+          <a class="inst" href="instructions/CPYBTRAS.htm">CPYBTRAS - Copy Bits with Right Arithmetic Shift</a><br>
+          <a class="inst" href="instructions/CPYBTRLS.htm">CPYBTRLS - Copy Bits with Right Logical Shift</a><br>
+          <a class="inst" href="instructions/CPYBWP.htm">CPYBWP - Copy Bytes with Pointers</a><br>
+          <a class="boundinst" href="instructions/CPYBYTES.htm">CPYBYTES - Copy Bytes</a><br>
+          <a class="inst" href="instructions/CPYECLAP.htm">CPYECLAP - Copy Extended Characters Left-Adjusted With Pad</a><br>
+          <a class="inst" href="instructions/CPYHEXNN.htm">CPYHEXNN - Copy Hex Digit Numeric to Numeric</a><br>
+          <a class="inst" href="instructions/CPYHEXNZ.htm">CPYHEXNZ - Copy Hex Digit Numeric to Zone</a><br>
+          <a class="inst" href="instructions/CPYHEXZN.htm">CPYHEXZN - Copy Hex Digit Zone To Numeric</a><br>
+          <a class="inst" href="instructions/CPYHEXZZ.htm">CPYHEXZZ - Copy Hex Digit Zone To Zone</a><br>
+          <a class="inst" href="instructions/CPYNV.htm">CPYNV - Copy Numeric Value</a><br>
+          <a class="inst" href="instructions/CRTHS.htm">CRTHS - Create Activation Group-Based Heap Space</a><br>
+          <a class="inst" href="instructions/CRTINX.htm">CRTINX - Create Independent Index</a><br>
+          <a class="inst" href="instructions/CRTMTX.htm">CRTMTX - Create Pointer-Based Mutex</a><br>
+          <a class="inst" href="instructions/CRTS.htm">CRTS - Create Space</a><br>
+          <a class="inst" href="instructions/CTD.htm">CTD - Compute Time Duration</a><br>
+          <a class="inst" href="instructions/CTSD.htm">CTSD - Compute Timestamp Duration</a><br>
+          <a class="inst" href="instructions/CVTBC.htm">CVTBC - Convert BSC to Character</a><br>
+          <a class="inst" href="instructions/CVTCB.htm">CVTCB - Convert Character to BSC</a><br>
+          <a class="inst" href="instructions/CVTCH.htm">CVTCH - Convert Character to Hex</a><br>
+          <a class="inst" href="instructions/CVTCM.htm">CVTCM - Convert Character to MRJE</a><br>
+          <a class="inst" href="instructions/CVTCN.htm">CVTCN - Convert Character to Numeric</a><br>
+          <a class="inst" href="instructions/CVTCS.htm">CVTCS - Convert Character to SNA</a><br>
+          <a class="inst" href="instructions/CVTD.htm">CVTD - Convert Date</a><br>
+          <a class="inst" href="instructions/CVTDFFP.htm">CVTDFFP - Convert Decimal Form to Floating-Point</a><br>
+          <a class="inst" href="instructions/CVTEFN.htm">CVTEFN - Convert External Form to Numeric Value</a><br>
+          <a class="inst" href="instructions/CVTFPDF.htm">CVTFPDF - Convert Floating-Point to Decimal Form</a><br>
+          <a class="inst" href="instructions/CVTHC.htm">CVTHC - Convert Hex to Character</a><br>
+          <a class="inst" href="instructions/CVTMC.htm">CVTMC - Convert MRJE to Character</a><br>
+          <a class="inst" href="instructions/CVTNC.htm">CVTNC - Convert Numeric to Character</a><br>
+          <a class="inst" href="instructions/CVTSC.htm">CVTSC - Convert SNA to Character</a><br>
+          <a class="inst" href="instructions/CVTT.htm">CVTT - Convert Time</a><br>
+          <a class="inst" href="instructions/CVTTS.htm">CVTTS - Convert Timestamp</a><br>
+          <a class="inst" href="instructions/DCPDATA.htm">DCPDATA - Decompress Data</a><br>
+          <a class="inst" href="instructions/DEACTPG.htm">DEACTPG - Deactivate Program</a><br>
+          <a class="inst" href="instructions/DECD.htm">DECD - Decrement Date</a><br>
+          <a class="inst" href="instructions/DECT.htm">DECT - Decrement Time</a><br>
+          <a class="inst" href="instructions/DECTS.htm">DECTS - Decrement Timestamp</a><br>
+          <a class="inst" href="instructions/DEQ.htm">DEQ - Dequeue</a><br>
+          <a class="boundinst" href="instructions/DEQ.htm#deqwait">DEQWAIT - Dequeue Wait</a><br>
+          <a class="inst" href="instructions/DESHS.htm">DESHS - Destroy Activation Group-Based Heap Space</a><br>
+          <a class="inst" href="instructions/DESINX.htm">DESINX - Destroy Independent Index</a><br>
+          <a class="inst" href="instructions/DESMTX.htm">DESMTX - Destroy Pointer-Based Mutex</a><br>
+          <a class="inst" href="instructions/DESS.htm">DESS - Destroy Space</a><br>
+          <a class="inst" href="instructions/DIV.htm">DIV - Divide</a><br>
+          <a class="inst" href="instructions/DIVREM.htm">DIVREM - Divide with Remainder</a><br>
+          <a class="inst" href="instructions/ECSCAN.htm">ECSCAN - Extended Character Scan</a><br>
+          <a class="inst" href="instructions/EDIT.htm">EDIT - Edit</a><br>
+          <a class="boundinst" href="instructions/EDIT.htm#editpd">EDITPD - Edit Packed Decimal Source</a><br>
+          <a class="inst" href="instructions/EEXP.htm">EEXP - Exponential Function of E</a><br>
+          <a class="inst" href="instructions/END.htm">END - End</a><br>
+          <a class="inst" href="instructions/ENQ.htm">ENQ - Enqueue</a><br>
+          <a class="inst" href="instructions/ENSOBJ.htm">ENSOBJ - Ensure Object</a><br>
+          <a class="inst" href="instructions/EXCHBY.htm">EXCHBY - Exchange Bytes</a><br>
+          <a class="inst" href="instructions/EXTREXP.htm">EXTREXP - Extract Exponent</a><br>
+          <a class="inst" href="instructions/EXTRMAG.htm">EXTRMAG - Extract Magnitude</a><br>
+          <a class="boundinst" href="instructions/FINDBYTE.htm">FINDBYTE - Find Byte</a><br>
+          <a class="inst" href="instructions/FNDINXEN.htm">FNDINXEN - Find Independent Index Entry</a><br>
+          <a class="inst" href="instructions/FNDRINVN.htm">FNDRINVN - Find Relative Invocation Number</a><br>
+          <a class="inst" href="instructions/FREHSS.htm">FREHSS - Free Activation Group-Based Heap Space Storage</a><br>
+          <a class="inst" href="instructions/FREHSSMK.htm">FREHSSMK - Free Activation Group-Based Heap Space Storage From Mark</a><br>
+          <a class="inst" href="instructions/GENUUID.htm">GENUUID - Generate Universal Unique Identifier</a><br>
+          <a class="inst" href="instructions/INCD.htm">INCD - Increment Date</a><br>
+          <a class="inst" href="instructions/INCT.htm">INCT - Increment Time</a><br>
+          <a class="inst" href="instructions/INCTS.htm">INCTS - Increment Timestamp</a><br>
+          <a class="boundinst" href="instructions/INITEHCA.htm">INITEHCA - Initialize Exception Handler Control Actions</a><br>
+          <a class="inst" href="instructions/INSINXEN.htm">INSINXEN - Insert Independent Index Entry</a><br>
+          <a class="boundinst" href="instructions/INVP.htm">INVP - Invocation Pointer</a><br>
+          <a class="boundinst" href="instructions/CPYNV.htm#lbcpynv">LBCPYNV - Copy Numeric Value</a><br>
+          <a class="boundinst" href="instructions/CPYNV.htm#lbcpynvr">LBCPYNVR - Copy Numeric Value</a><br>
+          <a class="boundinst" href="instructions/EDIT.htm#lbedit">LBEDIT - Edit</a><br>
+          <a class="boundinst" href="instructions/LN.htm">LN - Logarithm Base E (Natural Logarithm)</a><br>
+          <a class="inst" href="instructions/LOCK.htm">LOCK - Lock Object</a><br>
+          <a class="inst" href="instructions/LOCKMTX.htm">LOCKMTX - Lock Pointer-Based Mutex</a><br>
+          <a class="inst" href="instructions/LOCKOL.htm">LOCKOL - Lock Object Location</a><br>
+          <a class="inst" href="instructions/LOCKSL.htm">LOCKSL - Lock Space Location</a><br>
+          <a class="inst" href="instructions/LOCKTSL.htm">LOCKTSL - Lock Teraspace Storage Location</a><br>
+          <a class="inst" href="instructions/MATACTAT.htm">MATACTAT - Materialize Activation Attributes</a><br>
+          <a class="inst" href="instructions/MATACTEX.htm">MATACTEX - Materialize Activation Export</a><br>
+          <a class="inst" href="instructions/MATAGAT.htm">MATAGAT - Materialize Access Group Attributes</a><br>
+          <a class="inst" href="instructions/MATAGPAT.htm">MATAGPAT - Materialize Activation Group Attributes</a><br>
+          <a class="inst" href="instructions/MATAL.htm">MATAL - Materialize Authority List</a><br>
+          <a class="inst" href="instructions/MATAOL.htm">MATAOL - Materialize Allocated Object Locks</a><br>
+          <a class="inst" href="instructions/MATAU.htm">MATAU - Materialize Authority</a><br>
+          <a class="inst" href="instructions/MATAUOBJ.htm">MATAUOBJ - Materialize Authorized Objects</a><br>
+          <a class="inst" href="instructions/MATAUU.htm">MATAUU - Materialize Authorized Users</a><br>
+          <a class="inst" href="instructions/MATBPGM.htm">MATBPGM - Materialize Bound Program</a><br>
+          <a class="inst" href="instructions/MATCTX.htm">MATCTX - Materialize Context</a><br>
+          <a class="inst" href="instructions/MATDMPS.htm">MATDMPS - Materialize Dump Space</a><br>
+          <a class="inst" href="instructions/MATDRECL.htm">MATDRECL - Materialize Data Space Record Locks</a><br>
+          <a class="inst" href="instructions/MATEXCPD.htm">MATEXCPD - Materialize Exception Description</a><br>
+          <a class="inst" href="instructions/MATHSAT.htm">MATHSAT - Materialize Activation Group-Based Heap Space Attributes</a><br>
+          <a class="inst" href="instructions/MATINAT.htm">MATINAT - Materialize Instruction Attributes</a><br>
+          <a class="inst" href="instructions/MATINV.htm">MATINV - Materialize Invocation</a><br>
+          <a class="inst" href="instructions/MATINVAT.htm">MATINVAT - Materialize Invocation Attributes</a><br>
+          <a class="inst" href="instructions/MATINVE.htm">MATINVE - Materialize Invocation Entry</a><br>
+          <a class="inst" href="instructions/MATINVS.htm">MATINVS - Materialize Invocation Stack</a><br>
+          <a class="inst" href="instructions/MATINXAT.htm">MATINXAT - Materialize Independent Index Attributes</a><br>
+          <a class="inst" href="instructions/MATJPAT.htm">MATJPAT - Materialize Journal Port Attributes</a><br>
+          <a class="inst" href="instructions/MATJSAT.htm">MATJSAT - Materialize Journal Space Attributes</a><br>
+          <a class="inst" href="instructions/MATMATR.htm">MATMATR - Materialize Machine Attributes</a><br>
+          <a class="boundinst" href="instructions/MATMATR.htm#matmatr1">MATMATR1 - Materialize Machine Attributes</a><br>
+          <a class="inst" href="instructions/MATMDATA.htm">MATMDATA - Materialize Machine Data</a><br>
+          <a class="boundinst" href="instructions/MATMTX.htm">MATMTX - Materialize Mutex</a><br>
+          <a class="inst" href="instructions/MATOBJLK.htm">MATOBJLK - Materialize Object Locks</a><br>
+          <a class="inst" href="instructions/MATPG.htm">MATPG - Materialize Program</a><br>
+          <a class="boundinst" href="instructions/MATPGMNM.htm">MATPGMNM - Materialize Program Name</a><br>
+          <a class="inst" href="instructions/MATPRAGP.htm">MATPRAGP - Materialize Process Activation Groups</a><br>
+          <a class="inst" href="instructions/MATPRATR.htm">MATPRATR - Materialize Process Attributes</a><br>
+          <a class="inst" href="instructions/MATPRECL.htm">MATPRECL - Materialize Process Record Locks</a><br>
+          <a class="inst" href="instructions/MATPRLK.htm">MATPRLK - Materialize Process Locks</a><br>
+          <a class="inst" href="instructions/MATPRMSG.htm">MATPRMSG - Materialize Process Message</a><br>
+          <a class="boundinst" href="instructions/MATPRMTX.htm">MATPRMTX - Materialize Process Mutex Locks</a><br>
+          <a class="inst" href="instructions/MATPTR.htm">MATPTR - Materialize Pointer</a><br>
+          <a class="inst" href="instructions/MATPTRIF.htm">MATPTRIF - Materialize Pointer Information</a><br>
+          <a class="inst" href="instructions/MATPTRL.htm">MATPTRL - Materialize Pointer Locations</a><br>
+          <a class="inst" href="instructions/MATQAT.htm">MATQAT - Materialize Queue Attributes</a><br>
+          <a class="inst" href="instructions/MATQMSG.htm">MATQMSG - Materialize Queue Messages</a><br>
+          <a class="inst" href="instructions/MATRMD.htm">MATRMD - Materialize Resource Management Data</a><br>
+          <a class="inst" href="instructions/MATS.htm">MATS - Materialize Space Attributes</a><br>
+          <a class="inst" href="instructions/MATSELLK.htm">MATSELLK - Materialize Selected Locks</a><br>
+          <a class="inst" href="instructions/MATSOBJ.htm">MATSOBJ - Materialize System Object</a><br>
+          <a class="boundinst" href="instructions/MATMDATA.htm#mattod">MATTOD - Materialize Time of Day</a><br>
+          <a class="inst" href="instructions/MATUP.htm">MATUP - Materialize User Profile</a><br>
+          <a class="inst" href="instructions/MATUPID.htm">MATUPID - Materialize User Profile Pointers from ID</a><br>
+          <a class="boundinst" href="instructions/MEMCHR.htm">MEMCHR - Find Character Constrained</a><br>
+          <a class="boundinst" href="instructions/MEMCMP.htm">MEMCMP - Memory Compare</a><br>
+          <a class="boundinst" href="instructions/MEMCPY.htm">MEMCPY - Memory Copy</a><br>
+          <a class="boundinst" href="instructions/MEMMOVE.htm">MEMMOVE - Memory Move</a><br>
+          <a class="inst" href="instructions/MODASA.htm">MODASA - Modify Automatic Storage Allocation</a><br>
+          <a class="boundinst" href="instructions/MODASA.htm#modasa2">MODASA2 - Modify Automatic Storage Allocation</a><br>
+          <a class="inst" href="instructions/MODEXCPD.htm">MODEXCPD - Modify Exception Description</a><br>
+          <a class="inst" href="instructions/MODINVAU.htm">MODINVAU - Modify Invocation Authority Attributes</a><br>
+          <a class="inst" href="instructions/MODINX.htm">MODINX - Modify Independent Index</a><br>
+          <a class="inst" href="instructions/MODS.htm">MODS - Modify Space Attributes</a><br>
+          <a class="inst" href="instructions/MODS.htm#mods1"><I>MODS1 - Modify Space Attributes</I></a><br>
+          <a class="inst" href="instructions/MODS.htm#mods2"><I>MODS2 - Modify Space Attributes</I></a><br>
+          <a class="inst" href="instructions/MULT.htm">MULT - Multiply</a><br>
+          <a class="inst" href="instructions/NEG.htm">NEG - Negate</a><br>
+          <a class="inst" href="instructions/NOOP.htm">NOOP - No Operation</a><br>
+          <a class="inst" href="instructions/NOOPS.htm">NOOPS - No Operation and Skip</a><br>
+          <a class="inst" href="instructions/NOT.htm">NOT - Not</a><br>
+          <a class="boundinst" href="instructions/NPMPARM.htm">NPM_PARMLIST_ADDR - NPM Procedure Parameter List Address</a><br>
+          <a class="boundinst" href="instructions/OPARMADR.htm">OPM_PARM_ADDR - OPM Parameter Address</a><br>
+          <a class="boundinst" href="instructions/OPARMCNT.htm">OPM_PARM_CNT - OPM Parameter Count</a><br>
+          <a class="inst" href="instructions/OR.htm">OR - Or</a><br>
+          <a class="boundinst" href="instructions/ORSTR.htm">ORSTR - OR String</a><br>
+          <a class="inst" href="instructions/OVRPGATR.htm">OVRPGATR - Override Program Attributes</a><br>
+          <a class="boundinst" href="instructions/PCOPTR.htm">PCOPTR - PCO Pointer</a><br>
+          <a class="boundinst" href="instructions/PCOPTR2.htm">PCOPTR2 - Return PCO Pointer</a><br>
+          <a class="boundinst" href="instructions/POWER.htm">POWER - X To The Y Power</a><br>
+          <a class="boundinst" href="instructions/PROPB.htm">PROPB - Propagate Byte</a><br>
+          <a class="inst" href="instructions/REALCHSS.htm">REALCHSS - Reallocate Activation Group-Based Heap Space Storage</a><br>
+          <a class="inst" href="instructions/REM.htm">REM - Remainder</a><br>
+          <a class="boundinst" href="instructions/RETCA.htm">RETCA - Retrieve Computational Attributes</a><br>
+          <a class="inst" href="instructions/RETEXCPD.htm">RETEXCPD - Retrieve Exception Data</a><br>
+          <a class="inst" href="instructions/RETINVF.htm">RETINVF - Retrieve Invocation Flags</a><br>
+          <a class="inst" href="instructions/RETTSADR.htm">RETTSADR - Retrieve Teraspace Address From Space Pointer</a><br>
+          <a class="inst" href="instructions/RINZSTAT.htm">RINZSTAT - Reinitialize Static Storage</a><br>
+          <a class="inst" href="instructions/RMVINXEN.htm">RMVINXEN - Remove Independent Index Entry</a><br>
+          <a class="inst" href="instructions/RSLVDP.htm">RSLVDP - Resolve Data Pointer</a><br>
+          <a class="inst" href="instructions/RSLVSP.htm">RSLVSP - Resolve System Pointer</a><br>
+          <a class="inst" href="instructions/RTNEXCP.htm">RTNEXCP - Return from Exception</a><br>
+          <a class="inst" href="instructions/RTX.htm">RTX - Return External</a><br>
+          <a class="inst" href="instructions/SCALE.htm">SCALE - Scale</a><br>
+          <a class="inst" href="instructions/SCAN.htm">SCAN - Scan</a><br>
+          <a class="inst" href="instructions/SCANWC.htm">SCANWC - Scan with Control</a><br>
+          <a class="boundinst" href="instructions/SCANX.htm">SCANX - Scan Extended</a><br>
+          <a class="inst" href="instructions/SEARCH.htm">SEARCH - Search</a><br>
+          <a class="inst" href="instructions/SETACST.htm">SETACST - Set Access State</a><br>
+          <a class="inst" href="instructions/SETALLEN.htm">SETALLEN - Set Argument List Length</a><br>
+          <a class="inst" href="instructions/SETBTS.htm">SETBTS - Set Bit in String</a><br>
+          <a class="boundinst" href="instructions/SETCA.htm">SETCA - Set Computational Attributes</a><br>
+          <a class="inst" href="instructions/SETDP.htm">SETDP - Set Data Pointer</a><br>
+          <a class="inst" href="instructions/SETDPADR.htm">SETDPADR - Set Data Pointer Addressability</a><br>
+          <a class="inst" href="instructions/SETDPAT.htm">SETDPAT - Set Data Pointer Attributes</a><br>
+          <a class="inst" href="instructions/SETHSSMK.htm">SETHSSMK - Set Activation Group-Based Heap Space Storage Mark</a><br>
+          <a class="inst" href="instructions/SETIEXIT.htm">SETIEXIT - Set Invocation Exit</a><br>
+          <a class="boundinst" href="instructions/SETINVF.htm">SETINVF - Set Invocation Flags</a><br>
+          <a class="inst" href="instructions/SETIP.htm">SETIP - Set Instruction Pointer</a><br>
+          <a class="boundinst" href="instructions/SETOBPFP.htm">SETOBPFP - Set Object Pointer from Pointer</a><br>
+          <a class="inst" href="instructions/SETSPFP.htm">SETSPFP - Set System Pointer from Pointer</a><br>
+          <a class="inst" href="instructions/SETSPP.htm">SETSPP - Set Space Pointer</a><br>
+          <a class="inst" href="instructions/SETSPPD.htm">SETSPPD - Set Space Pointer with Displacement</a><br>
+          <a class="inst" href="instructions/SETSPPFP.htm">SETSPPFP - Set Space Pointer from Pointer</a><br>
+          <a class="inst" href="instructions/SETSPPO.htm">SETSPPO - Set Space Pointer Offset</a><br>
+          <a class="inst" href="instructions/SIGEXCP.htm">SIGEXCP - Signal Exception</a><br>
+          <a class="boundinst" href="instructions/SIN.htm">SIN - Sine</a><br>
+          <a class="boundinst" href="instructions/SINH.htm">SINH - Sine Hyperbolic</a><br>
+          <a class="inst" href="instructions/SNSEXCPD.htm">SNSEXCPD - Sense Exception Description</a><br>
+          <a class="inst" href="instructions/SSCA.htm">SSCA - Store and Set Computational Attributes</a><br>
+          <a class="inst" href="instructions/STPLLEN.htm">STPLLEN - Store Parameter List Length</a><br>
+          <a class="boundinst" href="instructions/SLENNUL.htm">STRLENNULL - Compute Length of Null-Terminated String</a><br>
+          <a class="boundinst" href="instructions/SNCMPNUL.htm">STRNCMPNULL - Compare Null-Terminated Strings Constrained</a><br>
+          <a class="boundinst" href="instructions/SNCNULL.htm">STRNCPYNULL - Copy Null-Terminated String Constrained</a><br>
+          <a class="boundinst" href="instructions/SNCNULLP.htm">STRNCPYNULLPAD - Copy Null-Terminated String Constrained, Null Padded</a><br>
+          <a class="inst" href="instructions/STSPPO.htm">STSPPO - Store Space Pointer Offset</a><br>
+          <a class="inst" href="instructions/SUBLC.htm">SUBLC - Subtract Logical Character</a><br>
+          <a class="inst" href="instructions/SUBN.htm">SUBN - Subtract Numeric</a><br>
+          <a class="inst" href="instructions/SUBSPP.htm">SUBSPP - Subtract Space Pointer Offset</a><br>
+          <a class="inst" href="instructions/SUBSPPFO.htm">SUBSPPFO - Subtract Space Pointers For Offset</a><br>
+          <a class="inst" href="instructions/SYNCSTG.htm">SYNCSTG - Synchronize Shared Storage Accesses</a><br>
+          <a class="boundinst" href="instructions/TAN.htm">TAN - Tangent</a><br>
+          <a class="boundinst" href="instructions/TANH.htm">TANH - Tangent Hyperbolic</a><br>
+          <a class="inst" href="instructions/TESTAU.htm">TESTAU - Test Authority</a><br>
+          <a class="inst" href="instructions/TESTEAU.htm">TESTEAU - Test Extended Authorities</a><br>
+          <a class="inst" href="instructions/TESTEXCP.htm">TESTEXCP - Test Exception</a><br>
+          <a class="boundinst" href="instructions/TESTINTR.htm">TESTINTR - Test Pending Interrupts</a><br>
+          <a class="inst" href="instructions/TESTPDC.htm">TESTPDC - Test Performance Data Collection</a><br>
+          <a class="inst" href="instructions/TESTPTR.htm">TESTPTR - Test Pointer</a><br>
+          <a class="boundinst" href="instructions/TESTRPL.htm">TESTRPL - Test and Replace Bytes</a><br>
+          <a class="boundinst" href="instructions/TESTSUBS.htm">TESTSUBSET - Test Subset</a><br>
+          <a class="inst" href="instructions/TESTTOBJ.htm">TESTTOBJ - Test Temporary Object</a><br>
+          <a class="inst" href="instructions/TESTULA.htm">TESTULA - Test User List Authority</a><br>
+          <a class="inst" href="instructions/TRIML.htm">TRIML - Trim Length</a><br>
+          <a class="inst" href="instructions/TSTBTS.htm">TSTBTS - Test Bit in String</a><br>
+          <a class="inst" href="instructions/TSTBUM.htm">TSTBUM - Test Bits Under Mask</a><br>
+          <a class="inst" href="instructions/TSTRPLC.htm">TSTRPLC - Test and Replace Characters</a><br>
+          <a class="inst" href="instructions/UNLCKTSL.htm">UNLCKTSL - Unlock Teraspace Storage Location</a><br>
+          <a class="inst" href="instructions/UNLKMTX.htm">UNLKMTX - Unlock Pointer-Based Mutex</a><br>
+          <a class="inst" href="instructions/UNLOCK.htm">UNLOCK - Unlock Object</a><br>
+          <a class="inst" href="instructions/UNLOCKOL.htm">UNLOCKOL - Unlock Object Location</a><br>
+          <a class="inst" href="instructions/UNLOCKSL.htm">UNLOCKSL - Unlock Space Location</a><br>
+          <a class="inst" href="instructions/VERIFY.htm">VERIFY - Verify</a><br>
+          <a class="inst" href="instructions/WAITTIME.htm">WAITTIME - Wait On Time</a><br>
+          <a class="inst" href="instructions/XCTL.htm">XCTL - Transfer Control</a><br>
+          <a class="inst" href="instructions/XFRLOCK.htm">XFRLOCK - Transfer Object Lock</a><br>
+          <a class="inst" href="instructions/XLATE.htm">XLATE - Translate</a><br>
+          <a class="boundinst" href="instructions/XLATEB.htm">XLATEB - Translate Bytes</a><br>
+          <a class="boundinst" href="instructions/XLATEB1.htm">XLATEB1 - Translate Bytes One Byte at a Time</a><br>
+          <a class="inst" href="instructions/XLATEMB.htm">XLATEMB - Translate Multiple Bytes</a><br>
+          <a class="inst" href="instructions/XLATEWT.htm">XLATEWT - Translate with Table</a><br>
+          <a class="inst" href="instructions/XLATWTDS.htm">XLATWTDS - Translate with Table and DBCS Skip</a><br>
+          <a class="inst" href="instructions/XOR.htm">XOR - Exclusive Or</a><br>
+          <a class="boundinst" href="instructions/XORSTR.htm">XORSTR - XOR (Exclusive Or) String</a><br>
+          <a class="inst" href="instructions/YIELD.htm">YIELD - Yield</a>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,1226 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> MATINVAT Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Materialize Invocation Attributes (MATINVAT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0533
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Invocation identification
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Attribute selection template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<I>Operand 1:</I>  Space pointer.
+<P>
+<I>Operand 2:</I>  Character(48) scalar or null.
+<P>
+<I>Operand 3:</I>  Space pointer.
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for MATINVAT is 125.
+MATINVAT (
+          receiver                       : address
+          invocation_identification      : address OR
+                                           null operand
+          attribute_selection_template   : address
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Warning</A></H5>
+<P>
+The following information is subject to change from
+release to release.  Use it with caution and be
+prepared to adjust for changes with each new release.
+<P>
+<H5><A NAME="Header_3">Description</A></H5>
+<P>
+The attributes specified by operand 3 of the invocation specified
+by operand 2 are materialized into
+the <I>receiver</I> specified by operand 1.
+In addition to specifying the attributes to be materialized, operand 3
+controls how they are arranged in the operand 1 <I>receiver</I>.
+<P>
+Operand 1 is a space pointer to an area that is to receive the
+materialized attribute values.  The format of this area is
+determined by the value of the <I>attribute selection template</I>.
+<P>
+Operand 2 identifies the source invocation whose attributes are to be
+materialized.  It also identifies the originating invocation whose
+activation group access right to the source invocation's activation
+group is to be verified.  If operand 2 is null, the invocation issuing
+the instruction is both the source invocation and the originating
+invocation.
+<P>
+Operand 3 is a space pointer to a template that selects the invocation
+attributes to be materialized and specifies how they are to be arranged
+in the <I>receiver</I> template.
+<P>Operand 2
+<P>
+The value specified by operand 2 identifies the source and
+originating invocations.  This operand can be null (which indicates the
+current invocation is to be used for the source and originating
+invocations) or it can contain either a invocation pointer to an
+invocation or a null pointer (which indicates the current invocation).
+<P>
+Operand 2 has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Source invocation offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Originating invocation offset
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation range (ignored)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Source invocation pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Invocation pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">48
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">30
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+If a non-null pointer is specified for <I>source invocation
+pointer</I>, then operand 2 must be 16-byte aligned in
+the space.
+<P>
+<H6><A NAME="Header_4">Terminology</A></H6>
+<P>
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+Requesting invocation
+</B></TD><TD><P>
+The invocation executing the MATINVAT instruction.  Note
+that, in many cases, this invocation belongs to a system or language
+run-time procedure/program, and the instruction is actually being
+executed on behalf of another procedure or program.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Originating invocation
+</B></TD><TD><P>
+The invocation on whose behalf the instruction is being executed.  It
+may be necessary to identify this invocation since its "activation
+group access rights" may need to be checked.  This allows, for example,
+the requesting invocation to be a system state invocation with the
+instruction still performing an "activation group access rights" check
+that reflects the rights of the user.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Source invocation
+</B></TD><TD><P>
+The invocation whose attributes are to be materialized.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Activation group access rights
+</B></TD><TD><P>
+The rights that invocations executing in one activation group may
+have to access and modify the resources of another activation group.
+</TD></TR></TABLE>
+<P>
+<H6><A NAME="Header_5">Field descriptions</A></H6>
+<P>
+<DL>
+<P><DT>
+Source invocation offset
+<DD>
+A signed numerical value indicating an invocation relative to the
+invocation located by the source invocation pointer.  A value of zero
+denotes the invocation addressed by the source invocation pointer, with
+increasingly positive numbers denoting increasingly later invocations
+in the stack, and increasingly negative numbers denoting increasingly
+earlier invocations in the stack.
+<P>
+If the source invocation pointer is not valid or the invocation
+identified by this offset does not exist in the stack,
+an <I> invocation offset outside range of current stack&nbsp; </I> (hex <A HREF="../exceptions/EX2C1A.htm">2C1A</A>) exception
+will be signaled.
+<P><DT>
+Originating invocation offset
+<DD>
+A signed numerical value identifying the originating invocation
+relative to the current invocation.  Since this is an offset relative
+to the current invocation, only zero or negative values are allowed.
+<P>
+If the invocation identified by this offset does not exist in the stack,
+an <I> invocation offset outside range of current stack&nbsp; </I> (hex <A HREF="../exceptions/EX2C1A.htm">2C1A</A>) exception
+will be signaled.
+<P><DT>
+Invocation range
+<DD>
+This field is used by <A HREF="FNDRINVN.htm">FNDRINVN</A> and is ignored by this
+instruction.
+<P><DT>
+Source invocation pointer
+<DD>
+An <I>invocation pointer</I> to an invocation.  If null, then the
+current invocation is indicated.
+<P>
+If the pointer identifies an invocation in another thread, a <I> process object access invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2C11.htm">2C11</A>) exception
+will be signaled.
+If the
+invocation identified by this pointer does not exist in the stack, an <I> object destroyed&nbsp; </I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception
+will be signaled.
+</DL>
+<P>
+<H6><A NAME="Header_6">Activation group access rights checking</A></H6>
+<P>
+This instruction sometimes (depending on the attributes materialized)
+requires that activation group access rights to the activation group of
+the source invocation be verified.  In such cases, the <I>originator
+offset</I> field of operand 2 identifies the invocation whose
+right of access is to be checked.  (That is, it identifies the
+invocation which is considered to have originated the request and on
+whose behalf the instruction is being executed.)
+<P>
+If <I>originator offset</I> is not zero, then the activation group of
+the requesting invocation
+must have the right to access
+the activation group of the invocation identified by <I>originator
+offset</I>.  This check is made whether or not access rights to the
+source invocation need to be checked.
+<P>
+In the event that appropriate access rights are not found, an <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+is signaled.
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+The originating invocation identified by the originating invocation
+offset must be equal to or "newer" than the invocation identified as
+the source invocation.  Otherwise, an <I> invalid origin invocation&nbsp; </I> (hex <A HREF="../exceptions/EX2C19.htm">2C19</A>) exception
+will be signaled.
+</TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Usage note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+In cases where <I>source invocation pointer</I> is null, operand
+2 may be a constant.
+</TD></TR></TABLE>
+<P>Operand 3
+<P>
+The <I>attribute selection template</I> has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Selection template header
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Number of attributes
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Control flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Attribute index indirect
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD><I>Offset to attribute index</I> specifies directly the location
+of the attribute index value
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD><I>Offset to attribute index</I> specifies the location of a
+space pointer which in turn specifies the location of the attribute
+index value
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 1-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Offset to attribute index
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Length of attribute index
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Attribute selection entries
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(*)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+The <B><U>attribute selection entries</U></B> are each 16 bytes long and have the
+following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Attribute ID
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Control flags
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Indirect
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD> <I>Offset to receiver</I> specifies directly the location of the
+attribute value
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD> <I>Offset to receiver</I> specifies the location of a space pointer
+which in turn specifies the location of the attribute value
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Return length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>A length field is not present with the attribute
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>A length field precedes the attribute
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Return status
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>A status field is not present with the attribute
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>A status field precedes the attribute
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Pad
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No pad field is assumed to precede the attribute
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>A pad field of zero, eight, or twelve bytes is assumed to precede
+the attribute
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Offset to receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">12
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">C
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Length of receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<H6><A NAME="Header_7">Basic structure</A></H6>
+<P>
+The <I>attribute selection template</I> allows the user of MATINVAT
+considerable flexibility in deciding what invocation attributes are to
+be materialized and where their materializations are to be returned.
+This flexibility is achieved by having the <I>attribute selection
+template</I> consist of a header, followed by a series of entries, each of
+which identifies an attribute to be materialized, the location where it
+is to be materialized, and the amount of space reserved for its
+materialization.
+<P>
+The template header specifies the number of attribute entries present
+in the template, and it also allows the specification of an optional <I>attribute index</I> field.  The <I>attribute index</I> field, if
+present, identifies the first <I>attribute selection entry</I> to be
+processed (causing entries prior to that one to be skipped).  In
+addition, if the <I>attribute index</I> field is present, it is
+updated upon the normal or abnormal completion of the instruction to
+contain either zero (if completion is normal) or the number of the
+entries being processed (if the instruction ends with an exception).
+<P>
+Each <I>attribute selection entry</I> identifies the attribute to be
+materialized and the area where the materialization is to be returned.
+The attribute may be returned directly into the area addressed by the
+operand 1 space pointer, or it may be returned into an area
+addressed by a space pointer which is, in turn, contained in the area
+addressed by the operand 1 space pointer.  These two cases are
+distinguished by the <I>indirect</I> bit.
+<P>
+In addition, each <I>attribute selection entry</I> contains:
+<UL>
+<P><LI>
+An offset value which is the offset relative to the operand 1
+space pointer where either the attribute's materialization area or the
+pointer to the attributes' materialization area is contained.
+<P><LI>
+A length value identifying the maximum number of bytes of data to be
+materialized for the attribute.
+<P><LI>
+A flag indicating whether the length of the attribute is to be
+materialized.
+<P><LI>
+A flag indicating whether the status of the attribute is to be
+materialized.
+<P><LI>
+A flag indicating whether a pad field precedes the attribute (or its
+pointer, if <I>indirect</I> is specified).  If present, the length of
+this "pad" field is automatically adjusted so that the combined length
+of the length, status, and pad fields is either zero or 16, maintaining
+the relative quadword alignment of the modification value if the length
+and/or status fields are present.
+</UL>
+<P>
+Note that, for the sake of regularity, the fields of the <I>attribute
+selection template</I> header are arranged in the same general fashion
+as those in the <I>attribute selection entries</I>.
+<P>
+<H6><A NAME="Header_8">Field descriptions</A></H6>
+<P>
+<DL>
+<P><DT>
+Number of attributes
+<DD>
+Specifies how many 16-byte <I>attribute selection entries</I> follow.
+<P><DT>
+Attribute index indirect
+<DD>
+If <I>attribute index indirect</I> is binary 0, then <I>offset to
+attribute index</I> specifies the location where the attribute index
+is stored as an offset from the location addressed by the operand
+1 space pointer.  If <I>attribute index indirect</I> is binary
+1, then the location identified by <I>attribute index offset</I>
+must be quadword aligned and must contain a space pointer.  This space
+pointer in turn addresses the location where the attribute index value
+is stored.
+<P><DT>
+Offset to attribute index
+<DD>
+Specifies the offset to the attribute index or the offset to a pointer
+to the attribute index, depending on the value of <I>attribute index
+indirect</I>.
+<P><DT>
+Length of attribute index
+<DD>
+Specifies the length of the area where the attribute index value is
+stored.  This field must have a value of either zero or four.
+<P>
+If this field has a value of zero, then the first attribute entry to be
+processed is the first attribute entry in the template, and no feedback
+is given as to which attribute entry was being processed at the time of
+an exception.  <I>Attribute index indirect</I> and <I>attribute
+index offset</I> are ignored.
+<P>
+If this field has a value of four, then the value of the attribute
+index, treated as a signed bin(4) value, must be greater than or equal
+to one and less than or equal to <I>number of attributes</I>.  In
+this case the attribute index identifies the attribute entry to be
+processed first (with the first entry in the template having an index
+of one), and, in the event of an exception, the attribute index value
+is modified by this instruction such that it identifies the attribute
+entry being processed at the time of the exception.  If the instruction
+completes without an exception, then the attribute index value is set
+to zero.
+<P><DT>
+Attribute ID
+<DD>
+Specifies the attribute to be materialized.  Values that may be specified
+are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+1
+</B></TD><TD><P>
+Invocation pointer to specified invocation.  (16 bytes, quadword
+aligned.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+2
+</B></TD><TD><P>
+Automatic storage pointer.  Space pointer to the automatic storage for
+this invocation.  If no automatic storage exists for this invocation,
+then a null pointer is returned.  (16 bytes, quadword aligned,
+access rights required.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+3
+</B></TD><TD><P>
+Static storage pointer.  Space pointer to the static storage for a
+non-bound program invocation, if any exists.  Otherwise, a null
+pointer value
+is returned.  (16 bytes, quadword aligned, access rights required.)
+<P><B>Note: </B>For bound program
+procedure
+invocations there
+is no single "distinguished" static storage
+area, but instead there may be multiple static storage areas.  The list
+of static storage areas corresponding to the invocation's activation
+can be obtained by using the Materialize Activation Attributes
+(<A HREF="MATACTAT.htm">MATACTAT</A>) instruction.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+4
+</B></TD><TD><P>
+Parameter list pointer.  Space pointer to the parameter list passed to
+this invocation (bound program procedure invocations only).
+If the procedure for
+this invocation does not
+have
+a parameter list, or if this
+invocation is for a program entry procedure or a non-bound program,
+then a null pointer value
+is returned.
+(16 bytes, quadword aligned, access rights required.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+6
+</B></TD><TD><P>
+Program pointer.  System pointer to the program for this invocation.
+If the program no longer exists then a null pointer is returned.  (16
+bytes, quadword aligned, access rights required.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+7
+</B></TD><TD><P>
+Space pointer to <I>module</I> associated space.  For bound program
+procedures, this space pointer addresses the secondary associated space
+in the bound program that was
+propagated from the primary associated
+space of the bound program module.
+For non-bound programs, this space pointer
+addresses the program's primary associated space.  If the appropriate
+associated space does not exist in the program or if the program no
+longer exists, then a null pointer is returned.  For both bound and
+non-bound program
+invocations the requesting invocation must have space authority to the
+program.  (16 bytes, quadword aligned, access rights required.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+8
+</B></TD><TD><P>
+Pointer to containing scope.  If the specified invocation is in a
+nested scope, then this is an invocation pointer to the invocation of
+the containing scope.  Otherwise a null pointer is returned.  (16
+bytes, quadword aligned.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+9
+</B></TD><TD><P>
+Relative invocation offset to containing scope.  If the specified
+invocation is in a nested scope, then this is the relative invocation
+offset to the invocation of the containing scope.  Otherwise, a value
+of zero is returned.  Note that the relative invocation offset will be
+a negative number and is relative to the specified invocation.  (4
+bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+10
+</B></TD><TD><P>
+Lexical level number.  Outer procedures have a lexical level number of
+1. (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+11
+</B></TD><TD><P>
+Invocation number.  (2 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+12
+</B></TD><TD><P>
+Invocation mark.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+13
+</B></TD><TD><P>
+Activation mark.  If no activation exists for this invocation, then a
+zero value is returned.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+14
+</B></TD><TD><P>
+Activation group mark.  (4 bytes.)
+<P>If the activation resides in a shared activation group owned by
+another process, or
+if no activation exists for the invocation, then
+the value returned is as follows:
+<DL>
+<DD><P>1 if this is a system state invocation
+<DD><P>2 if this is a user state invocation
+</DL>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+15
+</B></TD><TD><P>
+Invocation type.  The possible values for invocation type are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+Hex 01 =
+</TD><TD>
+<A HREF="CALLX.htm">Call external</A>
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 02 =
+</TD><TD>
+<A HREF="XCTL.htm">Transfer control</A>
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 03 =
+</TD><TD>
+Event handler
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 04 =
+</TD><TD>
+External exception handler (for non-bound program)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 05 =
+</TD><TD>
+Initial program in process problem state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 06 =
+</TD><TD>
+Initial program in process initiation state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 07 =
+</TD><TD>
+Initial program in process termination state
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 08 =
+</TD><TD>
+Invocation exit (for non-bound program)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 09 =
+</TD><TD>
+Return or return/<A HREF="XCTL.htm">XCTL</A> trap handler
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0A =
+</TD><TD>
+Call program
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0B =
+</TD><TD>
+Cancel handler (bound program only)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0C =
+</TD><TD>
+Exception handler (bound program only)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0D =
+</TD><TD>
+Call bound procedure/call with procedure pointer
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 0E =
+</TD><TD>
+Process Default Exception Handler
+</TD></TR></TABLE>
+(1 byte.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+16
+</B></TD><TD><P>
+Routine type.  The possible values for routine type are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>
+Hex 01 =
+</TD><TD>
+Non-Bound Program
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 02 =
+</TD><TD>
+Bound Program Entry Procedure (PEP)
+</TD></TR><TR VALIGN="TOP"><TD>
+Hex 03 =
+</TD><TD>
+Bound Program Procedure
+<P><B>Note: </B>Bound program procedures are contained within bound programs,
+bound service programs, and Java programs.
+All discussion of bound program procedure semantics also
+apply to Java program procedures.
+</TD></TR></TABLE>
+(1 byte.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+17
+</B></TD><TD><P>
+State invocation was invoked with.  (2 bytes.)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 8000 = </TD><TD>System state
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0001 = </TD><TD>User state
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+18
+</B></TD><TD><P>
+State for invocation.  (2 bytes.)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>Hex 8000 = </TD><TD>System state
+</TD></TR><TR VALIGN="TOP"><TD>Hex 0001 = </TD><TD>User state
+</TD></TR></TABLE>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+19
+</B></TD><TD><P>
+Invocation status of the specified invocation (including invocation
+flags).
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+Bit 0
+</B></TD><TD><P>
+Cancelled
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 1
+</B></TD><TD><P>
+Ending -- a return operation has been initiated from within the
+invocation or the actual termination of a cancelled invocation has
+begun.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 2
+</B></TD><TD><P>
+Invocation interrupted by exception
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 3
+</B></TD><TD><P>
+Invocation interrupted by event (reserved)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 4
+</B></TD><TD><P>
+Invocation is a non-bound program <A HREF="CALLX.htm">CALLX</A> exception handler
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 5
+</B></TD><TD><P>
+Invocation contains a non-bound program <A HREF="CALLI.htm">CALLI</A> exception handler
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 6
+</B></TD><TD><P>
+Invocation contains a signalled non-bound program branchpoint handler
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 7
+</B></TD><TD><P>
+Retry not allowed
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 8
+</B></TD><TD><P>
+Resume not allowed
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 9
+</B></TD><TD><P>
+Resume point has been modified
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 10
+</B></TD><TD><P>
+Invocation is a program entry procedure and is marked as the oldest
+in the activation group
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bits 11-15
+</B></TD><TD><P>
+Reserved
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bits 16-31
+</B></TD><TD><P>
+Invocation flags
+</TD></TR></TABLE>
+(4 bytes.)
+<P><B>Performance consideration: </B>When the only invocation status information required is the invocation
+flags, there may be a significant performance advantage if the following
+attribute is materialized instead of this one.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+20
+</B></TD><TD><P>
+Invocation flags of the specified invocation.  This attribute has the
+same format as the <VAR>invocation status</VAR> attribute, except that
+the first two bytes are returned as zero.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+23
+</B></TD><TD><P>
+Cancel reason of the specified invocation.
+(4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+24
+</B></TD><TD><P>
+Suspend point.  Suspend pointer identifying the location within the
+invocation's routine where execution was suspended due to a call,
+interrupt, or machine operation.  If the program no longer exists then
+a null pointer is returned.  (16 bytes, quadword aligned, access rights
+required.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+25
+</B></TD><TD><P>
+Resume point.
+<P>
+A suspend pointer identifying the location within the invocation's
+routine where execution will resume if execution is allowed to resume
+in the invocation.  If the invocation is suspended for some cause that
+permits resumption, then this is initially set to the location that
+logically follows the suspend point.  If the invocation is suspended
+for some cause that does not permit resumption, then this is initially
+set to be a null pointer.  If the resume point is modified via
+Modify Invocation Attributes then a suspend pointer (or null
+pointer) corresponding to the modified resume point is returned.  If
+the program no longer exists or if the invocation is cancelled or
+ending, then a null pointer is returned.  (16 bytes, access rights
+required, quadword aligned.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+26
+</B></TD><TD><P>
+Interrupt message invocation.  If the invocation is interrupted due to
+an exception interrupt, and the message causing the interrupt has not
+been removed or modified to a non-interrupt state, then this is an
+invocation pointer which addresses the invocation to which the
+interrupt message is enqueued.  If no interrupt cause currently exists,
+then a null pointer is returned.  (16 bytes, quadword aligned.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+27
+</B></TD><TD><P>
+Interrupt message reference key.  If the invocation is interrupted due
+to an exception interrupt, and the message causing the
+interrupt has not been removed or modified to a non-interrupt state,
+then this is the message reference key of the interrupt cause
+message. If no interrupt cause currently exists, then a value of zero
+is returned.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+28
+</B></TD><TD><P>
+External exception handler's monitoring invocation.  If the specified
+invocation is an external exception handler for a
+non-bound program, then
+this is an invocation pointer identifying the invocation which enabled
+the handler (also the invocation where the exception message is
+currently enqueued).  Otherwise, a null pointer is returned.  (16
+bytes, quadword aligned.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+29
+</B></TD><TD><P>
+External exception handler's message reference key.  If the specified
+invocation is an external exception handler for a
+non-bound program, then
+this is the message reference key of the corresponding exception
+message. Otherwise, a zero value is returned.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+30
+</B></TD><TD><P>
+Non-bound program internal exception handler's
+message reference key.  If the
+specified invocation is a non-bound program
+invocation with an internal exception
+handler active, then this is the message reference key of
+the exception message corresponding to the currently active internal
+exception handler.  Otherwise, a zero value is returned.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+31
+</B></TD><TD><P>
+Non-bound program branchpoint exception
+handler's message reference key.  If the
+specified invocation is a non-bound program invocation
+with a branchpoint exception
+handler in a signalled state, then this is the message reference
+key of the exception message corresponding to the most recently
+signalled branchpoint exception exception handler.  Otherwise, a zero
+value is returned.  (4 bytes.)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+32
+</B></TD><TD><P>
+Trap handler's message reference key.  If the specified invocation was
+invoked as a trap handler, then this is the message reference key of
+the corresponding trap message.  (Note that the trapped invocation is,
+by definition, the immediately preceding invocation.)  Otherwise, a
+zero value is returned.  (4 bytes.)
+</TD></TR></TABLE>
+<P>
+Where "access rights required" is specified above, the activation group
+of the invocation identified as the originating invocation must have
+activation group access rights to the activation group of the source
+invocation or else an <I> activation group access violation&nbsp; </I> (hex <A HREF="../exceptions/EX2C12.htm">2C12</A>) exception
+is signaled.
+<P>
+The invocation with an invocation number of 1 is always the first
+invocation in the stack.
+<P><DT>
+Indirect
+<DD>
+If <I>indirect</I> is binary 0, then <I>offset to receiver</I>
+specifies the location where the selected attribute value is to be
+materialized as as offset from the location addressed by operand 1.  If <I>indirect</I> is binary 1, then the location identified by <I>offset to receiver</I>, after accounting for any length, status,
+or pad fields specified, must be quadword aligned and must contain a
+space pointer.  This space pointer in turn addresses the location where
+the selected attribute value is to be materialized.
+<P><DT>
+Return length
+<DD>
+If <I>return length</I> and <I>return status</I> are both binary
+0, then only the attribute itself is materialized.  If <I>return
+length</I> is binary 1, then the attribute (or attribute pointer, if <I>indirect</I> is true) is preceded by a four-byte value which
+specifies the length of the attribute (exclusive of the length value
+itself, and the status and pad fields, if present).
+<P><DT>
+Return status
+<DD>
+If <I>return status</I> is binary 1, then the attribute (or
+attribute pointer, if <I>indirect</I> is true) is preceded by a
+four-byte value which contains the status of the attribute.
+<P>
+If the status value is returned, it has the following format:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>
+Bits 0-2
+</B></TD><TD><P>
+Reserved (binary 0)
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 3
+</B></TD><TD><P>
+Attribute unavailable at this time.  (Eg, asking for the system pointer
+to a destroyed non-bound
+program.)  The result returned is zeros for the
+minimum length defined.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 4
+</B></TD><TD><P>
+Attribute not defined in this context.  (Eg, asking for lexical level
+number from non-bound program
+invocation.)  The result returned is zeros for the
+minimum length defined.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 5
+</B></TD><TD><P>
+Attribute not defined at this time.  (Eg, asking for interrupt message
+invocation when the invocation is not interrupted.)  The result
+returned is zeros for the minimum length defined.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 6
+</B></TD><TD><P>
+Attribute defined but null.  (Eg, when asking for the resume point for
+an invocation for which resume is not currently allowed.)  The result
+returned is zeros for the minimum length defined.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bit 7
+</B></TD><TD><P>
+Attribute truncated.  Indicates that the specified <I>length of
+receiver</I> was too small to allow the entire attribute to be
+returned.  The truncated result is returned, as described earlier.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>
+Bits 8-31
+</B></TD><TD><P>
+Reserved (binary 0)
+</TD></TR></TABLE>
+<P>
+If <I>return length</I> and <I>return status</I> are both binary
+1 then the length field comes first, followed immediately by the
+status field.
+<P><DT>
+Pad
+<DD>
+If either <I>return length</I> or <I>return status</I> is binary
+1, and <I>pad</I> is also binary 1, then twelve bytes of pad are
+assumed between the length or status value and the attribute (or
+attribute pointer, if <I>indirect</I> is true).  If both <I>return
+length</I> and <I>return status</I> are binary 1, and <I>pad</I>
+is also binary 1, then eight bytes of pad are assumed between the
+status value and the attribute (or attribute pointer).  If <I>return
+length</I> and <I>return status</I> are both binary 0, then no
+padding occurs, regardless of the value of <I>pad</I>.  The area
+occupied by the pad is not modified by this instruction.
+<P><B>Note: </B> <I>Pad</I> makes it easier to quadword align the area to receive the
+materialized attribute (if <I>indirect</I> is false) or the area
+containing the attribute pointer (if <I>indirect</I> is true) when <I>return status</I> and/or <I>return length</I> are also
+specified.
+<P><DT>
+Offset to receiver
+<DD>
+Specifies the offset to the location where the selected attribute value
+is to be materialized, or the offset to a pointer to the location,
+depending on the value of <I>indirect</I>.
+<P><DT>
+Length of receiver
+<DD>
+Specifies the length of the area where the attribute value is to be
+materialized.
+<P>
+This length indicates the length of the actual area available for
+materializing the attribute, and <I>does not</I> include the length
+of any length, status, or pad field.  If the number of bytes of
+attribute data available to be materialized (exclusive of the status,
+length, and pad fields, if any) exceeds <I>length of receiver</I>,
+then only <I>length of receiver</I> bytes of data are returned.  No
+exception is signalled in this case.
+<P>
+If <I>indirect</I> is a binary 0, then <I>length of receiver</I>
+indicates the length of the area located by <I>offset to receiver</I>.  If <I>indirect</I> is a binary 1, then <I>length of receiver</I>
+indicates the length of the area located by the indirect space pointer
+identified by <I>offset to receiver</I>.
+<P>
+In the case that <I>length of receiver</I> is sufficient to receive
+only part of a field in an attribute structure, then the partial field
+may or may not be materialized.
+</DL>
+<P>
+Individual attribute entries are processed in order, with the
+attributes specified by each entry being materialized before processing
+of the next entry begins.  If an exception occurs while processing an
+attribute entry, then the attributes materialized due to the preceding
+attribute entries will still be present in their specified result
+locations.
+<P>
+For attributes which include pointers, the specified direct or indirect
+value location, after accounting for any length, status, or pad fields,
+must be quadword aligned or a <I> boundary alignment&nbsp; </I> (hex <A HREF="../exceptions/EX0602.htm">0602</A>) exception
+may occur.  (The
+exception is not guaranteed to occur, eg, in the case where <I>length
+of receiver</I> is insufficient to include the materialized pointer,
+or when a null pointer is returned.)
+<P>
+If the value locations of individual attribute entries overlap, then
+the values will be overlaid in the sequence implied by the attribute
+entry order.  If the value location of a non-indirect result overlays
+the location of the space pointer for an indirect result, then the
+validity of the space pointer will depend on the order of the
+associated entries.
+<P>
+<H4><A NAME="Header_9">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Activation group access
+<UL>
+<P><LI>
+From the activation group of the invocation issuing the instruction to
+the activation group of the originating invocation identified by
+operand 2
+<P><LI>
+When an attribute annotated with "access rights required" is specified:
+From the activation group of the originating invocation identified by
+operand 2 to the activation group of the source invocation identified
+by operand 2
+</UL>
+<P><LI>
+Space authority
+<UL>
+<P><LI>
+For the module associated space option, the requesting invocation must
+have space authority to the program executing in the source
+invocation identified by operand 2
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_10">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_11">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C11.htm">2C11 Process Object Access Invalid </A>
+<DD><A HREF="../exceptions/EX2C12.htm">2C12 Activation Group Access Violation</A>
+<DD><A HREF="../exceptions/EX2C19.htm">2C19 Invalid Origin Invocation</A>
+<DD><A HREF="../exceptions/EX2C1A.htm">2C1A Invocation Offset Outside Range of Current Stack</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

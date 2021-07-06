@@ -1,0 +1,82 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+ 
+<title> 2202 Exception </title>
+
+             
+			 
+ 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+
+ 
+ 
+
+
+</head>
+
+<body>
+ 
+ 
+ 
+ 
+   
+   
+
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>2202
+</B></TD><TD><P><I>Object Destroyed
+</I>
+<P>
+An attempt was made to reference an object
+<font color=blue>
+or an object extension
+</FONT>
+that no longer exists or
+part of it no longer exists.
+<P>
+This exception may not be signaled
+for operations which refer to the value of
+a pointer, but
+which do not attempt to reference the data or object the pointer
+addresses.  This exception can also be signaled when the space that the
+pointer references is missing.
+<P>In some implementations, the machine may optimize the use of
+space pointers by some instuctions such that this exception is not
+signaled.
+<P><B>Note: </B>See
+<A class="content" HREF="../EXCEPS.htm#HDREXCEPS">Exception Specifications</A>
+for a list of points to keep in mind when reading the
+descriptions of which instructions cause this exception.
+<P><I>Instructions Causing Exception:</I>
+<UL>
+<P><LI>
+Any instruction that references an object
+<font color=blue>
+or object extension
+</FONT>
+through a pointer
+<P><LI>
+Any instruction that references a pointer operand when the object and the
+space containing the pointer have been destroyed.  This includes operand
+basing pointers, space pointers used as operands that provide
+addressability, and space pointers in templates pointed to by an operand.
+</UL>
+</TD></TR></TABLE>
+
+
+   
+ 
+</body>
+
+ 
+</HTML>

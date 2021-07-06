@@ -1,0 +1,167 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SETIEXIT Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Set Invocation Exit (SETIEXIT)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0252
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Invocation exit program
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Argument list
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  System pointer.
+<P>
+<I>Operand 2</I>:  Operand list or null.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction allows the external entry
+point of the program specified by
+operand 1 to be given control when the requesting invocation
+is destroyed due to normal exception
+handling actions, or due to any thread termination.  Normal
+exception handling actions are
+considered to be those actions performed by the Return From
+Exception (<A HREF="RTNEXCP.htm">RTNEXCP</A>) or the Signal Exception (<A HREF="SIGEXCP.htm">SIGEXCP</A>) instructions.
+<P>
+Operand 1 is a system pointer addressing the program that is
+to receive control.  The operand 1
+system pointer must be in either the static or automatic storage
+of the program invoking this instruction.
+<P>
+Operand 2 specifies an operand list that identifies the arguments
+to be passed to the invocation
+exit program being called.  If operand 2 is null, no arguments
+are passed to the invocation.
+<P>
+No operand verification takes place when this instruction is
+executed.
+Nor are copies made of the operands, so changes made to the operand
+values after execution of this instruction will be used during later
+operand verification.
+Operand verification occurs on the original form of the operands
+when the invocation exit program is invoked.
+At that time
+execute
+authorization verification to the
+invocation exit program and any
+contexts referenced for materialization
+take place.  Also, materialization lock enforcement occurs to contexts
+referenced for materialization.
+<P>Operand 1 must point to a non-bound program or a bound program.
+Operand 1 should not point to a bound service program or a Java program
+or else an error will occur when an attempt is made to invoke the
+invocation exit program.
+<P>
+If an invocation exit program currently exists for the requesting
+invocation, it is replaced, and
+no exception is signaled.  The invocation exit set by this
+instruction is implicitly cleared when
+the invocation exit program is given control, or the program
+which set the invocation exit completes execution.
+<P>
+If any invocations are to be destroyed due to normal exception
+handling actions, then those
+invocation exit programs associated with the invocations to be
+destroyed are given control before
+execution proceeds to the signaled exception handler.
+<P>
+The invocation exit program that is being destroyed is terminated,
+and its associated invocation
+execution is terminated.  Termination of invocations due to a
+previous Signal Exception
+instruction, a Return From Exception instruction, a process
+termination, or a thread termination, is then resumed.
+<P>
+If a process phase is terminated and the process was not in
+termination phase, then the invocations
+are terminated.  Invocation exit programs set for the terminated
+invocations are allowed to run.
+If an invocation to be terminated is an invocation exit program,
+then the following occurs:
+<UL>
+<P><LI>
+If an invocation
+exit has been set for this invocation exit, it is allowed to run.
+<P><LI>
+The invocation exit
+is terminated and the associated invocation is terminated
+(the invocation exit is not reinvoked).
+</UL>
+Invocation exit programs for the remaining invocations to be
+terminated are then allowed to run.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

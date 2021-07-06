@@ -1,0 +1,170 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+
+<title> ADDSPP Instruction </title>
+ <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+
+<H1>Add Space Pointer (ADDSPP)</H1>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3
+</TH><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">0083
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source pointer
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Increment
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><BR></TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<P>
+<I>Operand 3</I>:  Binary scalar.
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+This instruction adds a signed or unsigned binary value to the
+offset of a space pointer.  The value of the binary scalar
+represented by operand 3 is added to the
+space address contained in the space pointer specified by
+operand 2, and the result is
+stored in the space pointer identified by operand 1.
+I.e.
+<PRE>
+    Operand 1 = Operand 2 + Operand 3
+</PRE>
+<P>Operand 3 can have a positive or negative value.
+The space
+that the pointer is addressing is not changed by the
+instruction.
+<P>
+Operand 2 must contain a space pointer;
+otherwise, a <I> pointer type invalid&nbsp; </I> (hex <A HREF="../exceptions/EX2402.htm">2402</A>) exception
+is signaled.
+<font color=blue>
+<P>
+When the addressability in the space pointer is modified, the instruction
+signals a <I> space addressing violation&nbsp; </I> (hex <A HREF="../exceptions/EX0601.htm">0601</A>) exception
+when one of
+the following conditions
+occurs, for any space except teraspace:
+<UL>
+<P><LI>
+The
+space address to be stored in the pointer has a negative offset value.
+<P><LI>
+The
+offset addresses beyond the largest space allocatable in the
+object.  This maximum
+offset value is dependent on the size and packaging of
+the object containing the space and is independent of
+the actual size of the space allocated.
+</UL>
+If the exception is signaled by this instruction for one of these
+reasons, the pointer is not modified by the instruction.
+<P>
+In contrast, when
+modifying the addressability of a space pointer to teraspace,
+if the address computed either overflows or underflows the offset,
+the result is wrapped back within teraspace and no exception is signalled.
+However, since the size of teraspace and thus the size of the offset
+portion of a teraspace address is implementation-dependent,
+the wrapped result
+may vary between machine implementations.
+<P>
+</FONT>
+Attempts to use a pointer whose offset value
+lies:
+between the currently allocated extent of the space and the maximum
+allocatable extent of the space,
+or whose offset is outside all teraspace allocations,
+cause the <I> space addressing violation&nbsp; </I> (hex <A HREF="../exceptions/EX0601.htm">0601</A>) exception
+to be signaled.
+<P>The <I> object destroyed&nbsp;</I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception, <I> parameter reference violation&nbsp;</I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception, and <I> pointer does not exist&nbsp; </I> (hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+are not signaled when operand 1 and
+operand 2 are space pointer machine objects.  This occurs when operand 2
+contains an internal
+machine value that indicates one of these error conditions
+exists.  If the corresponding exception
+is not signaled, operand 1 is set with an internal machine
+value that preserves the exception
+condition that existed for operand 2.  The appropriate
+exception condition will be signaled for
+either pointer when a subsequent attempt is made to reference
+the space data that the pointer addresses.
+</font>
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

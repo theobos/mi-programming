@@ -1,0 +1,826 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SCANWC Instruction </title>
+
+			<link rel="stylesheet" type="text/css" href="./tstudio.css">
+</head>
+
+<body>
+<H1>Scan with Control (SCANWC)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand 4
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Operand &#91;5-8&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SCANWC</B>
+10E4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Base locator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Escape target or null
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SCANWCB</B>
+1CE4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Base locator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Escape target or null
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="7"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%"><B>SCANWCI</B>
+18E4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Base locator
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Controls
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Escape target or null
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="14%">Indicator targets
+</TD></TR></TABLE><P>
+<I>Operand 1</I>:  Space pointer.
+<P>
+<I>Operand 2</I>:  Character(8) variable scalar.
+<P>
+<I>Operand 3</I>:  Character(4) constant scalar.
+<P>
+<I>Operand 4</I>:  Instruction number, relative instruction number,
+branch point, instruction pointer, instruction definition list
+element, or null.
+<P>
+<I>Operand 5-8</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The base string to be scanned is specified by
+the <I>base locator</I> and <I>controls</I> operands.
+The <I>base locator</I> addresses
+the first character of the base string.
+The <I>controls</I> specifies the
+length of the base string in the base length field.
+<P>
+The scan operation begins at the left end of the base string and
+continues character by character, left-to-right.  The scan operation can
+be performed on a base string which contains all simple (1-byte) or all
+extended (2-byte) character codes or a mixture of the two.  When the
+base string is being interpreted in simple character mode, the
+operation moves through the base string one byte at a time.  When the
+base string is being interpreted in extended character mode, the
+operation moves through the base string 2 bytes at a time.  The
+character string value of the <I>base locator</I>
+operand is scanned for occurrences
+of a character value satisfying the criteria
+specified in the <I>controls</I> and <I>options</I> operands.
+<P>
+The scan is completed by updating
+the <I>base</I> locator and <I>controls</I>
+operands with scan status when a character value being scanned for
+is found, the end of the base string is encountered, or an escape
+code is encountered when the <I>escape target</I> operand
+is specified.  The <I>base locator</I> is set with addressability
+to the character (simple or
+extended) which caused the instruction to complete execution.  The <I>controls</I> operand is set with
+information which identifies the mode
+(simple or extended) of the base string character addressed by the <I>base locator</I> and which provides for
+resumption of the scan operation
+with minimal overhead.
+<P>
+The <I>controls</I> and <I>options</I> operands
+specify the modes to be used in
+interpreting characters during the scan operation.  Characters can
+be interpreted in one of two character modes:  simple (1-byte) and
+extended (2-byte).  Additionally, the base string  can be scanned
+in one of two scan modes, mixed (base string may contain a
+mixture of both character modes) and nonmixed (base string contains
+one mode of characters).
+<P>
+When the mixed scan mode is specified in the options operand, the
+base string is interpreted as containing a mixture of simple and
+extended character codes.  The mode, simple or extended, with
+which the string is to be interpreted, is controlled initially
+by the base mode indicator in
+the <I>controls</I> operand and thereafter
+by mode control characters imbedded in the base string.  The mode
+control characters are as follows:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P>
+Hex 0E = </TD><TD><P>Shift out (SO)
+of simple character mode to extended mode.
+</TD></TR><TR VALIGN="TOP"><TD><P>
+Hex 0F = </TD><TD><P>Shift in (SI) to simple character mode from
+extended mode.  This is only recognized if
+it occurs in the first byte position of an
+extended character code.
+</TD></TR></TABLE>
+<P>
+When the nonmixed scan mode is specified
+in the <I>options</I> operand, the
+base string is interpreted using only the character mode specified
+by the base mode indicator in the <I>controls</I> operand.
+Character mode
+shifting can not occur because no mode control characters are
+recognized when scanning in nonmixed mode.
+<P>
+The <I>base locator</I> operand is a
+space pointer which is both input to
+and output from the instruction.  On input, it locates the
+first character of the base string to be processed.  On output, it
+locates the character of the base string which caused the
+instruction to complete.
+<P>
+The <I>controls</I> operand must be a
+character scalar which specifies
+additional information to be used to control the scan operation.  It
+must be at least 8 bytes long and have the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Controls operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Control indicators
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Base mode
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Simple
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Extended
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Comparison character mode
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Simple
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Extended
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (must be 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 2-6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Scan state
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Resume scan
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Start scan
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Comparison characters
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Base end
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">5
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Instruction work area
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">6
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Base length
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(2)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+Only the first 8 bytes of the <I>controls</I> operand are used.  Any
+excess bytes are ignored.  Reserved fields must contain binary
+0s.
+<P>The <B><U>base mode</U></B>
+is both input to and output from the instruction.  In
+either case, it specifies the mode of the character in the base
+string currently addressed by the <I>base locator</I>.
+<P>
+The <B><U>comparison character mode</U></B>
+is not changed by the instruction.  It
+specifies the mode of the comparison character contained in the <I>controls</I> operand.
+<P>
+The <B><U>scan state</U></B>
+is both input to and output from the instruction.  As
+input, it indicates whether the scan operation for the base string is
+being started or resumed.  If it is being <I>started</I>,
+the instruction
+assumes that the <I>base length</I> value in the <I>base end</I>
+field of the <I>controls</I> operand specifies the
+length of the base string, and the
+instruction work area value is ignored.  If it is being <I>resumed</I>,
+the instruction assumes the <I>base end</I>
+field has been set by a prior
+start scan execution of the instruction with an internal machine
+value identifying the end of the base string.
+<P>
+For a <I>start scan</I>
+execution of the instruction, the <I>scan state</I> field
+is reset to indicate resume scan to provide for subsequent resumption
+of the scan operation.  Additionally, for a <I>start scan</I> execution
+of the instruction, the <I>base end</I> field is set with an internally
+optimized value which identifies the end of the base string being
+scanned.  This value then overlays the values which were in the
+instruction work area and base length fields on input to the
+instruction.  Predictable operation of the instruction on a <I>resume
+scan</I> execution depends upon this base
+end field being left intact with the
+value set by the start scan execution.
+<P>
+For a <I>resume scan</I> execution of the instruction,
+the <I>scan state</I> and <I>base end</I> fields are unchanged.
+For a <I>resume scan</I>
+execution of the instruction, <I>base locator</I> must not contain a teraspace address
+or an <I>unsupported space use&nbsp; </I>(hex <A HREF="../exceptions/EX0607.htm">0607</A>) exception is signaled.
+<P>
+The <B><U>comparison character</U></B>
+is input to the instruction.  It specifies
+a character code to be used in the comparisons performed during the
+scanning of the base string.  The <I>comparison character mode</I>
+in the
+control indicators specifies the mode (simple or extended) of the
+comparison character.  If it is a <I>simple</I>
+character, the first byte of
+the <I>comparison character</I>
+field is ignored and the <I>comparison character</I>
+is assumed to be specified in the second byte.  If it is an <I>extended</I>
+character, the <I>comparison
+character</I> is specified as a 2-byte value
+in the <I>comparison character</I> field.
+<P>
+The <B><U>base end</U></B>
+field is both input to and output from the instruction.  It
+contains data which identifies the end of the base string.  Initially,
+for a start scan execution of the instruction, it contains the length
+of the base string in the <B><U>base length</U></B>
+field.  Additionally, the <I>base
+end</I> field is used to retain information over multiple instruction
+executions which provides for minimizing the overhead required to
+resume the scan operation for a particular base string.  This
+information is set on the initial <I>start scan</I> execution of the
+instruction and is used during subsequent <I>resume scan</I>
+executions of
+the instruction to determine the end of the base string to be scanned.
+If the end of the base string being scanned must be altered during
+iterative usage of this instruction, a <I>start scan</I>
+execution of the
+instruction must be performed to provide for correctly resetting the
+internally optimized value to be stored in the <I>base end</I>
+from the values
+specified in the <I>base locator</I> operand
+and <I>base length</I> field.
+<P>
+For the special case of a <I>start scan</I> execution
+where a length value of
+zero (no characters to scan) is specified in the <I>base length</I>
+field,
+the instruction results in a <I>not found</I> resultant condition.  In
+this case, the base
+string
+is not verified and the <I>scan state</I>
+indicator, the <I>base end</I>
+field, and the <I>base locator</I> are not changed.
+<P>
+The <I>options</I> operand must be a
+character scalar which specifies the
+options to be used to control the scan operation.  It must be at least
+4 bytes in length and has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Options operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(4)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Options indicators
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(3)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">4
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+The <I>options</I> operand must be specified
+as a constant character scalar.
+<P>
+Only the first 4 bytes of the options operand are used.  Any excess
+bytes are ignored.  Reserved fields must contain binary 0s.
+The <B><U>option indicators</U></B> field has the following format:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Option indicators
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Scan mode
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Mixed
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Nonmixed
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 2-3
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Comparison relation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Equal, (=) relation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 4
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Less than, (&lt;) relation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 5
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Greater than, (&gt;) relation
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 6
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>No match on relation
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Match on relation
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Reserved
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">1
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+The <B><U>scan mode</U></B>
+specifies whether the base string contains a mixture
+of character modes, or contains all one mode of characters; that is,
+whether or not mode control characters should be recognized in the
+base string.  <I>Mixed</I>
+specifies that there is a mixture of character
+modes and, therefore, mode control characters should be recognized. <I>Nonmixed</I>
+specifies that there is not a mixture of character modes and,
+therefore, mode control characters should not be recognized.  Note
+that the <I>base mode</I> indicator in the controls operand specifies
+the character mode of the base string character addressed by the <I>base locator</I>.
+<P>
+The <B><U>comparison relation</U></B> specifies the relation or relations of
+the comparison character to characters of the base string which will
+satisfy the scan operation and cause completion of the instruction
+with one of the <I>high, low, or equal</I>
+resultant conditions.  Multiple
+relations may be specified in conjunction with one another.  Specifying
+all relations insures a match against any character in the base string
+which is of the same mode as the comparison character.  Specifying
+no relation insures a <I>not found</I>
+resultant condition, in the absence
+of an escape due to verification, regardless of the values of the
+characters in the base string which match the mode of the comparison
+character.
+<P>
+An example of comparison scanning is a scan of simple mode characters
+for a value less than hex 40.  This could be done by specifying a <I>comparison character</I>
+of hex 40 and a <I>comparison relation</I> of <I>greater</I>
+than in conjunction with a branch option for the resultant condition
+of <I>high</I>.  This could also be done by specifying a <I>comparison
+character</I> of hex 3F and <I>comparison relations</I>
+of <I>equal</I> and <I>greater</I>
+than in conjunction with branch options for <I>equal</I>
+and <I>high</I>.  The
+target of the branch options in either case would be the instructions
+to process the character less than hex 40 in value.
+<P>
+The <I>escape target</I> operand controls
+the verification of bytes of the
+base string for values less than hex 40.  Verification, if requested,
+is always performed in conjunction with whatever comparison processing
+has been requested.  That is, verification is performed even if no
+comparison relation is specified.  This operand is discussed in more
+detail in the following material.
+<P>
+During the scan operation, the characters of the base string which are
+not of the same mode as the comparison character are skipped over until
+the mode of the characters being processed is the same as the mode
+of the comparison character.  The operation then proceeds by comparing
+the comparison character with each of the characters of the base
+string.  These comparisons behave as if the characters were being
+compared in the Compare Bytes Left Adjusted (CMPBLA) instruction.
+<P>
+If a base string character satisfying the criteria specified in the <I>controls</I> and <I>options</I> operands is found,
+the <I>base locator</I> is set to
+address the first byte of it, the <I>base mode</I> indicator is set to
+indicate the mode of the base string as of that character, and
+the instruction is completed with the appropriate resultant condition
+based on the <I>comparison relation</I>
+(<I>high, low</I>, or <I>equal</I>)
+of the <I>comparison character</I> to the base
+string character.
+<P>
+If a matching base string character is not found prior to
+encountering a mode change, the characters of the base string are
+again skipped over until the mode of the characters being processed
+is the same as the mode of the comparison character before
+comparisons are resumed.
+<P>
+If a matching base string character is not found prior to encountering
+the end of the base string, the base location is set to address the
+first byte of the character encountered at the end of the base
+string, the <I>base mode</I> indicator is set to indicate the mode of
+the base string as of that character, and the instruction is
+completed with the <I>not
+found</I> resultant condition.  A mode control
+string results in the changing of the base string mode, but the base
+locator is left addressing the mode control character.
+<P>
+If the <I>escape target</I> operand is
+specified (operand 4 is not null),
+verifications are performed on the characters of the base string
+prior to their being skipped or compared with the comparison
+character.  Each byte of the base string is checked for a value
+less than hex 40.  Additionally, for a <I>mixed</I>
+scan mode, when such a
+value is encountered, it is then determined if it is a valid mode
+control character.
+<UL>
+<P><LI>
+Hex 0E (S0) when the base string
+is being interpreted in simple character mode.
+<P><LI>
+Hex 0F (SI) in the left byte of
+the character code when the base string is being interpreted
+in extended character mode.
+</UL>
+If a byte value of less than hex 40 is not a valid mode control
+character, it is considered to be an escape code.
+The <I>base locator</I>
+is set to address the first byte of the base string character (simple
+or extended) which contains the escape code, the <I>base mode</I>
+indicator is set to indicate the mode of the base string as
+of that character, and a branch is taken to the target specified by
+the <I>escape target</I> operand.
+When the escape target branch is performed,
+the value of any optional indicator operands is meaningless.
+<P>
+If the <I>escape target</I> operand is not specified
+(operand 4 is null),
+verifications of the character codes in the base string are not
+performed.  However, for a <I>mixed</I>
+scan mode, mode control values are
+always processed as described previously under the discussion of
+the mixed scan mode.
+<P>
+If possible, use a space pointer machine object for the base
+locator, operand 1.  Appreciably less overhead is incurred in
+accessing and storing the value of
+the <I>base locator</I> if this is done.
+<P>
+If possible, specify through its ODT definition, the <I>controls</I>
+operand on an 8-byte multiple (doubleword) boundary
+relative to the start of the space containing it.  Appreciably less
+overhead is incurred in accessing and storing the value of the <I>controls</I> if this is done.
+<P>
+For the case where a base string is to be just scanned for byte
+values less than hex 40, two techniques can be used.
+<UL>
+<P><LI>
+A direct
+simple mode scan for a value less than hex 40 without usage of the <I>escape target</I> verification feature.
+<P><LI>
+A scan for
+any character with usage of
+the <I>escape target</I> verification feature.
+<P>
+The direct scan
+approach, the former, is the more efficient.
+</UL>
+<P>
+The following diagram defines the various conditions which can be
+encountered at the end of the base string and what the base
+locator addressability is in each case.  The solid vertical line
+represents the end of the base string.  The dashes represent
+the bytes before and after the base string end.  The V is
+positioned over the byte addressed by the base locator in each
+case.  These are the conditions which can be encountered
+when the <I>base locator</I> input to the instruction addresses a byte
+prior to the base string end.  When the base length field specifies
+a value of zero for a start scan execution of the instruction, or the
+input base locator addresses a point beyond the end of the instruction,
+no processing is performed and the instruction is immediately completed
+with the <I>not found</I> resultant condition.
+<P>
+<B><BR><IMG SRC="scandigm.gif" ALT="Figure scandigm not displayed."><BR></B>
+<P>
+An analysis of the diagram shows that normally, after appropriate
+processing for the particular <I>found, not found, or escape</I>
+condition,
+the scan can be restarted at the byte of data which would follow the
+base string end in the data stream being scanned.  Any mode shift
+required by an ending mode control character will have been performed.
+<P>
+However, one ending condition may require subsequent resumption of
+the scan at the character encountered at the end of the base string.
+This is the case where the instruction completes with the <I>not
+found</I>
+resultant condition and the base string ends with an extended
+character split across string end.  That is, the <I>base mode</I>
+indicator
+specifies <I>extended</I>
+mode, the <I>base locator</I> addresses the last byte
+of the base string, and that byte value is not a shift out, hex 0E
+character.  In this case, complete verification of the extended
+character and relation comparison could not be performed.  If
+this extended character is to be processed, it must be done through
+another execution of the Scan instruction where both bytes of
+the character can be input to the instruction within the confines of
+the base string.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>
+Equal:  A character
+value was found in the base string which satisfies the criteria
+specified in the <I>controls</I> and <I>options</I> operands
+in that the comparison
+character is of equal string value to the base
+string character.
+<P><LI>
+High:  A character
+value was found in the base string which satisfies the criteria
+specified in the <I>controls</I> and <I>options</I> operands
+in that the comparison
+character is of higher string value to the base
+string character.
+<P><LI>
+Low:  A character
+value was found in the base string which satisfies the criteria
+specified in the <I>controls</I> and <I>options</I> operands
+in that the comparison
+character is of lower string value to the base
+string character.
+<P><LI>
+Not found:  A character
+value was not found in the base string which satisfied the criteria
+specified in the <I>controls</I> and <I>options</I> operands.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0607.htm">0607 Unsupported Space Use</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,211 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> SCAN Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Scan (SCAN)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand &#91;4-5&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SCAN</B>
+10D3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Base
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SCANB</B>
+1CD3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Base
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>SCANI</B>
+18D3
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Base
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Compare operand
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Binary variable scalar or binary array.
+<P>
+<I>Operand 2</I>:  Character variable scalar.
+<P>
+<I>Operand 3</I>:  Character scalar.
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The character string value of the <I>base</I>
+operand is scanned for occurrences of
+the character string value of the <I>compare</I> operand.
+<P>
+The <I>base</I> and <I>compare</I> operands must both
+be character strings.  The length
+of the <I>compare</I> operand must not be greater
+than that of the base string.
+<P>
+The operation begins at the left end of the base string
+and continues character
+by character, from left to right, comparing the characters of the base
+string with those of the <I>compare</I> operand.  The length of
+the comparisons are equal to the length of
+the <I>compare</I> operand value
+and function as if they were being compared
+in the Compare Bytes Left-Adjusted (<A HREF="CMPBLA.htm">CMPBLA</A>) instruction.
+<P>
+If a set of bytes that match the <I>compare</I> operand is found,
+the binary value for the ordinal position
+of its leftmost base string character is placed in the <I>receiver</I>
+operand.
+<P>
+If the <I>receiver</I> operand is a scalar, only the first
+occurrence of the <I>compare</I> operand
+is noted.  If it is an array, as many occurrences as
+there are elements in the array are noted.
+<P>
+The operation continues until no more occurrences of the <I>compare</I> operand can be noted
+in the <I>receiver</I> operand or until the number of characters
+(bytes) remaining
+to be scanned in the base string is less than the length
+of the <I>compare</I> operand.
+<P>
+When the second condition occurs,
+the <I>receiver</I> value is set to 0.  If the <I>receiver</I> operand is an array, all its remaining elements
+are also set to 0.
+<P>
+The <I>base</I> operand and the <I>compare</I> operand
+can be variable length substring
+compound operands.
+<P>
+Substring operand references that allow for a null substring
+reference (a length value of zero) may be specified for
+operands 2 and 3.  The effect of specifying a null substring
+reference for the <I>compare</I> operand or both operands is that the <I>receiver</I> is set to zero (no match found) and the instruction's
+resultant condition is null <I>compare</I> operand.  Specifying a null
+substring reference for just the <I>base</I> operand
+is not allowed due to
+the requirement that the length of the <I>compare</I> operand must not
+be greater than that of the base string.
+<P>
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Zero-The numeric value(s)
+of the receiver <I>operand</I> is zero.  When the <I>receiver</I> operand is an array,
+the resultant condition is zero if all
+elements are zero.  One of these two conditions will result when
+the <I>compare</I> operand is not a null substring reference.
+<P><LI>Positive-The numeric value(s)
+of the <I>receiver</I> operand is positive.
+<P><LI>Null compare
+operand-The compare operand is a null substring reference;
+therefore, the <I>receiver</I> has been
+set to zero which indicates that no
+occurrences were found.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C08.htm">0C08 Length Conformance</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

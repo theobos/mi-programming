@@ -1,0 +1,688 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> DEQ Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Dequeue (DEQ)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 3
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Operand 4-5
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DEQ</B>
+1033
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message prefix
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message text
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Queue or queue template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DEQB</B>
+1C33
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message prefix
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message text
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Queue or queue template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="6"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%"><B>DEQI</B>
+1833
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message prefix
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Message text
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Queue or queue template
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="17%">Indicator targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Character variable scalar.
+<P>
+<I>Operand 2</I>:  Space pointer.
+<P>
+<I>Operand 3</I>:  System pointer or space pointer data object.
+<P>
+<I>Operand 4-5</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<P>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for DEQ is 41.
+DEQ (
+     message_prefix   : address
+     message_text     : address
+     queue            : address of system pointer OR<font color=blue>
+                        address of space pointer(16)</FONT>
+) :   signed binary(4) /* return_code */
+</PRE>
+<P>The return code is set as follows&#58;
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD><P><B>Return code</B>
+</TD><TD><P><B>Meaning</B>
+</TD></TR><TR VALIGN="TOP"><TD><P><B>1
+</B></TD><TD><P>Message Dequeued.
+</TD></TR><TR VALIGN="TOP"><TD><P><B>0
+</B></TD><TD><P>Message Not Dequeued.
+</TD></TR></TABLE>
+<P>This built-in function corresponds to the branch and indicator
+forms of the DEQ operation.
+<PRE>
+ 
+  <B>-- OR --</B>
+ 
+<P><A NAME="deqwait"></A>Built-in number for DEQWAIT is 42.
+DEQWAIT (
+         message_prefix   : address
+         message_text     : address
+         queue            : address of system pointer OR<font color=blue>
+                            address of space pointer(16)</FONT>
+)
+</PRE>
+<P>This built-in function corresponds to the non-branch and
+non-indicator
+form of the DEQ operation.
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+Retrieves a queue message based on the <I>queue type</I> (FIFO, LIFO, or keyed) specified during the queue's
+creation.  If the queue was created with the <I>keyed</I> option,
+messages can be retrieved by any of the following relationships between
+an enqueued <I>message key</I> and a <I>selection key</I> specified
+in operand 1 of the Dequeue instruction:  &#61;, &lt;&gt;, &gt;, &lt;, &lt;&#61;,
+and &gt;&#61;.  If the queue was created with either the <I>LIFO</I> or <I>FIFO</I> attribute, then only the next message can be retrieved
+from the queue.
+<P>
+If a message is not found that satisfies the dequeue selection criterion
+and the branch or indicator options are not specified,
+the thread waits until a
+message arrives to satisfy the dequeue or until the <I>dequeue wait time-out</I> expires.  If branch or indicator options
+are specified, the thread is not placed in the dequeue wait state and
+either the control flow is altered according to the branch options, or
+indicator values are set based on the presence or absence of a message
+to be dequeued.
+<P>
+If operand 3 is a system pointer, the message is dequeued from
+the <I>queue</I>
+specified by operand 3.  If operand 3 is a space pointer, the message is
+dequeued from the queue which is specified in the template pointed to by
+the space pointer.  The format of this template is given later in this
+section.  The criteria for message selection are given in the <I>message
+prefix</I> specified by operand 1.
+The <I>message text</I> is returned in the
+space specified by operand 2, and the <I>message prefix</I> is
+returned in the
+scalar specified by operand 1.
+<font color=blue>
+If an exception is signaled, the <I>message text</I> and <I>message prefix</I> may be changed, but do not contain valid data.
+</FONT>
+Improper alignment results in an
+exception being signaled.  The format of the <I>message prefix</I>
+is as
+follows:
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Timestamp of enqueue of message
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
+++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">8
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Dequeue wait time-out value
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(8)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(ignored if branch options specified)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Size of message dequeued
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Bin(4)
+++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+(The maximum allowable size of a queue message is 64 K bytes.)
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Access state modification option indicator and
+message selection criteria
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(1)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Access state modification option when
+entering Dequeue wait
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 0
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Access state is not modified
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Access state is modified
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Access state modification option when
+leaving Dequeue wait
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 1
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Access state is not modified
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Access state is modified
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Multiprogramming level option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 2
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Leave current MPL set at
+Dequeue wait
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Remain in current MPL set
+at Dequeue wait
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Time-out option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bit 3
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Wait for specified time,
+then signal time-out exception
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Wait indefinitely
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">14
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Actual key to input key relationship
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Bits 4-7
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">
+(for keyed queue)
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0010 =
+</TD><TD>Greater than
+</TD></TR><TR VALIGN="TOP"><TD>0100 =
+</TD><TD>Less than
+</TD></TR><TR VALIGN="TOP"><TD>0110 =
+</TD><TD>Not equal
+</TD></TR><TR VALIGN="TOP"><TD>1000 =
+</TD><TD>Equal
+</TD></TR><TR VALIGN="TOP"><TD>1010 =
+</TD><TD>Greater than or equal
+</TD></TR><TR VALIGN="TOP"><TD>1100 =
+</TD><TD>Less than or equal
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Search key (ignored for FIFO/LIFO queues
+but must be present for FIFO/LIFO
+queues with nonzero key length values)
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(key length)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Message key
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(key length)
+++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">*
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Fields shown here with one plus sign (+)
+indicate input to the instruction,
+and fields shown here with two plus signs (++)
+are returned by the machine.
+</TD></TR></TABLE>
+<P>
+A nonzero <B><U>dequeue wait time-out value</U></B> overrides any <I>dequeue wait time-out</I> value specified as the current process
+attribute.  A zero <I>dequeue wait time-out value</I> causes the wait
+time-out value to be taken from the current process attribute.  If all
+wait time-out values are 0 (from the Dequeue instruction and the current
+process attribute), a <I> dequeue time-out&nbsp; </I> (hex <A HREF="../exceptions/EX3A01.htm">3A01</A>) exception
+is signaled.
+See
+<A class="content" HREF="../MININ.htm#HDRTIMEFMT">Standard Time Format</A> for additional information
+on the format of the <I>dequeue wait time-out</I>.
+The maximum <I>dequeue
+wait time-out</I> interval allowed is a value equal to (2<SUP>48</SUP>
+- 1) microseconds.  Any value that indicates more time than the maximum
+wait time-out causes the maximum wait time-out to be used.
+<P>
+The <B><U>size of message dequeued</U></B> is returned in the <I>message
+prefix</I>.
+The <I>size of message dequeued</I> can be less than or
+equal to the <I>maximum size of message</I> specified when the queue
+was created.  When dequeuing from a keyed queue, the length of the <I>search key</I> field and the length of the <I>message key</I>
+field (in the message key prefix specified in operand 1) are determined
+implicitly by the attributes of the queue being accessed.  If the
+message text on the queue contains pointers, the <I>message text</I>
+operand
+must be 16-byte aligned.
+<P>
+The <B><U>access state</U></B> of the process access group is modified when a
+Dequeue instruction results in a wait and the following conditions
+exist&#58;
+<UL>
+<P><LI>
+The process' <I>instruction wait initiation access state</I>
+control attribute specifies allow access state modification
+<P><LI>
+The <I>dequeue access state modification</I> option specifies <I>modify access state</I>
+<P><LI>
+The <B><U>multiprogramming level option</U></B> specifies <I>leave MPL</I>
+set during wait.
+<P><LI>The process is not multi-threaded (i.e. the waiting thread is the
+only thread in the process)
+</UL>
+<P>
+The thread will remain in the current MPL set for an
+implementation-defined period which will not exceed 2 seconds, if the <I>multiprogramming level option</I> specifies <I>remain in current
+MPL set at Dequeue wait</I>.  If the wait has not been satisfied at the
+end of this period, the thread will automatically be removed from the
+current MPL set.
+The automatic removal does not change or affect the total wait time
+specified for the thread by the <I>dequeue wait time-out value</I>.
+<P>
+Operand 3 can be a system pointer or a space pointer.  If it is a system
+pointer, this pointer will be addressing the queue from which the
+message is to be dequeued.  If it is a space pointer, this pointer will
+be addressing a template which will contain the system pointer to the
+queue as well as the <I>dequeue template extension</I>.
+The <I>queue template</I> is 32
+bytes in length and must be aligned on a 16-byte boundary with the
+format as follows:
+<P>
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">Offset
+</TH><TH ALIGN="CENTER" VALIGN="TOP" COLSPAN="12"><BR></TH></TR><TR>
+<TH ALIGN="RIGHT" VALIGN="TOP">Dec
+</TH><TH ALIGN="RIGHT" VALIGN="TOP">Hex
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Field Name
+</TH><TH ALIGN="LEFT" VALIGN="TOP">
+<BR></TH><TH ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Data Type and Length
+</TH></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">0
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Queue
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">System pointer
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Dequeue template extension
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">Char(16)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Extension options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(1)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Modify thread event mask option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 0
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not modify thread event mask
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Modify thread event mask
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Asynchronous signals processing option
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bit 1
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="RIGHT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0 =
+</TD><TD>Do not allow asynchronous signal processing during Dequeue wait
+</TD></TR><TR VALIGN="TOP"><TD>1 =
+</TD><TD>Allow asynchronous signal processing during Dequeue wait
+</TD></TR></TABLE>
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3"><BR></TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">16
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">10
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bits 2-7
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Extension area
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="4">Char(15)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">17
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">11
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">New thread event mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(2)
++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">19
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">13
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Previous thread event mask
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Bin(2)
+++
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">21
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">15
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Reserved (binary 0)
+</TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="3">Char(11)
+</TD></TR><TR>
+<TD ALIGN="RIGHT" VALIGN="TOP">32
+</TD><TD ALIGN="RIGHT" VALIGN="TOP">20
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">--- End ---
+</TD><TD ALIGN="LEFT" VALIGN="TOP">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5">
+<BR></TD></TR></TABLE>
+<P>
+<TABLE><TR><TD ALIGN="LEFT" VALIGN="TOP"><B>Note:</B></TD><TD ALIGN="LEFT" VALIGN="TOP">
+Fields shown here with one plus sign (+)
+indicate input to the instruction,
+and fields shown here with two plus signs (++)
+are returned by the machine.
+</TD></TR></TABLE>
+<P>
+The <B><U>modify thread event mask option</U></B> controls the state of the
+event mask in the thread executing this instruction.  If the <I>modify thread event mask option</I> field specifies to <I>modify thread event mask</I>, the thread event mask will be
+changed as specified by the <B><U>new thread event mask</U></B> field.  When
+the thread event mask is changed, the current thread event mask will
+be returned in the <B><U>previous thread event mask</U></B> field.
+The <I>previous thread event mask</I> is only returned when the <I>modify thread event mask option</I> is set to 1.
+<P>
+If the system security level machine attribute is hex 40 or greater and
+the thread is running in user state, a <I> template value invalid&nbsp;</I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception is signalled if the <I>modify thread event mask
+option</I> is set to <I>modify thread event mask</I>.
+<P>
+If the <I>thread event mask</I> is in the <I>masked</I> state, the
+machine does not schedule signaled event monitors in the thread.  The
+event monitors continue to be signaled by the machine or other
+threads.  When the thread is modified to the <I>unmasked</I> state,
+event handlers are scheduled to handle those events that occurred while
+the thread was masked and those events occurring while in the unmasked
+state.  The number of signals retained while the thread is masked is
+specified by the attributes of the event monitor associated with the
+process or thread.
+<P>
+The thread is automatically masked by the machine when event handlers
+are invoked.  If the thread is unmasked in the event handler, other
+events can be handled if another enabled event monitor within that
+thread is signaled.  If the thread is masked when it exits from the
+event handler, the machine explicitly unmasks the thread.
+<P>
+Valid masking values are:
+<TABLE CELLPADDING="3">
+<TR VALIGN="TOP"><TD>0
+</TD><TD>Masked
+</TD></TR><TR VALIGN="TOP"><TD>256
+</TD><TD>Unmasked
+</TD></TR></TABLE>
+<P>
+Other values are reserved and must not be specified.  If any other
+values are specified, a <I> template value invalid&nbsp; </I> (hex <A HREF="../exceptions/EX3801.htm">3801</A>) exception
+is signaled.
+<P>
+Whether masking or unmasking the current thread, the new mask takes
+effect upon completion of a satisfied dequeue.
+<P>
+The <B><U>asynchronous signals processing option</U></B> controls the action
+to be taken if an asynchronous signal is pending or received while in a
+Dequeue wait.  If an asynchronous signal that is not blocked or ignored
+is generated for the process and the <I>asynchronous signals processing
+option</I> indicates <I>allow asynchronous signal processing during
+Dequeue wait</I>, the Dequeue wait will be terminated and an <I> asynchronous signal terminated MI wait&nbsp;</I> (hex <A HREF="../exceptions/EX4C01.htm">4C01</A>) exception is signaled.  Otherwise, when the <I>asynchronous
+signals processing option</I> indicates <I>do not allow asynchronous
+signal processing during Dequeue wait</I>, the process remains in the
+wait until a message arrives to satisfy the dequeue or until the <I>dequeue wait time-out value</I> expires.
+<P>
+<H5><A Name="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Equal - message dequeued
+<P><LI>Not equal - message not dequeued
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>
+Retrieve
+<UL>
+<P><LI>
+Operand 3
+</UL>
+<P><LI>Execute
+<UL>
+<P><LI>Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>
+Materialize
+<UL>
+<P><LI>
+Contexts referenced for address resolution
+</UL>
+</UL>
+<P>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0A Authorization
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0A01.htm">0A01 Unauthorized for Operation </A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1005.htm">1005 Authority Verification Terminated Due to Damaged Object</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1A Lock State
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1A01.htm">1A01 Invalid Lock State</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2207.htm">2207 Authority Verification Terminated Due to Destroyed Object</A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+<DD> <A HREF="../exceptions/EX2403.htm">2403 Pointer Addressing Invalid Object Type</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<font color=blue>
+<DD><P>30 Journal
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3002.htm">3002 Entry Not Journaled</A>
+</DL>
+</FONT>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3203.htm">3203 Scalar Value Invalid</A>
+</DL>
+<DD><P>38 Template Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3801.htm">3801 Template Value Invalid</A>
+</DL>
+<DD><P>3A Wait Time-Out
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3A01.htm">3A01 Dequeue Time-Out</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+<DD><P>4C Signals Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4C01.htm">4C01 Asynchronous Signal Terminated MI Wait</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

@@ -1,0 +1,285 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> CPYNV Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Copy Numeric Value (CPYNV)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand &#91;3-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNV</B>
+1042
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNVR</B>
+1242
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">
+<BR></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNVB</B>
+1C42
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNVBR</B>
+1E42
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr></TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNVI</B>
+1842
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CPYNVIR</B>
+1A42
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Receiver
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Source
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR></TABLE>
+<P>
+<I>Operand 1</I>:  Numeric variable scalar or data-pointer-defined
+numeric scalar.
+<P>
+<I>Operand 2</I>:  Numeric scalar or data pointer-defined-numeric
+scalar.
+<P>
+<I>Operand 3-6</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Branch point, instruction pointer, relative
+instruction number, or absolute instruction number.
+<P><LI>
+<I>Indicator Form</I>-Numeric variable scalar or character
+variable scalar.
+</UL>
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P><A NAME="lbcpynv"></A>Built-in number for LBCPYNV is 129.
+LBCPYNV (
+         receiver              : address of  signed binary OR
+                                 address of  unsigned binary OR
+                                 address of  zoned decimal OR
+                                 address of  packed decimal OR
+                                 address of  floating point
+         receiver_attributes   : address (See SETDPAT for format of attributes)
+         source                : address of signed binary OR
+                                 address of unsigned binary OR
+                                 address of zoned decimal OR
+                                 address of packed decimal OR
+                                 address of floating point
+         source_attributes     : address (See SETDPAT for format of attributes)
+)
+ 
+<B>-- OR --</B>
+ 
+<P><A NAME="lbcpynvr"></A>Built-in number for LBCPYNVR is 478. 
+LBCPYNVR (
+          receiver              : address of  signed binary OR
+                                  address of  unsigned binary OR
+                                  address of  zoned decimal OR
+                                  address of  packed decimal OR
+                                  address of  floating point
+          receiver_attributes   : address (See SETDPAT for format of attributes
+          source                : address of signed binary OR
+                                  address of unsigned binary OR
+                                  address of zoned decimal OR
+                                  address of packed decimal OR
+                                  address of floating point
+          source_attributes     : address (See SETDPAT for format of attributes
+)
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The numeric value of the <I>source</I> operand
+is copied to the numeric <I>receiver</I> operand.
+<P>
+Both operands must be numeric.
+If necessary, the <I>source</I> operand
+is converted to the same type as
+the <I>receiver</I> operand before
+being copied to the <I>receiver</I> operand.
+The <I>source</I> value is adjusted to the length
+of the <I>receiver</I>
+operand, aligned at the assumed decimal
+point of the <I>receiver</I> operand, or both before being
+copied to it.
+Length adjustment and decimal point alignment
+are performed according to
+the rules of arithmetic operations
+outlined in the
+<A class="content" HREF="../MCNPFAO.htm">Arithmetic Operations.</A>
+If significant
+digits are truncated on the left end of the source value, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+When the <I>receiver</I> is binary,
+the <I>size&nbsp; </I>(hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception may be suppressed
+using program creation options or by changing the <I>suppress binary size exception attribute</I> program attribute
+using the Override Program Attributes (<A HREF="OVRPGATR.htm">OVRPGATR</A>) instruction.
+<P>
+If a decimal to binary conversion causes a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+to
+be signaled or if the <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is suppressed,
+the binary value contains the correct truncated
+result only if the decimal value contains 15 or fewer significant
+nonfractional digits.
+<P>
+Conversions between floating-point integers and integer formats
+(binary or decimal with no
+fractional digits) is exact, except when an exception is signaled.
+<P>
+An <I> invalid floating-point conversion&nbsp; </I> (hex <A HREF="../exceptions/EX0C0C.htm">0C0C</A>) exception
+is signaled when
+an attempt is made to convert from
+floating-point to binary or decimal and the result would
+represent infinity or NaN, or nonzero
+digits would be truncated from the left end of the resultant value.
+<P>
+For the optional round form of the instruction,
+a floating-point <I>receiver</I>
+operand is invalid.
+<P>
+For a fixed-point operation, if significant digits are
+truncated from the left end of the <I>source</I>
+value, a <I> size&nbsp; </I> (hex <A HREF="../exceptions/EX0C0A.htm">0C0A</A>) exception
+is signaled.
+<P>
+For a floating-point <I>receiver</I>, if the exponent of the resultant
+value is too large or too small to
+be represented in the <I>receiver</I> field, the <I> floating-point overflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C06.htm">0C06</A>) exception
+and <I> floating-point underflow&nbsp; </I> (hex <A HREF="../exceptions/EX0C07.htm">0C07</A>) exception
+are signaled, respectively.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>Positive-The
+algebraic value of the numeric scalar <I>receiver</I> operand is positive.
+<P><LI>Negative-The
+algebraic value of the numeric scalar <I>receiver</I> operand is negative.
+<P><LI>Zero-The
+algebraic value of the numeric scalar <I>receiver</I> operand is zero.
+<P><LI>Unordered-The value assigned a
+floating-point <I>receiver</I> operand is NaN.
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+<DD><A HREF="../exceptions/EX0604.htm">0604 External Data Object Not Found</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>0C Computation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0C02.htm">0C02 Decimal Data </A>
+<DD><A HREF="../exceptions/EX0C06.htm">0C06 Floating-Point Overflow </A>
+<DD><A HREF="../exceptions/EX0C07.htm">0C07 Floating-Point Underflow </A>
+<DD><A HREF="../exceptions/EX0C09.htm">0C09 Floating-Point Invalid Operand </A>
+<DD><A HREF="../exceptions/EX0C0A.htm">0C0A Size</A>
+<DD><A HREF="../exceptions/EX0C0C.htm">0C0C Invalid Floating-Point Conversion</A>
+<DD><A HREF="../exceptions/EX0C0D.htm">0C0D Floating-Point Inexact Result</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2C Program Execution
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2C04.htm">2C04 Branch Target Invalid</A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>32 Scalar Specification
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3201.htm">3201 Scalar Type Invalid</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+<DD><A HREF="../exceptions/EX4402.htm">4402 Literal Values Cannot Be Changed</A>
+</DL>
+</DL>
+
+
+</body>
+
+</HTML>

@@ -1,0 +1,82 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+<title> TESTSUBSET Instruction </title>
+			<link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Test Subset (TESTSUBSET)</H1>
+<P>
+
+<TABLE BORDER WIDTH="100%"><TR><TH ALIGN="LEFT">Bound program access</TH><TR><TD>
+<PRE>
+<P>Built-in number for TESTSUBSET is 464.
+TESTSUBSET (
+            first_source_string    : address of aggregate(*)
+            second_source_string   : address of aggregate(*)
+            string_length          : unsigned binary(4,8) literal value
+                                     which specifies the length of the
+                                     two strings
+) :   unsigned binary(4,8) value specifying the boolean result of the
+      test /* result */
+</PRE>
+</TD></TR></TABLE>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>Each byte value
+of the <I>first source string</I>,
+for the number of bytes indicated by <I>string length</I>,
+is logically <B>and</B>ed with the
+corresponding byte value
+of the <I>second source string</I>, on a bit-by-bit basis.
+The results are then compared with the <I>first source
+string</I>.  The result is set to 1 if the strings are equal,
+otherwise it is set to 0.
+If the strings overlap in storage,
+predictable results occur only if the overlap is fully coincident.
+<P>
+If the space(s) indicated by the two addresses are not long enough to
+contain the number of bytes indicated by <I>string length</I>,
+a <I>space addressing violation&nbsp; </I>(hex <A HREF="../exceptions/EX0601.htm">0601</A>) exception is signalled.  Partial results in this case are
+unpredictable.
+<P>
+<H4><A NAME="Header_3">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_4">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+</body>
+
+</HTML>

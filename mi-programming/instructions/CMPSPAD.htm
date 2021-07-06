@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+ <title> CMPSPAD Instruction </title>
+ <link rel="stylesheet" type="text/css" href="../tstudio.css">
+</head>
+
+<body>
+<H1>Compare Space Addressability (CMPSPAD)</H1>
+<P>
+
+<BR>
+<TABLE>
+<TR>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Op Code (Hex)
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Extender
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 1
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 2
+</TH><TH ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Operand 3&nbsp;&#91;4-6&#93;
+</TH></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CMPSPADB</B>
+1CF2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compare
+operand 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compare
+operand 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Branch targets
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="5"><hr>
+</TD></TR><TR>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%"><B>CMPSPADI</B>
+18F2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator options
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compare
+operand 1
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Compare
+operand 2
+</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH="20%">Indicator targets
+</TD></TR></TABLE>
+<BR>
+<I>Operand 1</I>:  Numeric variable scalar, character variable
+scalar, numeric variable array, character variable array,
+pointer data object, pointer data object array.
+<P>
+<I>Operand 2</I>:  Numeric variable scalar, character variable
+scalar, numeric variable array, character variable array,
+pointer data object, pointer data object array.
+<P>
+<I>Operand 3 &#91;4-6&#93;</I>:
+<UL>
+<P><LI>
+<I>Branch Form</I>-Instruction
+number, relative instruction number, branch point, or
+instruction pointer.
+<P><LI>
+<I>Indicator Form</I>-Numeric
+variable scalar or character variable scalar.
+</UL>
+<P>
+<H5><A NAME="Header_2">Description</A></H5>
+<P>
+The space addressability of the object
+specified by operand 1
+is compared with the space addressability of the object
+specified by operand 2.
+<P>
+Based on the results of the comparison, the resulting condition is used
+with the extender to transfer control (branch form) or to assign
+a value to each of the indicator operands (indicator form).
+If the operands are not in the same space, the resultant condition
+is <I>unequal</I>.
+If the operands are in the same space and the offset of operand 1
+is larger or smaller
+than the offset of operand 2, the resultant condition is <I>high</I> or <I>low</I>,
+respectively.
+Equal occurs only if the operands are in the same space at the
+same offset.  Therefore, the resultant conditions
+(<I>high, low, equal</I>, and <I>unequal</I>) are mutually exclusive.
+Consequently, if you specify that an action be taken upon
+the nonexistence
+of a condition, this results in the action being taken upon
+the occurrence of any of the other three possible conditions.
+For example, a branch not high would result in the branch being taken
+on a <I>low, equal</I>, or <I>unequal</I> condition.
+<P>
+If a pointer data object operand contains a data pointer value upon
+execution of the instruction, the addressability is compared to the
+pointer data object rather than to the scalar described by the data
+pointer value.  The variable scalar references allowed on operands
+1 and 2 cannot be described through a data pointer value.
+<P>
+The <I> object destroyed&nbsp;</I> (hex <A HREF="../exceptions/EX2202.htm">2202</A>) exception, <I> parameter reference violation&nbsp;</I> (hex <A HREF="../exceptions/EX0801.htm">0801</A>) exception, and <I> pointer does not exist&nbsp; </I> (hex <A HREF="../exceptions/EX2401.htm">2401</A>) exception
+are not signaled when operand 1 or
+operand 2 is based on a space pointer machine object.  This
+occurs when the space pointer machine
+object contains an internal
+machine value that indicates one of these error conditions
+exists.  If the corresponding exception
+is not signaled, the resulting condition of the comparison
+operation is not defined other than that it
+will be one of the four valid resultant conditions for this instruction.
+<P>
+<H5><A NAME="Header_3">Resultant Conditions</A></H5>
+<UL>
+<P><LI>High
+<P><LI>Low
+<P><LI>Equal
+<P><LI>Unequal
+</UL>
+<P>
+<H4><A NAME="Header_4">Authorization Required</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_5">Lock Enforcement</A></H4>
+<UL>
+<P><LI>None
+</UL>
+<P>
+<H4><A NAME="Header_6">Exceptions</A></H4>
+<DL>
+<DD><P>06 Addressing
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0601.htm">0601 Space Addressing Violation</A>
+<DD><A HREF="../exceptions/EX0602.htm">0602 Boundary Alignment</A>
+<DD><A HREF="../exceptions/EX0603.htm">0603 Range</A>
+</DL>
+<DD><P>08 Argument/Parameter
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX0801.htm">0801 Parameter Reference Violation</A>
+</DL>
+<DD><P>10 Damage Encountered
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1004.htm">1004 System Object Damage State</A>
+<DD><A HREF="../exceptions/EX1044.htm">1044 Partial System Object Damage</A>
+</DL>
+<DD><P>1C Machine-Dependent
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX1C03.htm">1C03 Machine Storage Limit Exceeded</A>
+</DL>
+<DD><P>20 Machine Support
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2002.htm">2002 Machine Check</A>
+<DD><A HREF="../exceptions/EX2003.htm">2003 Function Check</A>
+</DL>
+<DD><P>22 Object Access
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2201.htm">2201 Object Not Found </A>
+<DD><A HREF="../exceptions/EX2202.htm">2202 Object Destroyed </A>
+<DD><A HREF="../exceptions/EX2203.htm">2203 Object Suspended </A>
+<DD><A HREF="../exceptions/EX2208.htm">2208 Object Compressed </A>
+</DL>
+<DD><P>24 Pointer Specification
+<DL COMPACT>
+<DD> <A HREF="../exceptions/EX2401.htm">2401 Pointer Does Not Exist</A>
+<DD> <A HREF="../exceptions/EX2402.htm">2402 Pointer Type Invalid </A>
+</DL>
+<DD><P>2E Resource Control Limit
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX2E01.htm">2E01 User Profile Storage Limit Exceeded</A>
+</DL>
+<DD><P>36 Space Management
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX3601.htm">3601 Space Extension/Truncation</A>
+</DL>
+<DD><P>44 Protection Violation
+<DL COMPACT>
+<DD><A HREF="../exceptions/EX4401.htm">4401 Object Domain or Hardware Storage Protection Violation</A>
+</DL>
+</DL>
+
+
+</body>
+
+</HTML>
