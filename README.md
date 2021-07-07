@@ -10,4 +10,4 @@ but for some programming challenges MI offers flexibility, speed, and a lot of f
 Start here:
 
 * MI Instructions: index.htm
-* Programmer's Guide: mi-programming.pdf
+* MI Programming: book/index.html
