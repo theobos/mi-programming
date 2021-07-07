@@ -1,0 +1,2066 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="mlp019_files/filelist.xml">
+<title>following quartically convergent algorithm, which is related to
+Ramanujan's work on elliptic integrals: </title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Leif Svalgaard</o:Author>
+  <o:LastAuthor>BOS Theo</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>201</o:TotalTime>
+  <o:Created>2021-07-07T07:57:00Z</o:Created>
+  <o:LastSaved>2021-07-07T07:57:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1462</o:Words>
+  <o:Characters>8044</o:Characters>
+  <o:Company>Dell Computer Corporation</o:Company>
+  <o:Lines>67</o:Lines>
+  <o:Paragraphs>18</o:Paragraphs>
+  <o:CharactersWithSpaces>9488</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="mlp019_files/themedata.thmx">
+<link rel=colorSchemeMapping href="mlp019_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>NL</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseWord97LineBreakingRules/>
+   <w:SelectEntireFieldWithStartOrEnd/>
+   <w:UseWord2002TableStyleRules/>
+   <w:UseWord2010TableStyleRules/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:UnderlineTabInNumList/>
+   <w:HangulWidthLikeWW11/>
+   <w:UseNormalStyleForList/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="0" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h4
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h5
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h6
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	mso-list:l0 level6 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:7;
+	mso-list:l0 level7 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:8;
+	mso-list:l0 level8 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:9;
+	mso-list:l0 level9 lfo1;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("mlp019_files/header.html") fs;
+	mso-footnote-continuation-separator:url("mlp019_files/header.html") fcs;
+	mso-endnote-separator:url("mlp019_files/header.html") es;
+	mso-endnote-continuation-separator:url("mlp019_files/header.html") ecs;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:50.4pt;
+	mso-page-numbers-chapter-style:header-1;
+	mso-even-footer:url("mlp019_files/header.html") ef1;
+	mso-footer:url("mlp019_files/header.html") f1;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:2095203196;
+	mso-list-template-ids:652271408;}
+@list l0:level1
+	{mso-level-start-at:19;
+	mso-level-style-link:"Heading 1";
+	mso-level-suffix:space;
+	mso-level-text:"Chapter %1";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level2
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 2";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level3
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 3";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level4
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 4";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level5
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 5";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level6
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 6";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 7";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 8";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 9";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=NL link=blue vlink=purple style='tab-interval:36.0pt;word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:Arial;mso-bidi-font-family:Arial'><span
+style='mso-list:Ignore'>Chapter 19 </span></span><![endif]><span lang=EN-US><br>
+</span><span lang=EN-US style='font-size:10.0pt'><br>
+</span><span lang=EN-US>Calculating Archimedes’ Constant,</span><span
+lang=EN-US style='font-size:20.0pt;mso-bidi-font-size:10.0pt;font-family:"Times New Roman",serif'>
+</span><span lang=EN-US style='font-size:18.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Times New Roman",serif'>&#960;</span></h1>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>An Amazing Formula for </span><span lang=EN-US style='font-size:
+14.0pt;mso-bidi-font-size:10.0pt;font-family:"Times New Roman",serif'>&#960;</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>People have been calculating the value of
+the ratio of a circle’s perimeter to its diameter for millennia. In the 3<sup>rd</sup>
+century B.C., Archimedes (287 B.C. - 212 B.C.) considered inscribed and circumscribed
+regular polygons of 96 sides and deduced that 3</span><span lang=EN-US
+style='font-size:3.0pt;mso-bidi-font-size:10.0pt'> </span><sup><span
+lang=EN-US>10</span></sup><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'>/</span><sub><span lang=EN-US>71</span></sub><span lang=EN-US> &lt;</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:10.0pt'>&#960;</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US>&lt; 3</span><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'> </span><sup><span lang=EN-US>1</span></sup><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt'>/</span><sub><span
+lang=EN-US>7</span></sub><span lang=EN-US>. Today hundreds of billions of
+digits of </span><span lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:
+10.0pt'>&#960;</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> </span><span lang=EN-US>are known. Yet, people keep on calculating </span><span
+lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:10.0pt'>&#960;</span><span
+lang=EN-US>. No book about computing is complete without rehashing this
+subject. Even my old S/38 MI-assembler manual exhibits a program to calculate </span><span
+lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:10.0pt'>&#960;.</span><span
+lang=EN-US> In keeping with that proud tradition we’ll include one here as
+well. Tremendous progress has occurred in the 25 years since the S/38 appeared.
+The speed of our hardware has increased by a factor of many thousands. What is
+often less appreciated is that many algorithms have been improved by an even
+greater factor, the best algorithm for calculating </span><span lang=EN-US
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt'>&#960;</span><span
+lang=EN-US> being no exception. The current record-holder is the following
+quartically (the number of correct digits <i style='mso-bidi-font-style:normal'>quadruples</i>
+with each iteration) convergent algorithm, which is related to Ramanujan's work
+on elliptic integrals: </span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><span lang=EN-US>&#945;<sub>0</sub>
+= 6 - 4</span><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:10.0pt'>
+</span><span lang=EN-US>·</span><span lang=EN-US style='font-size:4.0pt;
+mso-bidi-font-size:10.0pt'> </span><span lang=EN-US>2</span><sup><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>½</span></sup><span
+lang=EN-US>,<span style='mso-spacerun:yes'>    </span><i style='mso-bidi-font-style:
+normal'>z</i><sub>0</sub> =<span style='mso-spacerun:yes'>  </span>2</span><sup><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>½</span></sup><span
+lang=EN-US> - 1</span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><i style='mso-bidi-font-style:
+normal'><span lang=EN-US>z</span></i><sub><span lang=EN-US>n+1</span></sub><span
+lang=EN-US> =<span style='mso-spacerun:yes'>  </span>(1 -<span
+style='mso-spacerun:yes'>  </span>(1 - <i style='mso-bidi-font-style:normal'>z</i><sub>n</sub><sup>4</sup>)</span><sup><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>¼</span></sup><span
+lang=EN-US>)/(1 +<span style='mso-spacerun:yes'>  </span>(1 - <i
+style='mso-bidi-font-style:normal'>z</i><sub>n</sub><sup>4</sup>)</span><sup><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>¼</span></sup><span
+lang=EN-US>)</span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><span lang=EN-US>&#945;<sub>n+1</sub>
+= (1 + z<sub>n+1</sub>)<sup>4</sup> &#945;<sub>n</sub> - 2<sup>2n+3</sup> z<sub>n+1
+</sub>[1 + z<sub>n+1 </sub>+ z<sub>n+1</sub><sup>2</sup>]</span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><span lang=EN-US>1 /&#945;<sub>n</sub>
+=&gt; &#960; as n =&gt; &#8734;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'> </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US>This algorithm is the basis for Kanada's
+recent record-breaking evaluation of </span><span lang=EN-US style='font-size:
+11.0pt;mso-bidi-font-size:10.0pt'>&#960;</span><span lang=EN-US> to over 200
+billion digits. Much more information about this and other related algorithms
+for calculating </span><span lang=EN-US style='font-size:11.0pt;mso-bidi-font-size:
+10.0pt'>&#960;</span><span lang=EN-US> can be found at <a
+href="http://www.mathsoft.com/asolve/constant/pi/pi.html">http://www.mathsoft.co<span
+style='mso-bookmark:_Hlt498332186'>m</span>/asolve/cons<span style='mso-bookmark:
+_Hlt498333307'>t</span>a<span style='mso-bookmark:_Hlt498151943'>n</span>t/pi/pi.html</a><![if !supportNestedAnchors]><a
+name="_Hlt498151943"></a><a name="_Hlt498333307"></a><a name="_Hlt498332186"></a><![endif]>.
+The first 10,000 digits of </span><span lang=EN-US style='font-size:11.0pt;
+mso-bidi-font-size:10.0pt'>&#960;</span><span lang=EN-US> can be found at <a
+href="http://www.lacim.uqam.ca/piDATA/pi.html">http://www.lacim.uqam.ca/piDATA/pi.html</a>.
+Here are the first thirty-five digits: 3.14159 26535 89793 23846 26433 83279
+50288…</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We’ll present two implementations, one
+using packed decimal numbers and one using double-precision floating-point
+numbers. As a final touch, we’ll show the code from the old S/38 MI-assembler
+manual.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Computing the Square Root</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The algorithm contains several places where
+a square root must be computed. Firstly in the initial values where 2</span><sup><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>½</span></sup><span
+lang=EN-US> is needed, but more importantly in the calculation of <i
+style='mso-bidi-font-style:normal'>z</i><sub>n+1</sub> where the fourth root
+(the square root of the square root) is called for. The square root must be
+computed correctly. Any error here propagates into the remainder of the
+calculation and is not reduced during the iteration.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The square root of <i style='mso-bidi-font-style:
+normal'>N </i>is calculated using Newton’s iterative method with six
+iterations:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span><i
+style='mso-bidi-font-style:normal'>s</i><sub>0</sub> = 1<span
+style='mso-spacerun:yes'>   </span>(initial guess)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span><i
+style='mso-bidi-font-style:normal'>s</i><sub>n+1</sub> = (<i style='mso-bidi-font-style:
+normal'>s</i><sub>n</sub> + <i style='mso-bidi-font-style:normal'>N</i>/<i
+style='mso-bidi-font-style:normal'>s</i><sub>n</sub>)/2</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We use packed numbers with maximal
+precision (31 digits):</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD N<span style='mso-spacerun:yes'>   
+</span>PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD SQRT PKD(31,30); <span
+style='color:green'>/* SQRT = square root of N */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD K BIN(2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD WRK PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL INSPTR .GET-SQUARE-ROOT; <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>ENTRY<span style='mso-spacerun:yes'>      
+</span>GET-SQUARE-ROOT INT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>SQRT, 1; <span
+style='color:green'>/* initial guess<span style='mso-spacerun:yes'>  </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>K, 6;<span
+style='mso-spacerun:yes'>    </span><span style='color:green'>/* six iterations
+*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>NEWTON-SQRT-ITERATION:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV<span style='mso-spacerun:yes'>          </span>WRK, N, SQRT; <span
+style='color:green'>/* NO ROUNDING */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>      </span>SQRT, WRK;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV(S<b style='mso-bidi-font-weight:normal'><span style='color:red'>R</span></b>)<span
+style='mso-spacerun:yes'>      </span>SQRT, 2;<span style='mso-spacerun:yes'> 
+</span><span style='color:green'>/* ROUNDING MATTERS */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(SB)<span style='mso-spacerun:yes'>     </span>K,
+1/HI(NEWTON-SQRT-ITERATION);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>           </span>.GET-SQUARE-ROOT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>It is important for maximum accuracy that
+the division by 2 is performed with rounding.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>The </span><span lang=EN-US style='font-family:"Lucida Console";
+color:maroon'>MIPIPKD</span><span lang=EN-US> Program</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>We’ll iterate through the algorithm thrice,
+although, as we shall see, two iterations already give us the best
+approximation that we are going to obtain with the accuracy chosen:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD P<span style='mso-spacerun:yes'> 
+</span>PKD(31, 0); <span style='color:green'>/* power of 2 */</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD Y<span style='mso-spacerun:yes'> 
+</span>PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD A<span style='mso-spacerun:yes'> 
+</span>PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD B<span style='mso-spacerun:yes'> 
+</span>PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD C<span style='mso-spacerun:yes'> 
+</span>PKD(31,30);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>P, 4;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>N, 2;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>GET-SQUARE-ROOT, *,
+.GET-SQUARE-ROOT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>Y, SQRT, 1;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>B, SQRT, 4;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>A, 6, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>M, 3; <span
+style='color:green'>/* iterate 3 times */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>:<span style='mso-spacerun:yes'>  
+</span>CALLI<span style='mso-spacerun:yes'>        </span>ITERATE-PI, *,
+.ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(SB)<span style='mso-spacerun:yes'>     </span>M, 1/HI(=-1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>          </span>*;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD M<span style='mso-spacerun:yes'> 
+</span>BIN(2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD PI ZND(31,30);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL INSPTR .ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>ENTRY<span style='mso-spacerun:yes'>      
+</span>ITERATE-PI INT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>B, Y, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    </span>SUBN<span
+style='mso-spacerun:yes'>         </span>N, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>GET-SQUARE-ROOT, *,
+.GET-SQUARE-ROOT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>N, SQRT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>GET-SQUARE-ROOT, *,
+.GET-SQUARE-ROOT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>B, SQRT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>Y, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN<span style='mso-spacerun:yes'>         </span>C, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV(S<b style='mso-bidi-font-weight:normal'><span style='color:red'>R</span></b>)<span
+style='mso-spacerun:yes'>      </span>Y, C;<span style='mso-spacerun:yes'>  
+</span><span style='color:green'>/* ROUNDING IS IMPORTANT */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN<span style='mso-spacerun:yes'>         </span>B, 1, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>C, Y, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>      </span>C, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>C, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>C, P;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>P, 4;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>A, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(S)<span style='mso-spacerun:yes'>      </span>A, C;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(S)<span style='mso-spacerun:yes'>      </span>A, C;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV(R)<span style='mso-spacerun:yes'>       </span>PI, 1, A;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>      </span>MSG-TEXT, PI, &quot;
+&quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>SHOW-MESSAGE, *,
+.SHOW-MESSAGE;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>           </span>.ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>%INCLUDE SHOWMSG<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The results after each of the three
+iterations are:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>  </span><span
+style='mso-spacerun:yes'> </span>3.<b style='mso-bidi-font-weight:normal'><span
+style='color:blue'>14159 26</span><span style='color:red'>462 13542 28214 93444
+32024<span style='mso-spacerun:yes'>     </span></span></b>;<span
+style='mso-spacerun:yes'>   </span>7 correct decimals</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   </span>3.<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>14159 26535 89793
+23846 26433 832</span><span style='color:red'>60<span
+style='mso-spacerun:yes'>     </span></span></b>; 28 correct decimals</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>  
+</span>3.14159 26535 89793 23846 26433 83260<span style='mso-spacerun:yes'>    
+</span>; no change</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>If our machine could have handled it (or if
+we had programmed our own arithmetical operations on very long numbers), the
+third iteration would have given us 112 correct decimals, the next iteration
+448, … This is a truly remarkable performance.</span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>The </span><span lang=EN-US style='font-family:"Lucida Console";
+color:maroon'>MIPIFLT</span><span lang=EN-US> Program</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>And now for the floating-point version. We
+can use the square root function directly supported by the CMF1-instruction:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD N<span style='mso-spacerun:yes'>   
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD SQRT FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD P<span style='mso-spacerun:yes'> 
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD Y<span style='mso-spacerun:yes'> 
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD A<span style='mso-spacerun:yes'> 
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD B<span style='mso-spacerun:yes'> 
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD C<span style='mso-spacerun:yes'> 
+</span>FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>P, 4;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>N, 2;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CMF1<span style='mso-spacerun:yes'>     </span><span
+style='mso-spacerun:yes'>    </span>SQRT, X'0020', N;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>Y, SQRT, 1;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>B, SQRT, 4;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>A, 6, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>M, 3;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>:<span style='mso-spacerun:yes'>  
+</span>CALLI<span style='mso-spacerun:yes'>        </span>ITERATE-PI, *,
+.ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(SB)<span style='mso-spacerun:yes'>     </span>M, 1/HI(=-1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>          </span>*;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD M<span style='mso-spacerun:yes'> 
+</span>BIN(2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD PI FLT(8);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL INSPTR .ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>ENTRY<span style='mso-spacerun:yes'>      
+</span>ITERATE-PI INT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>B, Y, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>N, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CMF1<span style='mso-spacerun:yes'>         </span>SQRT, X'0020', N;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CMF1<span style='mso-spacerun:yes'>         </span>B,<span
+style='mso-spacerun:yes'>    </span>X'0020', SQRT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>Y, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN<span style='mso-spacerun:yes'>         </span>C, 1, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV(S)<span style='mso-spacerun:yes'>       </span>Y, C;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN<span style='mso-spacerun:yes'>         </span>B, 1, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT<span style='mso-spacerun:yes'>         </span>C, Y, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>      </span>C, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>C, Y;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>C, P;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>P, 4;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>B, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MULT(S)<span style='mso-spacerun:yes'>      </span>A, B;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(S)<span style='mso-spacerun:yes'>      </span>A, C;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(S)<span style='mso-spacerun:yes'>      </span>A, C;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV<span style='mso-spacerun:yes'>          </span>PI, 1, A;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>QQ, PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>      </span>MSG-TEXT, QQ, &quot;
+&quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>SHOW-MESSAGE, *,
+.SHOW-MESSAGE;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>           </span>.ITERATE-PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD QQ ZND(31,30);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>%INCLUDE SHOWMSG<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Apart from simply changing the data type
+from </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console"'>PKD</span><span lang=EN-US> to </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>FLT</span><span
+lang=EN-US>, the only real difference is that we cannot use the rounding
+options with floating-point instructions. Here is the result:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   </span>3.<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>14159 26</span><span
+style='color:red'>462 13546 83555 40979 24614<span style='mso-spacerun:yes'>   
+</span></span></b>; 7 correct</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   </span>3.<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>14159 26535 89</span><span
+style='color:red'>809 54729 87279 20861<span style='mso-spacerun:yes'>   
+</span></span></b>; only 12 correct</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>  
+</span>3.14159 26535 89809 54729 87279 20861<span style='mso-spacerun:yes'>   
+</span>; no change</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Even though the algorithm is quartic (so we
+should get four times as many correct digits in each iteration) we only get 12
+correct decimals in the second iteration because the accuracy of floating-point
+numbers is only about 13-14 decimal digits.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>The Original S/38 Program, </span><span lang=EN-US style='font-family:
+"Lucida Console";color:maroon'>MIPIS38</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The MI-assembler program from page 62 of my
+old S/38 notes (manual is too big a word) used the following formula:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><span lang=EN-US
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt'>&#960;</span><span
+lang=EN-US>/4 = arctan(1/7) + 2</span><span lang=EN-US style='font-size:5.0pt;
+mso-bidi-font-size:10.0pt'> </span><span lang=EN-US>arctan(1/3)</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>where arctan(<i style='mso-bidi-font-style:
+normal'>x</i>) is calculated from the series expansion:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>arctan(<i
+style='mso-bidi-font-style:normal'>x</i>) = <i style='mso-bidi-font-style:normal'>x</i>
+- <i style='mso-bidi-font-style:normal'>x</i><sup>3</sup>/3 + <i
+style='mso-bidi-font-style:normal'>x</i><sup>5</sup>/5 - <i style='mso-bidi-font-style:
+normal'>x</i><sup>7</sup>/7 + <i style='mso-bidi-font-style:normal'>x</i><sup>9</sup>/9…</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Here is the program with its <i
+style='mso-bidi-font-style:normal'>original</i> orthography intact:</span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD X<span style='mso-spacerun:yes'>     </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>AUTO INIT(E'+1.0E00')<span
+style='mso-spacerun:yes'>                </span><span
+style='mso-spacerun:yes'>     </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD Y<span style='mso-spacerun:yes'>     </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>AUTO INIT(E'7')<span
+style='mso-spacerun:yes'>                           </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD XS<span style='mso-spacerun:yes'>    </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>AUTO<span
+style='mso-spacerun:yes'>                                      </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD A<span style='mso-spacerun:yes'>     </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>AUTO INIT(E'1')<span
+style='mso-spacerun:yes'>                           </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD DENOM FLT(8)<span style='mso-spacerun:yes'>  </span>AUTO INIT(E'1.0')<span
+style='mso-spacerun:yes'>            </span><span
+style='mso-spacerun:yes'>             </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD SUM<span style='mso-spacerun:yes'>   </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>AUTO<span
+style='mso-spacerun:yes'>                                      </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD TEMP<span style='mso-spacerun:yes'>  </span>FLT(8)<span
+style='mso-spacerun:yes'>                                            </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD FOUR<span style='mso-spacerun:yes'>  </span>FLT(8)<span
+style='mso-spacerun:yes'>  </span>INIT(E'4.0E0')<span
+style='mso-spacerun:yes'>                            </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD PI<span style='mso-spacerun:yes'>    </span>FLT(8)<span
+style='mso-spacerun:yes'>                      </span><span
+style='mso-spacerun:yes'>                      </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>DIV(S) X,3;<span
+style='mso-spacerun:yes'>               </span><span style='color:green'>/* X =
+1/3<span style='mso-spacerun:yes'>                         </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DIV
+Y,1,Y;<span style='mso-spacerun:yes'>                </span><span
+style='color:green'>/* Y = 1/7<span
+style='mso-spacerun:yes'>                         </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>MULT XS,X,X;<span
+style='mso-spacerun:yes'>              </span><span style='color:green'>/* XS =
+X**2<span style='mso-spacerun:yes'>                       </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>NEG(S)<span style='mso-spacerun:yes'>  
+</span>XS;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN A,X,0;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>LOOP1:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>MULT(S)<span
+style='mso-spacerun:yes'>   </span>X,XS<span style='mso-spacerun:yes'>   
+</span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN(S )<span style='mso-spacerun:yes'> 
+</span>DENOM,2<span style='mso-spacerun:yes'>            </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>DIV<span style='mso-spacerun:yes'>     
+</span>TEMP,X,DENOM;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN(S) A<span style='mso-spacerun:yes'> 
+</span>, TEMP;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>CMPNV(B)<span style='mso-spacerun:yes'> 
+</span>DENOM,25 /LO(LOOP1),EQ(LOOP1) ;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>MULT XS,Y,Y<span
+style='mso-spacerun:yes'>            </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>NEG(S)<span style='mso-spacerun:yes'>  
+</span>XS;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN SUM,Y,0;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN DENOM,0,1;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>LOOP2:<span
+style='mso-spacerun:yes'>                    </span><span style='color:green'>/*
+LOOP TO CALCULATE ATN(1/7) */<o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>MULT(S) Y,XS<span
+style='mso-spacerun:yes'>          </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN(S) DENOM,2<span
+style='mso-spacerun:yes'>        </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DIV
+TEMP,Y,DENOM<span style='mso-spacerun:yes'>        </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN(S) SUM,TEMP<span
+style='mso-spacerun:yes'>         </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>CMPNV(B) DENOM,25 /LO(LOOP2),EQ(LOOP2)<span
+style='mso-spacerun:yes'>  </span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN PI,A,A;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>ADDN(S) PI,SUM;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>MULT(S) PI,FOUR;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>CPYNV ZZ, PI;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>CPYBLAP MSG-TEXT, ZZ, &quot; &quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>CALLI SHOW-MESSAGE, *, .SHOW-MESSAGE;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>RTX
+*;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>DCL
+DD ZZ ZND(31,30);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>%INCLUDE SHOWMSG<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>with the result</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   </span>3.<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>14159 26535 897</span><span
+style='color:red'>89 56328 42846 68043</span></b></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>correct to 13 decimals. If we have learnt
+nothing else in the intervening 17 years it would be to appreciate the
+usefulness (indeed, necessity) of a neat program layout:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>“Ugly programs are like ugly suspension bridges: they're much more
+liable to collapse than pretty ones,<span style='mso-tab-count:1'>  </span><br>
+<span style='mso-spacerun:yes'>    </span>because the way humans perceive
+beauty is intimately related to our ability to process and understand<span
+style='mso-tab-count:1'>     </span> <br>
+<span style='mso-spacerun:yes'>    </span>complexity.”</span><span lang=EN-US
+style='font-size:5.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>- Eric S. Raymond</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

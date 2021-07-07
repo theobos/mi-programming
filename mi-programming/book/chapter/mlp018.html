@@ -1,0 +1,2924 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="mlp018_files/filelist.xml">
+<title>(SCV) System Call Vectored</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Leif Svalgaard</o:Author>
+  <o:LastAuthor>BOS Theo</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1229</o:TotalTime>
+  <o:LastPrinted>2000-11-12T10:02:00Z</o:LastPrinted>
+  <o:Created>2021-07-07T07:57:00Z</o:Created>
+  <o:LastSaved>2021-07-07T07:57:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>3438</o:Words>
+  <o:Characters>18913</o:Characters>
+  <o:Company>Dell Computer Corporation</o:Company>
+  <o:Lines>157</o:Lines>
+  <o:Paragraphs>44</o:Paragraphs>
+  <o:CharactersWithSpaces>22307</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="mlp018_files/themedata.thmx">
+<link rel=colorSchemeMapping href="mlp018_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>NL</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseWord97LineBreakingRules/>
+   <w:SelectEntireFieldWithStartOrEnd/>
+   <w:UseWord2002TableStyleRules/>
+   <w:UseWord2010TableStyleRules/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:UnderlineTabInNumList/>
+   <w:HangulWidthLikeWW11/>
+   <w:UseNormalStyleForList/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="0" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l1 level1 lfo3;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l1 level2 lfo3;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l1 level3 lfo3;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h4
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-list:l1 level4 lfo3;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h5
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l1 level5 lfo3;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h6
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	mso-list:l1 level6 lfo3;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:7;
+	mso-list:l1 level7 lfo3;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:8;
+	mso-list:l1 level8 lfo3;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:9;
+	mso-list:l1 level9 lfo3;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+span.code
+	{mso-style-name:code;
+	mso-style-unhide:no;
+	mso-ansi-font-size:9.0pt;
+	font-family:"Lucida Console";
+	mso-ascii-font-family:"Lucida Console";
+	mso-hansi-font-family:"Lucida Console";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("mlp018_files/header.html") fs;
+	mso-footnote-continuation-separator:url("mlp018_files/header.html") fcs;
+	mso-endnote-separator:url("mlp018_files/header.html") es;
+	mso-endnote-continuation-separator:url("mlp018_files/header.html") ecs;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:50.4pt;
+	mso-page-numbers-chapter-style:header-1;
+	mso-even-footer:url("mlp018_files/header.html") ef1;
+	mso-footer:url("mlp018_files/header.html") f1;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1131822562;
+	mso-list-type:simple;
+	mso-list-template-ids:-1789784816;}
+@list l0:level1
+	{mso-level-start-at:19;
+	mso-level-text:%1;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	margin-left:72.0pt;
+	text-indent:-36.0pt;}
+@list l1
+	{mso-list-id:1252348776;
+	mso-list-template-ids:-822476292;}
+@list l1:level1
+	{mso-level-start-at:18;
+	mso-level-style-link:"Heading 1";
+	mso-level-suffix:space;
+	mso-level-text:"Chapter %1";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level2
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 2";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level3
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 3";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level4
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 4";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level5
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 5";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level6
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 6";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level7
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 7";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level8
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 8";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1:level9
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 9";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l2
+	{mso-list-id:2006469040;
+	mso-list-type:simple;
+	mso-list-template-ids:1172076654;}
+@list l2:level1
+	{mso-level-start-at:15;
+	mso-level-text:%1;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=NL style='tab-interval:36.0pt;word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo3'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:Arial;mso-bidi-font-family:Arial'><span
+style='mso-list:Ignore'>Chapter 18 </span></span><![endif]><span lang=EN-US><br>
+</span><span lang=EN-US style='font-size:10.0pt'><br>
+</span><span lang=EN-US>(</span><span lang=EN-US style='font-family:"Lucida Console";
+color:maroon'>SCV</span><span lang=EN-US>) Supervisor Call Vectored</span></h1>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>The </span><span lang=EN-US style='font-family:"Lucida Console";
+color:maroon'>SCV/RFSCV</span><span lang=EN-US> Instructions</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>For the AS/400 implementation IBM
+introduced two additional (and undocumented) instructions for the PowerPC to
+allow an efficient way for one SLIC routine to call another or for a user
+program to call a SLIC routine. These instructions are called “Supervisor Call
+Vectored” (</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>SCV</span></b><span lang=EN-US>) and “Return From Supervisor Call
+Vectored” (</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>RFSCV</span></b><span lang=EN-US>). The </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>SCV</span></b><span
+lang=EN-US> instruction identifies one of 128 locations. A separate SLIC
+routine can begin at each of the 128 locations and must be precisely 32 bytes
+(8 RISC instructions) long and usually ends up calling a much larger routine.
+The precise way this works has varied from release to release. A block of code
+128 * 32 bytes long constitutes a ‘dispatch table’ for the </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>SCV</span></b><span
+lang=EN-US> instruction. This table is stored at real address </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>8000000000</span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt'> </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>003000</span><span
+lang=EN-US> or to be more precise: at the location associated with the SLIC
+module “</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>.scv0</span><span lang=EN-US>” with
+nickname<span style='mso-spacerun:yes'>  </span></span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>#CFSCV</span><span lang=EN-US>.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>A routine that is called through the SCV
+dispatch table can use virtual addresses, so that SLIC routines can be written
+to be pageable. When the </span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>SCV</span></b><span lang=EN-US> instruction is executed, the MSR
+processor mode bit is set to supervisor mode ensuring that the routines are
+able to execute supervisor-level RISC instructions, such as </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>MFMSR</span></b><span
+lang=EN-US> (Move From Machine State Register). The </span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>SCV</span></b><span lang=EN-US>
+instruction does not use the normal interrupt save/restore registers SRR0 and
+SRR1. Instead, it uses the standard LINK and COUNT registers. The </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>RFSCV</span></b><span
+lang=EN-US> instruction provides the return operation for the </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>SCV</span></b><span
+lang=EN-US>.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>How Is the SCV Used?</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Let’s disassemble the following little
+program:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SYSPTR .SYSPTR;<span
+style='mso-spacerun:yes'>                                                  
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD RESOLVE CHAR(34);<span
+style='mso-spacerun:yes'>                                              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD RESOLVE-TYPE CHAR( 2) DEF(RESOLVE) POS( 1) INIT(X'0201');<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD RESOLVE-NAME CHAR(30) DEF(RESOLVE) POS( 3);<span
+style='mso-spacerun:yes'>                </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD RESOLVE-AUTH CHAR( 2) DEF(RESOLVE) POS(33) INIT(X'0000');<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                                                     
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>     </span>RESOLVE-NAME,
+&quot;MYPGM&quot;, &quot; &quot;;<span style='mso-spacerun:yes'>      </span><span
+style='mso-spacerun:yes'>                     </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RSLVSP<span style='mso-spacerun:yes'>     </span>.SYSPTR, RESOLVE, *,
+*;<span style='mso-spacerun:yes'>                                </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>         </span>*;<span
+style='mso-spacerun:yes'>                                                   
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>RSLVSP</span><span
+lang=EN-US>-instruction results in this code:<span
+style='mso-spacerun:yes'>                                       </span><span
+style='mso-spacerun:yes'>                       </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014E4<span style='mso-spacerun:yes'>    
+</span>000064<span style='mso-spacerun:yes'>    </span>387E0040<span
+style='mso-spacerun:yes'>          </span>ADDI 3,30,64<span
+style='mso-spacerun:yes'>        </span>; R3 =&gt; .SYSPTR<span
+style='mso-spacerun:yes'>     </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014E8<span style='mso-spacerun:yes'>    
+</span>000068<span style='mso-spacerun:yes'>    </span>389E0050<span
+style='mso-spacerun:yes'>          </span>ADDI 4,30,80<span
+style='mso-spacerun:yes'>        </span>; R4 =&gt; RESOLVE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014EC<span style='mso-spacerun:yes'>    
+</span>00006C<span style='mso-spacerun:yes'>    </span>E8A08130<span
+style='mso-spacerun:yes'>          </span>LD 5,0X8130<span
+style='mso-spacerun:yes'>         </span>; R5 = NULL pointer<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014F0<span style='mso-spacerun:yes'>    
+</span>000070<span style='mso-spacerun:yes'>    </span>39400025<span
+style='mso-spacerun:yes'>          </span><b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>ADDI 10,0,<span
+style='color:red'>37</span></span></b><span style='mso-spacerun:yes'>       
+</span>; R10 = <b style='mso-bidi-font-weight:normal'><span style='color:red'>37</span></b><span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014F4<span style='mso-spacerun:yes'>    
+</span>000074<span style='mso-spacerun:yes'>    </span>38C50000<span
+style='mso-spacerun:yes'>          </span>ADDI 6,5,0<span
+style='mso-spacerun:yes'>          </span>; R6 = R5 = NULL pointer<span
+style='mso-spacerun:yes'>    </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0014F8<span style='mso-spacerun:yes'>    
+</span>000078<span style='mso-spacerun:yes'>    </span>44000141<span
+style='mso-spacerun:yes'>          </span><b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>SCV <span style='color:red'>10</span></span></b><span
+style='mso-spacerun:yes'>              </span>; System Call Vectored to <b
+style='mso-bidi-font-weight:normal'><span style='color:red'>10</span></b><span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The vector with selector value </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:red'>10</span></b><span
+lang=EN-US> is by far the most common SCV call. Registers from R3 and up are
+used to pass parameters to the call. Register R10 has a special purpose, as it
+holds the number of the function to be executed, in this case 37.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>The SCV Dispatch Code</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>From V4R4M0 and onwards, the dispatch code
+looks like this:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address 8000000000 003000<span
+style='mso-spacerun:yes'>     </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003000<span style='mso-spacerun:yes'> 
+</span>4B003002 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 0,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+003000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003010<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003020<span style='mso-spacerun:yes'> 
+</span>4B003022 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 1,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+003020<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003030<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>…<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030A0<span style='mso-spacerun:yes'> 
+</span>4B0030A2 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 5,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+0030A0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030B0<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030C0<span style='mso-spacerun:yes'> 
+</span>4B0030C2 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 6,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+0030C0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030D0<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030E0<span style='mso-spacerun:yes'> 
+</span>4B0030E2 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 7,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+0030E0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0030F0<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003100<span style='mso-spacerun:yes'> 
+</span>4B003102 60000000<span style='mso-spacerun:yes'>  </span>60000000 60000000
+SCV 8,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF 003100<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003110<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003120<span style='mso-spacerun:yes'> 
+</span>4B003122 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 9,<span style='mso-spacerun:yes'>   </span>address FFFFFFFFFF
+003120<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003130<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003140<span style='mso-spacerun:yes'> 
+</span>4B003142 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV <b style='mso-bidi-font-weight:normal'><span style='color:red'>10</span></b>,<span
+style='mso-spacerun:yes'>  </span>address FFFFFFFFFF 003140<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003150<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003160<span style='mso-spacerun:yes'> 
+</span>4B003162 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 11,<span style='mso-spacerun:yes'>  </span>address FFFFFFFFFF
+003160<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003170<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>…<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003FC0<span style='mso-spacerun:yes'> 
+</span>4B003FC2 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 126, address FFFFFFFFFF 003FC0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003FD0<span style='mso-spacerun:yes'> 
+</span>60000000 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003FE0<span style='mso-spacerun:yes'> 
+</span>4B003FE2 60000000<span style='mso-spacerun:yes'>  </span>60000000
+60000000 SCV 127, address FFFFFFFFFF 003FE0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003FF0<span style='mso-spacerun:yes'> 
+</span>00000000 E3C2E3C2<span style='mso-spacerun:yes'>  </span>FFFFFFFF
+92F5B3A0 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The dispatch code consists of branch
+instructions, e.g. for </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>SCV</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>10</span><span
+lang=EN-US>:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address 8000000000 003140<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003140 4B003142<span
+style='mso-spacerun:yes'>  </span>BA<span style='mso-spacerun:yes'>           
+</span>FF003140 [. ·â] branch to absolute addr FFFFFFFFFF 003140 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003144 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] NOPs<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003148 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] …<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>00314C 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>  </span><span
+style='mso-spacerun:yes'>   </span>00 00<span style='mso-spacerun:yes'>  
+</span>000000 [-<span style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003150 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003154 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003158 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Here is the code that is dispatched for </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>SCV</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>10</span><span
+lang=EN-US> (prior to V4R4M0, this code was stored directly within the dispatch
+table itself rather than the branch instruction now found - it is not clear
+what is gained by changing the mechanism to the newer indirect method):</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address FFFFFFFFFF 003140<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003140 7C0902A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>00 09<span style='mso-spacerun:yes'>          </span>[@··w]<span
+style='mso-spacerun:yes'>   </span>; R0 = old MSR<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003144 7D8000A6<span
+style='mso-spacerun:yes'>  </span>MFMSR<span style='mso-spacerun:yes'>  
+</span>12<span style='mso-spacerun:yes'>             </span>['Ø w]<span
+style='mso-spacerun:yes'>   </span>; R12 = current MSR<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003148 <b style='mso-bidi-font-weight:
+normal'><span style='background:yellow;mso-highlight:yellow'>780C042C<span
+style='mso-spacerun:yes'>  </span>RLDIMI<span style='mso-spacerun:yes'> 
+</span>12 00 00 48</span></b><span style='mso-spacerun:yes'>   
+</span>[Ì···]<span style='mso-spacerun:yes'>   </span>; R12(48:63) = R0(48:63)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>00314C <b style='mso-bidi-font-weight:
+normal'><span style='background:yellow;mso-highlight:yellow'>79AC6CAC<span
+style='mso-spacerun:yes'>  </span>RLDIMI<span style='mso-spacerun:yes'> 
+</span>12 13 13 50</span></b><span style='mso-spacerun:yes'>   
+</span>[`Ð%Ð]<span style='mso-spacerun:yes'>   </span>; R12(50:50) = R13(63:63)
+[is 0]<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003150 419E889A<span
+style='mso-spacerun:yes'>  </span>BCA<span style='mso-spacerun:yes'>    
+</span>12 30 FFFF8898 [·<span class=SpellE>Æh</span>ª]<span
+style='mso-spacerun:yes'>   </span>; if CR</span><span lang=EN-US
+style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>[</span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:red'>30</span></b><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>]</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>
+= 1, single-step <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003154 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/]<span
+style='mso-spacerun:yes'>   </span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003158 4A76AC66<span
+style='mso-spacerun:yes'>  </span>BA<span style='mso-spacerun:yes'>           
+</span>FE76AC64 [¢ÎÐÃ]<span style='mso-spacerun:yes'>   </span>; branch to
+FFFFFFFFFE 76AC64<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>00315C 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>]<span style='mso-spacerun:yes'>   </span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>MFSPR</span><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>0,9</span><span
+lang=EN-US> instruction stores the COUNT register (containing the MSR before
+the interrupt) in R0. The </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>MFMSR</span><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt'> </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>12</span><span
+lang=EN-US> instruction loads the current Machine State Register into R12. The
+two </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";mso-fareast-language:EN-US;layout-grid-mode:line'>RLDIMI</span><span
+lang=EN-US> instructions merit further scrutiny. </span></p>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level3 lfo3'><span
+lang=EN-US>RLDIMI Instruction</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>Rotate Left Double Immediate, then Masked
+Insert:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>RLDIMI <i style='mso-bidi-font-style:normal'>Ra</i>,
+<i style='mso-bidi-font-style:normal'>Rs</i>, <i style='mso-bidi-font-style:
+normal'>shift, <span class=SpellE>maskbit</span></i><span
+style='mso-spacerun:yes'>   </span>; <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-fareast-language:EN-US;
+layout-grid-mode:line'>The contents of the 64-bit register <i style='mso-bidi-font-style:
+normal'>Rs</i> are rotated left the number of bits specified by <i
+style='mso-bidi-font-style:normal'>shift</i> operand. A mask is generated
+having 1 bits from bit <span class=SpellE><i style='mso-bidi-font-style:normal'>maskbit</i></span>
+through bit 63 – <i style='mso-bidi-font-style:normal'>shift</i> and 0 bits elsewhere.
+The rotated data is <i style='mso-bidi-font-style:normal'>inserted</i> into <i
+style='mso-bidi-font-style:normal'>Ra</i> under control of the generated mask.
+Note that </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";mso-fareast-language:EN-US;layout-grid-mode:
+line'>RLDIMI</span><span lang=EN-US style='mso-fareast-language:EN-US;
+layout-grid-mode:line'> can be used to insert an <i style='mso-bidi-font-style:
+normal'>n</i>-bit field, that is right-justified in <i style='mso-bidi-font-style:
+normal'>Rs</i>, into <i style='mso-bidi-font-style:normal'>Ra</i> starting at
+bit position <i style='mso-bidi-font-style:normal'>b</i>, by setting <i
+style='mso-bidi-font-style:normal'>shift</i> = 64 – <i style='mso-bidi-font-style:
+normal'>(b </i>+ <i style='mso-bidi-font-style:normal'>n</i>) and <span
+class=SpellE><i style='mso-bidi-font-style:normal'>maskbit</i></span> = <i
+style='mso-bidi-font-style:normal'>b</i>. The contents of <i style='mso-bidi-font-style:
+normal'>Ra</i> outside of the area where the mask bits are ones are <i
+style='mso-bidi-font-style:normal'>not</i> changed. The <i style='mso-bidi-font-style:
+normal'>shift</i> and <span class=SpellE><i style='mso-bidi-font-style:normal'>maskbit</i></span>
+fields are <b style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:
+normal'><span style='color:red'>split</span></i></b> fields (see chapter 6).
+Let’s dissect the examples from the above code:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>780C042C<span style='mso-spacerun:yes'> 
+</span>RLDIMI<span style='mso-spacerun:yes'>  </span>12,00,00,48 ;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'><span style='mso-spacerun:yes'> </span></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:4.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'><span
+style='mso-spacerun:yes'> </span></span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>7<span style='mso-spacerun:yes'>   
+</span>8<span style='mso-spacerun:yes'>    </span>0<span
+style='mso-spacerun:yes'>    </span>C<span style='mso-spacerun:yes'>   
+</span>0<span style='mso-spacerun:yes'>    </span>4<span
+style='mso-spacerun:yes'>    </span>2<span style='mso-spacerun:yes'>   
+</span>C<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0111 1000 0000 1100 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>0000 0</span></b>100 00<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>1</span></b>0 1100<span
+style='mso-spacerun:yes'>  </span>; as hex digits expanded into bits<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>011110 00000 01100 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>00000</span></b> <b style='mso-bidi-font-weight:
+normal'><span style='color:red'>1</span></b>10000 011 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>0</span></b> 0<span style='mso-spacerun:yes'> 
+</span>; bits grouped into instruction fields<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>30<span style='mso-spacerun:yes'>      </span>R0<span
+style='mso-spacerun:yes'>   </span>R12<span style='mso-spacerun:yes'>   
+</span>SH<span style='mso-spacerun:yes'>     </span>MB<span
+style='mso-spacerun:yes'>   </span>3 s 0<span style='mso-spacerun:yes'> 
+</span>; Rs is R0, Ra is R12, SH = 0, MB = 48<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>79AC6CAC<span style='mso-spacerun:yes'> 
+</span>RLDIMI<span style='mso-spacerun:yes'>  </span>12,13,13,50 ;<span
+style='mso-spacerun:yes'>    </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'><span style='mso-spacerun:yes'> </span></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:4.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'><span
+style='mso-spacerun:yes'> </span></span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>7<span style='mso-spacerun:yes'>   
+</span>9<span style='mso-spacerun:yes'>    </span>A<span
+style='mso-spacerun:yes'>    </span>C<span style='mso-spacerun:yes'>   
+</span>6<span style='mso-spacerun:yes'>    </span>C<span
+style='mso-spacerun:yes'>    </span>A<span style='mso-spacerun:yes'>   
+</span>C<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0111 1001 1010 1100 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>0110 1</span></b>100 10<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>1</span></b>0 1100<span
+style='mso-spacerun:yes'>  </span>; as hex digits expanded into bits<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>011110 01101 01100 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>01101</span></b> <b style='mso-bidi-font-weight:
+normal'><span style='color:red'>1</span></b>10010 011 <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>0</span></b> 0<span style='mso-spacerun:yes'> 
+</span>; bits grouped into instruction fields<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>30<span style='mso-spacerun:yes'>     </span>R13<span
+style='mso-spacerun:yes'>   </span>R12<span style='mso-spacerun:yes'>   
+</span>SH<span style='mso-spacerun:yes'>     </span>MB<span
+style='mso-spacerun:yes'>   </span>3 s 0<span style='mso-spacerun:yes'> 
+</span>; Rs is R13, Ra is R12, SH = 13, MB = 50<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>In both cases the receiving register is R12
+(already loaded with the new MSR). The first mask is:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0000 0000 0000 FFFF<span
+style='mso-spacerun:yes'>  </span>; <span class=SpellE>maskbits</span> = 48
+through 63 (63 - 0)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>So, the first </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>RLDIMI</span><span
+lang=EN-US> extracts the low-order 16 bits of the old MSR (loaded into R0) and
+inserts them into the low-order 16 bits of the copy of the new MSR in R12. </span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The second mask is:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0000 0000 0000 2000<span
+style='mso-spacerun:yes'>  </span>; <span class=SpellE>maskbits</span> = 50
+through 50 (63 - 13)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>First rotate R13 13 bits to the left:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>8000 0000 0000 0000 =&gt; 0000 0000 0000
+1000 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US>So, a zero bit is
+inserted into R12[bit 50]. Bit 50 of the MSR is the floating-point
+enable/disable bit. What we are doing here is building the new value of the MSR
+to be used upon return from the </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>SCV</span><span
+lang=EN-US>. Floating-point operations are always disabled by the SLIC to
+prevent unnecessary save/restore of the 32 floating-point registers. Should the
+program then issue a floating-point instruction, the trap-routine will turn
+floating-point mode back on again.</span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US>The mechanism of
+the call/return mechanism becomes clear from the code for an unused SCV-entry,
+e.g. SCV 0:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003000 7C0902A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>00 09<span style='mso-spacerun:yes'>          </span>[@··w]<span
+style='mso-spacerun:yes'>  </span>; get saved MSR from COUNT register<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003004 7D8000A6<span
+style='mso-spacerun:yes'>  </span>MFMSR<span style='mso-spacerun:yes'>  
+</span>12<span style='mso-spacerun:yes'>             </span>['Ø w]<span
+style='mso-spacerun:yes'>  </span>; get current MSR<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003008 780C042C<span
+style='mso-spacerun:yes'>  </span>RLDIMI<span style='mso-spacerun:yes'> 
+</span>12 00 00 48<span style='mso-spacerun:yes'>    </span>[Ì···]<span
+style='mso-spacerun:yes'>  </span>; use bits 48-63 of saved MSR<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>00300C 79AC6CAC<span
+style='mso-spacerun:yes'>  </span>RLDIMI<span style='mso-spacerun:yes'> 
+</span>12 13 13 50<span style='mso-spacerun:yes'>    </span>[`Ð%Ð]<span
+style='mso-spacerun:yes'>  </span>; clear bit 50 (floating-point bit)<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003010 618C<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>4030</span></b><span style='mso-spacerun:yes'> 
+</span>ORI<span style='mso-spacerun:yes'>     </span>12 12<span
+style='mso-spacerun:yes'>   </span>016432 [/ð ·]<span
+style='mso-spacerun:yes'>  </span>; set problem mode, address translation<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003014 7D8903A6<span
+style='mso-spacerun:yes'>  </span>MTSPR<span style='mso-spacerun:yes'>  
+</span>09 12<span style='mso-spacerun:yes'>   </span><span
+style='mso-spacerun:yes'>       </span>['<span class=SpellE>i·w</span>]<span
+style='mso-spacerun:yes'>  </span>; move new MSR to COUNT register<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003018 4C0000A4<span
+style='mso-spacerun:yes'>  </span>RFSCV<span
+style='mso-spacerun:yes'>                  </span>[&lt;<span
+style='mso-spacerun:yes'>  </span>u]<span style='mso-spacerun:yes'>  </span>;
+return (restores MSR from COUNT)<o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>Tracing and Single-Step Mode</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>We now continue with our analysis of the
+dispatch code. The Condition Register is divided into eight fields CF0 through
+CF7. The higher-numbered fields are used by the SLIC as various flags rather
+than as condition bits:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address FFFFFFFFFF 003140<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>…<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003150 419E889A<span
+style='mso-spacerun:yes'>  </span><b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>BCA<span
+style='mso-spacerun:yes'>     </span>12 <span style='color:red'>30</span>
+FFFF8898</span></b> [·<span class=SpellE>Æh</span>ª] ; if CR</span><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>[</span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:red'>30</span></b><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>]</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>
+= 1, single-step<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003154 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] ; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>003158 4A76AC66<span
+style='mso-spacerun:yes'>  </span>BA<span style='mso-spacerun:yes'>           
+</span>FE76AC64 [¢ÎÐÃ] ; branch to FFFFFFFFFE 76AC64<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>00315C 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] ; filler<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US>“Branch
+Conditionally to Absolute address” branches if it is true (the ‘12’) that bit <b
+style='mso-bidi-font-weight:normal'>30</b> of the Condition register is set.
+Looking at the code at absolute address </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>FFFFFFFFFF</span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;color:maroon'> </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>FF8898</span><span lang=EN-US> we see that:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address FFFFFFFFFF FF8898<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF8898 7C0000A6<span
+style='mso-spacerun:yes'>  </span>MFMSR<span style='mso-spacerun:yes'>  
+</span>00<span style='mso-spacerun:yes'>             </span>[@<span
+style='mso-spacerun:yes'>  </span>w] ; get MSR<span
+style='mso-spacerun:yes'>       </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF889C 60000400<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>001024 [- · ] ; set
+single-step mode, bit 53 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF88A0 7C000164<span
+style='mso-spacerun:yes'>  </span>MTMSRD<span style='mso-spacerun:yes'> 
+</span>00 00 00<span style='mso-spacerun:yes'>       </span>[@ ·À] ; set
+MSR<span style='mso-spacerun:yes'>       </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF88A4 4C00012C<span
+style='mso-spacerun:yes'>  </span>ISYNC<span
+style='mso-spacerun:yes'>                  </span>[&lt; ··]<span
+style='mso-spacerun:yes'>        </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF88A8 3C40B161<span
+style='mso-spacerun:yes'>  </span><b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>ADDIS<span
+style='mso-spacerun:yes'>   </span>02 00<span style='mso-spacerun:yes'>  
+</span>-20127</span></b> [· £/]<span style='mso-spacerun:yes'>        </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FF88AC 4A76AC66<span
+style='mso-spacerun:yes'>  </span>BA<span style='mso-spacerun:yes'>           
+</span>FE76AC64 [¢ÎÐÃ]<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:54.0pt'><span lang=EN-US>In single-step
+mode an exception occurs after each instruction has been executed. This allows
+a trace of the instruction stream to be recorded. Single-step mode is enabled
+by setting bit 53 in the Machine State Register. In either case, if we go
+though the setting up for single step code (i.e. when bit 30 of the condition
+register is set) or jump over it (i.e. when bit 30 is not set), we will always
+end up at address </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>FFFFFFFFE</span><span lang=EN-US
+style='font-size:7.0pt;mso-bidi-font-size:10.0pt'> </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>76AC64</span><span
+lang=EN-US> with register R2 set to point to an area with common procedures.</span></p>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level3 lfo3'><span
+lang=EN-US>ADDIS Instruction</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>Register R2 is set using the </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>ADDIS</span></b><span
+lang=EN-US>-instruction:</span></p>
+
+<p class=MsoNormal><span class=code><span lang=EN-US style='font-size:6.0pt;
+mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal><span class=code><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt'>003154<span style='mso-spacerun:yes'> 
+</span>3C40B161<span style='mso-spacerun:yes'>  </span>ADDIS<span
+style='mso-spacerun:yes'>   </span>02 00<span style='mso-spacerun:yes'>  
+</span>-20127 ; R2 = FFFF <span class=SpellE>FFFF</span> B161 0000<o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'><span style='mso-spacerun:yes'> </span></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:4.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'><span
+style='mso-spacerun:yes'> </span></span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>3<span style='mso-spacerun:yes'>   
+</span>C<span style='mso-spacerun:yes'>    </span>4<span
+style='mso-spacerun:yes'>    </span>0<span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>    </span>1<span
+style='mso-spacerun:yes'>    </span>6<span style='mso-spacerun:yes'>   
+</span>1<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0011 1100 0100 0000 1011 0001 0110
+0001<span style='mso-spacerun:yes'>  </span>; as hex digits expanded into bits<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>001111 00010 00000 1011000101100001 <span
+style='mso-spacerun:yes'>     </span>; bits grouped into instruction fields<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>15<span style='mso-spacerun:yes'>      </span>R2<span
+style='mso-spacerun:yes'>    </span>R0<span style='mso-spacerun:yes'>     
+</span>B161<span style='mso-spacerun:yes'>             </span>; R2 =
+sign-extend B161 shift left 16<o:p></o:p></span></p>
+
+<p class=MsoNormal><span class=code><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US>“Add Immediate Shifted” loads the
+sign-extended x‘</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:maroon'>B161</span><span lang=EN-US>’
+shifted 16 bits to the left into the destination register. No addition is actually
+performed because the source register is 0. Register R2 now contains </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>FFFFFFFFFB1</span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;color:maroon'> </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>610000</span><span lang=EN-US>. The purpose of this is to build
+an address to “high memory”. The PowerPC shows its 32-bit roots again.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>SCV 10 Handler</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>SST tells us that the name of the SCV 10 handler
+is </span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>.#<span class=SpellE>cfmir</span></span></b><span lang=EN-US>:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                            </span>Display LIC Module
+Found<span style='mso-spacerun:yes'>                    </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Address<span style='mso-spacerun:yes'>  </span>. . . . . :<span
+style='mso-spacerun:yes'>   </span>FFFFFFFFFE 76AC60<span
+style='mso-spacerun:yes'>                             </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Name . . . . . . . :<span style='mso-spacerun:yes'>   </span>.#<span
+class=SpellE>cfmir</span><span
+style='mso-spacerun:yes'>                                       </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The code (and we quote) starts with the
+usual housekeeping, saving registers and return addresses:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC60 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] ; R2 =
+FFFFFFFFB1 610000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC64 FBC1FFF3<span
+style='mso-spacerun:yes'>  </span>STMD<span style='mso-spacerun:yes'>   
+</span>30(01)<span style='mso-spacerun:yes'>     </span>-16 [ÛA·3] ; store
+R30-R31<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC68 7C0802A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>00 08<span style='mso-spacerun:yes'>       </span><span
+style='mso-spacerun:yes'>   </span>[@··w] ; get LINK register (i.e. return
+address)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC6C F8010028<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>00(01)<span style='mso-spacerun:yes'>      </span>40 [8· ·] ; store
+return address in stack frame<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC70 F821FF41<span
+style='mso-spacerun:yes'>  </span>STDU<span style='mso-spacerun:yes'>   
+</span>01(01)<span style='mso-spacerun:yes'>    </span>-192 [8···] ; allocate
+new stack frame (size = 192)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC74 F9810020<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>12(01) <span style='mso-spacerun:yes'>     </span>32 [9a ·] ; save MSR
+to be restored<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC78 3C004010<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>00 00<span style='mso-spacerun:yes'>    </span>16400 [·<span
+style='mso-spacerun:yes'>  </span>·] ; frame type = x‘4010’<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC7C F8010008<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>00(01)<span style='mso-spacerun:yes'>       </span>8 [8· ·] ;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>For now, you can just skim (or ignore) the
+following two short sections of code:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC80 7D7142A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>11 273<span style='mso-spacerun:yes'>         </span>['<span
+class=SpellE>Éâw</span>] ; get SPRG1 (the machine stack)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC84 7FE802A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>31 08<span style='mso-spacerun:yes'>          </span>[&quot;<span
+class=SpellE>Y·w</span>] ; get return address (again)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC88 800B00B0<span
+style='mso-spacerun:yes'>  </span>LWZ<span style='mso-spacerun:yes'>    
+</span>00(11)<span style='mso-spacerun:yes'>     </span>176 [Ø· ^] ; get word W
+from machine stack<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC8C 7D9E6378<span
+style='mso-spacerun:yes'>  </span>OR<span style='mso-spacerun:yes'>     
+</span>30 12 12<span style='mso-spacerun:yes'>       </span>['ÆÄÌ] ; R30 now
+copy of MSR<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC90 70000400<span
+style='mso-spacerun:yes'>  </span>ANDI.<span style='mso-spacerun:yes'>  
+</span>00 00<span style='mso-spacerun:yes'>   </span>001024 [ø · ] ; if W has
+x‘400’ bit set (normally not)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76AC94 40820135<span
+style='mso-spacerun:yes'>  </span>BCL<span style='mso-spacerun:yes'>    
+</span>04 02<span style='mso-spacerun:yes'>     </span>+308 [ b··] ;<span
+style='mso-spacerun:yes'>     </span>call 76ADC8 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AC98 40940020<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>04 20<span style='mso-spacerun:yes'>      </span>+32 [ m ·] ; if CR[20]
+= 1 ( normally not<span style='color:green'>)<b style='mso-bidi-font-weight:
+normal'> --.</b></span><span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76AC9C FBE10080<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>31(01)<span style='mso-spacerun:yes'>     </span>128 [Û· Ø] ;<span
+style='mso-spacerun:yes'>     </span>store return address<span
+style='mso-spacerun:yes'>    </span></span><span lang=EN-US style='font-size:
+8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:green'><span
+style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:normal'><span
+style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACA0 F9410088<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>10(01)<span style='mso-spacerun:yes'>     </span>136 [9· h] ;<span
+style='mso-spacerun:yes'>     </span>save R10 (function no.) </span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'><span style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:
+normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACA4 39410080<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>10 01<span style='mso-spacerun:yes'>      </span>128 [·· Ø] ;<span
+style='mso-spacerun:yes'>                 </span><span
+style='mso-spacerun:yes'>            </span></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'><span style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:
+normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACA8 61ABD212<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>11 13<span style='mso-spacerun:yes'>   </span>053778 [/¿K·] ;<span
+style='mso-spacerun:yes'>                             </span></span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'><span style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:
+normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACAC 4B006193<span
+style='mso-spacerun:yes'>  </span>BLA<span style='mso-spacerun:yes'>          
+</span>FF006190 [. /l] ;<span style='mso-spacerun:yes'>     </span>do some
+debug stuff (?) </span><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:green'><span
+style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:normal'><span
+style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACB0 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] ;<span
+style='mso-spacerun:yes'>               </span><span
+style='mso-spacerun:yes'>              </span></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'><span style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:
+normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'>76ACB4 E9410088<span
+style='mso-spacerun:yes'>  </span>LD<span style='mso-spacerun:yes'>     
+</span>10(01)<span style='mso-spacerun:yes'>     </span>136 [Z· h] ;<span
+style='mso-spacerun:yes'>     </span>restore R10<span
+style='mso-spacerun:yes'>             </span></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'><span style='mso-spacerun:yes'> </span><b style='mso-bidi-font-weight:
+normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:gray'><span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                                                            
+</span><span style='color:green'><span style='mso-spacerun:yes'> </span><b
+style='mso-bidi-font-weight:normal'><span style='mso-spacerun:yes'>   </span>|</b></span><span
+style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACB8 E982<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>A468</span></b><span style='mso-spacerun:yes'> 
+</span>LD<span style='mso-spacerun:yes'>      </span>12(02)<span
+style='mso-spacerun:yes'>  </span>-23448 [<span class=SpellE>ZbuÇ</span>] ; R12
+= DW (FFFFFFFFB1 60<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>A468</span></b>) <b style='mso-bidi-font-weight:normal'><span
+style='color:green;mso-no-proof:yes'>&lt;</span><span style='color:green'>--’</span></b><span
+style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Now comes something interesting; R12 is
+being set to point to a table of byte values:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address FFFFFFFFB1 60A460<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>60<b style='mso-bidi-font-weight:normal'><span
+style='color:blue'>A460 </span></b></span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:blue'><span style='mso-spacerun:yes'> </span></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:blue'>FFFFFFFF
+80989000 base of function table <o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>60<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>A468 </span></b></span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:red'><span style='mso-spacerun:yes'> </span></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:red'>FFFFFFFF
+80989DD8 base of blocked flag table<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>60A470<span style='mso-spacerun:yes'> 
+</span>FFFFFFFF B17A9110 <o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>The Blocked Instruction Flag Table</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Below are the contents of the table
+addressed by R12. The table contains a flag byte for each function number that
+register R10 may contain. The possible byte values are x‘80’ if the instruction
+for that function number is a <i style='mso-bidi-font-style:normal'>blocked</i>
+MI-instruction, otherwise x ‘00’ for non-blocked instructions:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Address FFFFFFFF80 989DD0<span
+style='mso-spacerun:yes'>                    </span>byte numbers<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989DD0<span
+style='mso-spacerun:yes'>                     </span>00008000 00808080 ;<span
+style='mso-spacerun:yes'>   </span>1<span style='mso-spacerun:yes'>    </span>8<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989DE0<span style='mso-spacerun:yes'> 
+</span>80000080 80808080<span style='mso-spacerun:yes'>  </span>80808080
+80000000 ;<span style='mso-spacerun:yes'>   </span>9<span
+style='mso-spacerun:yes'>   </span>24<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989DF0<span style='mso-spacerun:yes'> 
+</span>00808000 00000080<span style='mso-spacerun:yes'>  </span>80808080 <b
+style='mso-bidi-font-weight:normal'><span style='color:red'>00</span></b>008080
+;<span style='mso-spacerun:yes'>  </span>25<span style='mso-spacerun:yes'>  
+</span>40<span style='mso-spacerun:yes'>  </span>&lt;- function 37<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E00<span style='mso-spacerun:yes'> 
+</span>00000080 00008080<span style='mso-spacerun:yes'>  </span>80808080
+00008000 ;<span style='mso-spacerun:yes'>  </span>41<span
+style='mso-spacerun:yes'>   </span>56<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E10<span style='mso-spacerun:yes'> 
+</span>00808000 00808000<span style='mso-spacerun:yes'>  </span>80800080
+00008080 ;<span style='mso-spacerun:yes'>  </span>57<span
+style='mso-spacerun:yes'>   </span>72<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E20<span style='mso-spacerun:yes'> 
+</span>80000080 80808080<span style='mso-spacerun:yes'>  </span>00800080
+80808080 ;<span style='mso-spacerun:yes'>  </span>73<span
+style='mso-spacerun:yes'>   </span>88<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E30<span style='mso-spacerun:yes'> 
+</span>80800000 80800000<span style='mso-spacerun:yes'>  </span>00808000
+80808080 ;<span style='mso-spacerun:yes'>  </span>89<span
+style='mso-spacerun:yes'>  </span>104<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E40<span style='mso-spacerun:yes'> 
+</span>00808080 00000080<span style='mso-spacerun:yes'>  </span>00808080
+80000000 ; 105<span style='mso-spacerun:yes'>  </span>120<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E50<span style='mso-spacerun:yes'> 
+</span>80000000 00000000<span style='mso-spacerun:yes'>  </span>80808080
+80000000 ; 121<span style='mso-spacerun:yes'>  </span>136<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E60<span style='mso-spacerun:yes'> 
+</span>00008080 80808080<span style='mso-spacerun:yes'>  </span>80000000
+00808080 ; 137<span style='mso-spacerun:yes'>  </span>152<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E70<span style='mso-spacerun:yes'> 
+</span>80808000 80000000<span style='mso-spacerun:yes'>  </span>80008000
+00808000 ; 153<span style='mso-spacerun:yes'>  </span>168<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E80<span style='mso-spacerun:yes'> 
+</span>00000000 80008080<span style='mso-spacerun:yes'>  </span>80800080
+00800080 ; 169<span style='mso-spacerun:yes'>  </span>184<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989E90<span style='mso-spacerun:yes'> 
+</span>80808000 80808080<span style='mso-spacerun:yes'>  </span>00808080
+80800000 ; 185<span style='mso-spacerun:yes'>  </span>200<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989EA0<span style='mso-spacerun:yes'> 
+</span>80808000 80800080<span style='mso-spacerun:yes'>  </span>00008080
+80808080 ; 201<span style='mso-spacerun:yes'>  </span>216<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989EB0<span style='mso-spacerun:yes'> 
+</span>80808080 80808080<span style='mso-spacerun:yes'>  </span>80808000
+80008080 ; 217<span style='mso-spacerun:yes'>  </span>232<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989EC0<span style='mso-spacerun:yes'> 
+</span>80008080 80000000<span style='mso-spacerun:yes'>  </span>00000000
+00000000 ; 233<span style='mso-spacerun:yes'>  </span>248<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989ED0<span style='mso-spacerun:yes'> 
+</span>00800000 80800000<span style='mso-spacerun:yes'>  </span>00000000
+00000080 ; 249<span style='mso-spacerun:yes'>  </span>264<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989EE0<span style='mso-spacerun:yes'> 
+</span>80808080 80800000<span style='mso-spacerun:yes'>  </span>00000000
+80808080 ; 265<span style='mso-spacerun:yes'>  </span>280<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989EF0<span style='mso-spacerun:yes'> 
+</span>80008000 80008080<span style='mso-spacerun:yes'>  </span>80808000
+00000000 ; 281<span style='mso-spacerun:yes'>  </span>296<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F00<span style='mso-spacerun:yes'> 
+</span>00000000 00008080<span style='mso-spacerun:yes'>  </span>80808080
+80800000 ; 297<span style='mso-spacerun:yes'>  </span>312<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F10<span style='mso-spacerun:yes'> 
+</span>00000000 00000000<span style='mso-spacerun:yes'>  </span>00808080
+80808000 ; 313<span style='mso-spacerun:yes'>  </span>328<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F20<span style='mso-spacerun:yes'> 
+</span>00000080 00000000<span style='mso-spacerun:yes'>  </span>80800000
+00808080 ; 329<span style='mso-spacerun:yes'>  </span>344<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F30<span style='mso-spacerun:yes'> 
+</span>80800080 00000000<span style='mso-spacerun:yes'>  </span>00000000
+00000000 ; 345<span style='mso-spacerun:yes'>  </span>360<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F40<span style='mso-spacerun:yes'> 
+</span>00800000 80000000<span style='mso-spacerun:yes'>  </span>00000000
+00000000 ; 361<span style='mso-spacerun:yes'>  </span>376<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F50<span style='mso-spacerun:yes'> 
+</span>80000000 00000000<span style='mso-spacerun:yes'>  </span>00000000
+00008000 ; 377<span style='mso-spacerun:yes'>  </span>392<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F60<span style='mso-spacerun:yes'> 
+</span>00000000 00000000<span style='mso-spacerun:yes'>  </span>80008080
+00000080 ; 393<span style='mso-spacerun:yes'>  </span>408<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F70<span style='mso-spacerun:yes'> 
+</span>00808000 00000000<span style='mso-spacerun:yes'>  </span>80800000
+80000000 ; 409<span style='mso-spacerun:yes'>  </span>424<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F80<span style='mso-spacerun:yes'> 
+</span>00000000 00000000<span style='mso-spacerun:yes'>  </span>00008080
+80800000 ; 425<span style='mso-spacerun:yes'>  </span>440<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>989F90<span style='mso-spacerun:yes'> 
+</span>8080<span style='mso-spacerun:yes'>                                
+</span>; 441<span style='mso-spacerun:yes'>  </span>442<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>For example, if register R10 contains the
+function number ‘3’, the above table flags that the corresponding
+MI-instruction, which for function number ‘3’ is </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>VMXCRTPG</span><span
+lang=EN-US>, is a blocked MI-instruction. An attempt to execute a blocked
+instruction will result in an exception at security levels from 40 and up. Here
+is how we load the flag byte for the function requested (remember from our test
+program that R10 still contains the function number ‘37’):</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACBC 396AFFFF<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>11 10<span style='mso-spacerun:yes'>       </span>-1 [·¦··] ; subtract 1
+from function number<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACC0 7D6C58AE<span
+style='mso-spacerun:yes'>  </span>LBZX<span style='mso-spacerun:yes'>   
+</span>11 12 11<span style='mso-spacerun:yes'>       </span>['%<span
+class=SpellE>ìÞ</span>] ; and offset into blocked instr. table <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACC4 79600620<span
+style='mso-spacerun:yes'>  </span>RLDICL<span style='mso-spacerun:yes'> 
+</span>00 11 00 56<span style='mso-spacerun:yes'>    </span>[`-··] ; extract
+low-order byte (redundant)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Now, test the program’s state and the
+blocked instruction flag byte:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACC8 73CB0080<span
+style='mso-spacerun:yes'>  </span>ANDI.<span style='mso-spacerun:yes'>  
+</span>11 30<span style='mso-spacerun:yes'>   </span>000128 [<span
+class=SpellE>Ëô</span> Ø] ; if MSR state-bit = 0 (system state)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACCC 4182000C<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>12 02<span style='mso-spacerun:yes'>      </span>+12 [·b ·] ;<span
+style='mso-spacerun:yes'>     </span>branch around to <b style='mso-bidi-font-weight:
+normal'><span style='color:green'>76ACD8</span></b> (ok)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACD0 700C0080<span
+style='mso-spacerun:yes'>  </span>ANDI.<span style='mso-spacerun:yes'>  
+</span>12 00<span style='mso-spacerun:yes'>   </span>000128 [ø· Ø] ; if blocked
+flag not = x‘80’<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACD4 40820050<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>04 02<span style='mso-spacerun:yes'>      </span>+80 [ b &amp;] ;<span
+style='mso-spacerun:yes'>     </span>branch down to <b style='mso-bidi-font-weight:
+normal'><span style='color:red'>76AD24</span></b> (error)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>So, if we come here, either the program is
+executing in system state or the flag byte is x‘00’. In either case, the
+corresponding instruction is <i style='mso-bidi-font-style:normal'>not</i>
+considered blocked and execution continues:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:green'>76ACD8</span></b><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'> 7D7142A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>11 273<span style='mso-spacerun:yes'>         </span>['<span
+class=SpellE>Éâw</span>] ; get SPRG1<span style='mso-spacerun:yes'> 
+</span>(machine stack)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACDC 396B0550<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>11 11<span style='mso-spacerun:yes'>     </span>1360 [·,·&amp;] ; set up
+address to some variable on stack<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACE0 39800000<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>12 00<span style='mso-spacerun:yes'>        </span>0 [·Ø<span
+style='mso-spacerun:yes'>  </span>] ; (don’t know what’s going on here, but …)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACE4 998B0018<span
+style='mso-spacerun:yes'>  </span>STB<span style='mso-spacerun:yes'>    
+</span>12(11)<span style='mso-spacerun:yes'>      </span>24 [r» ·] ; set the
+var. byte to binary zeroes<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We still have to select a module to jump
+to. R10 still contains the function number, so:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACE8 7D5E5378<span
+style='mso-spacerun:yes'>  </span>OR<span style='mso-spacerun:yes'>     
+</span>30 10 10<span style='mso-spacerun:yes'>       </span>[';<span
+class=SpellE>ëÌ</span>] ; copy function no. to R30<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACEC E982<b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>A460</span></b><span
+style='mso-spacerun:yes'>  </span>LD<span style='mso-spacerun:yes'>     
+</span>12(02)<span style='mso-spacerun:yes'>  </span>-23456 [<span
+class=SpellE>Zbu</span>-] ; R12 = base of function table<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACF0 70000001<span
+style='mso-spacerun:yes'>  </span>ANDI.<span style='mso-spacerun:yes'>  
+</span>00 00<span style='mso-spacerun:yes'>   </span>000001 [ø<span
+style='mso-spacerun:yes'>  </span>·] ; get low-order bit of flag byte (=0)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACF4 794B1F24<span
+style='mso-spacerun:yes'>  </span>RLDICR<span style='mso-spacerun:yes'> 
+</span>11 10 03 60<span style='mso-spacerun:yes'>    </span>[`.··] ; (shift by
+3 is multiply by 8)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACF8 396BFFF8<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>11 11<span style='mso-spacerun:yes'>       </span>-8 [·,·8] ; offset = <span
+class=SpellE>funct</span> * 8 - 8 = 8 * (<span class=SpellE>funct</span> - 1)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ACFC 7D6C582A<span
+style='mso-spacerun:yes'>  </span>LDX<span style='mso-spacerun:yes'>    
+</span>11 12 11<span style='mso-spacerun:yes'>       </span>['%ì·] ; R11 =
+address at table(offset)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD00 4182003C<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>12 02<span style='mso-spacerun:yes'>      </span>+60 [·b ·] ; normally:
+branch around to <b style='mso-bidi-font-weight:normal'><span style='color:
+maroon'>76AD3C</span></b> <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>If the blocked flag byte had a low-order
+bit of 1 (we know of none), we would not have branched and we would end up
+here:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD04 F9610080<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>11(01)<span style='mso-spacerun:yes'>     </span>128 [9/ Ø] ; some
+unusual condition:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD08 FBC10088<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>30(01)<span style='mso-spacerun:yes'>     </span>136 [ÛA h] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD0C FBE10090<span
+style='mso-spacerun:yes'>  </span>STD<span style='mso-spacerun:yes'>    
+</span>31(01)<span style='mso-spacerun:yes'>     </span>144 [Û· °] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD10 39410080<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>10 01<span style='mso-spacerun:yes'>      </span>128 [·· Ø] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD14 61AB8CA0<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>11 13<span style='mso-spacerun:yes'>   </span>036000 [/¿ðµ] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD18 4B0065F3<span
+style='mso-spacerun:yes'>  </span>BLA<span style='mso-spacerun:yes'>          
+</span>FF0065F0 [. Á3] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD1C 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD20 48000028<span
+style='mso-spacerun:yes'>  </span>B<span
+style='mso-spacerun:yes'>                  </span>+40 [ç<span
+style='mso-spacerun:yes'>  </span>·] ; branch to common exit at 76AD48<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>If we come here, the instruction is
+blocked:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:red'>76AD24</span></b><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'> 7C1E0378<span style='mso-spacerun:yes'> 
+</span>OR<span style='mso-spacerun:yes'>      </span>30 00 00<span
+style='mso-spacerun:yes'>       </span>[@··Ì] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD28 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD2C 480000E5<span
+style='mso-spacerun:yes'>  </span>BL<span
+style='mso-spacerun:yes'>                </span>+228 [ç<span
+style='mso-spacerun:yes'>  </span>V] 76AE10 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD30 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>000000 [-<span
+style='mso-spacerun:yes'>   </span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD34 7FC0F378<span
+style='mso-spacerun:yes'>  </span>OR<span style='mso-spacerun:yes'>     
+</span>00 30 30<span style='mso-spacerun:yes'>       </span>[&quot;{3Ì] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD38 4800003C<span
+style='mso-spacerun:yes'>  </span>B<span
+style='mso-spacerun:yes'>                  </span>+60 [ç<span
+style='mso-spacerun:yes'>  </span>·] 76AD74 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Here is where we actually execute the
+function:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>76AD3C</span></b><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'> 7D6903A6<span
+style='mso-spacerun:yes'>  </span>MTSPR<span style='mso-spacerun:yes'>  
+</span>09 11<span style='mso-spacerun:yes'>          </span>['<span
+class=SpellE>Ñ·w</span>] ; move function address to COUNT<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD40 4E800421<span
+style='mso-spacerun:yes'>  </span>BCCTRL<span style='mso-spacerun:yes'> 
+</span>20 00<span style='mso-spacerun:yes'>          </span>[·Ø··] ; call
+address in COUNT register<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD44 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] ;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>At the common exit point we have the usual
+housekeeping:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD48 7FD142A6<span
+style='mso-spacerun:yes'>  </span>MFSPR<span style='mso-spacerun:yes'>  
+</span>30 273<span style='mso-spacerun:yes'>         </span>[&quot;<span
+class=SpellE>Jâw</span>] ; common exit: get machine stack ptr<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD4C 91BE00B8<span
+style='mso-spacerun:yes'>  </span>STW<span style='mso-spacerun:yes'>    
+</span>13(30)<span style='mso-spacerun:yes'>     </span>184 [j´ ½] ;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD50 A17E00FC<span
+style='mso-spacerun:yes'>  </span>LHZ<span style='mso-spacerun:yes'>    
+</span>11(30)<span style='mso-spacerun:yes'>     </span>252 [~= Ü] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD54 2C0B0002<span
+style='mso-spacerun:yes'>  </span>CMPI<span style='mso-spacerun:yes'>   
+</span>0<span style='mso-spacerun:yes'>  </span>11<span
+style='mso-spacerun:yes'>   </span>000002 [·· ·] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD58 40820010<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>04 02<span style='mso-spacerun:yes'>      </span>+16 [ b ·] 76AD68 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD5C 60000000<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>  </span><span
+style='mso-spacerun:yes'> </span>000000 [-<span style='mso-spacerun:yes'>  
+</span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD60 4B013B8B<span
+style='mso-spacerun:yes'>  </span>BLA<span style='mso-spacerun:yes'>          
+</span>FF013B88 [.··»] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD64 3C40B161<span
+style='mso-spacerun:yes'>  </span>ADDIS<span style='mso-spacerun:yes'>  
+</span>02 00<span style='mso-spacerun:yes'>   </span>-20127 [· £/] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD68 801E00B0<span
+style='mso-spacerun:yes'>  </span>LWZ<span style='mso-spacerun:yes'>    
+</span>00(30)<span style='mso-spacerun:yes'>     </span>176 [Ø· ^] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD6C 70000400<span
+style='mso-spacerun:yes'>  </span>ANDI.<span style='mso-spacerun:yes'>  
+</span>00 00<span style='mso-spacerun:yes'>   </span>001024 [ø · ] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD70 40820059<span
+style='mso-spacerun:yes'>  </span>BCL<span style='mso-spacerun:yes'>    
+</span>04 02<span style='mso-spacerun:yes'>      </span>+88 [ b ß] 76ADC8<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD74 409E001C<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>04 30<span style='mso-spacerun:yes'>      </span>+28 [ Æ ·] 76AD90<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD78 38C00400<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>06 00<span style='mso-spacerun:yes'>     </span>1024 [·{· ] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD7C 38000020<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>00 00<span style='mso-spacerun:yes'>       </span>32 [·<span
+style='mso-spacerun:yes'>  </span>·] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD80 7D810028<span
+style='mso-spacerun:yes'>  </span>LWARX<span style='mso-spacerun:yes'>  
+</span>12 01 00<span style='mso-spacerun:yes'>       </span>['a ·] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD84 7D8C3378<span
+style='mso-spacerun:yes'>  </span>OR<span style='mso-spacerun:yes'>     
+</span>12 12 06<span style='mso-spacerun:yes'>       </span>['<span
+class=SpellE>ð·Ì</span>] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD88 7D81012D<span
+style='mso-spacerun:yes'>  </span>STWCX.<span style='mso-spacerun:yes'> 
+</span>12 01 00<span style='mso-spacerun:yes'>       </span>['a··] <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD8C 4082FFF4<span
+style='mso-spacerun:yes'>  </span>BC<span style='mso-spacerun:yes'>     
+</span>04 02<span style='mso-spacerun:yes'>      </span>-12 [ b·4] 76AD80<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>And finally the return from the SCV:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD90 E8010020<span
+style='mso-spacerun:yes'>  </span>LD<span style='mso-spacerun:yes'>     
+</span>00(01)<span style='mso-spacerun:yes'>      </span>32 [Y· ·] ; get saved
+MSR<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD94 60004030<span
+style='mso-spacerun:yes'>  </span>ORI<span style='mso-spacerun:yes'>    
+</span>00 00<span style='mso-spacerun:yes'>   </span>016432 [-<span
+style='mso-spacerun:yes'>  </span>·] ; set problem state<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD98 7C0903A6<span
+style='mso-spacerun:yes'>  </span>MTSPR<span style='mso-spacerun:yes'>  
+</span>09 00<span style='mso-spacerun:yes'>          </span>[@··w] ; move to
+COUNT<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76AD9C 382100C0<span
+style='mso-spacerun:yes'>  </span>ADDI<span style='mso-spacerun:yes'>   
+</span>01 01<span style='mso-spacerun:yes'>      </span>192 [·· {] ; release
+stack frame<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ADA0 E8010028<span
+style='mso-spacerun:yes'>  </span>LD<span style='mso-spacerun:yes'>     
+</span>00(01)<span style='mso-spacerun:yes'>      </span>40 [Y· ·] ; get return
+address<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ADA4 7C0803A6<span
+style='mso-spacerun:yes'>  </span>MTSPR<span style='mso-spacerun:yes'>  
+</span>08 00<span style='mso-spacerun:yes'>          </span>[@··w] ; move to
+LINK<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ADA8 EBC1FFF3<span
+style='mso-spacerun:yes'>  </span>LMD<span style='mso-spacerun:yes'>    
+</span>30(01)<span style='mso-spacerun:yes'>     </span>-16 [ÔA·3] ; restore
+R30-R31<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>76ADAC 4C0000A4<span
+style='mso-spacerun:yes'>  </span>RFSCV<span
+style='mso-spacerun:yes'>                  </span>[&lt;<span
+style='mso-spacerun:yes'>  </span>u] ; return (via LINK, set MSR from COUNT)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>One interesting, and perhaps serious, point
+to make is that he Blocked Flag table is <i style='mso-bidi-font-style:normal'>not</i>
+in write-protected memory and can thus be altered permanently by any
+system-state program. A list of all SCV 10 functions is given in Appendix E.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>Other SCV Calls</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Here is a list of some other
+MI-instructions implemented as separate SCV calls, rather than a selectable
+function of SCV 10:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 3<span style='mso-tab-count:1'>               </span>SETPSPPFP/CMPPSPAD</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 5<span style='mso-tab-count:1'>               </span>Return from
+CALLX</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 7<span style='mso-tab-count:1'>               </span>CALLX</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 8<span style='mso-tab-count:1'>               </span>XCTL</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 13<span style='mso-tab-count:1'>            </span>MATMDATA</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 14<span style='mso-tab-count:1'>            </span>ALCHSS</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 15<span style='mso-tab-count:1'>            </span>FREHSS</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SCV 16<span style='mso-tab-count:1'>            </span>REALCHSS</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level2 lfo3'><span
+lang=EN-US>What Did We Learn?</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>From taking a look at the SCV instruction,
+it has shown us that a high percentage of the MI-instructions are actually
+implemented as selectable sub-functions of SCV 10. Using SCV 10 as a selector
+for the MI-instruction being used, offers IBM a useful abstracted layer, away
+from the ‘real’ code implementation for each MI-instruction, allowing IBM great
+flexibility for changing the underlying code for the instruction without
+impacting the program using the MI-instruction. We have also seen that the only
+barrier restricting user-written programs from using the blocked
+MI-instructions is a small, easily modifiable table.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

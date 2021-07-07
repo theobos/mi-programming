@@ -1,0 +1,2693 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="mlp024_files/filelist.xml">
+<title>Editing of Numeric Variables</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Leif Svalgaard</o:Author>
+  <o:LastAuthor>BOS Theo</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>799</o:TotalTime>
+  <o:Created>2021-07-07T07:59:00Z</o:Created>
+  <o:LastSaved>2021-07-07T07:59:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1808</o:Words>
+  <o:Characters>9949</o:Characters>
+  <o:Company>Dell Computer Corporation</o:Company>
+  <o:Lines>82</o:Lines>
+  <o:Paragraphs>23</o:Paragraphs>
+  <o:CharactersWithSpaces>11734</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="mlp024_files/themedata.thmx">
+<link rel=colorSchemeMapping href="mlp024_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>NL</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseWord97LineBreakingRules/>
+   <w:SelectEntireFieldWithStartOrEnd/>
+   <w:UseWord2002TableStyleRules/>
+   <w:UseWord2010TableStyleRules/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:UnderlineTabInNumList/>
+   <w:HangulWidthLikeWW11/>
+   <w:UseNormalStyleForList/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="0" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h4
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h5
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h6
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	mso-list:l0 level6 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:7;
+	mso-list:l0 level7 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:8;
+	mso-list:l0 level8 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:9;
+	mso-list:l0 level9 lfo1;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Lucida Console";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("mlp024_files/header.html") fs;
+	mso-footnote-continuation-separator:url("mlp024_files/header.html") fcs;
+	mso-endnote-separator:url("mlp024_files/header.html") es;
+	mso-endnote-continuation-separator:url("mlp024_files/header.html") ecs;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:50.4pt;
+	mso-page-numbers-chapter-style:header-1;
+	mso-even-footer:url("mlp024_files/header.html") ef1;
+	mso-footer:url("mlp024_files/header.html") f1;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:971011092;
+	mso-list-template-ids:-1772986200;}
+@list l0:level1
+	{mso-level-start-at:24;
+	mso-level-style-link:"Heading 1";
+	mso-level-suffix:space;
+	mso-level-text:"Chapter %1";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level2
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 2";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level3
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 3";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level4
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 4";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level5
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 5";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level6
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 6";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 7";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 8";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 9";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=NL style='tab-interval:14.4pt;word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:Arial;mso-bidi-font-family:Arial'><span
+style='mso-list:Ignore'>Chapter 24 </span></span><![endif]><span lang=EN-US><br>
+</span><span lang=EN-US style='font-size:10.0pt'><br>
+</span><span lang=EN-US>Editing of Numeric Variables</span></h1>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>The Importance of Editing</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>It has been said that 90% of all computer
+power is spent on sorting (either directly or indirectly through maintenance of
+keyed data), and that 90% of the remaining power is spent on editing of numeric
+data for presentation. One rationale for the use of “zoned” and “packed” data
+formats was mainly to cut down on the computational cost of editing (dividing
+by 10 several times for each number is expensive - some early computers did not
+even have a </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DIVIDE</span><span lang=EN-US>
+instruction). Another rationale was simply that many early computers mainly
+worked in decimal anyway (even addresses were decimal). </span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Edit Codes and Edit Words</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Traditionally, editing<span
+style='mso-spacerun:yes'>  </span>numeric values on the AS/400 was specified
+through the use of <i style='mso-bidi-font-style:normal'>Edit Codes</i> and <i
+style='mso-bidi-font-style:normal'>Edit Words</i>. </span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:14.4pt;margin-bottom:
+0cm;margin-left:14.4pt;margin-bottom:.0001pt'><span lang=EN-US>“An edit code is
+a standard description of how a number should be formatted. There are many
+standard edit codes defined by the system. Users can define several edit codes
+the way they want with the use of the Create Edit Description (</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>CRTEDTD</span><span
+lang=EN-US>) command. An edit word is a user-defined description of how a
+number should be formatted. An edit word is usually used when one of the
+standard edit codes or user-defined edit codes is not sufficient for a
+particular situation”. </span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The above quote from one of the RPG manuals
+already hints that editing using edit codes and edit words is less than
+satisfactory. In fact, it often seems that these techniques are part of the
+problem rather than part of the solution. Luckily, the machine has a very
+powerful </span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>EDIT</span></b><span lang=EN-US> MI-instruction that makes the
+use of the non-intuitive edit codes and edit words superfluous. </span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US style='text-transform:uppercase'>COBOL</span><span lang=EN-US>
+Pictures</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>In contrast to RPG, the <span
+style='text-transform:uppercase'>COBOL</span> language has always had a very
+simple, visual, and intuitive way of working with editing specifications: the
+COBOL <i style='mso-bidi-font-style:normal'>Picture</i>. With only a slight
+simplification one can state that the </span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>EDIT</span></b><span lang=EN-US>
+instruction’s purpose is to support the <span style='text-transform:uppercase'>COBOL</span>
+<i style='mso-bidi-font-style:normal'>edited picture</i> specification. A
+numeric variable in <span style='text-transform:uppercase'>COBOL</span> can be
+either in internal numeric or in <i style='mso-bidi-font-style:normal'>edited
+numeric</i> format. Let’s look at a few examples. The </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>IN-DATA</span><span
+lang=EN-US> picture is internal numeric, while all the </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>OUT-DATA</span><span
+lang=EN-US> pictures are edited numeric:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>02<span style='mso-spacerun:yes'>  </span>IN-DATA<span
+style='mso-spacerun:yes'>                 </span>PIC <b style='mso-bidi-font-weight:
+normal'><span style='color:green'>S9(7)V99</span></b>.<span
+style='mso-spacerun:yes'>                   </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA1<span
+style='mso-spacerun:yes'>               </span>PIC <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>-9,999,999.99</span></b>.<span
+style='mso-spacerun:yes'>              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA2<span
+style='mso-spacerun:yes'>               </span>PIC <b style='mso-bidi-font-weight:
+normal'><span style='color:red'>--,---,--9.99</span></b>.<span
+style='mso-spacerun:yes'>              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA3<span
+style='mso-spacerun:yes'>               </span>PIC <b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>9,999,999.99-</span></b>.<span
+style='mso-spacerun:yes'>              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA4<span
+style='mso-spacerun:yes'>               </span>PIC <b style='mso-bidi-font-weight:
+normal'><span style='color:red'>Z,ZZZ,ZZ9.99-</span></b>.<span
+style='mso-spacerun:yes'>             </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                                               
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MOVE <b style='mso-bidi-font-weight:normal'><span style='color:green'>-1234567.89</span></b>
+TO IN-DATA<span style='mso-spacerun:yes'>                                
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MOVE IN-DATA TO OUT-DATA1, OUT-DATA2,<span style='mso-spacerun:yes'> 
+</span>OUT-DATA3, OUT-DATA4 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DISPLAY<span style='mso-spacerun:yes'>         </span>OUT-DATA1,
+OUT-DATA2,<span style='mso-spacerun:yes'>  </span>OUT-DATA3, OUT-DATA4<span
+style='mso-spacerun:yes'>        </span></span><span lang=EN-US>results in:</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    </span><b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>-1,234,567.89</span></b>
+<b style='mso-bidi-font-weight:normal'><span style='color:red'>-1,234,567.89</span><span
+style='mso-spacerun:yes'>  </span><span style='color:blue'>1,234,567.89-</span>
+<span style='color:red'>1,234,567.89-</span></b><span
+style='mso-spacerun:yes'>     </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MOVE <b style='mso-bidi-font-weight:normal'><span style='color:green'>-1.23</span></b><span
+style='mso-spacerun:yes'>       </span>TO IN-DATA<span
+style='mso-spacerun:yes'>                                    </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MOVE IN-DATA TO OUT-DATA1, OUT-DATA2,<span style='mso-spacerun:yes'> 
+</span>OUT-DATA3, OUT-DATA4 <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DISPLAY<span style='mso-spacerun:yes'>         </span>OUT-DATA1,
+OUT-DATA2,<span style='mso-spacerun:yes'>  </span>OUT-DATA3, OUT-DATA4<span
+style='mso-spacerun:yes'>        </span></span><span lang=EN-US>results in:</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    </span><b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>-0,000,001.23</span></b>
+<b style='mso-bidi-font-weight:normal'><span style='color:red'><span
+style='mso-spacerun:yes'>        </span>-1.23</span><span
+style='mso-spacerun:yes'>  </span><span style='color:blue'>0,000,001.23-</span>
+<span style='color:red'><span style='mso-spacerun:yes'>        </span>1.23-</span></b><span
+style='mso-spacerun:yes'>     </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Very little explanation is really needed.
+The pictures speak for themselves. The only subtlety is that two of the edited
+pictures (with all the 9s) specify a <b style='mso-bidi-font-weight:normal'><span
+style='color:blue'>fixed</span></b> format, while the other two specify a <b
+style='mso-bidi-font-weight:normal'><span style='color:red'>floating</span></b>
+format. In the floating format (nothing to do with <i style='mso-bidi-font-style:
+normal'>floating-point</i> format), the leading blanks and the sign “float” to
+the right until they meet the first significant digit. Note also the thousand
+separator commas that are inserted at either fixed places (for fixed formats)
+or as needed among significant digits (for floating formats). In the following
+section we’ll see how to instruct the </span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>EDIT</span></b><span lang=EN-US>
+instruction to do its magic.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>The </span><span lang=EN-US style='font-family:"Lucida Console";
+color:maroon'>EDIT</span><span lang=EN-US> MI-Instruction</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The general format of the </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>EDIT</span></b><span
+lang=EN-US> instruction is:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>      </span>EDIT<span
+style='mso-spacerun:yes'>        </span><i style='mso-bidi-font-style:normal'>Character-Receiver</i>,
+<i style='mso-bidi-font-style:normal'>Numeric-Source</i>, <i style='mso-bidi-font-style:
+normal'>Edit-Mask<o:p></o:p></i></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The <i style='mso-bidi-font-style:normal'>Edit-Mask</i>
+controls the editing of the <i style='mso-bidi-font-style:normal'>Numeric-Source</i>
+into the <i style='mso-bidi-font-style:normal'>Character-Receiver</i>. The
+first step of the editing process is to automatically translate the source
+number to a packed decimal format large enough to hold the numeric value.</span></p>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level3 lfo1'><span
+lang=EN-US>The Edit Mask</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>The COBOL move-statement:<span
+style='mso-spacerun:yes'>  </span></span><span lang=EN-US style='font-size:
+8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>MOVE IN-DATA TO
+OUT-DATA1 </span><span lang=EN-US><span
+style='mso-spacerun:yes'> </span>generates the following code:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>DCL CON PICTURE1 CHAR(23) INIT(X‘<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>AF40AE60AE</span></b>AA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B36BAE</span></b>AAAAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B36BAE</span></b>AAAAAA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B34BAE</span></b>AAAA’;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>EDIT OUT-DATA1, IN-DATA, PICTURE1; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Although the edit mask (</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>PICTURE1</span><span
+lang=EN-US>) looks somewhat forbidding it is really just a simple encoding of
+the COBOL picture:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>-9,999,999.99</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AF <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Positive: <b style='mso-bidi-font-weight:
+  normal'><span style='color:blue'>space</span></b>; Negative: <b
+  style='mso-bidi-font-weight:normal'><span style='color:red'>minus sign</span></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>9<span style='mso-spacerun:yes'>      
+  </span>digit position (significant or not)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>        </span>separator comma<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'> 
+  </span>digit positions</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>        </span>separator comma<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'> 
+  </span>digit positions</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span>decimal point<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span>decimals</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The edit mask contains both <i
+style='mso-bidi-font-style:normal'>control</i> characters and <i
+style='mso-bidi-font-style:normal'>data</i> characters. The character x‘</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>AE</span><span
+lang=EN-US>’ is used as an “End-of-String” character (EOS), but only for
+terminating the various streams of control characters that are interspersed
+between the data characters. Any character less than x‘</span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>40</span><span
+lang=EN-US>’ can also be used as the EOS, but it is simpler to stick to the
+standard x‘</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>AE</span><span lang=EN-US>’. The x‘</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>AF</span><span
+lang=EN-US>’ control character specifies which character to use for the sign
+(first for positive or zero values and after the EOS for negative values) for
+fixed format pictures. The </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EDIT</span><span
+lang=EN-US> instruction works from left to right through the source and the
+edit mask. The x‘</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>AA</span><span lang=EN-US>’ control
+character specifies that the corresponding source digit is to be copied to the
+receiver, even if we are still among the leading zeroes <i style='mso-bidi-font-style:
+normal'>(i.e.</i> have no numeric “significance” yet).<span
+style='mso-spacerun:yes'>  </span>The x‘</span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>B3</span><span
+lang=EN-US>’ control character specifies that the character that follows is to
+be inserted at the current position in the receiver. </span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Here is the next example:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>  </span>DCL CON PICTURE2 CHAR(25) INIT(X‘<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B14040AE60AE</span></b>B2B2<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B06BAE</span></b>B2B2B2<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B06BAE</span></b>B2B2AA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B34BAE</span></b>AAAA’);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>EDIT OUT-DATA2, IN-DATA, PICTURE2; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>--,---,--9.99</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B1 <b style='mso-bidi-font-weight:normal'><span style='color:green'>40</span></b>
+  <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Fill:<span style='mso-spacerun:yes'> 
+  </span><b style='mso-bidi-font-weight:normal'><span style='color:green'>space</span></b>;
+  Positive: <b style='mso-bidi-font-weight:normal'><span style='color:blue'>space</span></b>;
+  Negative: <b style='mso-bidi-font-weight:normal'><span style='color:red'>minus
+  sign</span></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>--<span style='mso-spacerun:yes'>      
+  </span>either a source digit or the <i style='mso-bidi-font-style:normal'>fill</i>
+  character to be used (two of them)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  </span>B0
+  <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'> </span></span><span lang=EN-US><span
+  style='mso-spacerun:yes'> </span>separator comma<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2 B2<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>---<span style='mso-spacerun:yes'>    
+  </span>source digits (if significant) otherwise fill character</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B0 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2 AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>--9<span style='mso-spacerun:yes'>   
+  </span>last of the three always source digit</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>     </span></span><span
+  lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US><span
+  style='mso-spacerun:yes'> </span>decimal point<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span></span><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+  10.0pt'><span style='mso-spacerun:yes'> </span></span><span lang=EN-US>source
+  decimals</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The x‘</span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>B1</span><span
+lang=EN-US>’ control character specifies first which character to use as a fill
+character before the sign for floating formats; then follow the characters to
+use for the sign (first for positive or zero values and after the EOS for
+negative values). Note that the sign characters could actually be a string, <i
+style='mso-bidi-font-style:normal'>e.g.</i> </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>CR</span><span
+lang=EN-US> for credit or </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>DB</span><span
+lang=EN-US> for debit. The x‘</span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>B0</span><span
+lang=EN-US>’ control character specifies to insert either the character given
+(if significance has been reached) or the fill character. The x‘</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>B2</span><span
+lang=EN-US>’ control character specifies to use either a source digit (if
+significance has been reached) or the fill character. </span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>More examples:</span><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>  </span>DCL CON PICTURE3 CHAR(23) INIT(X‘AA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B36BAE</span></b>AAAAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B36BAE</span></b>AAAAAA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B34BAE</span></b>AAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>AF40AE60AE</span></b>’);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>EDIT OUT-DATA3, IN-DATA, PICTURE3; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>9,999,999.99-</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>9<span style='mso-spacerun:yes'>       
+  </span>source digit</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>separator comma<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'>  
+  </span>source digits</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>separator comma<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'>  
+  </span>source digits</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>decimal point<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span></span><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+  10.0pt'><span style='mso-spacerun:yes'> </span></span><span lang=EN-US>source
+  decimals</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AF <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Positive: <b style='mso-bidi-font-weight:
+  normal'><span style='color:blue'>space</span></b>; Negative: <b
+  style='mso-bidi-font-weight:normal'><span style='color:red'>minus sign</span></b></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>DCL
+DD PICTURE4 CHAR(27) INIT(X‘<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B140AEAE</span></b>B2<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B06BAE</span></b>B2B2B2<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B06BAE</span></b>B2B2AA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B34BAE</span></b>AAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>AF40AE60AE</span></b>’);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>EDIT OUT-DATA4, IN-DATA, PICTURE4; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>Z,ZZZ,ZZ9.99-</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B1 <b style='mso-bidi-font-weight:normal'><span style='color:green'>40</span></b>
+  AE AE</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Fill:<span style='mso-spacerun:yes'> 
+  </span><b style='mso-bidi-font-weight:normal'><span style='color:green'>space</span></b>;
+  note that there are no sign characters, only EOSs</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 <o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Z<span style='mso-spacerun:yes'>      
+  </span>either a source digit or the <i style='mso-bidi-font-style:normal'>fill</i>
+  character to be used </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B0 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'> </span></span><span lang=EN-US><span
+  style='mso-spacerun:yes'> </span>separator comma<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2 B2<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ZZZ<span style='mso-spacerun:yes'> 
+  </span>source digits (if significant) otherwise fill character</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B0 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>6B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>,<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2 AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ZZ9<span style='mso-spacerun:yes'> 
+  </span>last of the three always source digit</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>     </span></span><span
+  lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US><span
+  style='mso-spacerun:yes'> </span>decimal point<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span></span><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+  10.0pt'><span style='mso-spacerun:yes'> </span></span><span lang=EN-US>source
+  decimals</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AF <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Positive: <b style='mso-bidi-font-weight:
+  normal'><span style='color:blue'>space</span></b>; Negative: <b
+  style='mso-bidi-font-weight:normal'><span style='color:red'>minus sign</span></b></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The starting x‘</span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>B1</span><span
+lang=EN-US>’</span><span lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:
+10.0pt'> </span><span lang=EN-US>control sequence does not contain any sign
+character strings (as the picture specifies a trailing sign), but we still need
+two EOSs. Let’s finish with two more examples:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA5<span
+style='mso-spacerun:yes'>          </span>PIC 9B999B999.99+.<span
+style='mso-spacerun:yes'>       </span></span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt'>Result</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>
+= 1 234 567.89+<span style='mso-spacerun:yes'>   </span>0 000 001.23+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>  </span>DCL CON PICTURE5 CHAR(23) INIT(X‘AA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B340AE</span></b>AAAAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>B340AE</span></b>AAAAAA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B34BAE</span></b>AAAA<b style='mso-bidi-font-weight:normal'><span
+style='background:yellow;mso-highlight:yellow'>AF4EAE60AE</span></b>’);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>EDIT OUT-DATA5, IN-DATA, PICTURE5; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>9B999B999.99-</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>9<span style='mso-spacerun:yes'>       
+  </span>source digit</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>&#1100;<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'> </i></b><span
+  style='mso-spacerun:yes'>      </span></span><span lang=EN-US
+  style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>separator blank<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'>  
+  </span>source digits</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>40</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>&#1100;<b style='mso-bidi-font-weight:
+  normal'><i style='mso-bidi-font-style:normal'> </i></b><span
+  style='mso-spacerun:yes'>      </span></span><span lang=EN-US
+  style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>separator blank<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'>  
+  </span>source digits</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>decimal point<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span></span><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+  10.0pt'><span style='mso-spacerun:yes'> </span></span><span lang=EN-US>source
+  decimals</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AF <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4E</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Positive: <b style='mso-bidi-font-weight:
+  normal'><span style='color:blue'>plus sign</span></b>; Negative: <b
+  style='mso-bidi-font-weight:normal'><span style='color:red'>minus sign</span></b></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>02<span style='mso-spacerun:yes'>  </span>OUT-DATA6<span
+style='mso-spacerun:yes'>          </span>PIC ********9.99-.<span
+style='mso-spacerun:yes'>       </span></span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt'>Result</span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>
+= **1234567.89-<span style='mso-spacerun:yes'>   </span>********1.23-<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:6.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>  </span>DCL CON PICTURE6 CHAR(23) INIT(X‘<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>B15CAEAE</span></b>B2B2B2B2B2B2B2B2AA<b style='mso-bidi-font-weight:
+normal'><span style='background:yellow;mso-highlight:yellow'>B34BAE</span></b>AAAA<b
+style='mso-bidi-font-weight:normal'><span style='background:yellow;mso-highlight:
+yellow'>AF40AE60AE</span></b>’);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>EDIT OUT-DATA6, IN-DATA, PICTURE6; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=138 valign=top style='width:103.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;
+  mso-pattern:gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+  </span>Edit Mask Part</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#E5E5E5;mso-shading:windowtext;mso-pattern:
+  gray-10 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='color:black;mso-color-alt:windowtext'>Explanation
+  for<span style='mso-spacerun:yes'>   </span></span><b style='mso-bidi-font-weight:
+  normal'><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:"Lucida Console";color:black;mso-color-alt:windowtext'>********9.99-</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B1 <b style='mso-bidi-font-weight:normal'><span style='color:green'>5C</span></b>
+  AE AE</span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Fill:<span style='mso-spacerun:yes'>  
+  </span><b style='mso-bidi-font-weight:normal'><span style='color:green'>asterisk</span></b>;
+  note that there are no sign characters, only EOSs</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B2 B2 B2 B2 … AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>***…9<b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'> </i></b><span
+  style='mso-spacerun:yes'>  </span>fill with *, end with one source digit<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>999<span style='mso-spacerun:yes'>  
+  </span>source digits</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>B3 <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4B</span></b>
+  AE<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><i
+  style='mso-bidi-font-style:normal'><span lang=EN-US>.</span></i></b><span
+  lang=EN-US><span style='mso-spacerun:yes'>       </span></span><span
+  lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:10.0pt'><span
+  style='mso-spacerun:yes'>  </span></span><span lang=EN-US>decimal point<b
+  style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><o:p></o:p></i></b></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AA AA<o:p></o:p></span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>99<span style='mso-spacerun:yes'>   
+  </span></span><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+  10.0pt'><span style='mso-spacerun:yes'> </span></span><span lang=EN-US>source
+  decimals</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=138 style='width:103.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+  </span>AF <b style='mso-bidi-font-weight:normal'><span style='color:blue'>4E</span></b>
+  AE <b style='mso-bidi-font-weight:normal'><span style='color:red'>60</span></b>
+  AE </span></p>
+  </td>
+  <td width=402 valign=top style='width:301.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Positive: <b style='mso-bidi-font-weight:
+  normal'><span style='color:blue'>plus sign</span></b>; Negative: <b
+  style='mso-bidi-font-weight:normal'><span style='color:red'>minus sign</span></b></span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level3 lfo1'><span
+lang=EN-US style='color:white;mso-color-alt:windowtext'>Parameter Length
+Conformance</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>An <i style='mso-bidi-font-style:normal'>edit
+digit count </i>(x‘</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0C04</span><span lang=EN-US>’) exception
+is signaled if:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:28.8pt;text-indent:-14.55pt'><span
+lang=EN-US>&#9679;<span style='mso-tab-count:1'>   </span>The end of the source
+is reached and there are more control characters that correspond to digits in the
+edit mask.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:2.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:28.8pt;text-indent:-14.55pt'><span
+lang=EN-US>&#9679;<span style='mso-tab-count:1'>   </span>The end of the edit
+mask is reached and there are more digit positions in the source.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>A <i style='mso-bidi-font-style:normal'>length
+conformance </i>(x‘</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>0C08</span><span lang=EN-US>’) exception
+is signaled if:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:28.8pt;text-indent:-14.55pt'><span
+lang=EN-US>&#9679;<span style='mso-tab-count:1'>   </span>The end of the edit
+mask is reached and there are more control character positions in the receiver.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:2.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:28.8pt;text-indent:-14.55pt'><span
+lang=EN-US>&#9679;<span style='mso-tab-count:1'>   </span>The end of the
+receiver is reached and more positions remain in the edit mask.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:2.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:28.8pt;text-indent:-14.55pt'><span
+lang=EN-US>&#9679;<span style='mso-tab-count:1'>   </span>The number of B2s
+following a B1 cannot accommodate the longer of the two floating strings.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The moral here is simple: be careful with
+the lengths. The receiver cannot be too large either. Everything must just fit.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Left-Justifying the Number</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Numbers are usually right-justified in a
+field and the </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>EDIT</span><span lang=EN-US> instruction
+is designed to produce right-justified results, i.e. values that “butt” up
+against the right-hand side of the field. Occasionally, one has the need to
+produce results that are <i style='mso-bidi-font-style:normal'>left-justified</i>.
+The following little MI-program, </span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>MIEDTNBR</span></b><span lang=EN-US>, shows how first to use the </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EDIT</span><span
+lang=EN-US> instruction to edit a numeric value and then how to use the </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>VERIFY</span><span
+lang=EN-US> instruction to help left-justify the result:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD RECEIVER<span
+style='mso-spacerun:yes'>  </span>CHAR(13);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD NUMBER<span
+style='mso-spacerun:yes'>    </span>PKD(9,2) INIT(P'-1.23');</span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD PICTURE<span
+style='mso-spacerun:yes'>   </span>CHAR(25) <span style='color:green'>/* COBOL
+PICTURE --,---,--9.99 */</span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>         
+</span>INIT(X‘B14040AE60AEB2B2B06BAEB2B2B2B06BAEB2B2AAB34BAEAAAA’);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>               </span><span style='color:green'>/*<span
+style='mso-spacerun:yes'>            </span>- -<span
+style='mso-spacerun:yes'>   </span>,<span style='mso-spacerun:yes'>   </span>-
+- -<span style='mso-spacerun:yes'>   </span>,<span style='mso-spacerun:yes'>  
+</span>- - 9<span style='mso-spacerun:yes'>   </span>.<span
+style='mso-spacerun:yes'>   </span>9 9 */<o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL SPCPTR .PARM1 PARM;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD PARM-NBR PKD(15,5) BAS(.PARM1);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL OL PARMS(.PARM1) PARM EXT MIN(1);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>ENTRY * (PARMS) EXT;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>        </span>NUMBER, PARM-NBR;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>EDIT<span style='mso-spacerun:yes'>         </span>RECEIVER, NUMBER,
+PICTURE;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>      </span>MSG-TEXT,
+&quot;[&quot;, &quot; &quot;;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>      </span>MSG-TEXT(2:14),
+RECEIVER, &quot;]&quot;;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD WHERE<span
+style='mso-spacerun:yes'>  </span>BIN(2);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US>DCL DD LENGTH BIN(2);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>VERIFY(B)<span style='mso-spacerun:yes'>    </span>WHERE,<span
+style='mso-spacerun:yes'>  </span>RECEIVER, &quot; &quot;/ZER(=+3);</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>         </span>LENGTH, 14, WHERE; /*
+14 = 13 + 1 */</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYBOLAP<span style='mso-spacerun:yes'>     </span>RECEIVER,
+RECEIVER(WHERE:LENGTH), &quot; &quot;;:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYBLA<span style='mso-spacerun:yes'>       </span>MSG-TEXT(18:1),
+&quot;[&quot;;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>      </span>MSG-TEXT(19:14),
+RECEIVER, &quot;]&quot;;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>        </span>SHOW-MESSAGE, *,
+.SHOW-MESSAGE;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>          </span>*;</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US>%INCLUDE SHOWMSG</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Here is a sample run:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>==&gt; CALL MIEDTNBR PARM(-1.23)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>From . . . LSVALGAARD<span
+style='mso-spacerun:yes'>    </span>02/12/01<span style='mso-spacerun:yes'> 
+</span>21:54:43<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>[<span style='mso-spacerun:yes'>       
+</span>-1.23]<span style='mso-spacerun:yes'>  </span>[-1.23<span
+style='mso-spacerun:yes'>        </span>]<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

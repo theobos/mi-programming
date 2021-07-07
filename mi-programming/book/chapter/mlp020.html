@@ -1,0 +1,3627 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="mlp020_files/filelist.xml">
+<title>Exception Handling</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Leif Svalgaard</o:Author>
+  <o:LastAuthor>BOS Theo</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1358</o:TotalTime>
+  <o:LastPrinted>2001-01-09T12:01:00Z</o:LastPrinted>
+  <o:Created>2021-07-07T07:58:00Z</o:Created>
+  <o:LastSaved>2021-07-07T07:58:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>4910</o:Words>
+  <o:Characters>27007</o:Characters>
+  <o:Company>Dell Computer Corporation</o:Company>
+  <o:Lines>225</o:Lines>
+  <o:Paragraphs>63</o:Paragraphs>
+  <o:CharactersWithSpaces>31854</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="mlp020_files/themedata.thmx">
+<link rel=colorSchemeMapping href="mlp020_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>NL</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseWord97LineBreakingRules/>
+   <w:SelectEntireFieldWithStartOrEnd/>
+   <w:UseWord2002TableStyleRules/>
+   <w:UseWord2010TableStyleRules/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:UnderlineTabInNumList/>
+   <w:HangulWidthLikeWW11/>
+   <w:UseNormalStyleForList/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="0" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h4
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-bidi-font-weight:normal;}
+h5
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;}
+h6
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	mso-list:l0 level6 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-ansi-language:EN-US;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:7;
+	mso-list:l0 level7 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:8;
+	mso-list:l0 level8 lfo1;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:9;
+	mso-list:l0 level9 lfo1;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-noshow:yes;
+	mso-style-unhide:no;
+	margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("mlp020_files/header.html") fs;
+	mso-footnote-continuation-separator:url("mlp020_files/header.html") fcs;
+	mso-endnote-separator:url("mlp020_files/header.html") es;
+	mso-endnote-continuation-separator:url("mlp020_files/header.html") ecs;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:50.4pt;
+	mso-page-numbers-chapter-style:header-1;
+	mso-even-footer:url("mlp020_files/header.html") ef1;
+	mso-footer:url("mlp020_files/header.html") f1;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:281695548;
+	mso-list-template-ids:1218725218;}
+@list l0:level1
+	{mso-level-start-at:20;
+	mso-level-style-link:"Heading 1";
+	mso-level-suffix:space;
+	mso-level-text:"Chapter %1";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level2
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 2";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level3
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 3";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level4
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 4";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level5
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 5";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level6
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 6";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level7
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 7";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level8
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 8";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level9
+	{mso-level-number-format:none;
+	mso-level-style-link:"Heading 9";
+	mso-level-suffix:none;
+	mso-level-text:"";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=NL style='tab-interval:36.0pt;word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:Arial;mso-bidi-font-family:Arial'><span
+style='mso-list:Ignore'>Chapter 20 </span></span><![endif]><span lang=EN-US><br>
+</span><span lang=EN-US style='font-size:10.0pt'><br>
+</span><span lang=EN-US>Exception Handling</span></h1>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Exceptions and Events</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>At the hardware level, the processor deals
+with exceptions by issuing <i style='mso-bidi-font-style:normal'>interrupts</i>.
+An exception at this level is a condition (note how we keep hiding the real
+world behind yet another concept) that calls for changing the normal flow of
+instruction execution. At the MI-level, there is no concept of interrupts. MI
+distinguishes between <i style='mso-bidi-font-style:normal'>exceptions</i> and <i
+style='mso-bidi-font-style:normal'>events</i>. An exception at the MI is not
+the same as an exception at the hardware level (although the latter may cause
+the former), but is rather a ‘formally architected process message’ (F.
+Soltis).</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>An MI-exception is defined as either a
+machine-defined error detected during the execution of an instruction, or as a
+user-defined condition detected by a user-program. An event, on the other hand,
+is defined as an activity that occurs during machine operation that may be of
+interest to machine users. Exceptions are synchronous, meaning that they are
+caused by the execution of an instruction, while events are asynchronous, meaning
+that they are caused by actions outside the currently executing instruction. An
+example of a synchronous exception is an attempt to divide by zero. An example
+of an asynchronous event is the completion of an I/O operation.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Just as there are two types of exceptions
+(errors and user-defined conditions), there are also two types of events:
+object-related events and machine-related events. An MI-process can monitor the
+occurrence of a set of events and take appropriate action on some or all of
+them. Exceptions can also be monitored. Multiple monitors can be enabled at the
+same time. Each monitor has a priority controlling exception searching and
+handling when more than one monitor is active. Associated with each monitor is
+an exception handling routine; exceptions are formatted as messages and sent to
+the appropriate queue space.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>In this chapter we shall only consider
+exceptions. Events are dealt with in later chapters. Superficially however,
+there are many similarities between exceptions and events.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Declaring an Exception Monitor</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>An exception monitor is installed by
+declaring an <i style='mso-bidi-font-style:normal'>Exception Description</i>.
+The syntax is as follows:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL EXCM <i style='mso-bidi-font-style:
+normal'>exception-name</i> EXCID( <i style='mso-bidi-font-style:normal'>exception-number</i>
+)<span style='mso-spacerun:yes'>  </span>&#9472;&#9472;&gt;<span
+style='mso-spacerun:yes'>  </span>&#9484; INT &#9488;<span
+style='mso-spacerun:yes'> 
+</span>&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&gt;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#8593;<span
+style='mso-spacerun:yes'>             </span><span
+style='mso-spacerun:yes'>   </span>&#9474;<span
+style='mso-spacerun:yes'>        </span>&#9474; BP<span
+style='mso-spacerun:yes'>  </span>&#9474;<span style='mso-spacerun:yes'>  
+</span>&#9474;<span style='mso-spacerun:yes'>                  </span>&#9474;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                             
+</span>&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; ,
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;<span
+style='mso-spacerun:yes'>        </span>&#9492; EXT &#9496;<span
+style='mso-spacerun:yes'>   </span>&#9492;&#9472; (<i style='mso-bidi-font-style:
+normal'>handler-name</i>) &#9472;&#9496;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                       
+</span>&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&gt;
+;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#9474; IMD
+&#9474;<span style='mso-spacerun:yes'>    </span>&#9474;<span
+style='mso-spacerun:yes'>                </span>&#9474; <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#9474; IGN
+&#9474;<span style='mso-spacerun:yes'>    </span>&#9492;&#9472;&#9472; CV(<i
+style='mso-bidi-font-style:normal'>string</i>) &#9472;&#9472;&#9496;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#9474; SKP
+&#9474;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#9474; RSG
+&#9474;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span>&#9492; DFR
+&#9496;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>where</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US>Element<o:p></o:p></span></b></p>
+  </td>
+  <td width=204 style='width:153.0pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  background:#D9D9D9;mso-shading:windowtext;mso-pattern:gray-15 auto;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Range</span><span lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+  <td width=216 style='width:162.0pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  background:#D9D9D9;mso-shading:windowtext;mso-pattern:gray-15 auto;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Description</span><span
+  lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span lang=EN-US
+  style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>exception-name<o:p></o:p></span></i></p>
+  </td>
+  <td width=204 style='width:153.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MI-name or *</span></p>
+  </td>
+  <td width=216 style='width:162.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name of exception description</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span lang=EN-US
+  style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>exception-number<o:p></o:p></span></i></p>
+  </td>
+  <td width=204 style='width:153.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Unsigned integer from 0 to 65535</span></p>
+  </td>
+  <td width=216 style='width:162.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception identifier</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span lang=EN-US
+  style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>handler-name<o:p></o:p></span></i></p>
+  </td>
+  <td width=204 style='width:153.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MI-name</span></p>
+  </td>
+  <td width=216 style='width:162.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name of exception handler</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i style='mso-bidi-font-style:normal'><span lang=EN-US
+  style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>string<o:p></o:p></span></i></p>
+  </td>
+  <td width=204 style='width:153.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>1 to 32 bytes</span></p>
+  </td>
+  <td width=216 style='width:162.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Compare value</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US>Handler
+  type<o:p></o:p></span></b></p>
+  </td>
+  <td width=420 style='width:315.0pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  background:#D9D9D9;mso-shading:windowtext;mso-pattern:gray-15 auto;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Description</span><span
+  lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>INT<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name refers to an internal entry point</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>BP<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name is label for branch point</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>EXT<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name refers to system pointer for
+  external program or entry point</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The <i style='mso-bidi-font-style:normal'>exception
+action</i> determines what the system does when the exception is encountered:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US>Handler
+  action<o:p></o:p></span></b></p>
+  </td>
+  <td width=420 style='width:315.0pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  background:#D9D9D9;mso-shading:windowtext;mso-pattern:gray-15 auto;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Description</span><span
+  lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>IMD<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Control passes immediately to the
+  specified exception handler (default)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>IGN<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Ignore the exception and continue
+  processing</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>SKP<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Skip the current description, continue
+  search for another description</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>RSG<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Re-signal the exception and continue to
+  search for a description</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=126 style='width:94.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+  10.0pt;font-family:"Lucida Console"'>DFR<o:p></o:p></span></p>
+  </td>
+  <td width=420 style='width:315.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Postpone (defer) handling, saving
+  exception data for later</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level3 lfo1'><span
+lang=EN-US>The Exception Identifier</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>Two bytes combined into an unsigned integer
+serve to identify an exception. The first byte is a <i style='mso-bidi-font-style:
+normal'>group</i> number, while the second byte is a subtype within the group.
+As further qualification the exception may have a <i style='mso-bidi-font-style:
+normal'>compare value</i>. Although compare values may contain up to 32
+characters, OS/400 only uses three letter combinations, such as “CPF” or “MCH”.
+As exceptions are ‘architected’ as messages, they are assigned a textual
+message identifier consisting of the three-letter compare value followed by a
+four-digit <i style='mso-bidi-font-style:normal'>hexadecimal</i> (see below,
+though) representation of the exception identifier, such as “<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>CPF</span><span
+style='color:red'>3CF1</span></b>” or “<b style='mso-bidi-font-weight:normal'><span
+style='color:blue'>MCH</span><span style='color:red'>1202</span></b>”.
+Exceptions signaled by the machine have an internal compare value consisting of
+four null characters; although these are translated into the three-letter (more
+readable) value “MCH”.<span style='mso-spacerun:yes'>  </span>By historical
+accident (bummer…), machine exception IDs are converted byte for byte into <i
+style='mso-bidi-font-style:normal'>decimal</i> value message IDs. This silly
+convention has caused much grief and gnashing of teeth. For example, the
+dreaded “decimal data error” message we all hate and know as MCH<b
+style='mso-bidi-font-weight:normal'><span style='color:red'>12</span><span
+style='color:green'>02</span></b> is really MCH<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>0C</span><span style='color:green'>02</span></b>,
+so declaring an exception description to monitor for “decimal data error”
+(MCH1202), “zero divide” (MCH1210) and “size too small for result” (MCH1211)
+would look like this:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>DCL EXCM DATA-ERROR EXCID(H‘0C02’, H‘0C0A’, H‘0C0B’) INT(ERROR) IMD
+CV(“MCH”);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>An exception description may monitor for an
+exception with a <i style='mso-bidi-font-style:normal'>generic</i> ID as
+follows:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>H‘0000’<span
+style='mso-tab-count:1'> </span>-<span style='mso-spacerun:yes'>   </span>Any
+exception ID results in a match.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>H‘<i
+style='mso-bidi-font-style:normal'>gg</i>00’<span style='mso-tab-count:1'> </span>-<span
+style='mso-spacerun:yes'>   </span>Any exception ID in group <i
+style='mso-bidi-font-style:normal'>gg</i> results in a match.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span><span
+class=SpellE>H‘<i style='mso-bidi-font-style:normal'>ggnn</i></span>’<span
+style='mso-tab-count:1'> </span>-<span style='mso-spacerun:yes'>   </span>The
+exception ID must match exactly<span style='mso-spacerun:yes'>  </span><span
+class=SpellE><i style='mso-bidi-font-style:normal'>ggnn</i></span> in order for
+a match to occur.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Searching for Exception Descriptions</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>When an exception occurs, the exception
+descriptions of the current invocation are searched in the sequence in which
+they were declared. If an exception ID in an exception description corresponds
+to the occurring exception, the corresponding compare values are checked. If
+the compare value <i style='mso-bidi-font-style:normal'>length</i> in the
+exception description is less than the compare value length of the exception
+occurring, the length of the compare value in the exception description is used
+for matching purposes. If it is greater, an automatic mismatch results. As
+machine exception compare values have a length of four bytes, the
+three-character compare values used by OS/400 just squeak by. </span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Materialize an Exception Description</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>You can materialize a named exception
+description by using the </span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>MATEXCPD</span></b><span lang=EN-US> instruction. The format is:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>MATEXCPD<span style='mso-spacerun:yes'>    </span>.<i style='mso-bidi-font-style:
+normal'>Receiver</i>, <i style='mso-bidi-font-style:normal'>Exception-description</i>,
+<i style='mso-bidi-font-style:normal'>Materialization-option</i>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The <i style='mso-bidi-font-style:normal'>.Receiver</i>
+operand is a space pointer to the materialization template. The materialization
+option is a one-character data item with the value x‘00’ meaning full
+materialization and higher values meaning partial materialization to various
+degrees. Here is the layout of the full template:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-DESCR INIT(EXCP-DESCR);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-DESCR CHAR(96) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-DESCR-PROV<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(EXCP-DESCR) POS(1) INIT(96);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-DESCR-AVAIL BIN(4)
+DEF(EXCP-DESCR) POS(5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-MAT<span
+style='mso-spacerun:yes'>       </span>CHAR(88) DEF(EXCP-DESCR) POS(9);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CONTROL<span style='mso-spacerun:yes'>    
+</span>CHAR(2) DEF(EXCP-MAT) POS( 1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-INSTR-NBR<span style='mso-spacerun:yes'>   
+</span>BIN(2) DEF(EXCP-MAT) POS( 3);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CMPVAL-SIZE<span style='mso-spacerun:yes'> 
+</span>BIN(2) DEF(EXCP-MAT) POS( 5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CMPVAL<span style='mso-spacerun:yes'>    
+</span>CHAR(32) DEF(EXCP-MAT) POS( 7);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-NBR-OF-IDS<span style='mso-spacerun:yes'>  
+</span>BIN(2) DEF(EXCP-MAT) POS(39);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL SYSPTR .EXCP-MAT-HND-PGM<span style='mso-spacerun:yes'>       
+</span>DEF(EXCP-MAT) POS(41);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-ID(16)<span style='mso-spacerun:yes'>     
+</span>CHAR(2) DEF(EXCP-MAT) POS(57);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The last data item, </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MAT-ID</span><span
+lang=EN-US>, is an array of exception IDs. It is here configured for 16
+entries, but can have many more (albeit a rare occurrence). As is customary
+with templates, it starts with two binary numbers showing how many bytes are
+provided in the template and how many were actually materialized.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The control flags, </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MAT-CONTROL</span><span
+lang=EN-US>, determine the further treatment of the exception as follows</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'>:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:35.7pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr style='page-break-inside:avoid'>
+  <td width=72 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;
+  mso-pattern:gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US>Bits<o:p></o:p></span></b></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Value</span><span lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Meaning</span><span lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=72 rowspan=5 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US>0-2</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>000</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception Handler Action: Ignore</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>001</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception Handler Action: Skip</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>010</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception Handler Action: <span
+  class=SpellE>Resignal</span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>100</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception Handler Action: Defer</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>101</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Exception Handler Action: Pass control
+  immediately</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=72 rowspan=2 style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>3</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>0</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Return exception data</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>1</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Do not return exception data</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=72 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>4</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>0</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Reserved, must be zero</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=72 rowspan=2 style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>5</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>0</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>User data not present</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>1</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>User data present</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=72 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>6-7</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>00</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Reserved, must be zeroes</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=72 rowspan=3 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US>8-9</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>00</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>External entry point handler</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>01</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Internal entry point handler</span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid'>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>10</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Branch point handler</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=72 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>10-15</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>000000</span></p>
+  </td>
+  <td width=330 valign=top style='width:247.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Reserved, must be zeroes</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The instruction number, </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MAT-INSTR-NBR</span><span
+lang=EN-US>, is the MI-instruction number to be given control when this
+exception occurs. If the exception handler is external, </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MAT-INSTR-NBR</span><span
+lang=EN-US> will be set to zero (as it is not to be used). The size and
+contents of the compare value, </span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MAT-CMPVAL-SIZE</span><span
+lang=EN-US> and </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>EXCP-MAT-CMPVAL</span><span lang=EN-US>,
+have their obvious meanings.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Modifying an Exception Description</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>You can <i style='mso-bidi-font-style:normal'>modify</i>
+an exception description to alter the action to be taken. The simple form of
+the “Modify Exception Description” (</span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>MODEXCPD</span></b><span lang=EN-US>) instruction takes this
+format:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>MODEXCPD<span style='mso-spacerun:yes'>    </span><i style='mso-bidi-font-style:
+normal'>Exception-description</i>, <i style='mso-bidi-font-style:normal'>New-Control-Flags</i>,
+X‘01’;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>allowing you to specify a new set of
+control flags. You can also use a space pointer to an altered materialization
+template as operand 2 to change the exception description. You often modify an
+exception description after determining that the error causing the exception is
+indeed fatal and that no further repair of the situation makes sense or is even
+possible. In this case you should disable the exception monitor and retry the
+instruction (see below how to) causing the exception to occur again, but this
+time, due to your exception monitor having been disabled, it will cause the
+exception to be sent to the caller of your program. Here is how to disable the
+exception monitor:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>MODEXCPD<span style='mso-spacerun:yes'>    </span><i style='mso-bidi-font-style:
+normal'>Exception-description</i>, X‘2000’, X‘01’;<o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Monitoring Exceptions: The </span><span lang=EN-US style='font-family:
+"Lucida Console";color:maroon'>MIDECEXC</span><span lang=EN-US> Program</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>To illustrate some of the features of
+exception handling, we’ll write a program to repair various decimal data
+errors. Whether such errors should be ignored, repaired, reported, or cause the
+program to fail is completely application dependent. We are, of course, not
+advocating that errors be repaired in all cases. What our particular example
+program will do is:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>&#9679;<span style='mso-tab-count:1'>        </span>In case of invalid
+decimal data (MCH1202), set the data to zeroes</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>&#9679;<span style='mso-tab-count:1'>        </span>In case of divide by
+zero (MCH1210), set the data to the highest value possible (“infinity”)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>   
+</span>&#9679;<span style='mso-tab-count:1'>        </span>In case of result
+too large (MCH1211), set the data to the highest value possible (“infinity”)</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>For illustration, the program starts by
+materializing an exception description. Debug the program with a break point
+set at “1” to see the result (</span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-DESCR</span><span
+lang=EN-US>). The program then continues to force the various errors,
+accumulating the result of each operation in a message that is issued at the
+end of the program. You can set a break point at “2” and look at (</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-INFO</span><span
+lang=EN-US>) to see the exception data returned for each exception as it
+occurs.</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-DESCR INIT(EXCP-DESCR);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-DESCR CHAR(96) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-DESCR-PROV<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(EXCP-DESCR) POS(1) INIT(96);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-DESCR-AVAIL BIN(4)
+DEF(EXCP-DESCR) POS(5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-MAT<span
+style='mso-spacerun:yes'>       </span>CHAR(88) DEF(EXCP-DESCR) POS(9);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CONTROL<span style='mso-spacerun:yes'>     </span>CHAR(2)
+DEF(EXCP-MAT) POS( 1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-INSTR-NBR<span style='mso-spacerun:yes'>   
+</span>BIN(2) DEF(EXCP-MAT) POS( 3);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CMPVAL-SIZE<span style='mso-spacerun:yes'> 
+</span>BIN(2) DEF(EXCP-MAT) POS( 5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-CMPVAL<span style='mso-spacerun:yes'>    
+</span>CHAR(32) DEF(EXCP-MAT) POS( 7);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-NBR-OF-IDS<span style='mso-spacerun:yes'>  
+</span>BIN(2) DEF(EXCP-MAT) POS(39);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL SYSPTR .EXCP-MAT-HND-PGM<span style='mso-spacerun:yes'>       
+</span>DEF(EXCP-MAT) POS(41);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>       
+</span>DCL DD EXCP-MAT-ID(16)<span style='mso-spacerun:yes'>     
+</span>CHAR(2) DEF(EXCP-MAT) POS(57);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL EXCM DEC-ERROR EXCID(H'0C02', H'0C0A',
+H'0C0B')<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span><span
+style='mso-spacerun:yes'>             </span>INT(ERROR) IMD
+CV(&quot;MCH&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD DATA CHAR(3);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD NUMBER PKD(5,0) DEF(DATA) POS(1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MATEXCPD<span style='mso-spacerun:yes'>   </span>.EXCP-DESCR, DEC-ERROR,
+X'00';<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    </span><span
+style='color:gray'>BRK &quot;1&quot;; /* TO SHOW DESCRIPTION */<o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBREP<span style='mso-spacerun:yes'>     </span>DATA, &quot; &quot;; <span
+style='color:green'>/* MAKE INVALID PACKED NUMBER */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    </span>CALLI<span
+style='mso-spacerun:yes'>       </span>SHOW-DATA, *, .SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>     </span>NUMBER, 1; <span
+style='color:green'>/* FORCE 'DECIMAL DATA ERROR' */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-DATA, *,
+.SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DIV(S)<span style='mso-spacerun:yes'>      </span>NUMBER, 0; <span
+style='color:green'>/* FORCE 'ZERO DIVIDE<span style='mso-spacerun:yes'> 
+</span>ERROR' */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-DATA, *,
+.SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>     </span>NUMBER, 1; <span
+style='color:green'>/* FORCE 'NUMERIC SIZE ERROR' */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-DATA, *,
+.SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN(S)<span style='mso-spacerun:yes'>     </span>NUMBER, 1; <span
+style='color:green'>/* NO ERRORS, RESULT = 99998<span
+style='mso-spacerun:yes'>  </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-DATA, *,
+.SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-MESSAGE, *,
+.SHOW-MESSAGE;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>      </span><span
+style='mso-spacerun:yes'>   </span>*;<o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Exception General and Specific Data</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>When an exception occurs, general exception
+information about the location and nature of the exception can be retrieved. In
+addition, many exceptions also have specific data associated with them giving
+further details about the error or condition that has occurred. The MI
+Functional Reference Manual chapter 27 provides a lot of details about this
+specific data. The exceptions we are monitoring for in our test program happen
+not to return any specific data, but we’ll structure the code to be prepared
+for specific data in order to make it easier to adapt the code for other
+exceptions.<span style='mso-spacerun:yes'>  </span>The “Retrieve Exception
+Data” (</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>RETEXCPD</span></b><span lang=EN-US>) instruction with this
+format</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>RETEXCPD<span style='mso-spacerun:yes'>    </span>.<i style='mso-bidi-font-style:
+normal'>Exception-info</i>, <i style='mso-bidi-font-style:normal'>Exception-handler-type</i>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>retrieves the data related to the
+occurrence of the exception into the materialization area given by the space
+pointer <i style='mso-bidi-font-style:normal'>.Exception-info</i>. Here is the
+format of the information area:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-INFO INIT(EXCP-INFO);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-INFO CHAR(304) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span><span
+style='mso-spacerun:yes'>   </span>DCL DD EXCP-INFO-PROV<span
+style='mso-spacerun:yes'>      </span>BIN(4) DEF(EXCP-INFO) POS( 1) INIT(304);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-INFO-AVAIL<span style='mso-spacerun:yes'>     </span>BIN(4)
+DEF(EXCP-INFO) POS( 5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-INFO-ID<span style='mso-spacerun:yes'>       </span>CHAR(2)
+DEF(EXCP-INFO) POS( 9);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-INFO-CMP-SIZE<span style='mso-spacerun:yes'>  </span>BIN(2)
+DEF(EXCP-INFO) POS(11);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-INFO-CMPVAL<span style='mso-spacerun:yes'>  </span>CHAR(32)
+DEF(EXCP-INFO) POS(13);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-INFO-REFKEY<span style='mso-spacerun:yes'>    </span>BIN(4)
+DEF(EXCP-INFO) POS(45);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-DATA<span style='mso-spacerun:yes'>        </span>CHAR(256)
+DEF(EXCP-INFO) POS(49);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The exception data, </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-DATA</span><span
+lang=EN-US>, contains both variable-size exception <i style='mso-bidi-font-style:
+normal'>specific</i> data and a 46-byte fixed-size data part related to the
+invocation and location of where the exception occurred. Unfortunately, the
+variable-size data comes first. To access the fixed-part, it is thus convenient
+to declare a <i style='mso-bidi-font-style:normal'>based</i> structure: </span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD INVOCATION-PART BIN(2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-INVOC;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-INVOC CHAR(46) <b style='mso-bidi-font-weight:normal'><span
+style='color:maroon'>BAS</span></b>(.EXCP-INVOC);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL PTR .EXCP-SOURCE-INVOC<span style='mso-spacerun:yes'>         
+</span>DEF(EXCP-INVOC) POS( 1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL PTR .EXCP-TARGET-INVOC<span style='mso-spacerun:yes'>         
+</span>DEF(EXCP-INVOC) POS(17);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD EXCP-SOURCE-INSTR<span style='mso-spacerun:yes'>    
+</span>BIN(2) DEF(EXCP-INVOC) POS(33);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='mso-pagination:widow-orphan lines-together'><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>    </span>DCL DD EXCP-TARGET-INSTR<span
+style='mso-spacerun:yes'>     </span>BIN(2) DEF(EXCP-INVOC) POS(35);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='mso-pagination:widow-orphan lines-together'><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>    </span>DCL DD EXCP-MACHINE-DATA<span
+style='mso-spacerun:yes'>   </span>CHAR(10) DEF(EXCP-INVOC) POS(37);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We have made room for 256 bytes of
+exception data. Compute the offset to the fixed part from the number of bytes
+available and add it to the space pointer to the exception information to get
+the basing space pointer to the invocation information:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>        </span>INVOCATION-PART,
+EXCP-INFO-AVAIL, 46;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDSPP<span style='mso-spacerun:yes'>     </span>.EXCP-INVOC, .EXCP-INFO,
+INVOCATION-PART;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The source invocation,<span
+style='mso-spacerun:yes'>  </span></span><span lang=EN-US style='font-size:
+9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>.EXCP-SOURCE-INVOC</span><span
+lang=EN-US>, identifies the invocation that caused the exception. The target
+invocation,<span style='mso-spacerun:yes'>  </span></span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>.EXCP-TARGET-INVOC</span><span
+lang=EN-US>, identifies the invocation that is the target of the exception,
+i.e. the last invocation that was given the chance to handle the exception. For
+machine exceptions, this is the invocation incurring the exception. For
+user-signaled exceptions you may specify a different target. You also retrieve
+the number of the MI-instruction that caused the exception in the source
+invocation and the number of the MI-instruction that is currently being
+executed in the target invocation.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>The second operand, </span><i
+style='mso-bidi-font-style:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>Exception-handler-type</span></i><span
+lang=EN-US>, specifies the exception handler type as follows:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>X‘00’
+<span style='mso-tab-count:1'>    </span>retrieve for a branch point exception
+handler</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>X‘01’
+<span style='mso-tab-count:1'>    </span>retrieve for an internal entry point
+exception handler</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>               </span>X‘02’
+<span style='mso-tab-count:1'>    </span>retrieve for an external entry point
+exception handler</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>You normally begin exception handler
+processing with retrieving the exception data: </span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>ENTRY ERROR INT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RETEXCPD<span style='mso-spacerun:yes'>   </span>.EXCP-INFO, X'01'; <span
+style='color:green'>/* RETRIEVE FOR INTERNAL ENTRY */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console";color:gray'><span
+style='mso-spacerun:yes'>    </span>BRK &quot;2&quot;; /* TO SHOW INFORMATION
+*/<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Now we implement the rules for handling the
+exceptions depending on the exception ID:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CMPBLA(B)<span style='mso-spacerun:yes'>   </span>EXCP-INFO-ID,
+X'0C02'/NEQ(=+2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV(B)<span style='mso-spacerun:yes'>    </span>NUMBER,
+00000/ZER(=+2);: <span style='color:green'>/* DECIMAL ERROR */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>       </span>NUMBER, 99999;:<span
+style='mso-spacerun:yes'>          </span><span style='color:green'>/* OTHER
+ERRORS<span style='mso-spacerun:yes'>  </span>*/</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SUBN<span style='mso-spacerun:yes'>        </span>INVOCATION-PART,
+EXCP-INFO-AVAIL, 46;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDSPP<span style='mso-spacerun:yes'>     </span>.EXCP-INVOC,
+.EXCP-INFO, INVOCATION-PART;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Finally we want to return to the invocation
+with our “repaired” </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>NUMBER</span><span lang=EN-US>:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBWP<span style='mso-spacerun:yes'>     </span>.EXCP-RTN-INVOC,
+.EXCP-SOURCE-INVOC;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTNEXCP<span style='mso-spacerun:yes'>    </span>.EXCP-RETURN;<o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Return from Exception</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>When an external exception handler
+invocation or an internal exception handler subinvocation gets control and then
+has done what it needs to do to process the exception, you need to terminate
+the handler with the “Return from Exception” (</span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>RTNEXCP</span></b><span lang=EN-US>)
+instruction:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>RTNEXCP<span style='mso-spacerun:yes'>    </span>.<i style='mso-bidi-font-style:
+normal'>Exception-return-template</i>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>where the operand specifies a space pointer
+to a template that in turn will specify the instruction to return to, within a
+specified invocation. The </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>RTNEXPD</span><span
+lang=EN-US> instruction cannot be executed (and is not needed) in a branch
+point internal exception handler (you just branch to where you want to go). The
+template specifies the return address as the invocation pointer </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>.EXCP-RTN-INVOC</span><span
+lang=EN-US>:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-RETURN INIT(EXCP-RETURN);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-RETURN CHAR(19) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL PTR .EXCP-RTN-INVOC<span style='mso-spacerun:yes'>    
+</span>DEF(EXCP-RETURN) POS( 1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-MBZERO CHAR(1)
+DEF(EXCP-RETURN) POS(17) INIT(X'00');<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-ACTION CHAR(2)
+DEF(EXCP-RETURN) POS(18) INIT(X'<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>0100</span></b>');<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The reserved variable </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-MBZERO</span><span
+lang=EN-US> must be binary zero. The action code, </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-ACTION</span><span
+lang=EN-US>, determines what happens next:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:13.2pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=66 valign=top style='width:49.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;
+  mso-pattern:gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US>Code<o:p></o:p></span></b></p>
+  </td>
+  <td width=492 valign=top style='width:369.0pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#D9D9D9;mso-shading:windowtext;mso-pattern:
+  gray-15 auto;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+  style='color:black;mso-color-alt:windowtext'>Action</span><span lang=EN-US><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=66 style='width:49.5pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>X‘0200’</span></p>
+  </td>
+  <td width=492 valign=top style='width:369.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US>Resume
+  execution with the instruction that follows the </span><span lang=EN-US
+  style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>RTNEXCP</span><span
+  lang=EN-US> instruction<span style='mso-spacerun:yes'>  </span>(terminating
+  the internal exception handler subinvocation).</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=66 valign=top style='width:49.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>X‘0100’</span></p>
+  </td>
+  <td width=492 valign=top style='width:369.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Resume execution with the instruction
+  following the instruction causing the exception</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=66 valign=top style='width:49.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>X‘0000’</span></p>
+  </td>
+  <td width=492 valign=top style='width:369.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Re-execute the instruction that caused
+  the exception</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:3.0pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:5.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>In our example program we want to resume
+execution of the instruction that follows the instruction causing the
+exception, so we set the action code to x‘0100’.</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The following little routine just inserts
+the current value of our </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>NUMBER</span><span
+lang=EN-US> into a message to show at the end of the program. A small thing to
+note is the </span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>AUTO</span></b><span lang=EN-US> attribute of the position
+variable, </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>N</span><span lang=EN-US>. The default
+storage attribute is </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>STATIC</span><span lang=EN-US>, meaning
+that the variable is only allocated storage once and that it keeps its value
+from invocation to invocation. With the </span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console";color:maroon'>AUTO</span></b><span lang=EN-US>
+attribute, the variable is re-allocated and re-initialized every time the
+program is called. In our example, that ensures that we start from the
+beginning of the message area every time:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD N <b style='mso-bidi-font-weight:
+normal'><span style='color:maroon'>AUTO</span></b> BIN(2) INIT(1); <span
+style='color:green'>/* reset every time PGM is run */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL INSPTR .SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>ENTRY<span style='mso-spacerun:yes'>      
+</span>SHOW-DATA INT;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CMPNV(B)<span style='mso-spacerun:yes'>    </span>N, 1/HI(=+2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBREP<span style='mso-spacerun:yes'>     </span>MSG-TEXT, &quot;
+&quot;;:<span style='mso-spacerun:yes'>  </span><span style='color:green'>/*
+clear to blanks if N = 1 */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CVTHC<span style='mso-spacerun:yes'>       </span>MSG-TEXT(N:6),
+DATA;<span style='mso-spacerun:yes'>      </span><span style='color:green'>/*
+contains NUMBER */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>ADDN(S)<span style='mso-spacerun:yes'>     </span>N, 10;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>   </span><span
+style='mso-spacerun:yes'>       </span>.SHOW-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>%INCLUDE SHOWMSG<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Running the program we get:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Type reply (if required), press
+Enter.<span style='mso-spacerun:yes'>                </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>From<span style='mso-spacerun:yes'>  </span>. . . :<span
+style='mso-spacerun:yes'>   </span>LSVALGAARD<span
+style='mso-spacerun:yes'>     </span>12/06/00<span style='mso-spacerun:yes'>  
+</span>13:28:24<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>404040<span style='mso-spacerun:yes'>    </span>00000F<span
+style='mso-spacerun:yes'>    </span>99999F<span style='mso-spacerun:yes'>   
+</span><span class=SpellE>99999F</span><span style='mso-spacerun:yes'>   
+</span>99998F<span style='mso-spacerun:yes'>      </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>NUMBER</span><span lang=EN-US> starts out
+as the invalid packed decimal value x‘404040’ (blanks), then is repaired to
+zeroes, then set to the maximum value after the zero divide and after the
+attempt to add 1 more to it, and finally ends up being the valid value 9998.</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Signaling Exceptions: The </span><span lang=EN-US style='font-family:
+"Lucida Console";color:maroon'>MISIGEXC</span><span lang=EN-US> Program</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>In addition to monitoring for exceptions,
+you can also <i style='mso-bidi-font-style:normal'>signal</i> exceptions to
+occur. You can either <i style='mso-bidi-font-style:normal'>re-signal</i> the
+exception from inside an exception handler (in which case the invocation is
+known) or you can signal a <i style='mso-bidi-font-style:normal'>new</i>
+exception (we could use the word <i style='mso-bidi-font-style:normal'>condition</i>
+for such new exceptions). When you want to signal a condition, the first
+problem you have is to get an <i style='mso-bidi-font-style:normal'>invocation
+pointer</i> as the target for the exception. You use the “Materialize
+Invocation Attributes” (</span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>MATINVAT</span></b><span lang=EN-US>) instruction to get the invocation
+pointer.</span></p>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level3 lfo1'><span
+lang=EN-US>Materialize Invocation Attributes</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>The </span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>MATINVAT</span><span
+lang=EN-US> instruction causes either one specific attribute or a list of
+attributes of the designated invocation to be materialized. We’ll only consider
+the first option here (as it gets rather complicated otherwise). The syntax is:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>MATINVAT<span style='mso-spacerun:yes'>     </span>.<i style='mso-bidi-font-style:
+normal'>Receiver</i>, <i style='mso-bidi-font-style:normal'>Invocation</i>, .<i
+style='mso-bidi-font-style:normal'>Selection-template</i>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Operand 1, <i style='mso-bidi-font-style:
+normal'>.Receiver</i>, specifies a space pointer to the area to receive the
+attribute. Operand 2, <i style='mso-bidi-font-style:normal'>Invocation</i>,
+identifies the source invocation whose attribute is to be retrieved. If this
+operand is the <i style='mso-bidi-font-style:normal'>null</i> operand, “<i
+style='mso-bidi-font-style:normal'>*</i>”, the invocation issuing the
+instruction is identified. Operand 3, <i style='mso-bidi-font-style:normal'>.Selection-template</i>,
+is a space pointer to a template that selects the attribute to be materialized.
+Most of the fields in the template have to do with how to store a list of
+attributes and can be set to zeroes if only one attribute is to be
+materialized:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .MAT-RECEIVER
+INIT(MAT-RECEIVER);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>MAT-RECEIVER CHAR(16) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL PTR .MAT-INVOC<span style='mso-spacerun:yes'>  
+</span>DEF(MAT-RECEIVER) POS(1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .MAT-SELECT INIT(MAT-SELECT);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>MAT-SELECT CHAR(32);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-<b style='mso-bidi-font-weight:
+normal'><span style='color:maroon'>NBR-ATTRS</span></b><span
+style='mso-spacerun:yes'>   </span></span><span lang=EN-US style='font-size:
+7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span></span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>BIN(4) DEF(MAT-SELECT)
+POS( 1) INIT( <b style='mso-bidi-font-weight:normal'><span style='color:maroon'>1</span></b>);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-ATTR-FLAGS<span
+style='mso-spacerun:yes'>   </span>BIN(4) DEF(MAT-SELECT) POS( 5) INIT( 0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-ATTR-OFFSET<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(MAT-SELECT) POS( 9) INIT( 0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-ATTR-STORED<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(MAT-SELECT) POS(13) INIT( 0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>ATTR-ID</span></b><span
+style='mso-spacerun:yes'>     </span></span><span lang=EN-US style='font-size:
+7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span></span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>BIN(4) DEF(MAT-SELECT)
+POS(17) INIT( <b style='mso-bidi-font-weight:normal'><span style='color:red'>1</span></b>);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-RECV-FLAGS<span
+style='mso-spacerun:yes'>   </span>BIN(4) DEF(MAT-SELECT) POS(21) INIT( 0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-RECV-OFFSET<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(MAT-SELECT) POS(25) INIT( 0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>MAT-<b style='mso-bidi-font-weight:
+normal'><span style='color:blue'>RECV-LENGTH</span></b> </span><span
+lang=EN-US style='font-size:7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span></span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>BIN(4) DEF(MAT-SELECT)
+POS(29) INIT(<b style='mso-bidi-font-weight:normal'><span style='color:blue'>16</span></b>);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The important fields are the number of
+attributes to materialize (</span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>NBR-ATTR</span><span
+lang=EN-US>s = 1), the attribute identifier (</span><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>ATTR-ID</span><span
+lang=EN-US> = 1, for the invocation pointer), and the length of the receiver
+area (</span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console"'>RECV-LENGTH</span><span lang=EN-US> = 16 bytes,
+because we’re materializing a pointer, and that’s how large and plump pointers
+are).</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The program now starts by materializing the
+invocation pointer to its own invocation:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>GET-OWN-INVOCATION:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>MATINVAT<span style='mso-spacerun:yes'>   </span>.MAT-RECEIVER, *,
+.MAT-SELECT;<o:p></o:p></span></p>
+
+<h3 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level3 lfo1'><span
+lang=EN-US>Signaling an Exception</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>The “Signal Exception” (</span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>SIGEXCP</span></b><span
+lang=EN-US>) instruction signals (“sends”) a new exception or re-signals an
+existing exception to the target invocation. The syntax is:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:4.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>SIGEXCP<span style='mso-spacerun:yes'>     </span>.<i style='mso-bidi-font-style:
+normal'>Signal-info</i>, .<i style='mso-bidi-font-style:normal'>Exception-info</i>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The first operand is a space pointer to a
+template holding the target invocation pointer,<span style='mso-spacerun:yes'> 
+</span></span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Lucida Console"'>.EXCP-TO-INVOC</span><span lang=EN-US>. <br>
+Bits 0 of the </span><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>EXCP-<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>OPTION</span></b></span><span lang=EN-US> determines if we
+have a new exception (bit 0 = 0) or if we are re-signaling an existing
+exception (bit 0 = 1). Setting bit 2 to a 1 gives you control over which
+exception description to search first. We are happy with the default, which is
+simply the first:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-SIGNAL INIT(EXCP-SIGNAL);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-SIGNAL CHAR(20) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL PTR .EXCP-TO-INVOC<span style='mso-spacerun:yes'>       
+</span>DEF(EXCP-SIGNAL) POS( 1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>OPTION</span></b><span
+style='mso-spacerun:yes'>  </span></span><span lang=EN-US style='font-size:
+7.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span></span><span lang=EN-US style='font-size:8.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>CHAR(1)
+DEF(EXCP-SIGNAL) POS(17) INIT(X'<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>00</span></b>');<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>*<span
+style='mso-spacerun:yes'>             </span>CHAR(1) DEF(EXCP-SIGNAL) POS(18)
+INIT(X'00');<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-1ST-DESCR BIN(2)
+DEF(EXCP-SIGNAL) POS(19)<span style='color:gray'> INIT(1)</span>;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The second operand (which is ignored for a
+re-signal operation, as the data is already known) has the same basic format as
+the template used by the </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>RTNEXCPD</span><span
+lang=EN-US> instruction:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL SPCPTR .EXCP-INFO INIT(EXCP-INFO);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL DD<span style='mso-spacerun:yes'>     
+</span>EXCP-INFO CHAR(64) BDRY(16);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-BYTES-PROV<span
+style='mso-spacerun:yes'>   </span>BIN(4) DEF(EXCP-INFO) POS( 1) INIT(64);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-BYTES-AVAIL<span
+style='mso-spacerun:yes'>  </span>BIN(4) DEF(EXCP-INFO) POS( 5);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-ID<span
+style='mso-spacerun:yes'>           </span>BIN(2) DEF(EXCP-INFO) POS( 9);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-CMP-SIZE<span
+style='mso-spacerun:yes'>     </span>BIN(2) DEF(EXCP-INFO) POS(11);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-CMP-VAL<span
+style='mso-spacerun:yes'>    </span>CHAR(32) DEF(EXCP-INFO) POS(13);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>*<span
+style='mso-spacerun:yes'>                 </span>BIN(4) DEF(EXCP-INFO) POS(45);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>DCL DD<span style='mso-spacerun:yes'>  </span>EXCP-DATA<span
+style='mso-spacerun:yes'>       </span>CHAR(16) DEF(EXCP-INFO) POS(49);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Since we are not interested in the
+invocation data, we set the length provided for the information area, </span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>EXCP-BYTES-PROV</span><span
+lang=EN-US>, to only include the 16 bytes of exception specific data that our
+sample code will use.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The plan is now to signal two exceptions.
+The first one to be caught by our own exception monitor (or condition handler
+if you prefer), and the second one without a monitor so that the exception will
+be intercepted by the default exception handler that every process has. First
+the monitor for our very own condition “LSV7777” (I just made this up):</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL EXCM MY-CONDITION EXCID(H'<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>7777</span></b>') <b
+style='mso-bidi-font-weight:normal'><span style='color:purple'>BP</span></b>(GOT-CONDITION)
+IMD CV(&quot;<b style='mso-bidi-font-weight:normal'><span style='color:red'>LSV</span></b>&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We now signal the condition:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>SIGNAL-CONDITION:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBWP<span style='mso-spacerun:yes'>     </span>.EXCP-TO-INVOC,
+.MAT-INVOC;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLA<span style='mso-spacerun:yes'>      </span>EXCP-ID,<span
+style='mso-spacerun:yes'>        </span>X'<b style='mso-bidi-font-weight:normal'><span
+style='color:blue'>7777</span></b>';<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>       </span>EXCP-CMP-SIZE,<span
+style='mso-spacerun:yes'>  </span>3;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLA<span style='mso-spacerun:yes'>      </span>EXCP-CMP-VAL,<span
+style='mso-spacerun:yes'>   </span>&quot;<b style='mso-bidi-font-weight:normal'><span
+style='color:red'>LSV</span></b>&quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>     </span>EXCP-DATA,<span
+style='mso-spacerun:yes'>   </span>“<b style='mso-bidi-font-weight:normal'><span
+style='color:green'>Exception Data</span></b>”, &quot; &quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SIGEXCP<span style='mso-spacerun:yes'>    </span>.EXCP-SIGNAL,
+.EXCP-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The condition handler is shown a little
+further on. After handling the condition, control returns to here, where we
+issue the data value error (MCH1223) exception:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>SIGNAL-ERROR:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLA<span style='mso-spacerun:yes'>      </span>EXCP-ID,<span
+style='mso-spacerun:yes'>        </span>X'0C17';<span
+style='mso-spacerun:yes'>    </span><span style='color:green'>/* 1223 = Data
+value error */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYNV<span style='mso-spacerun:yes'>       </span>EXCP-CMP-SIZE,<span
+style='mso-spacerun:yes'>  </span>4;<span style='mso-spacerun:yes'>         
+</span><span style='color:green'>/* machine-generated compare length */<o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLA<span style='mso-spacerun:yes'>      </span>EXCP-CMP-VAL,<span
+style='mso-spacerun:yes'>   </span>X'00000000'; <span style='color:green'>/*
+MCH */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>SIGEXCP<span style='mso-spacerun:yes'>    </span>.EXCP-SIGNAL,
+.EXCP-DATA;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Finally we return from the program:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:6.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RTX<span style='mso-spacerun:yes'>         </span>*;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>The condition handler is a branch point
+handler, so we must retrieve exception data as appropriate for a branch point:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>GOT-CONDITION:<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>RETEXCPD<span style='mso-spacerun:yes'>   </span>.EXCP-INFO, X'<b
+style='mso-bidi-font-weight:normal'><span style='color:red'>00</span></b>'; <span
+style='color:green'>/* RETRIEVE FOR BRANCH POINT */</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CPYBLAP<span style='mso-spacerun:yes'>     </span>MSG-TEXT,
+EXCP-DATA(1:16), &quot; &quot;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>CALLI<span style='mso-spacerun:yes'>       </span>SHOW-MESSAGE, *,
+.SHOW-MESSAGE;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>B<span style='mso-spacerun:yes'>           </span>SIGNAL-ERROR;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>%INCLUDE SHOWMSG<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>We simply show the data returned as a
+message:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Type reply (if required), press
+Enter.<span style='mso-spacerun:yes'>                </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>From<span style='mso-spacerun:yes'>  </span>. . . :<span
+style='mso-spacerun:yes'>   </span>LSVALGAARD<span
+style='mso-spacerun:yes'>     </span>12/06/00<span style='mso-spacerun:yes'>  
+</span>21:52:15<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>Exception Data<span style='mso-spacerun:yes'>                         
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>When the program finishes, the job log
+contains:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:5.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Data value error.<span
+style='mso-spacerun:yes'>                                       </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Processing command failure, refer to job
+log for details<o:p></o:p></span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Various Errors</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The default exception handler is the
+external program </span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:maroon'>QMHPDEH</span></b><span lang=EN-US>. This program is rather
+picky. If you send it an exception it is not prepared to accept, you get the
+following error:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Message ID . . . . . . :<span
+style='mso-spacerun:yes'>   </span>CPF2524<span style='mso-spacerun:yes'>      
+</span>Severity . . . . . . . :<span style='mso-spacerun:yes'>   </span>40<span
+style='mso-spacerun:yes'>         </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Message type . . . . . :<span
+style='mso-spacerun:yes'>   </span>Escape<span
+style='mso-spacerun:yes'>                                              </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Date sent<span style='mso-spacerun:yes'> 
+</span>. . . . . . :<span style='mso-spacerun:yes'>   </span>12/05/00<span
+style='mso-spacerun:yes'>      </span>Time sent<span style='mso-spacerun:yes'> 
+</span>. . . . . . :<span style='mso-spacerun:yes'>   </span>22:46:22<span
+style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                           </span><span
+style='mso-spacerun:yes'>                                    </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Message . . . . :<span
+style='mso-spacerun:yes'>   </span>Exception handler not available because of <b
+style='mso-bidi-font-weight:normal'><span style='color:red'>reason code 1</span></b>.<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Cause . . . . . :<span
+style='mso-spacerun:yes'>   </span>An error condition was found when an
+exception was sent.<span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>The condition did not allow exception processing to complete normally.
+The<span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>reason code within the message identifies the condition that was
+found.<span style='mso-spacerun:yes'>      </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>Possible values for the reason code and their meanings are as
+follows:<span style='mso-spacerun:yes'>       </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  </span><b
+style='mso-bidi-font-weight:normal'><span style='color:red'>Reason Code 1</span></b>:
+an exception was signaled directly by using the SIGEXCP<span
+style='mso-spacerun:yes'>   </span><span style='mso-spacerun:yes'>    </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>instruction. The exception was not handled and QMHPDEH was called.
+The<span style='mso-spacerun:yes'>     </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>exception message had compare data that did not allow QMHPDEH to
+convert<span style='mso-spacerun:yes'>   </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>the exception into an MCH escape exception.<span
+style='mso-spacerun:yes'>                                </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Or you may provoke a dump:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>File<span style='mso-spacerun:yes'> 
+</span>. . . . . :<span style='mso-spacerun:yes'>   </span>QPSRVDMP<span
+style='mso-spacerun:yes'>                         </span>Page/Line<span
+style='mso-spacerun:yes'>   </span>1/1<span style='mso-spacerun:yes'>          
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Control . . . . .<span
+style='mso-spacerun:yes'>                                   
+</span>Columns<span style='mso-spacerun:yes'>     </span>1 - 78<span
+style='mso-spacerun:yes'>        </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Find<span style='mso-spacerun:yes'> 
+</span>. . . . . .<span
+style='mso-spacerun:yes'>                                                            
+</span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>*...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+...
+<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>5769SS1 V4R4M0<span
+style='mso-spacerun:yes'>  </span>990521<span
+style='mso-spacerun:yes'>                      </span>AS/400 DUMP<span
+style='mso-spacerun:yes'>          </span>265505/LSVALG <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DUMP TAKEN FOR UNMONITORED ESCAPE
+MESSAGE<span style='mso-spacerun:yes'>                                     
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.MESSAGE ID-<span
+style='mso-spacerun:yes'>  </span><span
+style='mso-spacerun:yes'>                 </span>MCH<b style='mso-bidi-font-weight:
+normal'><i style='mso-bidi-font-style:normal'><span style='color:red'>FFFF</span></i></b><span
+style='mso-spacerun:yes'>                                         </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.MESSAGE FILE-<span
+style='mso-spacerun:yes'>                 </span>QCPFMSG<span
+style='mso-spacerun:yes'>                </span>LIBRARY-<span
+style='mso-spacerun:yes'>          </span>*LIBL<span style='mso-spacerun:yes'> 
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.SEVERITY-<span
+style='mso-spacerun:yes'>                     </span>00<span
+style='mso-spacerun:yes'>                                              </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.MSGTYPE-<span
+style='mso-spacerun:yes'>                     </span><span
+style='mso-spacerun:yes'> </span>0F<span
+style='mso-spacerun:yes'>                                              </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.SENDING-<span
+style='mso-spacerun:yes'>                                                                     
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>..PROGRAM-<span
+style='mso-spacerun:yes'>                     </span>#exsgexp<span
+style='mso-spacerun:yes'>                                        </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>LIBRARY-<span
+style='mso-spacerun:yes'>                                      </span><span
+style='mso-spacerun:yes'>                                 </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>..INSTRUCTION-<span
+style='mso-spacerun:yes'>                 </span>000000<span
+style='mso-spacerun:yes'>                                          </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.RECEIVING-<span
+style='mso-spacerun:yes'>                                                                   
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>..PROGRAM-<span
+style='mso-spacerun:yes'>                     </span>MISIGEXC<span
+style='mso-spacerun:yes'>               </span>LIBRARY-<span
+style='mso-spacerun:yes'>          </span>LSVALG <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>..INSTRUCTION-<span
+style='mso-spacerun:yes'>                 </span>0007<span
+style='mso-spacerun:yes'>                                            </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.MESSAGE-<span
+style='mso-spacerun:yes'>                                                                     
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>MESSAGE NOT FOUND IN MESSAGE FILE<span
+style='mso-spacerun:yes'>                                            </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>000000<span style='mso-spacerun:yes'>   </span>C5E7C3C5 D7E3C9D6
+D540C4C1 E3C14040<span style='mso-spacerun:yes'>         </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>.POINTERS-<span
+style='mso-spacerun:yes'>                                             </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> 
+</span>NONE<span
+style='mso-spacerun:yes'>                                                
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>END OF DUMP<span
+style='mso-spacerun:yes'>         </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Or, even worse, cause an abnormal job
+termination:<span style='mso-spacerun:yes'>             </span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Job 265505/LSVALGAARD/QPADEV0007 started
+on 12/06/00 at 10:05:36<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>Incorrect exception ID was sent using the
+SIGEXCP instruction.<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span>Job
+ended abnormally.<span style='mso-spacerun:yes'>                            
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                                  
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'> </span>Display the job log for more information.<span
+style='mso-spacerun:yes'>         </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                                  
+</span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>MCH****<span style='mso-spacerun:yes'>   
+</span>Escape<span style='mso-spacerun:yes'>      </span>0J<span
+style='mso-spacerun:yes'>    </span>12/06/00<span style='mso-spacerun:yes'>  
+</span>10:22:27<span style='mso-spacerun:yes'>   </span>#exsgexp<span
+style='mso-spacerun:yes'>           </span>000000<span
+style='mso-spacerun:yes'>   </span>MISIGEXC<span style='mso-spacerun:yes'>  
+</span>LSVALGAARD<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Message . . . . :<span style='mso-spacerun:yes'>   </span>MCH****
+QCPFMSG<span style='mso-spacerun:yes'>    </span>*LIBL<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>CPF240B<span style='mso-spacerun:yes'>   
+</span>Information<span style='mso-spacerun:yes'>   </span><span
+style='mso-spacerun:yes'>          </span>40<span style='mso-spacerun:yes'>   
+</span>12/06/00<span style='mso-spacerun:yes'>   </span>10:22:27<span
+style='mso-spacerun:yes'>   </span>QMHPDEH<span
+style='mso-spacerun:yes'>        </span>QSYS<span style='mso-spacerun:yes'> 
+</span>0455<span style='mso-spacerun:yes'>  </span>*EXT<span
+style='mso-spacerun:yes'>    </span>*N<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Message . . . . :<span style='mso-spacerun:yes'>   </span>Incorrect
+exception ID was sent using the SIGEXCP<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>instruction.<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Cause . . . . . :<span style='mso-spacerun:yes'>   </span>The exception
+ID of an unhandled exception message sent by<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>a program using the SIGEXCP instruction, was found to be incorrect. The<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>exception ID of this exception message was <b style='mso-bidi-font-weight:
+normal'><i style='mso-bidi-font-style:normal'><span style='color:red'>8888</span></i></b>.
+Recovery<span style='mso-spacerun:yes'>  </span>. . . :<span
+style='mso-spacerun:yes'>   </span>Change<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>    
+</span>the exception ID so its value is correct or report the problem to IBM.<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>CPC1219<span style='mso-spacerun:yes'>   
+</span>Completion<span style='mso-spacerun:yes'>        </span><span
+style='mso-spacerun:yes'>      </span>50<span style='mso-spacerun:yes'>   
+</span>12/06/00<span style='mso-spacerun:yes'>   </span>10:22:55<span
+style='mso-spacerun:yes'>   </span>QWTPITPP<span
+style='mso-spacerun:yes'>       </span>QSYS<span style='mso-spacerun:yes'> 
+</span>0585<span style='mso-spacerun:yes'>  </span>*EXT<span
+style='mso-spacerun:yes'>    </span>*N<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Message . . . . :<span style='mso-spacerun:yes'>   </span>This job ended
+abnormally.<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>  
+</span>Cause . . . . . :<span style='mso-spacerun:yes'>   </span>An error
+occurred that caused this job to end abnormally.<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>You get different errors depending on what
+the exception ID is, and what the compare value is. This situation is not
+really satisfactory. It is a research project of mine to find out why. You may
+want to join…</span></p>
+
+<h2 style='margin-left:0cm;text-indent:0cm;mso-list:l0 level2 lfo1'><span
+lang=EN-US>Preventing Messages in the Joblog</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>When you run the </span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:maroon'>MIDECEXC</span></b><span
+lang=EN-US> program the program catches all three exceptions and does its
+repair work as desired. There is, however, an undesirable (in most cases) side
+effect: For every exception caught, an entry is made in the job log for your
+job, <i style='mso-bidi-font-style:normal'>e.g.</i>:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>3 &gt; call <span class=SpellE><b
+style='mso-bidi-font-weight:normal'><span style='color:maroon'>midecexc</span></b></span><span
+style='mso-spacerun:yes'>                                             </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'> </span><span
+style='mso-spacerun:yes'>   </span>Decimal data error.<span
+style='mso-spacerun:yes'>                                       </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>Attempt made to divide by zero for fixed point operation. <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span style='mso-spacerun:yes'>   
+</span>Receiver value too small to hold result.<span
+style='mso-spacerun:yes'>                  </span><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>There could be thousands of such exceptions
+and although some indications of the occurrence of these exceptions would be
+desirable, it is better that the program itself issues a short summary at the
+end, rather than the system clogging up the job log with thousands of messages.
+So, the question is: Can we prevent an exception from generating a job log
+entry?<span style='mso-spacerun:yes'>  </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Since the <i style='mso-bidi-font-style:
+normal'>real</i> compare value generated by the machine is x‘</span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:red'>00000000</span></b><span
+lang=EN-US>’ and not “</span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:blue'>MCH</span></b><span lang=EN-US>”, we must monitor with <i
+style='mso-bidi-font-style:normal'>that</i> compare value, i.e.: </span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL EXCM DEC-ERROR EXCID(H'0C02', H'0C0A',
+H'0C0B')<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                              </span><span
+style='mso-spacerun:yes'>    </span>INT(ERROR) IMD CV(X'<b style='mso-bidi-font-weight:
+normal'><span style='color:red'>00000000</span></b>'); <o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>instead of (as we did):</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'>DCL EXCM DEC-ERROR EXCID(H'0C02', H'0C0A',
+H'0C0B')<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><span
+style='mso-spacerun:yes'>                                  </span>INT(ERROR)
+IMD CV(&quot;<b style='mso-bidi-font-weight:normal'><span style='color:blue'>MCH</span></b>&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>If we do that, it turns out that no job log
+entry is generated. If we use </span><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'>CV(“<b
+style='mso-bidi-font-weight:normal'><span style='color:blue'>MCH</span></b>”)</span><span
+lang=EN-US>, the exception is really caught first by a lower layer monitoring
+for x‘</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console";
+color:red'>00000000</span></b><span lang=EN-US>’. That lower layer issues its
+joblog message and resignals a new exception (with compare value “</span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:9.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Lucida Console";color:blue'>MCH</span></b><span
+lang=EN-US>”) for us to catch.</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<span lang=EN-US style='font-size:10.0pt;font-family:"Times New Roman",serif;
+mso-fareast-font-family:"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:
+NL;mso-bidi-language:AR-SA'><br clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>Blank</span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:
+10.0pt;font-family:"Lucida Console"'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d2c585f6-42e2-43ea-87fe-bfa47373c0e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp000.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp000_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp000_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp000_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp000_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp001_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp002_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp003.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp003_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp003_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp003_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp003_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp004.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp004_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp004_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp004_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp005.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp005_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp005_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp005_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp005_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp006.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp006_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp006_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp006_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp006_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp007.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp007_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp007_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp007_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp007_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp008_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp009_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp00t.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp00t_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp00t_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp00t_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp00t_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp010.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp010_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp010_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp010_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp010_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp011_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp012_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp013_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp014.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp014_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp014_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp014_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp014_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image013.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image014.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image015.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/image016.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp015_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image013.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image014.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image015.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image016.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image017.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image018.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image019.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image020.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image021.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image022.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image023.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image025.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image026.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image027.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image028.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image029.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image030.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image031.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image032.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image033.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image034.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image035.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image036.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image037.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image038.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image039.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image040.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image041.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image042.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image043.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image044.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image045.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image046.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image047.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image048.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image049.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image050.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image051.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image052.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/image053.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp016_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/image002.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/oledata.mso" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp017_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp018.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp018_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp018_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp018_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp018_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp019.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp019_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp019_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp019_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp019_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp020.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp020_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp020_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp020_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp020_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp021_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp022_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp023_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp024.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp024_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp024_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp024_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp024_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp025_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/image002.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp026_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp027_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image013.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image014.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image015.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image016.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image017.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image018.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image019.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image020.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image021.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image022.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image023.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image025.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image026.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image027.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image028.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image029.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image030.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image031.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/image032.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp028_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image013.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/image014.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp029_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp030.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp030_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp030_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp030_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp030_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp031_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image013.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/image014.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp032_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp033_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp034_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image004.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image005.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image006.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image007.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image008.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image009.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image011.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/image012.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp038_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a1_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a1_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a1_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a2_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a2_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a2_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a2_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a3_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a3_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a3_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a3_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a4_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a4_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a4_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a5_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a5_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a5_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a5_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a6_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a6_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a6_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0a6_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0tc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0tc_files/colorschememapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0tc_files/filelist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0tc_files/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/chapter/mlp0tc_files/themedata.thmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mi-programming/book/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1ux3C5oRgLR0lK9oMHgzsU41d7H" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mi-programming/book/chapter" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\theo.bos\IdeaProjects\mi-programming\mi-programming\book\chapter" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2c585f6-42e2-43ea-87fe-bfa47373c0e9" name="Default Changelist" comment="" />
+      <created>1625593281746</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625593281746</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Real README.MD">
+      <created>1625595698183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625595698183</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Real README.MD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Real README.MD" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1625593297665">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1625593297665" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1625647410315">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1625647410315" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1625595361410">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1625595361410" />
+  </component>
+</project>
